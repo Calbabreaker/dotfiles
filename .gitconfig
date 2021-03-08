@@ -1,0 +1,8 @@
+[credential]
+	helper = store
+[user]
+	email = 57030377+Calbabreaker@users.noreply.github.com 
+	name = Calbabreaker
+[alias]
+	assume-unchanged = update-index --assume-unchanged
+	assume-changed = update-index --no-assume-unchanged
