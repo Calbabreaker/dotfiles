@@ -3,7 +3,6 @@ syntax on
 " -------------------------------------------------------
 " - Sets
 " -------------------------------------------------------
-
 set exrc
 set noerrorbells
 set relativenumber
@@ -13,15 +12,19 @@ set expandtab
 set smartindent
 set nu
 set nowrap
+set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+set termguicolors
 set hlsearch
 set scrolloff=8
 set colorcolumn=100
 set signcolumn=yes
 set encoding=UTF-8
+set modifiable
+set updatetime=1000
 
 " -------------------------------------------------------
 " - Plugins
@@ -33,21 +36,23 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'gruvbox-community/gruvbox'
+Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-system-copy'
 Plug 'mhinz/vim-startify'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-colorscheme gruvbox
-highlight Normal guibg=NONE ctermbg=NONE
+colorscheme OceanicNext
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -56,35 +61,10 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
+  \ 'coc-clangd',
   \ ]
 
 let NERDTreeShowHidden=1
-
-" for transparent background
-function! AdaptColorscheme()
-   highlight clear CursorLine
-   highlight Normal ctermbg=none
-   highlight LineNr ctermbg=none
-   highlight Folded ctermbg=none
-   highlight NonText ctermbg=none
-   highlight SpecialKey ctermbg=none
-   highlight VertSplit ctermbg=none
-   highlight SignColumn ctermbg=none
-endfunction
-autocmd ColorScheme * call AdaptColorscheme()
-
-highlight Normal guibg=NONE ctermbg=NONE
-highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
-highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
-highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
-highlight clear LineNr
-highlight clear SignColumn
-
-" Change Color when entering Insert Mode
-autocmd InsertEnter * set nocursorline
-
-" Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * set nocursorline
 
 " -------------------------------------------------------
 " - Mapings
@@ -96,16 +76,21 @@ nmap <C-n> :NERDTreeToggle<CR>
 vmap <C-/> <plug>NERDCommenterToggle
 nmap <C-/> <plug>NERDCommenterToggle
 
-" use <tab> for trigger completion and navigate to the next complete item
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+let g:coc_snippet_next = '<tab>'
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " 
 " coc

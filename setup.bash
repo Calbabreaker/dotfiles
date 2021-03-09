@@ -17,7 +17,9 @@ fi
 
 vim +PlugInstall +qall
 mkdir -p ~/.vim/undodir
+mkdir -p ~/.config/coc/ultisnips
 ln -sf $FOLDER/coc-settings.json ~/.vim/coc-settings.json
+ln -sf $FOLDER/vim.snippets ~/.config/coc/ultisnips/vim.snippets
 
 if [ -e "$HOME/.local/share/fonts/Droid Sans Mono for Powerline Nerd Font Complete.otf" ]; then
     echo "Font already installed"
