@@ -43,11 +43,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-fugitive'
 
 call plug#end()
@@ -62,9 +59,8 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-json',
   \ 'coc-clangd',
+  \ 'coc-explorer',
   \ ]
-
-let NERDTreeShowHidden=1
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
 
@@ -74,9 +70,9 @@ let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
 let mapleader = " "
 map <leader>h :noh<CR>
 
-nmap <C-n> :NERDTreeToggle<CR>
-vmap <C-/> <plug>NERDCommenterToggle
-nmap <C-/> <plug>NERDCommenterToggle
+nmap <C-n> :CocCommand explorer<CR>
+vmap <C-_> <plug>NERDCommenterToggle
+nmap <C-_> <plug>NERDCommenterToggle
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
