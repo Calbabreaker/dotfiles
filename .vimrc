@@ -66,6 +66,8 @@ let g:coc_global_extensions = [
 
 let NERDTreeShowHidden=1
 
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
+
 " -------------------------------------------------------
 " - Mapings
 " -------------------------------------------------------
