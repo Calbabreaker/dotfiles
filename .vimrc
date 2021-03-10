@@ -1,4 +1,5 @@
 syntax on
+filetype plugin indent on
 
 " -------------------------------------------------------
 " - Sets
@@ -9,7 +10,6 @@ set relativenumber
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
-set smartindent
 set nu
 set nowrap
 set noswapfile
@@ -18,7 +18,6 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set termguicolors
-set hlsearch
 set scrolloff=8
 set colorcolumn=100
 set signcolumn=yes
@@ -57,6 +56,7 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-eslint',
   \ 'coc-prettier',
+  \ 'coc-html',
   \ 'coc-json',
   \ 'coc-clangd',
   \ 'coc-explorer',
@@ -74,16 +74,8 @@ nmap <C-n> :CocCommand explorer<CR>
 vmap <C-_> <plug>NERDCommenterToggle
 nmap <C-_> <plug>NERDCommenterToggle
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 let g:coc_snippet_next = '<tab>'
 
