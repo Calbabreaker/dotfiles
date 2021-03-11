@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-system-copy'
@@ -55,7 +56,6 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
   \ 'coc-clangd',

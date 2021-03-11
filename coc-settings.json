@@ -11,5 +11,11 @@
   ],
   "clangd.path": "/home/calbabreaker/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
   "explorer.icon.enableNerdfont": true,
-  "explorer.file.showHiddenFiles": true
+  "explorer.file.showHiddenFiles": true,
+  "languageserver": {
+    "digestif": {
+      "command": "digestif",
+      "filetypes": ["tex", "plaintex", "context"]
+    }
+  }
 }

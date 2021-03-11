@@ -101,6 +101,7 @@ pathadd() {
 #
 pathadd "$HOME/.deno/bin"
 pathadd "/usr/lib/ccache"
+pathadd "$HOME/.local/bin"
 
 # loads rust
 export CARGO_DIR="$HOME/.cargo/"
@@ -116,6 +117,7 @@ export NVM_DIR="$HOME/.nvm"
 #
 
 export JAVA_WITH_JFX="--module-path /usr/share/openjfx/lib --add-modules=javafx.controls,javafx.fxml,javafx.base,javafx.media,javafx.web,javafx.swing"
+export DEVDIR="$HOME/Documents/Dev/"
 
 #
 # ------------------- aliases ------------------------
