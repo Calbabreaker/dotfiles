@@ -125,6 +125,7 @@ export DEVDIR="$HOME/Documents/Dev/"
 alias cb="xclip -selection c" # pipe to to copy to clipboard
 alias c="clear"
 alias python="python3"
+alias sudo='sudo '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -147,4 +148,4 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-alias aptmange='apt update && apt upgrade && apt autoremove && apt clean'
+alias aptmanage='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt clean'
