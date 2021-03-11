@@ -27,19 +27,9 @@ fi
 
 if [ ! -e "$HOME/.local/share/fonts/Droid Sans Mono for Powerline Nerd Font Complete.otf" ]; then
     echo "Installing font for devicons..."
-<<<<<<< HEAD
-    curl -fLo "~/.local/share/fonts/Droid Sans Mono for Powerline Nerd Font Complete.otf" \ 
-        https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-            --create-dirs
-    fc-cache -f -v
-=======
-    mkdir -p ~/.local/share/fonts
-    pushd  ~/.local/share/fonts 
-    curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" \
-        https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-    popd
+    curl -fLo ~/.local/share/fonts/Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete.otf --create-dirs \
+        https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf 
     fc-cache -fv
->>>>>>> fd243fcc725453c047fe71c8b1d79ec8e595d5c5
 fi
 
 echo "Done! Enjoy the dotfiles!"
