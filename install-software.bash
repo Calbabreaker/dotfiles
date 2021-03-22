@@ -3,7 +3,9 @@
 [ $EUID -ne 0 ] && echo "Needs to be run as root!" && exit
 
 # install apt packages
-apt install -y ncdu xsel trash-cli vim neofetch gpick
+apt install ncdu xsel trash-cli vim neofetch gpick pass
     
 # install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+printf "Install nvm? [y/n]: "
+read input
+[ $input = "y" ] && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
