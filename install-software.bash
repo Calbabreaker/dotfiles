@@ -3,7 +3,7 @@
 [ $EUID -ne 0 ] && echo "Needs to be run as root!" && exit
 
 # install apt packages
-apt install ncdu xsel trash-cli vim neofetch gpick pass
+apt install ncdu xsel trash-cli vim neofetch gpick xdotool clangd
     
 # install nvm
 printf "Install nvm? [y/n]: "

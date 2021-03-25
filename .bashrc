@@ -120,7 +120,7 @@ export JAVA_WITH_JFX="--module-path /usr/share/openjfx/lib --add-modules=javafx.
 export DEVDIR="$HOME/Documents/Dev/"
 
 #
-# ------------------- aliases ------------------------
+# ------------------- aliases/funcions ------------------------
 #
 alias cb="xclip -selection c" # pipe to to copy to clipboard
 alias c="clear"
@@ -149,3 +149,18 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias aptmanage='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt clean'
+
+autoclick() {
+    xdotool click --repeat $1 --delay 18 1
+}
+
+asmbuild() {
+    FILE=$(readlink -f $1)
+    FILENAME=$(basename -- "$FILE")
+    FILENAME="${FILENAME%.*}"
+    FILEPATH=$(dirname "$FILE")
+
+    nasm -f elf64 -o $FILEPATH/$FILENAME.o $FILE
+    ld -z noseparate-code -s -o $FILEPATH/$FILENAME $FILEPATH/$FILENAME.o
+    $FILEPATH/$FILENAME
+}
