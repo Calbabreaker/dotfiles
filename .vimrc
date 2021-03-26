@@ -4,6 +4,7 @@ filetype plugin indent on
 " -------------------------------------------------------
 " - Sets
 " -------------------------------------------------------
+
 set exrc
 set noerrorbells
 set relativenumber
@@ -32,21 +33,31 @@ set shellcmdflag=-ic
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'othree/html5.vim'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
-Plug 'mhartington/oceanic-next'
-Plug 'christoomey/vim-system-copy'
-Plug 'mhinz/vim-startify'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-airline/vim-airline'
-Plug 'ctrlpvim/ctrlp.vim'
-
-Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+
+Plug 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-system-copy'
+Plug 'christoomey/vim-titlecase'
+Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-user'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/replacewithregister'
 
 call plug#end()
 
@@ -72,8 +83,6 @@ let mapleader = " "
 map <leader>h :noh<CR>
 
 nmap <C-n> :CocCommand explorer<CR>
-vmap <C-_> <plug>NERDCommenterToggle
-nmap <C-_> <plug>NERDCommenterToggle
 
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
