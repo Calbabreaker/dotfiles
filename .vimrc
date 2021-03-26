@@ -24,6 +24,7 @@ set signcolumn=yes
 set encoding=UTF-8
 set modifiable
 set updatetime=1000
+set shellcmdflag=-ic
 
 " -------------------------------------------------------
 " - Plugins

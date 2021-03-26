@@ -160,7 +160,7 @@ asmbuild() {
     FILENAME="${FILENAME%.*}"
     FILEPATH=$(dirname "$FILE")
 
-    nasm -f elf64 -o $FILEPATH/$FILENAME.o $FILE
-    ld -z noseparate-code -s -o $FILEPATH/$FILENAME $FILEPATH/$FILENAME.o
+    nasm -f elf -o $FILEPATH/$FILENAME.o $FILE
+    ld -z noseparate-code -m elf_i386 -s -o $FILEPATH/$FILENAME $FILEPATH/$FILENAME.o
     $FILEPATH/$FILENAME
 }

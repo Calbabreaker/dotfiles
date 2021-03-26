@@ -6,3 +6,4 @@
 [alias]
 	assume-unchanged = update-index --assume-unchanged
 	assume-changed = update-index --no-assume-unchanged
+    discard-changes = reset --hard HEAD
