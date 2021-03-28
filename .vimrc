@@ -1,31 +1,36 @@
-syntax on
 filetype plugin indent on
+syntax on
 
 " -------------------------------------------------------
 " - Sets
 " -------------------------------------------------------
 
-set exrc
-set noerrorbells
-set relativenumber
-set tabstop=4 softtabstop=4
-set shiftwidth=4
+set colorcolumn=100
+set encoding=UTF-8
 set expandtab
-set nu
-set nowrap
-set noswapfile
+set exrc
+set incsearch
+set modifiable
 set nobackup
+set noerrorbells
+set noswapfile
+set nowrap
+set nu
+set relativenumber
+set scrolloff=8
+set shellcmdflag=-ic
+set shiftwidth=4
+set signcolumn=yes
+set splitbelow
+set splitbelow
+set tabstop=4 softtabstop=4
+set termguicolors
+set termwinsize=10x0
 set undodir=~/.vim/undodir
 set undofile
-set incsearch
-set termguicolors
-set scrolloff=8
-set colorcolumn=100
-set signcolumn=yes
-set encoding=UTF-8
-set modifiable
 set updatetime=1000
-set shellcmdflag=-ic
+
+packadd termdebug
 
 " -------------------------------------------------------
 " - Plugins
@@ -38,6 +43,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -55,6 +64,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
+Plug 'sgur/vim-textobj-parameter'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/replacewithregister'
@@ -64,17 +74,19 @@ call plug#end()
 colorscheme OceanicNext
 
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-prettier',
-  \ 'coc-html',
-  \ 'coc-json',
   \ 'coc-clangd',
   \ 'coc-explorer',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-pairs',
+  \ 'coc-prettier',
+  \ 'coc-pyright',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
+let g:jsdoc_formatter = 'tsdoc'
 
 " -------------------------------------------------------
 " - Mapings
@@ -222,10 +234,15 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+    autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>fg<CR>
+    autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>fg<CR>
+
+    autocmd FileType asm setlocal commentstring=;\ %s
 augroup end
 
