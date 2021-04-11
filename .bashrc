@@ -30,6 +30,12 @@ shopt -s globstar
 # wildcard (*) will match hidden files
 shopt -s dotglob
 
+# disable ctrl+s and ctrl+q
+stty -ixon
+
+# will change directory when just typing the directory
+shopt -s autocd
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -48,17 +54,19 @@ force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    moods=("happy" "sad" "angry" "frustrated" "ecstatic" "premium" "weird" "optimistic" "joyful" "excited")
+    mood=${moods[RANDOM%${#moods[@]}]}
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$mood\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -86,12 +94,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-#
-# ----------------------------------------------------------------------------------------------
-# - Custom
-# ----------------------------------------------------------------------------------------------
-# 
 
 pathadd() {
     if [[ ":$PATH:" != *":$1:"* ]]; then
@@ -128,7 +130,9 @@ export DEVDIR="$HOME/Documents/Dev/"
 alias cb="xclip -selection c" # pipe to to copy to clipboard
 alias c="clear"
 alias python="python3"
-alias sudo='sudo '
+alias rm="rm -Iv"
+alias cp="cp -rv"
+alias mv="mv -v"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -157,13 +161,3 @@ autoclick() {
     xdotool click --repeat $1 --delay 18 1
 }
 
-asmbuild() {
-    FILE=$(readlink -f $1)
-    FILENAME=$(basename -- "$FILE")
-    FILENAME="${FILENAME%.*}"
-    FILEPATH=$(dirname "$FILE")
-
-    nasm -f elf -o $FILEPATH/$FILENAME.o $FILE
-    ld -z noseparate-code -m elf_i386 -s -o $FILEPATH/$FILENAME $FILEPATH/$FILENAME.o
-    $FILEPATH/$FILENAME
-}

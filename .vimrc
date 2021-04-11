@@ -17,6 +17,7 @@ set noswapfile
 set nowrap
 set nu
 set relativenumber
+set ruler
 set scrolloff=8
 set shellcmdflag=-ic
 set shiftwidth=4
@@ -29,6 +30,14 @@ set termwinsize=10x0
 set undodir=~/.vim/undodir
 set undofile
 set updatetime=1000
+
+if has('mouse')
+  if &term =~ 'xterm'
+    set mouse=a
+  else
+    set mouse=nvi
+  endif
+endif
 
 packadd termdebug
 
@@ -231,7 +240,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " -------------------------------------------------------
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 augroup mygroup
     autocmd!
@@ -244,5 +252,14 @@ augroup mygroup
     autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>fg<CR>
 
     autocmd FileType asm setlocal commentstring=;\ %s
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid, when inside an event handler
+    " (happens when dropping a file on gvim) and for a commit message (it's
+    " likely a different one than last time).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
 augroup end
 
