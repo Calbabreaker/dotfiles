@@ -5,6 +5,7 @@ syntax on
 " - Sets
 " -------------------------------------------------------
 
+set clipboard=unnamedplus
 set colorcolumn=100
 set encoding=UTF-8
 set expandtab
@@ -53,10 +54,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'for': ['javascript', 'javascript.jsx','typescript', 'typescript.tsx'],
   \ 'do': 'make install'
 \}
 
+Plug 'KabbAmine/vCoolor.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhartington/oceanic-next'
@@ -66,7 +68,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
 Plug 'christoomey/vim-sort-motion'
-Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-titlecase'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'
@@ -74,6 +75,8 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'sgur/vim-textobj-parameter'
+Plug 'svermeulen/vim-cutlass'
+Plug 'svermeulen/vim-yoink'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/replacewithregister'
@@ -92,10 +95,20 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-snippets',
   \ 'coc-tsserver',
+  \ 'coc-css'
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
 let g:jsdoc_formatter = 'tsdoc'
+
+let g:yoinkIncludeDeleteOperations = 1
+
+let g:coc_snippet_next = '<tab>'
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:airline_powerline_fonts=1
 
 " -------------------------------------------------------
 " - Mapings
@@ -103,15 +116,23 @@ let g:jsdoc_formatter = 'tsdoc'
 let mapleader = " "
 map <leader>h :noh<CR>
 
-nmap <C-n> :CocCommand explorer<CR>
+nmap <C-e> :CocCommand explorer<CR>
 
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
-let g:coc_snippet_next = '<tab>'
+" move (aka cut) operation
+nnoremap m d
+xnoremap m d
+nnoremap mm dd
+nnoremap M D
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+nmap [y <plug>(YoinkRotateBack)
+nmap ]y <plug>(YoinkRotateForward)
+nmap y <plug>(YoinkYankPreserveCursorPosition)
+xmap y <plug>(YoinkYankPreserveCursorPosition)
+nmap y <plug>(YoinkYankPreserveCursorPosition)
+xmap y <plug>(YoinkYankPreserveCursorPosition)
 
 " 
 " coc
@@ -252,6 +273,7 @@ augroup mygroup
     autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>fg<CR>
 
     autocmd FileType asm setlocal commentstring=;\ %s
+    autocmd FileType javascript,typescript setlocal commentstring=//\ %s
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid, when inside an event handler

@@ -30,6 +30,7 @@ if [ ! -e "$HOME/.local/share/fonts/Droid Sans Mono for Powerline Nerd Font Comp
     curl -fLo ~/.local/share/fonts/Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete.otf --create-dirs \
         https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf 
     fc-cache -fv
+    echo "Make sure to set the terminal font to the nerd font."
 fi
 
 echo "Done! Enjoy the dotfiles!"
