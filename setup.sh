@@ -1,22 +1,26 @@
-#!/bin/bash
+#!/bin/sh
 
 FOLDER=$(pwd)
 
 echo "Creating symbolic links to dotfiles..."
-ln -sf $FOLDER/.bashrc ~/.bashrc
+ln -sf $FOLDER/.zshrc ~/.zshrc
 ln -sf $FOLDER/.gitconfig ~/.gitconfig
 ln -sf $FOLDER/.vimrc ~/.vimrc
-
-echo "Installing plugins for vim..."
-[ ! -e "$HOME/.vim/autoload/plug.vim" ] &&
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-vim +PlugInstall +qall
-mkdir -p ~/.vim/undodir
-mkdir -p ~/.config/coc/ultisnips
 ln -sf $FOLDER/coc-settings.json ~/.vim/coc-settings.json
 ln -sf $FOLDER/vim.snippets ~/.config/coc/ultisnips/vim.snippets
+
+# installs omyzsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "Installing plugins for vim..."
+if [ ! -e "$HOME/.vim/autoload/plug.vim" ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    vim +PlugInstall +qall
+fi
+
+mkdir -p ~/.vim/undodir
+mkdir -p ~/.config/coc/ultisnips
 
 # get digestif for latex intellisense
 if [ ! -e "$HOME/.local/bin/digestif" ]; then

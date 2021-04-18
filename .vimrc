@@ -134,6 +134,8 @@ xmap y <plug>(YoinkYankPreserveCursorPosition)
 nmap y <plug>(YoinkYankPreserveCursorPosition)
 xmap y <plug>(YoinkYankPreserveCursorPosition)
 
+nmap <C-s> :w <Enter>
+
 " 
 " coc
 " 
@@ -219,11 +221,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -264,8 +261,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 augroup mygroup
     autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
     " Update signature help on jump placeholder.
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
@@ -273,7 +268,7 @@ augroup mygroup
     autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>fg<CR>
 
     autocmd FileType asm setlocal commentstring=;\ %s
-    autocmd FileType javascript,typescript setlocal commentstring=//\ %s
+    autocmd FileType javascript,typescript,typescriptreact setlocal commentstring=//\ %s
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid, when inside an event handler
