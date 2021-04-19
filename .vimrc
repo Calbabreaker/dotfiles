@@ -32,6 +32,10 @@ set undodir=~/.vim/undodir
 set undofile
 set updatetime=1000
 
+let &t_SI = "\<esc>[5 q"
+let &t_SR = "\<esc>[5 q"
+let &t_EI = "\<esc>[2 q"
+
 if has('mouse')
   if &term =~ 'xterm'
     set mouse=a
@@ -61,7 +65,7 @@ Plug 'heavenshell/vim-jsdoc', {
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mhartington/oceanic-next'
+Plug 'tomasiser/vim-code-dark'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
@@ -83,14 +87,15 @@ Plug 'vim-scripts/replacewithregister'
 
 call plug#end()
 
-colorscheme OceanicNext
+colorscheme codedark
+let g:airline_theme = 'codedark'
 
 let g:coc_global_extensions = [
   \ 'coc-clangd',
   \ 'coc-explorer',
   \ 'coc-html',
   \ 'coc-json',
-  \ 'coc-pairs',
+  \ 'coc-pairs', 
   \ 'coc-prettier',
   \ 'coc-pyright',
   \ 'coc-snippets',

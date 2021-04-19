@@ -9,9 +9,6 @@ ln -sf $FOLDER/.vimrc ~/.vimrc
 ln -sf $FOLDER/coc-settings.json ~/.vim/coc-settings.json
 ln -sf $FOLDER/vim.snippets ~/.config/coc/ultisnips/vim.snippets
 
-# installs omyzsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 echo "Installing plugins for vim..."
 if [ ! -e "$HOME/.vim/autoload/plug.vim" ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
