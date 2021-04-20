@@ -31,6 +31,7 @@ set termwinsize=10x0
 set undodir=~/.vim/undodir
 set undofile
 set updatetime=1000
+set shell=/bin/bash\ --login
 
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
@@ -98,9 +99,9 @@ let g:coc_global_extensions = [
   \ 'coc-pairs', 
   \ 'coc-prettier',
   \ 'coc-pyright',
-  \ 'coc-snippets',
   \ 'coc-tsserver',
-  \ 'coc-css'
+  \ 'coc-css',
+  \ 'coc-emmet'
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'

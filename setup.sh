@@ -16,6 +16,8 @@ if [ ! -e "$HOME/.vim/autoload/plug.vim" ]; then
     vim +PlugInstall +qall
 fi
 
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
 mkdir -p ~/.vim/undodir
 mkdir -p ~/.config/coc/ultisnips
 

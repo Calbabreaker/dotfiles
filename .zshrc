@@ -3,6 +3,7 @@
 
 # disable ctrl+s freeze
 stty -ixon
+stty -tostop
 
 setopt dotglob
 
