@@ -7,7 +7,6 @@ ln -sf $FOLDER/.zshrc ~/.zshrc
 ln -sf $FOLDER/.gitconfig ~/.gitconfig
 ln -sf $FOLDER/.vimrc ~/.vimrc
 ln -sf $FOLDER/coc-settings.json ~/.vim/coc-settings.json
-ln -sf $FOLDER/vim.snippets ~/.config/coc/ultisnips/vim.snippets
 
 echo "Installing plugins for vim..."
 if [ ! -e "$HOME/.vim/autoload/plug.vim" ]; then
@@ -20,13 +19,6 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 
 mkdir -p ~/.vim/undodir
 mkdir -p ~/.config/coc/ultisnips
-
-# get digestif for latex intellisense
-if [ ! -e "$HOME/.local/bin/digestif" ]; then
-    curl -fLo ~/.local/bin/digestif --create-dirs \
-        https://raw.githubusercontent.com/astoff/digestif/master/scripts/digestif
-    chmod +x ~/.local/bin/digestif
-fi
 
 if [ ! -e "$HOME/.local/share/fonts/Droid Sans Mono for Powerline Nerd Font Complete.otf" ]; then
     echo "Installing font for devicons..."

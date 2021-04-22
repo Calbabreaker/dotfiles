@@ -75,6 +75,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-titlecase'
 Plug 'glts/vim-textobj-comment'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
@@ -92,7 +94,6 @@ colorscheme codedark
 let g:airline_theme = 'codedark'
 
 let g:coc_global_extensions = [
-  \ 'coc-clangd',
   \ 'coc-explorer',
   \ 'coc-html',
   \ 'coc-json',
@@ -167,7 +168,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gl <Plug>(coc-references)
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
