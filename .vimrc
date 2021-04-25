@@ -20,18 +20,17 @@ set nu
 set relativenumber
 set ruler
 set scrolloff=8
+set shell=/bin/bash\ --login
 set shellcmdflag=-ic
 set shiftwidth=4
 set signcolumn=yes
 set splitbelow
-set splitbelow
+set splitbelow splitright
 set tabstop=4 softtabstop=4
 set termguicolors
-set termwinsize=10x0
 set undodir=~/.vim/undodir
 set undofile
 set updatetime=1000
-set shell=/bin/bash\ --login
 
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
@@ -54,7 +53,6 @@ packadd termdebug
 call plug#begin('~/.vim/plugged')
 
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -94,15 +92,16 @@ colorscheme codedark
 let g:airline_theme = 'codedark'
 
 let g:coc_global_extensions = [
+  \ 'coc-css',
+  \ 'coc-emmet',
   \ 'coc-explorer',
   \ 'coc-html',
   \ 'coc-json',
   \ 'coc-pairs', 
   \ 'coc-prettier',
   \ 'coc-pyright',
-  \ 'coc-tsserver',
-  \ 'coc-css',
-  \ 'coc-emmet'
+  \ 'coc-rust-analyzer',
+  \ 'coc-tsserver'
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
@@ -142,6 +141,23 @@ nmap y <plug>(YoinkYankPreserveCursorPosition)
 xmap y <plug>(YoinkYankPreserveCursorPosition)
 
 nmap <C-s> :w <Enter>
+nmap <C-c> <Esc>
+
+" window split stuff
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tv <C-w>t<C-w>K
+
+map <Leader>tt :term zsh --login<CR>
 
 " 
 " coc

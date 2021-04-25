@@ -9,17 +9,12 @@
         "typescript.tsx",
         "graphql",
         "css",
-        "html"
+        "html",
+        "rust",
+        "python"
     ],
-    "clangd.path": "/home/calbabreaker/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
     "explorer.icon.enableNerdfont": true,
     "explorer.file.showHiddenFiles": true,
     "prettier.tabWidth": 4,
-    "prettier.printWidth": 100,
-    "languageserver": {
-        "digestif": {
-            "command": "digestif",
-            "filetypes": ["tex", "plaintex", "context"]
-        }
-    }
+    "prettier.printWidth": 100
 }
