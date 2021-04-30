@@ -58,7 +58,7 @@ Plug 'othree/html5.vim'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'heavenshell/vim-jsdoc', {
   \ 'for': ['javascript', 'javascript.jsx','typescript', 'typescript.tsx'],
-  \ 'do': 'make install'
+  \ 'do': 'yarn install'
 \}
 
 Plug 'KabbAmine/vCoolor.vim'
@@ -101,7 +101,8 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-pyright',
   \ 'coc-rust-analyzer',
-  \ 'coc-tsserver'
+  \ 'coc-tsserver',
+  \ 'coc-texlab'
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'

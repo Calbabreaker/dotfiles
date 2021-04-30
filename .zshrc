@@ -108,9 +108,6 @@ SPACESHIP_JOBS_SHOW=false
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh, from:github, as:plugin
-bindkey '^ ' autosuggest-accept
-
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "

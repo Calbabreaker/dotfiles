@@ -11,7 +11,9 @@
         "css",
         "html",
         "rust",
-        "python"
+        "python",
+        "bib",
+        "latex"
     ],
     "explorer.icon.enableNerdfont": true,
     "explorer.file.showHiddenFiles": true,

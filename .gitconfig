@@ -1,7 +1,7 @@
 [credential]
 	helper = store
 [user]
-	email = 57030377+Calbabreaker@users.noreply.github.com 
+	email = calbabreaker@gmail.com
 	name = Calbabreaker
 [alias]
 	assume-unchanged = update-index --assume-unchanged
