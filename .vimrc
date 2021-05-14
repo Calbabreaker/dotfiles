@@ -93,16 +93,17 @@ let g:airline_theme = 'codedark'
 
 let g:coc_global_extensions = [
   \ 'coc-css',
+  \ 'coc-deno',
   \ 'coc-emmet',
   \ 'coc-explorer',
   \ 'coc-html',
   \ 'coc-json',
-  \ 'coc-pairs', 
+  \ 'coc-pairs',
   \ 'coc-prettier',
   \ 'coc-pyright',
   \ 'coc-rust-analyzer',
+  \ 'coc-texlab',
   \ 'coc-tsserver',
-  \ 'coc-texlab'
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
