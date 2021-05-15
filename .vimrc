@@ -56,17 +56,12 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript', 'typescript.tsx'],
-  \ 'do': 'yarn install'
-\}
 
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
@@ -86,6 +81,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/replacewithregister'
 
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 colorscheme codedark
@@ -102,12 +99,10 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-pyright',
   \ 'coc-rust-analyzer',
-  \ 'coc-texlab',
   \ 'coc-tsserver',
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
-let g:jsdoc_formatter = 'tsdoc'
 
 let g:yoinkIncludeDeleteOperations = 1
 
