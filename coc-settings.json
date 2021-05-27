@@ -13,9 +13,11 @@
         "rust",
         "python",
         "bib",
-        "latex"
+        "latex",
+        "scss"
     ],
     "explorer.file.showHiddenFiles": true,
+    "explorer.icon.enableNerdfont": true,
     "prettier.tabWidth": 4,
     "prettier.printWidth": 100
 }

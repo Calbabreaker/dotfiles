@@ -55,13 +55,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tomasiser/vim-code-dark'
 Plug 'mhinz/vim-startify'
+Plug 'tomasiser/vim-code-dark'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
@@ -70,18 +69,18 @@ Plug 'christoomey/vim-titlecase'
 Plug 'glts/vim-textobj-comment'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
+Plug 'ryanoasis/vim-devicons'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/replacewithregister'
-
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -103,15 +102,17 @@ let g:coc_global_extensions = [
   \ ]
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 let g:yoinkIncludeDeleteOperations = 1
 
 let g:coc_snippet_next = '<tab>'
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 let g:airline_powerline_fonts=1
+
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+call rainbow_parentheses#activate()
 
 " -------------------------------------------------------
 " - Mapings
@@ -289,6 +290,8 @@ augroup mygroup
 
     autocmd FileType asm setlocal commentstring=;\ %s
     autocmd FileType javascript,typescript,typescriptreact setlocal commentstring=//\ %s
+
+    autocmd FileType plaintex,text,markdown set spell spelllang=en_us
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid, when inside an event handler
