@@ -128,8 +128,6 @@ pathadd() {
     fi
 }
 
-pathadd "$HOME/.deno/bin"
-pathadd "/usr/lib/ccache"
 pathadd "$HOME/.local/bin"
 
 # loads nvm

@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dot file configurations including vim, git and bash.
+Personal dot files (aka configuration files) configurations including vim, git and bash.
 
 ## Setup
 

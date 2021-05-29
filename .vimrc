@@ -30,7 +30,7 @@ set tabstop=4 softtabstop=4
 set termguicolors
 set undodir=~/.vim/undodir
 set undofile
-set updatetime=1000
+set updatetime=100
 
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
@@ -55,13 +55,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
+Plug 'tomasiser/vim-code-dark'
 
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-startify'
-Plug 'tomasiser/vim-code-dark'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
 Plug 'christoomey/vim-sort-motion'
