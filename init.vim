@@ -30,7 +30,7 @@ set tabstop=4 softtabstop=4
 set termguicolors
 set undodir=~/.config/nvim/undodir/
 set undofile
-set updatetime=100
+set updatetime=1000
 
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
@@ -57,7 +57,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'tomasiser/vim-code-dark'
 
-Plug 'KabbAmine/vCoolor.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-startify'
@@ -84,6 +83,7 @@ Plug 'vim-scripts/replacewithregister'
 call plug#end()
 
 colorscheme codedark
+
 let g:airline_theme = 'codedark'
 
 let g:coc_global_extensions = [
@@ -134,8 +134,6 @@ nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
 nmap y <plug>(YoinkYankPreserveCursorPosition)
 xmap y <plug>(YoinkYankPreserveCursorPosition)
-nmap y <plug>(YoinkYankPreserveCursorPosition)
-xmap y <plug>(YoinkYankPreserveCursorPosition)
 
 nmap <C-s> :w <Enter>
 nmap <C-c> <Esc>
@@ -150,11 +148,24 @@ noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
-
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tv <C-w>t<C-w>K
 
 map <Leader>tt :term zsh --login<CR>
+
+nnoremap H gT
+nnoremap L gt
+
+" make nvim terminal navigation better
+if has("nvim")
+  tnoremap <C-h> <C-\><C-N><C-w>h
+  tnoremap <C-j> <C-\><C-N><C-w>j
+  tnoremap <C-k> <C-\><C-N><C-w>k
+  tnoremap <C-l> <C-\><C-N><C-w>l
+
+  tnoremap H <C-\><C-N>gT
+  tnoremap L <C-\><C-N>gt
+endif
 
 " 
 " coc
@@ -291,6 +302,8 @@ augroup mygroup
     autocmd FileType javascript,typescript,typescriptreact setlocal commentstring=//\ %s
 
     autocmd FileType plaintex,text,markdown set spell
+
+    autocmd BufEnter term://* startinsert
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid, when inside an event handler
