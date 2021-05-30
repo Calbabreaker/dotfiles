@@ -28,7 +28,7 @@ set splitbelow
 set splitbelow splitright
 set tabstop=4 softtabstop=4
 set termguicolors
-set undodir=~/.vim/undodir
+set undodir=~/.config/nvim/undodir/
 set undofile
 set updatetime=100
 
@@ -50,7 +50,7 @@ packadd termdebug
 " - Plugins
 " -------------------------------------------------------
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -290,7 +290,7 @@ augroup mygroup
     autocmd FileType asm setlocal commentstring=;\ %s
     autocmd FileType javascript,typescript,typescriptreact setlocal commentstring=//\ %s
 
-    autocmd FileType plaintex,text,markdown set spell spelllang=en_us
+    autocmd FileType plaintex,text,markdown set spell
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid, when inside an event handler
