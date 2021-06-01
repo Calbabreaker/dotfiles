@@ -12,12 +12,14 @@ set encoding=utf-8 fileencoding=utf-8
 set expandtab
 set formatoptions-=cro
 set hidden
+set mouse=a
 set nobackup nowritebackup
 set noerrorbells
 set nohlsearch
 set noshowmode
 set noswapfile
 set nowrap
+set number
 set relativenumber
 set ruler
 set scrolloff=8
@@ -32,7 +34,6 @@ set termguicolors
 set undodir=~/.config/nvim/undodir/
 set undofile
 set updatetime=100
-set mouse=a
 
 " -------------------------------------------------------
 " - Plugins
@@ -93,6 +94,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 let g:yoinkIncludeDeleteOperations = 1
+let g:yoinkSavePersistently = 1
 
 let g:coc_snippet_next = '<tab>'
 
