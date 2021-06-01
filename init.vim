@@ -5,18 +5,19 @@ syntax on
 " - Sets
 " -------------------------------------------------------
 
+set autoindent
 set clipboard=unnamedplus
 set colorcolumn=100
-set encoding=UTF-8
+set encoding=utf-8 fileencoding=utf-8
 set expandtab
-set exrc
-set incsearch
-set modifiable
-set nobackup
+set formatoptions-=cro
+set hidden
+set nobackup nowritebackup
 set noerrorbells
+set nohlsearch
+set noshowmode
 set noswapfile
 set nowrap
-set nu
 set relativenumber
 set ruler
 set scrolloff=8
@@ -24,27 +25,14 @@ set shell=/bin/bash\ --login
 set shellcmdflag=-ic
 set shiftwidth=4
 set signcolumn=yes
-set splitbelow
+set smartindent smarttab
 set splitbelow splitright
 set tabstop=4 softtabstop=4
 set termguicolors
 set undodir=~/.config/nvim/undodir/
 set undofile
-set updatetime=1000
-
-let &t_SI = "\<esc>[5 q"
-let &t_SR = "\<esc>[5 q"
-let &t_EI = "\<esc>[2 q"
-
-if has('mouse')
-  if &term =~ 'xterm'
-    set mouse=a
-  else
-    set mouse=nvi
-  endif
-endif
-
-packadd termdebug
+set updatetime=100
+set mouse=a
 
 " -------------------------------------------------------
 " - Plugins
@@ -144,6 +132,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+nnoremap H gT
+nnoremap L gt
+
 noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
@@ -152,9 +143,6 @@ map <Leader>th <C-w>t<C-w>H
 map <Leader>tv <C-w>t<C-w>K
 
 map <Leader>tt :term zsh --login<CR>
-
-nnoremap H gT
-nnoremap L gt
 
 " make nvim terminal navigation better
 if has("nvim")
@@ -300,8 +288,6 @@ augroup mygroup
 
     autocmd FileType asm setlocal commentstring=;\ %s
     autocmd FileType javascript,typescript,typescriptreact setlocal commentstring=//\ %s
-
-    autocmd FileType plaintex,text,markdown set spell
 
     autocmd BufEnter term://* startinsert
 

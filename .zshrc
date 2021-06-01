@@ -66,7 +66,7 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # preferred editor for local and remote sessions
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # plugin manager
 if [[ ! -f ~/.zplug/init.zsh ]]; then
@@ -120,7 +120,7 @@ fi
 zplug load
 
 #
-# ------------------- setup of software ------------------------
+# ------------------- path setup ------------------------
 #
 pathadd() {
     if [[ ":$PATH:" != *":$1:"* ]]; then
@@ -129,11 +129,6 @@ pathadd() {
 }
 
 pathadd "$HOME/.local/bin"
-
-# loads nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #
 # ------------------- aliases -------------------
