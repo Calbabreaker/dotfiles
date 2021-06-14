@@ -159,9 +159,6 @@ alias mv="mv -v"
 
 alias l="ls -G"
 
-alias aptmanage='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt clean'
-alias ranger=". ranger"
-
 autoclick() {
     xdotool click --repeat $1 --delay 18 1
 }
