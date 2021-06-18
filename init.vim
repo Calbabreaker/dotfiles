@@ -6,7 +6,7 @@ syntax on
 " -------------------------------------------------------
 
 set autoindent
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set colorcolumn=100
 set encoding=utf-8 fileencoding=utf-8
 set expandtab
@@ -47,6 +47,7 @@ Plug 'othree/html5.vim'
 Plug 'tomasiser/vim-code-dark'
 
 Plug 'airblade/vim-gitgutter'
+Plug 'brooth/far.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
@@ -54,8 +55,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-titlecase'
 Plug 'glts/vim-textobj-comment'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
@@ -76,6 +75,7 @@ colorscheme codedark
 let g:airline_theme = 'codedark'
 
 let g:coc_global_extensions = [
+  \ 'coc-clangd',
   \ 'coc-css',
   \ 'coc-deno',
   \ 'coc-emmet',
@@ -97,8 +97,6 @@ let g:yoinkIncludeDeleteOperations = 1
 let g:yoinkSavePersistently = 1
 
 let g:coc_snippet_next = '<tab>'
-
-let g:airline_powerline_fonts=1
 
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 call rainbow_parentheses#activate()
@@ -134,8 +132,8 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-nnoremap H gT
-nnoremap L gt
+nnoremap <C-tab> gT
+nnoremap <C-S-tab> gt
 
 noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
@@ -153,8 +151,8 @@ if has("nvim")
   tnoremap <C-k> <C-\><C-N><C-w>k
   tnoremap <C-l> <C-\><C-N><C-w>l
 
-  tnoremap H <C-\><C-N>gT
-  tnoremap L <C-\><C-N>gt
+  tnoremap <C-tab> <C-\><C-N>gT
+  tnoremap <C-S-tab> <C-\><C-N>gt
 endif
 
 " 

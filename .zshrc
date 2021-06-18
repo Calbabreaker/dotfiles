@@ -6,6 +6,8 @@ stty -ixon
 stty -tostop
 
 setopt dotglob
+setopt autocd
+setopt HIST_FIND_NO_DUPS
 
 # load colours
 autoload -U colors && colors
