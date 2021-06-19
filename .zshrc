@@ -7,7 +7,14 @@ stty -tostop
 
 setopt dotglob
 setopt autocd
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_BEEP
 
 # load colours
 autoload -U colors && colors
@@ -160,9 +167,6 @@ alias cp="cp -rv"
 alias mv="mv -v"
 
 alias l="ls -G"
-
-alias aptmanage='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt clean'
-alias ranger=". ranger"
 
 autoclick() {
     xdotool click --repeat $1 --delay 18 1
