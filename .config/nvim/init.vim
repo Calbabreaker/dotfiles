@@ -132,8 +132,8 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-nnoremap <C-tab> gT
-nnoremap <C-S-tab> gt
+nnoremap <C-[> gT
+nnoremap <C-]> gt
 
 noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
@@ -151,8 +151,8 @@ if has("nvim")
   tnoremap <C-k> <C-\><C-N><C-w>k
   tnoremap <C-l> <C-\><C-N><C-w>l
 
-  tnoremap <C-tab> <C-\><C-N>gT
-  tnoremap <C-S-tab> <C-\><C-N>gt
+  tnoremap <C-[> <C-\><C-N>gT
+  tnoremap <C-]> <C-\><C-N>gt
 endif
 
 " 
