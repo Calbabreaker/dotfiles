@@ -1,13 +1,13 @@
 # Dotfiles
 
-Personal dot files (aka configuration files) configurations including vim, git and bash.
+Personal dot files (aka configuration files) for vim, git, zsh and alacritty.
 
 ## Setup
 
-All you have to do is clone this repository, run the setup.sh and install-software.sh (optional)
+All you have to do is clone this repository, run the setup.sh to get dotfiles to work.
 
 ```sh
-git clone https://github.com/Calbabreaker/dotfiles ~/
+git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ./setup.sh
 ```

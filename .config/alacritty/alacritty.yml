@@ -1,0 +1,9 @@
+live_config_reload: true
+ 
+font:
+  normal:
+    family: Roboto Mono Nerd FOnt
+    style: Regular
+ 
+  size: 10.0
+ 

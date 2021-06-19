@@ -75,7 +75,6 @@ colorscheme codedark
 let g:airline_theme = 'codedark'
 
 let g:coc_global_extensions = [
-  \ 'coc-clangd',
   \ 'coc-css',
   \ 'coc-deno',
   \ 'coc-emmet',
@@ -132,8 +131,8 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-nnoremap <C-[> gT
-nnoremap <C-]> gt
+nnoremap t[ gT
+nnoremap t] gt
 
 noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
@@ -146,13 +145,17 @@ map <Leader>tt :term zsh --login<CR>
 
 " make nvim terminal navigation better
 if has("nvim")
-  tnoremap <C-h> <C-\><C-N><C-w>h
-  tnoremap <C-j> <C-\><C-N><C-w>j
-  tnoremap <C-k> <C-\><C-N><C-w>k
-  tnoremap <C-l> <C-\><C-N><C-w>l
+    tnoremap <C-h> <C-\><C-N><C-w>h
+    tnoremap <C-j> <C-\><C-N><C-w>j
+    tnoremap <C-k> <C-\><C-N><C-w>k
+    tnoremap <C-l> <C-\><C-N><C-w>l
 
-  tnoremap <C-[> <C-\><C-N>gT
-  tnoremap <C-]> <C-\><C-N>gt
+    tnoremap t[ <C-\><C-N>gT
+    tnoremap t] <C-\><C-N>gt
+    tnoremap <silent> <C-Left> <C-\><C-N>:vertical resize +3<CR>
+    tnoremap <silent> <C-Right> <C-\><C-N>:vertical resize -3<CR>
+    tnoremap <silent> <C-Up> <C-\><C-N>:resize +3<CR>
+    tnoremap <silent> <C-Down> <C-\><C-N>:resize -3<CR>
 endif
 
 " 
