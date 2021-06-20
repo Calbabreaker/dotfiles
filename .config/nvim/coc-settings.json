@@ -24,10 +24,13 @@
         "ccls": {
             "command": "ccls",
             "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "rootPatterns": [".ccls", ".cache/", "compile_commands.json", ".vim/", ".git/"],
             "initializationOptions": {
                 "cache": {
-                    "directory": "/tmp/ccls"
+                    "directory": ".cache/"
+                },
+                "highlight": {
+                    "lsRanges": true
                 }
             }
         }

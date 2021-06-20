@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dot files (aka configuration files) for vim, git, zsh and alacritty.
+Personal dot files (aka configuration files) for neovim, git, zsh and alacritty.
 
 ## Setup
 
@@ -11,3 +11,5 @@ git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ./setup.sh
 ```
+
+You should install a nerd font for neovim.

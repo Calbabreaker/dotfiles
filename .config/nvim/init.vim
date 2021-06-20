@@ -42,6 +42,7 @@ set updatetime=100
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'tomasiser/vim-code-dark'
@@ -74,6 +75,7 @@ colorscheme codedark
 
 let g:airline_theme = 'codedark'
 
+let g:coc_snippet_next = '<tab>'
 let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-deno',
@@ -95,7 +97,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:yoinkIncludeDeleteOperations = 1
 let g:yoinkSavePersistently = 1
 
-let g:coc_snippet_next = '<tab>'
+let g:far#enable_undo = 1
 
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 call rainbow_parentheses#activate()
@@ -290,7 +292,7 @@ augroup mygroup
     autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>fg<CR>
 
     autocmd FileType asm setlocal commentstring=;\ %s
-    autocmd FileType javascript,typescript,typescriptreact setlocal commentstring=//\ %s
+    autocmd FileType javascript,typescript,typescriptreact,cpp,c setlocal commentstring=//\ %s
 
     autocmd BufEnter term://* startinsert
 
