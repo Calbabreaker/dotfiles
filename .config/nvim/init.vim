@@ -12,6 +12,7 @@ set encoding=utf-8 fileencoding=utf-8
 set expandtab
 set formatoptions-=cro
 set hidden
+set lazyredraw   
 set mouse=a
 set nobackup nowritebackup
 set noerrorbells
@@ -31,8 +32,7 @@ set smartindent smarttab
 set splitbelow splitright
 set tabstop=4 softtabstop=4
 set termguicolors
-set undodir=~/.config/nvim/undodir/
-set undofile
+set undofile undodir=~/.config/nvim/undodir/
 set updatetime=100
 
 " -------------------------------------------------------
@@ -55,7 +55,6 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-titlecase'
-Plug 'glts/vim-textobj-comment'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
@@ -98,6 +97,8 @@ let g:yoinkIncludeDeleteOperations = 1
 let g:yoinkSavePersistently = 1
 
 let g:far#enable_undo = 1
+let g:far#source = "rgnvim"
+let g:far#glob_mode = "rg"
 
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 call rainbow_parentheses#activate()

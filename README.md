@@ -12,4 +12,4 @@ cd ~/.dotfiles
 ./setup.sh
 ```
 
-You should install a nerd font for neovim.
+You should also install a nerd font for neovim.
