@@ -24,8 +24,6 @@ set number
 set relativenumber
 set ruler
 set scrolloff=8
-set shell=/bin/bash\ --login
-set shellcmdflag=-ic
 set shiftwidth=4
 set signcolumn=yes
 set smartindent smarttab
@@ -43,24 +41,25 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'tomasiser/vim-code-dark'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'brooth/far.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-titlecase'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
-Plug 'ryanoasis/vim-devicons'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
@@ -89,14 +88,13 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ ]
 
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules)$'
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<c-p>'
 
 let g:yoinkIncludeDeleteOperations = 1
 let g:yoinkSavePersistently = 1
 
-let g:far#enable_undo = 1
 let g:far#source = "rgnvim"
 let g:far#glob_mode = "rg"
 
@@ -107,12 +105,12 @@ call rainbow_parentheses#activate()
 " - Mapings
 " -------------------------------------------------------
 let mapleader = " "
-map <leader>h :noh<CR>
 
-nmap <C-e> :CocCommand explorer<CR>
+nnoremap <leader>e :CocCommand explorer<CR>
 
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+nmap <leader>gs :Git<CR>
+nmap <leader>gc :Git commit<CR>
+nmap <leader>gp :Git push<CR>
 
 " move (aka cut) operation
 nnoremap m d
@@ -124,6 +122,7 @@ nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
 nmap y <plug>(YoinkYankPreserveCursorPosition)
 xmap y <plug>(YoinkYankPreserveCursorPosition)
+map <leader>y :Yanks<CR>
 
 nmap <C-s> :w <Enter>
 nmap <C-c> <Esc>
@@ -141,10 +140,10 @@ noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
-map <Leader>th <C-w>t<C-w>H
-map <Leader>tv <C-w>t<C-w>K
+map <leader>th <C-w>t<C-w>H
+map <leader>tv <C-w>t<C-w>K
 
-map <Leader>tt :term zsh --login<CR>
+map <leader>tt :term zsh --login<CR>
 
 " make nvim terminal navigation better
 if has("nvim")
@@ -152,6 +151,7 @@ if has("nvim")
     tnoremap <C-j> <C-\><C-N><C-w>j
     tnoremap <C-k> <C-\><C-N><C-w>k
     tnoremap <C-l> <C-\><C-N><C-w>l
+    tnoremap <esc> <C-\><C-N><C-w>l
 
     tnoremap t[ <C-\><C-N>gT
     tnoremap t] <C-\><C-N>gt
@@ -263,8 +263,6 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Mappings for CoCList
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.

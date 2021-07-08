@@ -78,10 +78,10 @@ precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 export EDITOR='nvim'
 
 # plugin manager
-if [[ ! -f ~/.zplug/init.zsh ]]; then
-  git clone --recursive -f https://github.com/zplug/zplug ~/.zplug
+if [[ ! -f ~/.local/share/zplug/init.zsh ]]; then
+    git clone --recursive https://github.com/zplug/zplug ~/.local/share/zplug
 fi
-source ~/.zplug/init.zsh
+source ~/.local/share/zplug/init.zsh
 
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
@@ -159,16 +159,11 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias l="ls -G"
 
 alias cb="xclip -selection c" # pipe to to copy to clipboard
 alias c="clear"
 alias rm="rm -Iv"
 alias cp="cp -rv"
 alias mv="mv -v"
-
-alias l="ls -G"
-
-autoclick() {
-    xdotool click --repeat $1 --delay 18 1
-}
 
