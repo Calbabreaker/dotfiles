@@ -111,6 +111,8 @@ nnoremap <leader>e :CocCommand explorer<CR>
 nmap <leader>gs :Git<CR>
 nmap <leader>gc :Git commit<CR>
 nmap <leader>gp :Git push<CR>
+nmap <leader>gh :diffget //2<CR>
+nmap <leader>gl :diffget //3<CR>
 
 " move (aka cut) operation
 nnoremap m d
