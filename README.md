@@ -12,6 +12,6 @@ cd ~/.dotfiles
 ./setup.sh
 ```
 
-Note that this script overides the dotfiles already on the system.
+Note: This script **will** override the dotfiles already on the system.
 
 You should also install xclip, ripgrep, and a nerd font for neovim.
