@@ -4,14 +4,23 @@ Personal dot files (aka configuration files) for neovim, git, zsh and alacritty.
 
 ## Setup
 
-All you have to do is clone this repository, run the setup.sh to get dotfiles to work.
+First You need to have git add GNU stow installed. 
+
+Then clone the repository:
 
 ```sh
 git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles
 cd ~/.dotfiles
-./setup.sh
 ```
 
-Note: This script **will** override the dotfiles already on the system.
+Now you can individually choose the dotfiles (specified by a folder) like so:
 
-You should also install xclip, ripgrep, and a nerd font for neovim.
+```sh
+stow zsh
+```
+
+Or everything:
+
+```sh
+stow */
+```
