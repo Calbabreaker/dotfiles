@@ -59,7 +59,7 @@ SPACESHIP_PROMPT_ORDER=(
 
 function spaceship_install() {
     mkdir -p $ZDOTDIR/prompts
-    ln -s "$ZDOTDIR/plugins/spaceship-prompt/spaceship.zsh" "$ZDOTDIR/prompts/prompt_spaceship_setup"
+    ln -sf "$ZDOTDIR/plugins/spaceship-prompt/spaceship.zsh" "$ZDOTDIR/prompts/prompt_spaceship_setup"
 }
 
 zsh_add_plugin "spaceship-prompt/spaceship-prompt" "" spaceship_install
@@ -70,6 +70,6 @@ function fzf_install() {
 }
 
 zsh_add_plugin "junegunn/fzf" "$XDG_CONFIG_HOME/fzf/fzf.zsh" fzf_install
-zsh_add_file "plugins/fzf/shell/completions.zsh"
+zsh_add_file "plugins/fzf/shell/completion.zsh"
 zsh_add_file "plugins/fzf/shell/key-bindings.zsh"
 export PATH="$PATH:$ZDOTDIR/plugins/fzf/bin/"

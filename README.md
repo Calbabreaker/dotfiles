@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dot files (aka configuration files) for neovim, git, zsh and alacritty.
+Personal dot files (aka configuration files) for neovim, zsh, tmux, and alacritty
 
 ## Setup
 
