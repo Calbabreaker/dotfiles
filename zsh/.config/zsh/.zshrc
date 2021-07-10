@@ -1,4 +1,4 @@
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # disable ctrl+s freeze
@@ -7,7 +7,6 @@ stty -tostop
 
 setopt dotglob
 setopt autocd
-setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -15,6 +14,11 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
+
+# default programs 
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+export BROWSER="chromium"
 
 # load colours
 autoload -U colors && colors
@@ -32,9 +36,23 @@ source "$ZDOTDIR/functions.zsh"
 
 zsh_add_file "aliases.zsh"
 zsh_add_file "plugins.zsh"
-zsh_add_file "prompt.zsh"
 zsh_add_file "vi_mode.zsh"
 
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting" 
+
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
+bindkey '^ ' autosuggest-accept
+
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_CHAR_SYMBOL=»
+SPACESHIP_CHAR_SUFFIX=" "
+
+SPACESHIP_PROMPT_ORDER=(
+  dir           # Current directory section
+  git           # Git section (git_branch + git_status)
+  exec_time     # Execution time
+  char          # Prompt character
+)
+zsh_add_plugin "spaceship-prompt/spaceship-prompt" "spaceship.zsh" true
 

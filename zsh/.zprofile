@@ -5,11 +5,6 @@
 
 export PATH="$PATH:$HOME/.local/bin/"
 
-# default programs 
-export EDITOR="nvim"
-export TERMINAL="alacritty"
-export BROWSER="chromium"
-
 # google sync api keys
 export GOOGLE_DEFAULT_CLIENT_ID=77185425430.apps.googleusercontent.com
 export GOOGLE_DEFAULT_CLIENT_SECRET=OTJgUOQcT7lO7GsGZq2G4IlT

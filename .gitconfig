@@ -1,8 +1,0 @@
-[user]
-	email = calbabreaker@gmail.com
-	name = Calbabreaker
-[alias]
-	assume-unchanged = update-index --assume-unchanged
-	assume-changed = update-index --no-assume-unchanged
-[init]
-	defaultBranch = main
