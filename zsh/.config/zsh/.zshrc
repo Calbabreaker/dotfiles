@@ -20,8 +20,10 @@ export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="chromium"
 
-# load colours
+# load colours and prompt
+fpath+=$ZDOTDIR/prompts
 autoload -U colors && colors
+autoload -U promptinit; promptinit
 
 # tab completion thing
 autoload -U compinit && compinit -u
@@ -54,5 +56,20 @@ SPACESHIP_PROMPT_ORDER=(
   exec_time     # Execution time
   char          # Prompt character
 )
-zsh_add_plugin "spaceship-prompt/spaceship-prompt" "spaceship.zsh" true
 
+function spaceship_install() {
+    mkdir -p $ZDOTDIR/prompts
+    ln -s "$ZDOTDIR/plugins/spaceship-prompt/spaceship.zsh" "$ZDOTDIR/prompts/prompt_spaceship_setup"
+}
+
+zsh_add_plugin "spaceship-prompt/spaceship-prompt" "" spaceship_install
+prompt spaceship
+
+function fzf_install() {
+    $ZDOTDIR/plugins/fzf/install --bin 
+}
+
+zsh_add_plugin "junegunn/fzf" "$XDG_CONFIG_HOME/fzf/fzf.zsh" fzf_install
+zsh_add_file "plugins/fzf/shell/completions.zsh"
+zsh_add_file "plugins/fzf/shell/key-bindings.zsh"
+export PATH="$PATH:$ZDOTDIR/plugins/fzf/bin/"
