@@ -22,3 +22,4 @@ alias c="clear"
 alias cb="xclip -selection c" # pipe to to copy to clipboard
 alias szsh="source $ZDOTDIR/.zshrc"
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'

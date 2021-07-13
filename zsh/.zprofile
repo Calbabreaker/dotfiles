@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# all environment variables go here
+# most environment variables go here
 # note that you have to logout and login to refresh 
 
 export PATH="$PATH:$HOME/.local/bin/"
@@ -22,10 +22,12 @@ export KDEHOME="$XDG_CONFIG_HOME/kde"
 export LESSHISTFILE=- # disable completely
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export PYTHONHISTFILE="$XDG_DATA_HOME/python_history"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export ZSH_DATA_PATH="$XDG_DATA_HOME/zsh"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 
 # history
 export HISTSIZE=10000
 export SAVEHIST=10000
-export HISTFILE="$XDG_DATA_HOME/zsh_history"
+export HISTFILE="$ZSH_DATA_PATH/history.txt"

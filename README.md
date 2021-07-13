@@ -10,23 +10,24 @@ Then clone the repository:
 
 ```sh
 git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles
+cd ~/.dotfiles
 ```
 
 Now you can individually choose to use the dotfiles (specified by a folder) like so:
 
 ```sh
-stow -d ~/.dotfiles/ --no-folding zsh
+stow zsh
 ```
 
 Or everything:
 
 ```sh
-stow -d ~/.dotfiles/ --no-folding */
+stow */
 ```
 
 To remove a dotfile:
 
 ```sh
-stow -d ~/.dotfiles/ -D zsh
-stow -d ~/.dotfiles/ -D */ # all of them
+stow -D zsh
+stow -D */ # all of them
 ```

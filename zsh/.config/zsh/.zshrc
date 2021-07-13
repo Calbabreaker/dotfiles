@@ -21,7 +21,7 @@ export TERMINAL="alacritty"
 export BROWSER="chromium"
 
 # load colours and prompt
-fpath+=$ZDOTDIR/prompts
+fpath+=$ZSH_DATA_PATH/prompts
 autoload -U colors && colors
 autoload -U promptinit; promptinit
 
@@ -35,10 +35,8 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 source "$ZDOTDIR/functions.zsh"
-
-zsh_add_file "aliases.zsh"
-zsh_add_file "plugins.zsh"
-zsh_add_file "vi_mode.zsh"
+source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/vi_mode.zsh"
 
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting" 
 
@@ -58,18 +56,18 @@ SPACESHIP_PROMPT_ORDER=(
 )
 
 function spaceship_install() {
-    mkdir -p $ZDOTDIR/prompts
-    ln -sf "$ZDOTDIR/plugins/spaceship-prompt/spaceship.zsh" "$ZDOTDIR/prompts/prompt_spaceship_setup"
+    mkdir -p $ZSH_DATA_PATH/prompts
+    ln -sf "$PLUGIN_PATH/spaceship-prompt/spaceship.zsh" "$ZSH_DATA_PATH/prompts/prompt_spaceship_setup"
 }
 
 zsh_add_plugin "spaceship-prompt/spaceship-prompt" "" spaceship_install
 prompt spaceship
 
 function fzf_install() {
-    $ZDOTDIR/plugins/fzf/install --bin 
+    $PLUGIN_PATH/fzf/install --bin 
 }
 
-zsh_add_plugin "junegunn/fzf" "$XDG_CONFIG_HOME/fzf/fzf.zsh" fzf_install
-zsh_add_file "plugins/fzf/shell/completion.zsh"
-zsh_add_file "plugins/fzf/shell/key-bindings.zsh"
-export PATH="$PATH:$ZDOTDIR/plugins/fzf/bin/"
+zsh_add_plugin "junegunn/fzf" "" fzf_install
+source "$PLUGIN_PATH/fzf/shell/completion.zsh"
+source "$PLUGIN_PATH/fzf/shell/key-bindings.zsh"
+export PATH="$PATH:$PLUGIN_PATH/fzf/bin/"
