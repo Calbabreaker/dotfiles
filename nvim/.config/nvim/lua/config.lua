@@ -1,4 +1,4 @@
-vim.o.clipboard = "unnamedplus" -- let neovim use the system clipboard
+vim.o.clipboard = "unnamedplus" -- make neovim use the system clipboard
 vim.o.colorcolumn = "100" -- column count indicator
 vim.o.cursorline = true -- highlight the current line
 vim.o.encoding = "utf-8" -- encoding used to write to a file
@@ -9,6 +9,7 @@ vim.o.mouse = "a" -- allow mouse to be used
 vim.o.number = true -- show line numbers
 vim.o.relativenumber = true -- show relative line numbers
 vim.o.scrolloff = 8 -- line scroll padding
+vim.o.shiftwidth = 4 -- use 4 spaces when something gets indented
 vim.o.showmode = false -- don't show -- INSERT -- and stuff at the bottom
 vim.o.showtabline = 2 -- always show buffer tabs
 vim.o.signcolumn = "yes" -- always show the sign column
@@ -29,6 +30,7 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.smarttab = true
 
--- colour scheme
-vim.g.sonokai_style = 'atlantis'
-vim.cmd("colorscheme sonokai")
+-- use space as leader key
+vim.g.mapleader = ' '
+
+vim.cmd "filetype plugin on"
