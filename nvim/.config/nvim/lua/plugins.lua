@@ -7,19 +7,24 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 return require("packer").startup(function()
-    -- packer plugin stuff
-    use "wbthomason/packer.nvim" 
+    use "wbthomason/packer.nvim" -- packer plugin stuff
+    use "nvim-lua/plenary.nvim" -- lua utils
+    use "kyazdani42/nvim-web-devicons" -- nice icons
 
-    -- nice icons
-    use "kyazdani42/nvim-web-devicons" 
-
-    -- use {
-    --     "lewis6991/gitsigns.nvim",
-    --     requires = {"nvim-lua/plenary.nvim"},
-    --     config = function()
-    --         require("gitsigns").setup()
-    --     end
-    -- }
+    -- git change markings
+    use {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup()
+        end
+    }
+   
+    use {
+        "tpope/vim-fugitive",
+        config = function()
+            require "pconf/fugitive"
+        end,
+    }
 
     -- start menu
     use "mhinz/vim-startify" 
@@ -31,7 +36,7 @@ return require("packer").startup(function()
             vim.g.onedark_terminal_italics = 1
             vim.g.onedark_hide_endofbuffer = 1
             vim.cmd "colorscheme onedark"
-        end
+        end,
     }
 
     -- cool status tabs
@@ -39,22 +44,29 @@ return require("packer").startup(function()
         "romgrk/barbar.nvim",
         config = function()
             require "pconf/barbar"
-        end
+        end,
     }
 
     -- small qol plugins
     use "christoomey/vim-sort-motion" -- sorts lines
-    use "tpope/vim-commentary" -- toggle comments
     use "tpope/vim-repeat" -- able to repeat plugin maps
     use "tpope/vim-surround" -- easily edit (), "", etc
     use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
+
+    -- toggle comments
+    use { 
+        "tpope/vim-commentary",
+        config = function()
+            require "pconf/commentary"
+        end,
+    } 
 
     -- clipboard history
     use { 
         "svermeulen/vim-yoink",
         config = function()
             require "pconf/yoink"
-        end
+        end,
     } 
 
     use "kana/vim-textobj-user" -- text object library base

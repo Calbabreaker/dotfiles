@@ -32,7 +32,7 @@ function define_augroup(name, definitions)
     vim.api.nvim_command "augroup end"
 end
 
-register_mappings("n", { silent = true }, {
+register_mappings("ni", { silent = true }, {
     { "<C-c>", "<ESC>" },
     { "<ESC>", "<ESC>:noh <CR>" }, -- use esc to hide highlights
 })
@@ -67,6 +67,6 @@ define_augroup("general_settings", {
     -- Don't do it when the position is invalid, when inside an event handler
     -- (happens when dropping a file on gvim) and for a commit message (it's
     -- likely a different one than last time).
-    [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]]
+    [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
 })
 
