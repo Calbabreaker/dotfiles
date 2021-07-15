@@ -4,10 +4,12 @@
 # converts npm commands to yarn in case some stuff uses npm
 #
 
+# change install to add
 first_arg=$([ $1 == "install" ] && echo add || echo $1)
 rest_arg=""
 
 for arg in ${@:2}; do
+    # check for global flag
     if [ $arg == "-g" ] || [ $arg == "--global" ]; then 
         first_arg="global $first_arg" 
     else

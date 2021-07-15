@@ -1,3 +1,4 @@
+-- vim.o.relativenumber = true -- show relative line numbers
 vim.o.clipboard = "unnamedplus" -- make neovim use the system clipboard
 vim.o.colorcolumn = "100" -- column count indicator
 vim.o.completeopt = "noinsert,menuone,noselect"
@@ -8,9 +9,9 @@ vim.o.hidden = true -- keep buffers open in the background
 vim.o.lazyredraw = true -- don't draw until macros and stuff have finished
 vim.o.mouse = "a" -- allow mouse to be used
 vim.o.number = true -- show line numbers
-vim.o.relativenumber = true -- show relative line numbers
 vim.o.scrolloff = 8 -- line scroll padding
 vim.o.shiftwidth = 4 -- use 4 spaces when something gets indented
+vim.o.shortmess = vim.o.shortmess.."c" -- dont't show pattern not found
 vim.o.showmode = false -- don't show -- INSERT -- and stuff at the bottom
 vim.o.showtabline = 2 -- always show buffer tabs
 vim.o.signcolumn = "yes" -- always show the sign column
@@ -25,7 +26,6 @@ vim.o.undofile = true -- persistent undos
 vim.o.updatetime = 100 -- how often completion updates happen
 vim.o.wrap = false -- no line wrapping
 vim.o.writebackup = true -- don't make backup files
-vim.o.shortmess = vim.o.shortmess.."c" -- dont't show pattern not found
 
 -- makes indent and tabs better
 vim.o.autoindent = true

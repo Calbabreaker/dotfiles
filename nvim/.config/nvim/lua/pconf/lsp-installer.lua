@@ -26,7 +26,7 @@ local function on_attach(_, buffer)
         { "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
         { "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
         { "gl", "<cmd>lua vim.lsp.buf.references()<CR>" },
-        { "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+        { "<space>d", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
         { "[g", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>" },
         { "]g", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>" },
         { "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
@@ -38,7 +38,7 @@ local installed_servers = lsp_installer.get_installed_servers()
 for _, server in pairs(installed_servers) do
     server:setup({
         on_attach = on_attach,
-        capabilities = capabilities
+        capabilities = capabilities,
     })
 end
 

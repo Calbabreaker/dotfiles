@@ -14,11 +14,19 @@ return require("packer").startup(function()
     -- start menu
     use "mhinz/vim-startify"
 
-    -- git change markings
+    -- git changes markings
     use {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require "pconf/gitsigns"
+            require("pconf/gitsigns")
+        end
+    }
+
+    -- cool status line
+    use {
+        "hoob3rt/lualine.nvim",
+        config = function()
+            require("pconf/lualine")
         end
     }
 
@@ -26,20 +34,27 @@ return require("packer").startup(function()
     use "tpope/vim-fugitive"
 
     -- colour theme
-    use { 
-        "joshdick/onedark.vim",
+    use {
+        "folke/tokyonight.nvim",
         config = function()
-            vim.g.onedark_terminal_italics = 1
-            vim.g.onedark_hide_endofbuffer = 1
-            vim.cmd "colorscheme onedark"
+            vim.cmd[[colorscheme tokyonight]]
+        end,
+    }
+
+    -- file explorer
+    use {
+        "kyazdani42/nvim-tree.lua",
+        config = function()
+            require "pconf/tree"
         end,
     }
 
     -- cool tabs
     use {
-        "romgrk/barbar.nvim",
+        "akinsho/nvim-bufferline.lua",
+        requires = "famiu/bufdelete.nvim",
         config = function()
-            require "pconf/barbar"
+            require "pconf/bufferline"
         end,
     }
 
@@ -84,14 +99,7 @@ return require("packer").startup(function()
     use "tpope/vim-repeat" -- able to repeat plugin maps
     use "tpope/vim-surround" -- easily edit (), "", etc
     use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
-
-    -- toggle comments
-    use {
-        "tpope/vim-commentary",
-        config = function()
-            require "pconf/commentary"
-        end,
-    }
+    use "tpope/vim-commentary" -- toggle comments with motions
 
     -- clipboard history
     use {

@@ -13,7 +13,7 @@ git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-Now you can individually choose to use the dotfiles (specified by a folder) like so:
+Now you can individually choose to use a dotfile (specified by a folder) like so:
 
 ```sh
 stow zsh
@@ -31,3 +31,9 @@ To remove a dotfile:
 stow -D zsh
 stow -D */ # all of them
 ```
+
+## NeoVim
+
+Note: Requires version 0.5
+
+To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
