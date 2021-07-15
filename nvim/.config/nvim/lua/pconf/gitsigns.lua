@@ -1,3 +1,5 @@
+    require("gitsigns").setup()
+
 register_mappings("n", {}, {
     { "<Leader>gg", ":Git<CR>" },
     { "<Leader>gc", ":Git commit<CR>" },

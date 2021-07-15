@@ -1,14 +1,23 @@
 -- mode takes in a character or multiple specifying the mode
 -- note this means that ic mode will not work
 function register_mappings(mode, default_options, mappings)
-    -- split up the string 
+    -- split up the string
     if #mode > 1 then
     	for i = 1, #mode do
             register_mappings(mode:sub(i, i), default_options, mappings)
     	end
         return
     end
-    
+
+    local set_keymap = vim.api.nvim_set_keymap
+    if default_options.buffer ~= nil then
+        set_keymap = function(...)
+            vim.api.nvim_buf_set_keymap(default_options.buffer, ...)
+        end
+
+        default_options.buffer = nil
+    end
+
     for _, mapping in pairs(mappings) do
         local options = mapping[3] or default_options
         local cmd = mapping[2]
@@ -17,7 +26,7 @@ function register_mappings(mode, default_options, mappings)
             cmd = "<C-\\><C-N>"..cmd
         end
 
-        vim.api.nvim_set_keymap(mode, mapping[1], cmd, options)
+        set_keymap(mode, mapping[1], cmd, options)
     end
 end
 
@@ -52,7 +61,7 @@ register_mappings("tn", { silent = true }, {
 
     -- change from vertical to horizontal split and vise versa
     { "<Leader>th", "<C-w>t<C-w>K" },
-    { "<Leader>tv", "<C-w>t<C-w>H" }, 
+    { "<Leader>tv", "<C-w>t<C-w>H" },
 })
 
 register_mappings("t", { silent = true }, {
