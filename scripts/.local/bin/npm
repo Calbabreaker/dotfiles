@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# converts npm commands to yarn in case some stuff uses npm
+# converts npm commands to yarn for stuff that uses npm
 #
 
 # change install to add

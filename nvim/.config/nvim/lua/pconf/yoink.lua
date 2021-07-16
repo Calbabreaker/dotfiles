@@ -1,5 +1,6 @@
 vim.g.yoinkSavePersistently = 1
 vim.g.yoinkMoveCursorToEndOfPaste = 1
+vim.g.yoinkSyncNumberedRegisters = 1
 
 register_mappings("n", {}, {
     { "[y", "<Plug>(YoinkRotateBack)" },
@@ -10,8 +11,6 @@ register_mappings("n", {}, {
     { "]p", "<Plug>(YoinkPostPasteSwapForward)" },
     { "p", "<Plug>(YoinkPaste_p)" },
     { "P", "<Plug>(YoinkPaste_P)" },
-
-    { "<Leader>y", ":Yanks<CR>" },
 })
 
 register_mappings("x", {}, {

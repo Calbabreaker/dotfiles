@@ -42,7 +42,7 @@ for _, server in pairs(installed_servers) do
     })
 end
 
-local ensured_installed_servers = { "tsserver" }
+local ensured_installed_servers = { "tsserver", "html", "cssls", "jsonls" }
 
 -- ensures specified servers are installed
 -- aditional can be installed using :LspInstall server_name

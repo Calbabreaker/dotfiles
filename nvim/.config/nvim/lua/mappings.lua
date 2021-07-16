@@ -9,24 +9,24 @@ function register_mappings(mode, default_options, mappings)
         return
     end
 
-    local set_keymap = vim.api.nvim_set_keymap
-    if default_options.buffer ~= nil then
-        set_keymap = function(...)
-            vim.api.nvim_buf_set_keymap(default_options.buffer, ...)
-        end
-
-        default_options.buffer = nil
-    end
-
     for _, mapping in pairs(mappings) do
         local options = mapping[3] or default_options
+        local key = mapping[1]
         local cmd = mapping[2]
         -- add terminal escape
         if mode == "t" then
             cmd = "<C-\\><C-N>"..cmd
         end
 
-        set_keymap(mode, mapping[1], cmd, options)
+        -- convert " " to "" (normal, operater pending, etc... mapping)
+        if mode == " " then mode = "" end
+
+        if options.buffer ~= nil then
+            options.buffer = nil
+            vim.api.nvim_buf_set_keymap(default_options.buffer, mode, key, cmd, options)
+        else
+            vim.api.nvim_set_keymap(mode, key, cmd, options)
+        end
     end
 end
 
@@ -41,7 +41,7 @@ function define_augroup(name, definitions)
     vim.api.nvim_command "augroup end"
 end
 
-register_mappings("ni", { silent = true }, {
+register_mappings(" ic", { silent = true }, {
     { "<C-c>", "<ESC>" },
     { "<ESC>", "<ESC>:noh <CR>" }, -- use esc to hide highlights
 })
@@ -73,10 +73,6 @@ define_augroup("general_settings", {
     "TermOpen term://* setlocal nonumber norelativenumber",
     "TermOpen term://* startinsert",
     "BufEnter term://* startinsert",
-
-    -- automatically write and save folds
-    -- "BufWinLeave *.* mkview",
-    -- "BufRead *.* silent loadview ",
 
     -- When editing a file, always jump to the last known cursor position.
     -- Don't do it when the position is invalid, when inside an event handler

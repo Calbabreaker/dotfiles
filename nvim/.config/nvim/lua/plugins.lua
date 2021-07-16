@@ -10,13 +10,16 @@ return require("packer").startup(function()
     use "wbthomason/packer.nvim" -- packer plugin stuff
     use "nvim-lua/plenary.nvim" -- lua utils
     use "kyazdani42/nvim-web-devicons" -- nice icons
+    use "airblade/vim-rooter"
 
     -- start menu
     use "mhinz/vim-startify"
 
     -- git changes markings
     use {
-        "lewis6991/gitsigns.nvim", config = function() require("pconf/gitsigns")
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("pconf/gitsigns")
         end
     }
 
@@ -56,6 +59,22 @@ return require("packer").startup(function()
         end,
     }
 
+    -- formatter
+    use {
+        "mhartington/formatter.nvim",
+        config = function()
+            require "pconf/formatter"
+        end,
+    }
+
+    -- emmet integration
+    use {
+        "mattn/emmet-vim",
+        config = function()
+            vim.g.user_emmet_leader_key= "<Leader>y"
+        end,
+    }
+
     --
     -- Language server
     --
@@ -89,6 +108,7 @@ return require("packer").startup(function()
     -- nice syntax highlight
     use {
         "nvim-treesitter/nvim-treesitter",
+        requires = { "p00f/nvim-ts-rainbow", "JoosepAlviste/nvim-ts-context-commentstring" },
         config = function()
             require "pconf/treesitter"
         end,
