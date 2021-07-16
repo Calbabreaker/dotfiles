@@ -68,6 +68,18 @@ register_mappings("t", { silent = true }, {
     { "<ESC>", "" },
 })
 
+register_mappings("n", {}, {
+    -- move line up and down
+    { "<A-j>", ":m .+1<CR>==" },
+    { "<A-k>", ":m .-2<CR>==" },
+
+    { "]q", ":cnext<CR>" },
+    { "[q", ":cprev<CR>" },
+    { "<C-q>", ":call ToggleQuickFix()<CR>" },
+    { "<Leader>tt", "<cmd>term<CR>"},
+    { "<Leader>ts", "<cmd>split<CR> <cmd>term<CR>"},
+})
+
 define_augroup("general_settings", {
     -- make terminal better
     "TermOpen term://* setlocal nonumber norelativenumber",
@@ -81,3 +93,12 @@ define_augroup("general_settings", {
     [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
 })
 
+vim.cmd [[
+    function! ToggleQuickFix()
+        if empty(filter(getwininfo(), 'v:val.quickfix'))
+            copen
+        else
+            cclose
+        endif
+    endfunction
+]]

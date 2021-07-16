@@ -17,7 +17,6 @@ require("nvim-treesitter.configs").setup({
         max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
     },
     context_commentstring = {
-        enable = false,
-        config = { css = "// %s" },
+        enable = true,
     },
 })

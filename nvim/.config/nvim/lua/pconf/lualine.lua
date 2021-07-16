@@ -2,7 +2,7 @@ local function get_wordcount()
     local wordcount = vim.fn.wordcount()
     local outwords = wordcount.words
     if wordcount.visual_words ~= nil then
-        outwords = wordcount.visual_words.."/"..outwords
+        outwords = string.format("%d/%d", wordcount.visual_words, outwords)
     end
 
     return outwords.." words"

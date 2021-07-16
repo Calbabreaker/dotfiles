@@ -10,7 +10,8 @@ return require("packer").startup(function()
     use "wbthomason/packer.nvim" -- packer plugin stuff
     use "nvim-lua/plenary.nvim" -- lua utils
     use "kyazdani42/nvim-web-devicons" -- nice icons
-    use "airblade/vim-rooter"
+    use "airblade/vim-rooter" -- change cwd to project root directory
+    use "nvim-lua/popup.nvim" -- popup library
 
     -- start menu
     use "mhinz/vim-startify"
@@ -53,7 +54,6 @@ return require("packer").startup(function()
     -- cool tabs
     use {
         "akinsho/nvim-bufferline.lua",
-        requires = "famiu/bufdelete.nvim",
         config = function()
             require "pconf/bufferline"
         end,
@@ -67,13 +67,16 @@ return require("packer").startup(function()
         end,
     }
 
-    -- emmet integration
+    -- fuzzy finding
     use {
-        "mattn/emmet-vim",
+        "nvim-telescope/telescope.nvim",
         config = function()
-            vim.g.user_emmet_leader_key= "<Leader>y"
+            require "pconf/telescope"
         end,
     }
+
+    -- emmet integration
+    use "mattn/emmet-vim"
 
     --
     -- Language server
@@ -122,12 +125,6 @@ return require("packer").startup(function()
     -- Small qol plugins
     --
 
-    use "christoomey/vim-sort-motion" -- sorts lines
-    use "tpope/vim-repeat" -- able to repeat plugin maps
-    use "tpope/vim-surround" -- easily edit (), "", etc
-    use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
-    use "tpope/vim-commentary" -- toggle comments with motions
-
     -- clipboard history
     use {
         "svermeulen/vim-yoink",
@@ -135,6 +132,13 @@ return require("packer").startup(function()
             require "pconf/yoink"
         end,
     }
+
+    use "ap/vim-css-color" -- show css colors
+    use "christoomey/vim-sort-motion" -- sorts lines
+    use "tpope/vim-repeat" -- able to repeat plugin maps
+    use "tpope/vim-surround" -- easily edit (), "", etc
+    use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
+    use "tpope/vim-commentary" -- toggle comments with motions
 
     use "kana/vim-textobj-user" -- text object library base
 
