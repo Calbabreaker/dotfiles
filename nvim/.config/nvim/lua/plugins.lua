@@ -16,9 +16,7 @@ return require("packer").startup(function()
 
     -- git changes markings
     use {
-        "lewis6991/gitsigns.nvim",
-        config = function()
-            require("pconf/gitsigns")
+        "lewis6991/gitsigns.nvim", config = function() require("pconf/gitsigns")
         end
     }
 
@@ -37,7 +35,7 @@ return require("packer").startup(function()
     use {
         "folke/tokyonight.nvim",
         config = function()
-            vim.cmd[[colorscheme tokyonight]]
+            vim.cmd "colorscheme tokyonight"
         end,
     }
 
@@ -88,6 +86,15 @@ return require("packer").startup(function()
         end,
     }
 
+    -- nice syntax highlight
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require "pconf/treesitter"
+        end,
+    }
+
+
     -- snippets
     use "hrsh7th/vim-vsnip"
 
@@ -115,4 +122,3 @@ return require("packer").startup(function()
     use "kana/vim-textobj-indent" -- text object i for indents
     use "sgur/vim-textobj-parameter" -- text object , for function parameters
 end)
-

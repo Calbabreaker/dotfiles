@@ -69,9 +69,15 @@ register_mappings("t", { silent = true }, {
 })
 
 define_augroup("general_settings", {
+    -- make terminal better
     "TermOpen term://* setlocal nonumber norelativenumber",
     "TermOpen term://* startinsert",
     "BufEnter term://* startinsert",
+
+    -- automatically write and save folds
+    -- "BufWinLeave *.* mkview",
+    -- "BufRead *.* silent loadview ",
+
     -- When editing a file, always jump to the last known cursor position.
     -- Don't do it when the position is invalid, when inside an event handler
     -- (happens when dropping a file on gvim) and for a commit message (it's

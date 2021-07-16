@@ -58,9 +58,9 @@ require("bufferline").setup({
             return diag
         end,
         close_command = function(buffer)
-
             bufdel.bufdelete(buffer)
         end,
+        right_mouse_command = "vertical sbuffer %d",
         show_close_icon = false,
     },
 })

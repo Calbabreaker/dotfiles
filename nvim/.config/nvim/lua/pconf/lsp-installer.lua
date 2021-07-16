@@ -42,3 +42,13 @@ for _, server in pairs(installed_servers) do
     })
 end
 
+local ensured_installed_servers = { "tsserver" }
+
+-- ensures specified servers are installed
+-- aditional can be installed using :LspInstall server_name
+for _, server_name in pairs(ensured_installed_servers) do
+    local ok, server = lsp_installer.get_server(server_name)
+    if ok and not server:is_installed() then
+        server:install()
+    end
+end

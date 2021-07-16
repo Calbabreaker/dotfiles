@@ -33,6 +33,6 @@ vim.o.smartindent = true
 vim.o.smarttab = true
 
 -- use space as leader key
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 vim.cmd "filetype plugin on"
