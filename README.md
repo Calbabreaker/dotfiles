@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dot files (aka configuration files) for neovim, zsh, tmux, and alacritty
+Cool dot files for neovim, zsh, tmux, and alacritty.
 
 ## Setup
 
@@ -38,5 +38,9 @@ Note: Requires version 0.5
 
 To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 
-![screenshot0](./.github/nvim-screenshot0.png)
-![screenshot1](./.github/nvim-screenshot1.png)
+![nvim-screenshot0](./.github/nvim-screenshot0.png)
+![nvim-screenshot1](./.github/nvim-screenshot1.png)
+
+## Alacritty and zsh
+
+![zsh-screenshot0](./.github/zsh-screenshot0.png)
