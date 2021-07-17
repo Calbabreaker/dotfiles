@@ -1,4 +1,5 @@
 -- vim.o.relativenumber = true -- show relative line numbers
+-- vim.o.showtabline = 2 -- always show buffer tabs
 vim.o.clipboard = "unnamedplus" -- make neovim use the system clipboard
 vim.o.colorcolumn = "100" -- column count indicator
 vim.o.completeopt = "noinsert,menuone,noselect"
@@ -11,9 +12,8 @@ vim.o.mouse = "a" -- allow mouse to be used
 vim.o.number = true -- show line numbers
 vim.o.scrolloff = 8 -- line scroll padding
 vim.o.shiftwidth = 4 -- use 4 spaces when something gets indented
-vim.o.shortmess = vim.o.shortmess.."c" -- dont't show pattern not found
+vim.o.shortmess = vim.o.shortmess.."c" -- dont't show "pattern not found"
 vim.o.showmode = false -- don't show -- INSERT -- and stuff at the bottom
-vim.o.showtabline = 2 -- always show buffer tabs
 vim.o.signcolumn = "yes" -- always show the sign column
 vim.o.spelllang = "en_AU" -- set spell checker language to Australian English
 vim.o.splitbelow = true -- make horizontal splits to go below current window

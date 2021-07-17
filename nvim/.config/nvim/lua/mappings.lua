@@ -59,9 +59,6 @@ register_mappings("tn", { silent = true }, {
     { "<C-Up>", ":resize +3<CR>" },
     { "<C-Down>", ":resize -3<CR>" },
 
-    -- change from vertical to horizontal split and vise versa
-    { "<Leader>th", "<C-w>t<C-w>K" },
-    { "<Leader>tv", "<C-w>t<C-w>H" },
 })
 
 register_mappings("t", { silent = true }, {
@@ -69,15 +66,31 @@ register_mappings("t", { silent = true }, {
 })
 
 register_mappings("n", {}, {
+    { "<C-s>", "<cmd>w<CR>"},
+    { "<C-S>", "<cmd>noa w<CR>"},
+
     -- move line up and down
     { "<A-j>", ":m .+1<CR>==" },
     { "<A-k>", ":m .-2<CR>==" },
 
+    -- quick fix
     { "]q", ":cnext<CR>" },
     { "[q", ":cprev<CR>" },
     { "<C-q>", ":call ToggleQuickFix()<CR>" },
-    { "<Leader>tt", "<cmd>term<CR>"},
-    { "<Leader>ts", "<cmd>split<CR> <cmd>term<CR>"},
+    { "<Leader>tt", "<cmd>split<CR> <cmd>term<CR>"},
+
+    -- fugitive
+    { "<Leader>gg", ":Git<CR>" },
+    { "<Leader>gc", ":Git commit<CR>" },
+    { "<Leader>gp", ":Git push<CR>" },
+    { "<Leader>gh", ":diffget //2<CR>" },
+    { "<Leader>gl", ":diffget //3<CR>" },
+
+    { "<Leader>n", "<cmd>NvimTreeToggle<CR>"},
+
+    -- change from vertical to horizontal split and vise versa
+    { "<Leader>th", "<C-w>t<C-w>K" },
+    { "<Leader>tv", "<C-w>t<C-w>H" },
 })
 
 define_augroup("general_settings", {

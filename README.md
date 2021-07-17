@@ -4,7 +4,7 @@ Personal dot files (aka configuration files) for neovim, zsh, tmux, and alacritt
 
 ## Setup
 
-First You need to have git add GNU stow installed. 
+First You need to have git add GNU stow installed.
 
 Then clone the repository:
 
@@ -37,3 +37,6 @@ stow -D */ # all of them
 Note: Requires version 0.5
 
 To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
+
+![screenshot0](./.github/nvim-screenshot0.png)
+![screenshot1](./.github/nvim-screenshot1.png)

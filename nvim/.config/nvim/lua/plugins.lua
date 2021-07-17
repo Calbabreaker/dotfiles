@@ -11,7 +11,6 @@ return require("packer").startup(function()
     use "nvim-lua/plenary.nvim" -- lua utils
     use "kyazdani42/nvim-web-devicons" -- nice icons
     use "airblade/vim-rooter" -- change cwd to project root directory
-    use "nvim-lua/popup.nvim" -- popup library
 
     -- start menu
     use "mhinz/vim-startify"
@@ -20,7 +19,7 @@ return require("packer").startup(function()
     use {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require("pconf/gitsigns")
+            require("gitsigns").setup()
         end
     }
 
@@ -28,7 +27,7 @@ return require("packer").startup(function()
     use {
         "hoob3rt/lualine.nvim",
         config = function()
-            require("pconf/lualine")
+            require "pconf.lualine"
         end
     }
 
@@ -46,16 +45,9 @@ return require("packer").startup(function()
     -- file explorer
     use {
         "kyazdani42/nvim-tree.lua",
+        cmd = "NvimTreeToggle",
         config = function()
-            require "pconf/tree"
-        end,
-    }
-
-    -- cool tabs
-    use {
-        "akinsho/nvim-bufferline.lua",
-        config = function()
-            require "pconf/bufferline"
+            require "pconf.tree"
         end,
     }
 
@@ -63,15 +55,16 @@ return require("packer").startup(function()
     use {
         "mhartington/formatter.nvim",
         config = function()
-            require "pconf/formatter"
+            require "pconf.formatter"
         end,
     }
 
     -- fuzzy finding
     use {
         "nvim-telescope/telescope.nvim",
+        requires = "nvim-lua/popup.nvim",
         config = function()
-            require "pconf/telescope"
+            require "pconf.telescope"
         end,
     }
 
@@ -87,16 +80,18 @@ return require("packer").startup(function()
     -- autocomplete
     use {
         "hrsh7th/nvim-compe",
+        event = "InsertEnter",
         config = function()
-            require "pconf/compe"
+            require "pconf.compe"
         end,
     }
 
     -- pairs
     use {
         "windwp/nvim-autopairs",
+        after = "nvim-compe",
         config = function()
-            require "pconf/autopairs"
+            require("pconf.other").autopairs()
         end,
     }
 
@@ -104,16 +99,20 @@ return require("packer").startup(function()
     use {
         "williamboman/nvim-lsp-installer",
         config = function()
-            require "pconf/lsp-installer"
+            require "pconf.lsp-installer"
         end,
     }
 
     -- nice syntax highlight
     use {
         "nvim-treesitter/nvim-treesitter",
-        requires = { "p00f/nvim-ts-rainbow", "JoosepAlviste/nvim-ts-context-commentstring" },
+        requires = {
+            { "p00f/nvim-ts-rainbow", event = "BufRead" },
+            { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
+        },
+        event = "BufRead",
         config = function()
-            require "pconf/treesitter"
+            require "pconf.treesitter"
         end,
     }
 
@@ -129,16 +128,31 @@ return require("packer").startup(function()
     use {
         "svermeulen/vim-yoink",
         config = function()
-            require "pconf/yoink"
+            require "pconf.yoink"
         end,
     }
 
-    use "ap/vim-css-color" -- show css colors
+    -- highlight colours eg #1f4a90 rgb(255, 255, 0)
+    use {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("pconf.other").colorizer()
+        end,
+    }
+
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("pconf.other").blankline()
+        end
+    }
+
     use "christoomey/vim-sort-motion" -- sorts lines
     use "tpope/vim-repeat" -- able to repeat plugin maps
     use "tpope/vim-surround" -- easily edit (), "", etc
-    use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
     use "tpope/vim-commentary" -- toggle comments with motions
+    use "tpope/vim-dispatch" -- async build and dispatches
+    use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
 
     use "kana/vim-textobj-user" -- text object library base
 

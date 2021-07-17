@@ -8,6 +8,7 @@ vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
 vim.g.nvim_tree_lsp_diagnostics = 1
 vim.g.nvim_tree_side = "left"
+vim.g.nvim_tree_disable_window_picker = 1
 
 vim.g.nvim_tree_show_icons = {
     git = 0,
@@ -21,8 +22,3 @@ vim.g.nvim_tree_icons = {
     symlink = "",
 }
 
-register_mappings("n", { noremap = true, silent = true }, {
-    { "<Leader>n", "<cmd>NvimTreeToggle<CR>"},
-    { "<Leader>r", "<cmd>NvimTreeRefresh<CR>"},
-    { "<Leader>f", "<cmd>NvimTreeFindFile<CR>"},
-})

@@ -2,7 +2,7 @@ live_config_reload: true
  
 font:
   normal:
-    family: Roboto Mono Nerd Font
+    family: RobotoMono Nerd Font
     style: Regular
  
   size: 10.0

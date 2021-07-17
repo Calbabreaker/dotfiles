@@ -16,13 +16,14 @@ local prettier_formatter = {
 
 require("formatter").setup({
     filetype = {
+        css = prettier_formatter,
+        html = prettier_formatter,
         javascript = prettier_formatter,
         javascriptreact = prettier_formatter,
+        json = prettier_formatter,
+        markdown = prettier_formatter,
         typescript = prettier_formatter,
         typescriptreact = prettier_formatter,
-        html = prettier_formatter,
-        css = prettier_formatter,
-        json = prettier_formatter,
     }
 })
 
