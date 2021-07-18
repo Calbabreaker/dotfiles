@@ -5,6 +5,7 @@ function M.blankline()
     vim.g.indent_blankline_show_current_context = true
     vim.g.indent_blankline_char = "┊"
     vim.g.indent_blankline_filetype_exclude = { "NvimTree", "help", "packer" }
+    vim.g.indent_blankline_buftype_exclude = {"terminal"}
 end
 
 function M.colorizer()
