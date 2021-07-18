@@ -69,7 +69,16 @@ return require("packer").startup(function()
     }
 
     -- emmet integration
-    use "mattn/emmet-vim"
+    use {
+        "mattn/emmet-vim",
+        config = function()
+            vim.g.user_emmet_mode = "n"
+            vim.g.user_emmet_leader_key = ","
+        end,
+    }
+
+    -- personal wiki and note taking thing
+    use "vimwiki/vimwiki"
 
     --
     -- Language server

@@ -1,3 +1,5 @@
+local colors = require("tokyonight.colors").setup()
+
 local function get_wordcount()
     local wordcount = vim.fn.wordcount()
     local outwords = wordcount.words
@@ -18,7 +20,13 @@ end
 local diagnostics = {
     "diagnostics",
     sources = { "nvim_lsp" },
-    symbols = { error = " ", warn = " ", info = " " },
+}
+
+local diff = {
+    "diff",
+    color_added = colors.green,
+    color_modified = colors.orange,
+    color_removed = colors.red,
 }
 
 require("lualine").setup({
@@ -26,10 +34,10 @@ require("lualine").setup({
         theme = "tokyonight",
         disabled_filetypes = { "NvimTree" },
         section_separators = { "", "" },
-        component_separators = { "│", "│" }
+        component_separators = { "│", "│" },
     },
     sections = {
-        lualine_b = { "branch", },
+        lualine_b = { "branch", diff },
         lualine_c = { "filename", diagnostics },
         lualine_x = { "fileformat", "encoding" },
         lualine_y = { "filetype" },

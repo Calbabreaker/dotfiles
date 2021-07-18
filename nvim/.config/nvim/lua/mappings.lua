@@ -74,10 +74,9 @@ register_mappings("n", {}, {
     { "<A-k>", ":m .-2<CR>==" },
 
     -- quick fix
-    { "]q", ":cnext<CR>" },
-    { "[q", ":cprev<CR>" },
+    { "<C-.>", ":cnext<CR>" },
+    { "<C-,>", ":cprev<CR>" },
     { "<C-q>", ":call ToggleQuickFix()<CR>" },
-    { "<Leader>tt", "<cmd>split<CR> <cmd>term<CR>"},
 
     -- fugitive
     { "<Leader>gg", ":Git<CR>" },
@@ -91,6 +90,8 @@ register_mappings("n", {}, {
     -- change from vertical to horizontal split and vise versa
     { "<Leader>th", "<C-w>t<C-w>K" },
     { "<Leader>tv", "<C-w>t<C-w>H" },
+
+    { "<Leader>tt", "<cmd>split<CR> <cmd>term<CR>"},
 })
 
 define_augroup("general_settings", {
