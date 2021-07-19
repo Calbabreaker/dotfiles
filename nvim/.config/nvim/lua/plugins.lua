@@ -18,6 +18,7 @@ return require("packer").startup(function()
     -- git changes markings
     use {
         "lewis6991/gitsigns.nvim",
+        event = "BufRead",
         config = function()
             require("gitsigns").setup()
         end
@@ -27,12 +28,15 @@ return require("packer").startup(function()
     use {
         "hoob3rt/lualine.nvim",
         config = function()
-            require "pconf.lualine"
+            require "pconf/lualine"
         end
     }
 
     -- nice git integration
-    use "tpope/vim-fugitive"
+    use {
+        "tpope/vim-fugitive",
+        cmd = { "Git", "Gread" },
+    }
 
     -- colour theme
     use {
@@ -47,7 +51,7 @@ return require("packer").startup(function()
         "kyazdani42/nvim-tree.lua",
         cmd = "NvimTreeToggle",
         config = function()
-            require "pconf.tree"
+            require "pconf/tree"
         end,
     }
 
@@ -55,7 +59,7 @@ return require("packer").startup(function()
     use {
         "mhartington/formatter.nvim",
         config = function()
-            require "pconf.formatter"
+            require "pconf/formatter"
         end,
     }
 
@@ -64,13 +68,14 @@ return require("packer").startup(function()
         "nvim-telescope/telescope.nvim",
         requires = "nvim-lua/popup.nvim",
         config = function()
-            require "pconf.telescope"
+            require "pconf/telescope"
         end,
     }
 
     -- emmet integration
     use {
         "mattn/emmet-vim",
+        event = "BufRead",
         config = function()
             vim.g.user_emmet_mode = "n"
             vim.g.user_emmet_leader_key = ","
@@ -91,7 +96,7 @@ return require("packer").startup(function()
         "hrsh7th/nvim-compe",
         event = "InsertEnter",
         config = function()
-            require "pconf.compe"
+            require "pconf/compe"
         end,
     }
 
@@ -100,7 +105,7 @@ return require("packer").startup(function()
         "windwp/nvim-autopairs",
         after = "nvim-compe",
         config = function()
-            require("pconf.other").autopairs()
+            require("pconf/other").autopairs()
         end,
     }
 
@@ -108,7 +113,7 @@ return require("packer").startup(function()
     use {
         "williamboman/nvim-lsp-installer",
         config = function()
-            require "pconf.lsp-installer"
+            require "pconf/lsp-installer"
         end,
     }
 
@@ -121,13 +126,16 @@ return require("packer").startup(function()
         },
         event = "BufRead",
         config = function()
-            require "pconf.treesitter"
+            require "pconf/treesitter"
         end,
     }
 
 
     -- snippets
-    use "hrsh7th/vim-vsnip"
+    use {
+        "hrsh7th/vim-vsnip",
+        after = "nvim-compe",
+    }
 
     --
     -- Small qol plugins
@@ -136,8 +144,9 @@ return require("packer").startup(function()
     -- clipboard history
     use {
         "svermeulen/vim-yoink",
+        event = "BufRead",
         config = function()
-            require "pconf.yoink"
+            require "pconf/yoink"
         end,
     }
 
@@ -145,14 +154,14 @@ return require("packer").startup(function()
     use {
         "norcalli/nvim-colorizer.lua",
         config = function()
-            require("pconf.other").colorizer()
+            require("pconf/other").colorizer()
         end,
     }
 
     use {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("pconf.other").blankline()
+            require("pconf/other").blankline()
         end
     }
 
