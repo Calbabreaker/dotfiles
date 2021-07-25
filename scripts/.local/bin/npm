@@ -1,20 +1,20 @@
 #!/bin/bash
 
 #
-# converts npm commands to yarn for stuff that uses npm
+# converts npm commands to yarn for stuff that uses npm only
 #
 
 # change install to add
 first_arg=$([ $1 == "install" ] && echo add || echo $1)
-rest_arg=""
+rest_args=""
 
 for arg in ${@:2}; do
-    # check for global flag
+    # check for global flag and prepend global
     if [ $arg == "-g" ] || [ $arg == "--global" ]; then 
         first_arg="global $first_arg" 
     else
-        rest_arg="$rest_arg $arg"
+        rest_args="$rest_args $arg"
     fi
 done
 
-yarn $first_arg $rest_arg
+yarn $first_arg $rest_args

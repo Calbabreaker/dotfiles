@@ -22,6 +22,7 @@ require("formatter").setup({
         javascriptreact = prettier_formatter,
         json = prettier_formatter,
         markdown = prettier_formatter,
+        vimwiki = prettier_formatter,
         typescript = prettier_formatter,
         typescriptreact = prettier_formatter,
     }

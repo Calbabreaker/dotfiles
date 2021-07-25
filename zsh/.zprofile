@@ -23,6 +23,7 @@ export LESSHISTFILE=- # disable completely
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export PYTHONHISTFILE="$XDG_DATA_HOME/python_history"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_DATA_PATH="$XDG_DATA_HOME/zsh"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"

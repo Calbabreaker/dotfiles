@@ -67,7 +67,6 @@ register_mappings("t", { silent = true }, {
 
 register_mappings("n", {}, {
     { "<C-s>", "<cmd>w<CR>"},
-    { "<C-S>", "<cmd>noa w<CR>"},
 
     -- move line up and down
     { "<A-j>", ":m .+1<CR>==" },

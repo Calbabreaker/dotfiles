@@ -1,11 +1,10 @@
 require("nvim-treesitter.configs").setup({
     -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    -- aditional can be installed using TSInstall language
-    ensure_installed = {"html", "css", "javascript", "typescript", "json"},
+    -- aditional can be installed using :TSInstall language
+    ensure_installed = { "html", "css", "javascript", "typescript", "json" },
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
         enable = true,
-        disable = {},
         additional_vim_regex_highlighting = true,
     },
     indent = {

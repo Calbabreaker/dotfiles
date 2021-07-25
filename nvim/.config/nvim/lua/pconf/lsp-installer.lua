@@ -1,4 +1,5 @@
 local lsp_installer = require("nvim-lsp-installer")
+local lspconfig = require("lspconfig")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -42,7 +43,9 @@ for _, server in pairs(installed_servers) do
     })
 end
 
-local ensured_installed_servers = { "tsserver", "html", "cssls", "jsonls" }
+lspconfig.gdscript.setup({})
+
+local ensured_installed_servers = { "tsserver", "cssls", "jsonls" }
 
 -- ensures specified servers are installed
 -- aditional can be installed using :LspInstall server_name

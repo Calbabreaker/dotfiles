@@ -4,8 +4,7 @@ Cool dot files for neovim, zsh, tmux, and alacritty.
 
 ## Setup
 
-First You need to have git add GNU stow installed.
-
+First You need to have git and GNU stow installed.
 Then clone the repository:
 
 ```sh
@@ -13,7 +12,7 @@ git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-Now you can individually choose to use a dotfile (specified by a folder) like so:
+Now you can individually choose to use a dotfile config (specified by a folder) like so:
 
 ```sh
 stow zsh
