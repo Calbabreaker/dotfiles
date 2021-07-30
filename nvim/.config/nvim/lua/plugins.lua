@@ -169,7 +169,6 @@ return require("packer").startup(function()
     use "tpope/vim-repeat" -- able to repeat plugin maps
     use "tpope/vim-surround" -- easily edit (), "", etc
     use "tpope/vim-commentary" -- toggle comments with motions
-    use "tpope/vim-dispatch" -- async build and dispatches
     use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
 
     use "kana/vim-textobj-user" -- text object library base

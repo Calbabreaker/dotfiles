@@ -64,7 +64,7 @@ require("compe").setup({
         buffer = { kind = "  " },
         calc = { kind = "  " },
         vsnip = { kind = "  " },
-        emoji = true,
+        emoji = false,
         nvim_lsp = true,
         tags = false,
         treesitter = false,

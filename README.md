@@ -15,20 +15,17 @@ cd ~/.dotfiles
 Now you can individually choose to use a dotfile config (specified by a folder) like so:
 
 ```sh
-stow zsh
+stow zsh # zsh configuations
+stow --no-folding scripts # --no-folding recommended
 ```
 
-Or everything:
-
-```sh
-stow */
-```
+NOTE: The plover directory **shouldn't** be ran with stow; run `plover/setup.sh` instead.
 
 To remove a dotfile:
 
 ```sh
 stow -D zsh
-stow -D */ # all of them
+stow -D scripts
 ```
 
 ## NeoVim
