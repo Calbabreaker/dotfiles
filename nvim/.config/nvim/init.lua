@@ -2,6 +2,6 @@ CONFIG_PATH = vim.fn.stdpath("config")
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
-require("config")
-require("mappings")
-require("plugins")
+require "config"
+require "mappings"
+require "plugins"

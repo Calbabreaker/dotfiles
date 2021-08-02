@@ -4,12 +4,12 @@
 # converts npm commands to yarn for stuff that uses npm only
 #
 
-# change install to add
-first_arg=$([ $1 == "install" ] && echo add || echo $1)
+# change install command to add for yarn if we're installing a a package
+first_arg=$( [ ! -z $2 ] && [ $1 == "install" ] && echo add || echo $1)
 rest_args=""
 
 for arg in ${@:2}; do
-    # check for global flag and prepend global
+    # change global flag for yarn global instead
     if [ $arg == "-g" ] || [ $arg == "--global" ]; then 
         first_arg="global $first_arg" 
     else

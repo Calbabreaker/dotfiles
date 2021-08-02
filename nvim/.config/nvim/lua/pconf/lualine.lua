@@ -11,10 +11,9 @@ local function get_wordcount()
 end
 
 local function get_line()
-    local current_line = vim.fn.line(".")
-    local total_lines = vim.fn.line("$")
-    local column = vim.fn.col(".")
-    return string.format("%d/%d:%d", current_line, total_lines, column)
+    -- current_line/total_lines:current_col/total_cols
+    return string.format("%d/%d:%d/%d",
+        vim.fn.line("."), vim.fn.line("$"), vim.fn.col("."), vim.fn.col("$"))
 end
 
 local diagnostics = {

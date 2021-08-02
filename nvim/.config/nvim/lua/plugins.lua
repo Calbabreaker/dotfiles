@@ -27,6 +27,7 @@ return require("packer").startup(function()
     -- cool status line
     use {
         "hoob3rt/lualine.nvim",
+        event = "BufWinEnter",
         config = function()
             require "pconf/lualine"
         end
@@ -75,7 +76,7 @@ return require("packer").startup(function()
     -- emmet integration
     use {
         "mattn/emmet-vim",
-        event = "BufRead",
+        event = "VimEnter",
         config = function()
             vim.g.user_emmet_mode = "n"
             vim.g.user_emmet_leader_key = ","
@@ -83,7 +84,10 @@ return require("packer").startup(function()
     }
 
     -- personal wiki and note taking thing
-    use "vimwiki/vimwiki"
+    use {
+        "vimwiki/vimwiki",
+        event = "VimEnter",
+    }
 
     --
     -- Language server
@@ -112,6 +116,7 @@ return require("packer").startup(function()
     -- auto install language servers
     use {
         "williamboman/nvim-lsp-installer",
+        event = "VimEnter",
         config = function()
             require "pconf/lsp-installer"
         end,
@@ -121,10 +126,9 @@ return require("packer").startup(function()
     use {
         "nvim-treesitter/nvim-treesitter",
         requires = {
-            { "p00f/nvim-ts-rainbow", event = "BufRead" },
-            { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
+            { "p00f/nvim-ts-rainbow"},
+            { "JoosepAlviste/nvim-ts-context-commentstring"},
         },
-        event = "BufRead",
         config = function()
             require "pconf/treesitter"
         end,
@@ -144,7 +148,7 @@ return require("packer").startup(function()
     -- clipboard history
     use {
         "svermeulen/vim-yoink",
-        event = "BufRead",
+        event = "VimEnter",
         config = function()
             require "pconf/yoink"
         end,
@@ -153,6 +157,7 @@ return require("packer").startup(function()
     -- highlight colours eg #1f4a90 rgb(255, 255, 0)
     use {
         "norcalli/nvim-colorizer.lua",
+        event = "BufWinEnter",
         config = function()
             require("pconf/other").colorizer()
         end,
@@ -160,6 +165,7 @@ return require("packer").startup(function()
 
     use {
         "lukas-reineke/indent-blankline.nvim",
+        event = "BufWinEnter",
         config = function()
             require("pconf/other").blankline()
         end
