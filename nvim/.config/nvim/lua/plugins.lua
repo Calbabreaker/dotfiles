@@ -168,7 +168,15 @@ return require("packer").startup(function()
         event = "BufWinEnter",
         config = function()
             require("pconf/other").blankline()
-        end
+        end,
+    }
+
+    -- easily jump to text and do stuff with it
+    use {
+        "justinmk/vim-sneak",
+        config = function()
+            require("pconf/other").sneak()
+        end,
     }
 
     use "christoomey/vim-sort-motion" -- sorts lines
