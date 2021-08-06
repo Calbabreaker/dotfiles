@@ -9,7 +9,18 @@ local prettier_formatter = {
         return {
             exe = prettier_exe,
             args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
-            stdin = true
+            stdin = true,
+        }
+    end
+}
+
+local clangformat = {
+    function()
+        return {
+            exe = "clang-format",
+            args = {"--assume-filename", vim.api.nvim_buf_get_name(0)},
+            stdin = true,
+            cwd = vim.fn.expand('%:p:h'),
         }
     end
 }
@@ -25,6 +36,8 @@ require("formatter").setup({
         vimwiki = prettier_formatter,
         typescript = prettier_formatter,
         typescriptreact = prettier_formatter,
+        c = clangformat,
+        cpp = clangformat,
     }
 })
 
