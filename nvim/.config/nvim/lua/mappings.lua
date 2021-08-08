@@ -1,16 +1,15 @@
 -- mode takes in a character or multiple specifying the mode
 -- note this means that ic mode will not work
-function register_mappings(mode, default_options, mappings)
+function register_mappings(mode, options, mappings)
     -- split up the string
     if #mode > 1 then
     	for i = 1, #mode do
-            register_mappings(mode:sub(i, i), default_options, mappings)
+            register_mappings(mode:sub(i, i), options, mappings)
     	end
         return
     end
 
     for _, mapping in pairs(mappings) do
-        local options = mapping[3] or default_options
         local key = mapping[1]
         local cmd = mapping[2]
         -- add terminal escape
@@ -22,8 +21,9 @@ function register_mappings(mode, default_options, mappings)
         if mode == " " then mode = "" end
 
         if options.buffer ~= nil then
+            local buffer = options.buffer
             options.buffer = nil
-            vim.api.nvim_buf_set_keymap(default_options.buffer, mode, key, cmd, options)
+            vim.api.nvim_buf_set_keymap(buffer, mode, key, cmd, options)
         else
             vim.api.nvim_set_keymap(mode, key, cmd, options)
         end

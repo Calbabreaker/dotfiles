@@ -43,15 +43,25 @@ for _, server in pairs(installed_servers) do
     })
 end
 
-lspconfig.gdscript.setup({})
-
 local ensured_installed_servers = { "tsserver", "cssls", "jsonls" }
+
+-- add aditional servers here that isn't in the installer or already installed
+-- note that it will prefer ones with :LspInstall
+local aditional_servers = { gdscript = {}, clangd = {} }
 
 -- ensures specified servers are installed
 -- aditional can be installed using :LspInstall server_name
 for _, server_name in pairs(ensured_installed_servers) do
     local ok, server = lsp_installer.get_server(server_name)
     if ok and not server:is_installed() then
+        aditional_servers[server] = nil
         server:install()
     end
 end
+
+for name, config in pairs(aditional_servers) do 
+    config.on_attach = config.on_attach or on_attach
+    config.capabilities = capabilities
+    lspconfig[name].setup(config)
+end
+

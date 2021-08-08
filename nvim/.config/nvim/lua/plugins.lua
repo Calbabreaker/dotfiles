@@ -122,6 +122,15 @@ return require("packer").startup(function()
         end,
     }
 
+    -- function signiture
+    use {
+        "ray-x/lsp_signature.nvim",
+        after = "nvim-lsp-installer",
+        config = function()
+            require("lsp_signature").setup()
+        end
+    }
+
     -- nice syntax highlight
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -168,14 +177,6 @@ return require("packer").startup(function()
         event = "BufWinEnter",
         config = function()
             require("pconf/other").blankline()
-        end,
-    }
-
-    -- easily jump to text and do stuff with it
-    use {
-        "justinmk/vim-sneak",
-        config = function()
-            require("pconf/other").sneak()
         end,
     }
 
