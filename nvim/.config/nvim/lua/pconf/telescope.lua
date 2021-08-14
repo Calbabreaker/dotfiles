@@ -1,18 +1,18 @@
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 
-function find_files()
+function FindFiles()
     builtin.find_files({
         find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
         previewer = false
     })
 end
 
-register_mappings("n", {}, {
+RegisterMappings("n", {}, {
     { "<Leader>fB", "<cmd>Telescope git_branches<CR>" },
     { "<Leader>fb", "<cmd>Telescope buffers<CR>" },
     { "<Leader>fc", "<cmd>Telescope git_commits<CR>" },
-    { "<Leader>ff", "<cmd>lua find_files()<CR>" },
+    { "<Leader>ff", "<cmd>lua FindFiles()<CR>" },
     { "<Leader>fg", "<cmd>Telescope live_grep<CR>" },
     { "<Leader>fs", "<cmd>Telescope git_stash<CR>" },
     { "<Leader>ft", "<cmd>Telescope filetypes<CR>" },

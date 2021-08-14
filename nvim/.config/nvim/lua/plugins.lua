@@ -61,7 +61,7 @@ use {
 -- file explorer
 use {
     "kyazdani42/nvim-tree.lua",
-    cmd = "NvimTreeToggle",
+    event = "VimEnter",
     config = function()
         require "pconf/tree"
     end,
@@ -84,11 +84,19 @@ use {
     end,
 }
 
+-- cool tabs
+use {
+    "romgrk/barbar.nvim",
+    config = function()
+        require "pconf/barbar"
+    end,
+}
+
 -- emmet integration
 use {
     "mattn/emmet-vim",
     config = function()
-        vim.g.user_emmet_mode = "n"
+        vim.g.user_emmet_mode = "vn"
         vim.g.user_emmet_leader_key = ","
     end,
 }
@@ -98,6 +106,15 @@ use {
 --
 
 use "neovim/nvim-lspconfig"
+
+-- auto install language servers
+use {
+    "williamboman/nvim-lsp-installer",
+    event = "VimEnter",
+    config = function()
+        require "pconf/lsp-installer"
+    end,
+}
 
 -- autocomplete
 use {
@@ -117,19 +134,10 @@ use {
     end,
 }
 
--- auto install language servers
-use {
-    "williamboman/nvim-lsp-installer",
-    event = "VimEnter",
-    config = function()
-        require "pconf/lsp-installer"
-    end,
-}
-
 -- function signiture
 use {
     "ray-x/lsp_signature.nvim",
-    after = "nvim-lsp-installer",
+    after = "nvim-compe",
     config = function()
         require("lsp_signature").setup()
     end
@@ -139,8 +147,8 @@ use {
 use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
-        { "p00f/nvim-ts-rainbow"},
-        { "JoosepAlviste/nvim-ts-context-commentstring"},
+        { "p00f/nvim-ts-rainbow" },
+        { "JoosepAlviste/nvim-ts-context-commentstring" },
     },
     config = function()
         require "pconf/treesitter"
@@ -157,6 +165,15 @@ use {
 --
 -- Small qol plugins
 --
+
+-- better terminal support
+use {
+    "akinsho/nvim-toggleterm.lua",
+    cmd = { "ToggleTerm", "TermExec" },
+    config = function()
+        require("toggleterm").setup()
+    end,
+}
 
 -- clipboard history
 use {

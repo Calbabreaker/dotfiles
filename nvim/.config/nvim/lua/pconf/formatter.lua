@@ -30,22 +30,38 @@ local clangformat = {
     end
 }
 
-require("formatter").setup({
-    filetype = {
-        css = prettier,
-        html = prettier,
-        javascript = prettier,
-        javascriptreact = prettier,
-        json = prettier,
-        markdown = prettier,
-        typescript = prettier,
-        typescriptreact = prettier,
-        c = clangformat,
-        cpp = clangformat,
-    }
-})
+local filetype = {
+    c = clangformat,
+    cpp = clangformat,
 
-define_augroup("format", {
-    "BufWrite * FormatWrite"
-})
+    css = prettier,
+    html = prettier,
+    javascript = prettier,
+    javascriptreact = prettier,
+    json = prettier,
+    markdown = prettier,
+    typescript = prettier,
+    typescriptreact = prettier,
+    svelte = prettier,
+}
 
+local filetypes = {}
+
+local i = 0
+for key, _ in pairs(filetype) do
+    i = i + 1
+    filetypes[i] = key
+end
+
+return {
+    filetypes,
+    setup = function()
+        require("formatter").setup({
+            filetype
+        })
+
+        DefineAugroup("format", {
+            "BufWrite * FormatWrite"
+        })
+    end
+}

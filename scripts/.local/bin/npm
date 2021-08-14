@@ -4,7 +4,7 @@
 # converts npm commands to yarn for stuff that uses npm only
 #
 
-# change install command to add for yarn if we're installing a a package
+# change install command to add for yarn if we're installing a package
 first_arg=$( [ ! -z $2 ] && [ $1 == "install" ] && echo add || echo $1)
 rest_args=""
 

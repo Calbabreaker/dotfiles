@@ -33,12 +33,12 @@ function _G.s_tab_complete()
     end
 end
 
-register_mappings("is", { expr = true }, {
+RegisterMappings("is", { expr = true }, {
     { "<Tab>", "v:lua.tab_complete()" },
     { "<S-Tab>", "v:lua.s_tab_complete()" },
 })
 
-register_mappings("i", { noremap = true, silent = true, expr = true }, {
+RegisterMappings("i", { noremap = true, silent = true, expr = true }, {
     { "<C-Space>", "compe#complete()" },
     { "<CR>", "compe#confirm('<CR>')" },
     { "<C-e>", "compe#close('<C-e>')" },
@@ -64,8 +64,8 @@ require("compe").setup({
         buffer = { kind = "  " },
         calc = { kind = "  " },
         vsnip = { kind = "  " },
-        emoji = false,
         nvim_lsp = true,
+        emoji = false,
         tags = false,
         treesitter = false,
         nvim_lua = false,

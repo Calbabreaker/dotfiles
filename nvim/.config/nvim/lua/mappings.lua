@@ -1,10 +1,10 @@
 -- mode takes in a character or multiple specifying the mode
 -- note this means that ic mode will not work
-function register_mappings(mode, options, mappings)
+function RegisterMappings(mode, options, mappings)
     -- split up the string
     if #mode > 1 then
     	for i = 1, #mode do
-            register_mappings(mode:sub(i, i), options, mappings)
+            RegisterMappings(mode:sub(i, i), options, mappings)
     	end
         return
     end
@@ -30,7 +30,7 @@ function register_mappings(mode, options, mappings)
     end
 end
 
-function define_augroup(name, definitions)
+function DefineAugroup(name, definitions)
     vim.api.nvim_command("augroup "..name)
     vim.api.nvim_command "autocmd!"
 
@@ -41,12 +41,12 @@ function define_augroup(name, definitions)
     vim.api.nvim_command "augroup end"
 end
 
-register_mappings(" ic", { silent = true }, {
+RegisterMappings(" ic", { silent = true }, {
     { "<C-c>", "<ESC>" },
     { "<ESC>", "<ESC>:noh <CR>" }, -- use esc to hide highlights
 })
 
-register_mappings("tn", { silent = true }, {
+RegisterMappings("tn", { silent = true }, {
     -- make window navigation easier
     { "<C-h>", "<C-w>h" },
     { "<C-j>", "<C-w>j" },
@@ -59,13 +59,10 @@ register_mappings("tn", { silent = true }, {
     { "<C-Up>", ":resize +3<CR>" },
     { "<C-Down>", ":resize -3<CR>" },
 
+    { "<C-t>", ":ToggleTerm<CR>"},
 })
 
-register_mappings("t", { silent = true }, {
-    { "<ESC>", "" },
-})
-
-register_mappings("n", {}, {
+RegisterMappings("n", {}, {
     { "<C-s>", "<cmd>w<CR>"},
 
     -- move line up and down
@@ -84,16 +81,18 @@ register_mappings("n", {}, {
     { "<Leader>gh", ":diffget //2<CR>" },
     { "<Leader>gl", ":diffget //3<CR>" },
 
-    { "<Leader>n", "<cmd>NvimTreeToggle<CR>"},
+    -- terminal opening bindings
+    { "<Leader>tt", ":ToggleTerm size=25 directory=horizontal<CR>"},
+    { "<Leader>tw", ":ToggleTerm direction=window<CR>"},
+    { "<Leader>tf", ":ToggleTerm direction=float<CR>"},
+    { "<Leader>to", ":ToggleTermOpenAll"},
 
     -- change from vertical to horizontal split and vise versa
     { "<Leader>th", "<C-w>t<C-w>K" },
     { "<Leader>tv", "<C-w>t<C-w>H" },
-
-    { "<Leader>tt", "<cmd>split<CR> <cmd>term<CR>"},
 })
 
-define_augroup("general_settings", {
+DefineAugroup("general_settings", {
     -- make terminal better
     "TermOpen term://* setlocal nonumber norelativenumber",
     "TermOpen term://* startinsert",

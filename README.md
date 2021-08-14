@@ -37,9 +37,14 @@ To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 ![nvim-screenshot0](./.github/nvim-screenshot0.png)
 ![nvim-screenshot1](./.github/nvim-screenshot1.png)
 
-By default html, css, json, typescript/javascript language servers and treesitter parsers
-are installed. You can install a new language server with `:LspInstall <server-name>` and a new
-treesitter parser with `:TSInstall <language-name>`.
+By default no language servers treesitter parsers (basically really good syntax
+highlighting) are installed. You can install a language server using
+`:LspInstall server_name` (eg. `:LspInstall tsserver` for JavaScript and
+Typescript) and a treesitter parser with `:TSInstall language-name` (eg.
+`:TSInstall javascript`).
+
+You will need to have prettier installed (using `npm install -g prettier` or
+`yarn global add prettier`) to format JavaScript, HTML, CSS, etc. files.
 
 ## Alacritty and zsh
 

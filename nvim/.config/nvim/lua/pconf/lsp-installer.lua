@@ -14,7 +14,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 local function on_attach(_, buffer)
     vim.api.nvim_buf_set_option(buffer, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    register_mappings("n", { silent = true, noremap = true, buffer = buffer }, {
+    RegisterMappings("n", { silent = true, noremap = true, buffer = buffer }, {
         { "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
         { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>" },
         { "K", "<Cmd>lua vim.lsp.buf.hover()<CR>" },
@@ -35,32 +35,29 @@ local function on_attach(_, buffer)
     })
 end
 
+-- add aditional servers here that isn't in the installer or already installed
+-- note that it will prefer ones with :LspInstall
+local aditional_servers = {
+    gdscript = {},
+    clangd = {},
+    tsserver = {},
+    svelte = {},
+    jsonls = {},
+    html = {},
+    cssls = {},
+}
+
 local installed_servers = lsp_installer.get_installed_servers()
 for _, server in pairs(installed_servers) do
+    aditional_servers[server] = nil
     server:setup({
         on_attach = on_attach,
         capabilities = capabilities,
     })
 end
 
-local ensured_installed_servers = { "tsserver", "cssls", "jsonls" }
-
--- add aditional servers here that isn't in the installer or already installed
--- note that it will prefer ones with :LspInstall
-local aditional_servers = { gdscript = {}, clangd = {} }
-
--- ensures specified servers are installed
--- aditional can be installed using :LspInstall server_name
-for _, server_name in pairs(ensured_installed_servers) do
-    local ok, server = lsp_installer.get_server(server_name)
-    if ok and not server:is_installed() then
-        aditional_servers[server] = nil
-        server:install()
-    end
-end
-
-for name, config in pairs(aditional_servers) do 
-    config.on_attach = config.on_attach or on_attach
+for name, config in pairs(aditional_servers) do
+    config.on_attach = on_attach
     config.capabilities = capabilities
     lspconfig[name].setup(config)
 end
