@@ -1,4 +1,4 @@
-local prettier_formatter = {
+local prettier = {
     function()
         -- check if there is a local prettier exe or use the global one
         local prettier_exe = "./node_modules/.bin/prettier"
@@ -8,7 +8,12 @@ local prettier_formatter = {
 
         return {
             exe = prettier_exe,
-            args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+            args = {
+                "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+                "--config-precedence", "file-override",
+                "--tab-width", "4",
+                "--print-width", "100",
+            },
             stdin = true,
         }
     end
@@ -27,15 +32,14 @@ local clangformat = {
 
 require("formatter").setup({
     filetype = {
-        css = prettier_formatter,
-        html = prettier_formatter,
-        javascript = prettier_formatter,
-        javascriptreact = prettier_formatter,
-        json = prettier_formatter,
-        markdown = prettier_formatter,
-        vimwiki = prettier_formatter,
-        typescript = prettier_formatter,
-        typescriptreact = prettier_formatter,
+        css = prettier,
+        html = prettier,
+        javascript = prettier,
+        javascriptreact = prettier,
+        json = prettier,
+        markdown = prettier,
+        typescript = prettier,
+        typescriptreact = prettier,
         c = clangformat,
         cpp = clangformat,
     }

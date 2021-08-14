@@ -6,189 +6,192 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.api.nvim_command("packadd packer.nvim")
 end
 
-return require("packer").startup(function()
-    use "wbthomason/packer.nvim" -- packer plugin stuff
-    use "nvim-lua/plenary.nvim" -- lua utils
-    use "kyazdani42/nvim-web-devicons" -- nice icons
-    use "airblade/vim-rooter" -- change cwd to project root directory
+local packer = require("packer")
 
-    -- start menu
-    use "mhinz/vim-startify"
-
-    -- git changes markings
-    use {
-        "lewis6991/gitsigns.nvim",
-        event = "BufRead",
-        config = function()
-            require("gitsigns").setup()
-        end
+packer.init({
+    git = {
+        cmd = "git",
+        depth = 1,
     }
+})
 
-    -- cool status line
-    use {
-        "hoob3rt/lualine.nvim",
-        event = "BufWinEnter",
-        config = function()
-            require "pconf/lualine"
-        end
-    }
+local use = packer.use
+packer.reset()
 
-    -- nice git integration
-    use {
-        "tpope/vim-fugitive",
-        cmd = { "Git", "Gread" },
-    }
+use "wbthomason/packer.nvim" -- packer plugin stuff
+use "nvim-lua/plenary.nvim" -- lua utils
+use "kyazdani42/nvim-web-devicons" -- nice icons
+use "airblade/vim-rooter" -- change cwd to project root directory
 
-    -- colour theme
-    use {
-        "folke/tokyonight.nvim",
-        config = function()
-            vim.cmd "colorscheme tokyonight"
-        end,
-    }
+-- start menu
+use "mhinz/vim-startify"
 
-    -- file explorer
-    use {
-        "kyazdani42/nvim-tree.lua",
-        cmd = "NvimTreeToggle",
-        config = function()
-            require "pconf/tree"
-        end,
-    }
+-- git changes markings
+use {
+    "lewis6991/gitsigns.nvim",
+    event = "BufRead",
+    config = function()
+        require("gitsigns").setup()
+    end
+}
 
-    -- formatter
-    use {
-        "mhartington/formatter.nvim",
-        config = function()
-            require "pconf/formatter"
-        end,
-    }
+-- cool status line
+use {
+    "hoob3rt/lualine.nvim",
+    event = "BufWinEnter",
+    config = function()
+        require "pconf/lualine"
+    end
+}
 
-    -- fuzzy finding
-    use {
-        "nvim-telescope/telescope.nvim",
-        requires = "nvim-lua/popup.nvim",
-        config = function()
-            require "pconf/telescope"
-        end,
-    }
+-- nice git integration
+use {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "Gread" },
+}
 
-    -- emmet integration
-    use {
-        "mattn/emmet-vim",
-        event = "VimEnter",
-        config = function()
-            vim.g.user_emmet_mode = "n"
-            vim.g.user_emmet_leader_key = ","
-        end,
-    }
+-- colour theme
+use {
+    "folke/tokyonight.nvim",
+    config = function()
+        vim.cmd "colorscheme tokyonight"
+    end,
+}
 
-    -- personal wiki and note taking thing
-    use {
-        "vimwiki/vimwiki",
-        event = "VimEnter",
-    }
+-- file explorer
+use {
+    "kyazdani42/nvim-tree.lua",
+    cmd = "NvimTreeToggle",
+    config = function()
+        require "pconf/tree"
+    end,
+}
 
-    --
-    -- Language server
-    --
+-- formatter
+use {
+    "mhartington/formatter.nvim",
+    config = function()
+        require("pconf/formatter")
+    end,
+}
 
-    use "neovim/nvim-lspconfig"
+-- fuzzy finding
+use {
+    "nvim-telescope/telescope.nvim",
+    requires = "nvim-lua/popup.nvim",
+    config = function()
+        require "pconf/telescope"
+    end,
+}
 
-    -- autocomplete
-    use {
-        "hrsh7th/nvim-compe",
-        event = "InsertEnter",
-        config = function()
-            require "pconf/compe"
-        end,
-    }
+-- emmet integration
+use {
+    "mattn/emmet-vim",
+    config = function()
+        vim.g.user_emmet_mode = "n"
+        vim.g.user_emmet_leader_key = ","
+    end,
+}
 
-    -- pairs
-    use {
-        "windwp/nvim-autopairs",
-        after = "nvim-compe",
-        config = function()
-            require("pconf/other").autopairs()
-        end,
-    }
+--
+-- Language server
+--
 
-    -- auto install language servers
-    use {
-        "williamboman/nvim-lsp-installer",
-        event = "VimEnter",
-        config = function()
-            require "pconf/lsp-installer"
-        end,
-    }
+use "neovim/nvim-lspconfig"
 
-    -- function signiture
-    use {
-        "ray-x/lsp_signature.nvim",
-        after = "nvim-lsp-installer",
-        config = function()
-            require("lsp_signature").setup()
-        end
-    }
+-- autocomplete
+use {
+    "hrsh7th/nvim-compe",
+    event = "InsertEnter",
+    config = function()
+        require "pconf/compe"
+    end,
+}
 
-    -- nice syntax highlight
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        requires = {
-            { "p00f/nvim-ts-rainbow"},
-            { "JoosepAlviste/nvim-ts-context-commentstring"},
-        },
-        config = function()
-            require "pconf/treesitter"
-        end,
-    }
+-- pairs
+use {
+    "windwp/nvim-autopairs",
+    after = "nvim-compe",
+    config = function()
+        require("pconf/other").autopairs()
+    end,
+}
+
+-- auto install language servers
+use {
+    "williamboman/nvim-lsp-installer",
+    event = "VimEnter",
+    config = function()
+        require "pconf/lsp-installer"
+    end,
+}
+
+-- function signiture
+use {
+    "ray-x/lsp_signature.nvim",
+    after = "nvim-lsp-installer",
+    config = function()
+        require("lsp_signature").setup()
+    end
+}
+
+-- nice syntax highlight
+use {
+    "nvim-treesitter/nvim-treesitter",
+    requires = {
+        { "p00f/nvim-ts-rainbow"},
+        { "JoosepAlviste/nvim-ts-context-commentstring"},
+    },
+    config = function()
+        require "pconf/treesitter"
+    end,
+}
 
 
-    -- snippets
-    use {
-        "hrsh7th/vim-vsnip",
-        after = "nvim-compe",
-    }
+-- snippets
+use {
+    "hrsh7th/vim-vsnip",
+    after = "nvim-compe",
+}
 
-    --
-    -- Small qol plugins
-    --
+--
+-- Small qol plugins
+--
 
-    -- clipboard history
-    use {
-        "svermeulen/vim-yoink",
-        event = "VimEnter",
-        config = function()
-            require "pconf/yoink"
-        end,
-    }
+-- clipboard history
+use {
+    "svermeulen/vim-yoink",
+    event = "VimEnter",
+    config = function()
+        require "pconf/yoink"
+    end,
+}
 
-    -- highlight colours eg #1f4a90 rgb(255, 255, 0)
-    use {
-        "norcalli/nvim-colorizer.lua",
-        event = "BufWinEnter",
-        config = function()
-            require("pconf/other").colorizer()
-        end,
-    }
+-- highlight colours eg #1f4a90 rgb(255, 255, 0)
+use {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufWinEnter",
+    config = function()
+        require("pconf/other").colorizer()
+    end,
+}
 
-    use {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufWinEnter",
-        config = function()
-            require("pconf/other").blankline()
-        end,
-    }
+use {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufWinEnter",
+    config = function()
+        require("pconf/other").blankline()
+    end,
+}
 
-    use "christoomey/vim-sort-motion" -- sorts lines
-    use "tpope/vim-repeat" -- able to repeat plugin maps
-    use "tpope/vim-surround" -- easily edit (), "", etc
-    use "tpope/vim-commentary" -- toggle comments with motions
-    use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
+use "christoomey/vim-sort-motion" -- sorts lines
+use "tpope/vim-repeat" -- able to repeat plugin maps
+use "tpope/vim-surround" -- easily edit (), "", etc
+use "tpope/vim-commentary" -- toggle comments with motions
+use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
 
-    use "kana/vim-textobj-user" -- text object library base
+use "kana/vim-textobj-user" -- text object library base
 
-    use "kana/vim-textobj-entire" -- text object e for entire file
-    use "kana/vim-textobj-indent" -- text object i for indents
-    use "sgur/vim-textobj-parameter" -- text object , for function parameters
-end)
+use "kana/vim-textobj-entire" -- text object e for entire file
+use "kana/vim-textobj-indent" -- text object i for indents
+use "sgur/vim-textobj-parameter" -- text object , for function parameters

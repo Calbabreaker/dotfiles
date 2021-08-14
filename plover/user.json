@@ -1,4 +1,12 @@
 {
-  "SUS": "susu",
-  "SUSZ": "suss"
+    "SUS": "susu",
+    "SUSZ": "suss",
+    "#": "{*+}",
+    "#*": "{*}",
+    "AFPS": "{*?}",
+    "TK-FPS": "{*!}",
+    "KA*PD": "{*-|}",
+    "KA*PS": "{MODE:CAPS}",
+    "PHROFBGS": "{PLOVER:FOCUS}",
+    "PHROBGT": "{PLOVER:QUIT}"
 }

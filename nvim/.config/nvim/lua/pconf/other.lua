@@ -1,11 +1,13 @@
 M = {}
 
 function M.blankline()
-    vim.g.indent_blankline_use_treesitter = true
-    vim.g.indent_blankline_show_current_context = true
-    vim.g.indent_blankline_char = "┊"
-    vim.g.indent_blankline_filetype_exclude = { "NvimTree", "help", "packer", "startify" }
-    vim.g.indent_blankline_buftype_exclude = {"terminal"}
+    require("indent_blankline").setup {
+        char = "┊",
+        buftype_exclude = {"terminal"},
+        filetype_exclude = { "NvimTree", "help", "packer", "startify" },
+        use_treesiter = true,
+        show_current_context = true,
+    }
 end
 
 function M.colorizer()
