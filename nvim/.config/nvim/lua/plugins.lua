@@ -67,7 +67,6 @@ use {
     end,
 }
 
--- formatter
 use {
     "mhartington/formatter.nvim",
     config = function()
@@ -107,13 +106,21 @@ use {
 
 use "neovim/nvim-lspconfig"
 
--- auto install language servers
+-- easilly install language servers
 use {
     "williamboman/nvim-lsp-installer",
-    event = "VimEnter",
     config = function()
         require "pconf/lsp-installer"
     end,
+}
+
+-- view parameters and signitures
+use {
+    "ray-x/lsp_signature.nvim",
+    after = "nvim-lsp-installer",
+    config = function()
+        require("lsp_signature").setup()
+    end
 }
 
 -- autocomplete
@@ -125,7 +132,6 @@ use {
     end,
 }
 
--- pairs
 use {
     "windwp/nvim-autopairs",
     after = "nvim-compe",
@@ -134,13 +140,10 @@ use {
     end,
 }
 
--- function signiture
+-- snippet support
 use {
-    "ray-x/lsp_signature.nvim",
+    "hrsh7th/vim-vsnip",
     after = "nvim-compe",
-    config = function()
-        require("lsp_signature").setup()
-    end
 }
 
 -- nice syntax highlight
@@ -153,13 +156,6 @@ use {
     config = function()
         require "pconf/treesitter"
     end,
-}
-
-
--- snippets
-use {
-    "hrsh7th/vim-vsnip",
-    after = "nvim-compe",
 }
 
 --
@@ -178,7 +174,6 @@ use {
 -- clipboard history
 use {
     "svermeulen/vim-yoink",
-    event = "VimEnter",
     config = function()
         require "pconf/yoink"
     end,
@@ -187,7 +182,6 @@ use {
 -- highlight colours eg #1f4a90 rgb(255, 255, 0)
 use {
     "norcalli/nvim-colorizer.lua",
-    event = "BufWinEnter",
     config = function()
         require("pconf/other").colorizer()
     end,

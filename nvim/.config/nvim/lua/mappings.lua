@@ -62,7 +62,7 @@ RegisterMappings("tn", { silent = true }, {
     { "<C-t>", ":ToggleTerm<CR>"},
 })
 
-RegisterMappings("n", {}, {
+RegisterMappings("n", { silent = true }, {
     { "<C-s>", "<cmd>w<CR>"},
 
     -- move line up and down
@@ -70,9 +70,9 @@ RegisterMappings("n", {}, {
     { "<A-k>", ":m .-2<CR>==" },
 
     -- quick fix
-    { "<C-.>", ":cnext<CR>" },
-    { "<C-,>", ":cprev<CR>" },
-    { "<C-q>", ":call ToggleQuickFix()<CR>" },
+    { "<C-n>", ":cnext<CR>" },
+    { "<C-p>", ":cprev<CR>" },
+    { "<C-q>", ":call ToggleQuickFixList()<CR>" },
 
     -- fugitive
     { "<Leader>gg", ":Git<CR>" },
@@ -106,7 +106,7 @@ DefineAugroup("general_settings", {
 })
 
 vim.cmd [[
-    function! ToggleQuickFix()
+    function! ToggleQuickFixList()
         if empty(filter(getwininfo(), 'v:val.quickfix'))
             copen
         else

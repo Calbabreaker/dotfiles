@@ -17,4 +17,7 @@ for arg in ${@:2}; do
     fi
 done
 
+# if running yarn without any arguments show help
+[ -z $first_arg ] && rest_args="--help"
+
 yarn $first_arg $rest_args

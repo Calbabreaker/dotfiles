@@ -1,4 +1,4 @@
-RegisterMappings("tn", { silent = true }, {
+RegisterMappings("n", { silent = true }, {
     -- move to previous/next
     { "<A-,>", ":BufferPrevious<CR>" },
     { "<A-.>", ":BufferNext<CR>" },
