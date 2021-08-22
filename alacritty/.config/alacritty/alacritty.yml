@@ -1,4 +1,6 @@
 live_config_reload: true
+
+background_opacity: 0.9
  
 font:
   normal:
