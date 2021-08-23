@@ -1,6 +1,9 @@
 {
-    "SUS": "susu",
-    "SUSZ": "suss",
+    "SUSZ": "susu",
+    "SUS": "sus",
+    "S*US": "suss",
+    "THOULT": "and that's how we like it",
+
     "#": "{*+}",
     "#*": "{*}",
     "AFPS": "{*?}",
