@@ -5,12 +5,12 @@
 #
 
 # change install command to add for yarn if we're installing a package
-first_arg=$( [ ! -z $2 ] && [ $1 == "install" ] && echo add || echo $1)
+first_arg=$( [ ! -z $2 ] && [ "$1" = "install" ] || [ "$1" = "i" ] && echo add || echo $1 )
 rest_args=""
 
 for arg in ${@:2}; do
     # change global flag for yarn global instead
-    if [ $arg == "-g" ] || [ $arg == "--global" ]; then 
+    if [ "$arg" = "-g" ] || [ "$arg" = "--global" ]; then 
         first_arg="global $first_arg" 
     else
         rest_args="$rest_args $arg"
@@ -18,6 +18,6 @@ for arg in ${@:2}; do
 done
 
 # if running yarn without any arguments show help
-[ -z $first_arg ] && rest_args="--help"
+[ -z "$first_arg" ] && rest_args="--help"
 
 yarn $first_arg $rest_args
