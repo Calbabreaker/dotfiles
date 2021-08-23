@@ -1,5 +1,4 @@
 -- IMPORTS
-
 import XMonad
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
@@ -10,9 +9,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
--- The preferred terminal program, which is used in a binding below and by
--- certain contrib modules.
---
+-- Perfered terminal used for keybind to open
 myTerminal      = "alacritty"
 
 -- Whether focus follows the mouse pointer.
@@ -24,14 +21,10 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 -- Width of the window border in pixels.
---
 myBorderWidth   = 2
 
--- modMask lets you specify which modkey you want to use. The default
--- is mod1Mask ("left alt").  You may also consider using mod3Mask
--- ("right alt"), which does not conflict with emacs keybindings. The
--- "windows key" is usually mod4Mask.
---
+-- Specifies the key used as the mod key for keybinds
+-- mod4mask = Super
 myModMask       = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
@@ -46,9 +39,8 @@ myModMask       = mod4Mask
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
---
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#999999"
+myFocusedBorderColor = "#eeeeee"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -260,25 +252,25 @@ myLogHook = return ()
     --
     defaults = def {
         -- simple stuff
-            terminal           = myTerminal,
-                               focusFollowsMouse  = myFocusFollowsMouse,
-                               clickJustFocuses   = myClickJustFocuses,
-                               borderWidth        = myBorderWidth,
-                               modMask            = myModMask,
-                               workspaces         = myWorkspaces,
-                               normalBorderColor  = myNormalBorderColor,
-                               focusedBorderColor = myFocusedBorderColor,
+            terminal    = myTerminal,
+                        focusFollowsMouse  = myFocusFollowsMouse,
+                        clickJustFocuses   = myClickJustFocuses,
+                        borderWidth        = myBorderWidth,
+                        modMask            = myModMask,
+                        workspaces         = myWorkspaces,
+                        normalBorderColor  = myNormalBorderColor,
+                        focusedBorderColor = myFocusedBorderColor,
 
-                               -- key bindings
-                                   keys               = myKeys,
-                               mouseBindings      = myMouseBindings,
+                        -- key bindings
+                            keys               = myKeys,
+                        mouseBindings      = myMouseBindings,
 
-                               -- hooks, layouts
-                                   layoutHook         = myLayout,
-                               manageHook         = myManageHook,
-                               handleEventHook    = myEventHook,
-                               logHook            = myLogHook,
-                               startupHook        = myStartupHook
+                        -- hooks, layouts
+                            layoutHook         = myLayout,
+                        manageHook         = myManageHook,
+                        handleEventHook    = myEventHook,
+                        logHook            = myLogHook,
+                        startupHook        = myStartupHook
     }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
