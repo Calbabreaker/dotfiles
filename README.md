@@ -49,3 +49,4 @@ You will need to have prettier installed (using `npm install -g prettier` or
 ## Alacritty and zsh
 
 ![zsh-screenshot0](./.github/zsh-screenshot0.png)
+

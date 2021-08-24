@@ -1,33 +1,36 @@
 -- imports
+import System.Exit
 import XMonad
 import XMonad.Operations (float)
-import Data.Monoid
-import Graphics.X11.ExtraTypes.XF86
-import System.Exit
 
 -- Actions
 import XMonad.Actions.CopyWindow (kill1)
-import XMonad.Actions.WithAll (sinkAll, killAll, withAll)
-import XMonad.Actions.Promote
-import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
+import XMonad.Actions.CycleWS
 import XMonad.Actions.MouseResize
+import XMonad.Actions.Promote
+import XMonad.Actions.WithAll (sinkAll, killAll, withAll)
 
 -- Hooks
-import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
+import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
 
--- Utils
-import XMonad.Util.SpawnOnce
-import XMonad.Util.Run
-import XMonad.Util.EZConfig (additionalKeysP)
-
--- Layouts
+-- Layout
 import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
 import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
 
-import qualified XMonad.StackSet as W
+-- Utils
+import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.Run
+import XMonad.Util.SpawnOnce
+
+-- Data
+import Data.Maybe (fromJust)
+import Data.Monoid
+
 import qualified Data.Map        as M
+import qualified XMonad.StackSet as W
 
 -- Terminal used for keybind to open
 myTerminal :: String
@@ -72,47 +75,53 @@ myFocusedBorderColor = "#eeeeee"
 --
 myKeys :: [(String, X ())]
 myKeys =
-    [ ("M-S-r", spawn "xmonad --recompile; xmonad --restart") -- Restarts xmonad
+    [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart") -- Restarts xmonad
     , ("M-S-q", io exitSuccess) -- Quits xmonad
 
     , ("M-<Return>", spawn myTerminal) -- Open new terminal
     , ("M-S-<Return>", spawn "dmenu_run -i -p 'Run: '") -- Show dmenu prompt
-    , ("M-b", spawn myBrowser) -- Open browser
+    , ("M-b", spawn myBrowser) -- Open web browser
     , ("M-e", spawn myFileManager) -- Open file manager
     , ("M-S-l", spawn myScreensaver) -- Lock screen with myScreensaver
 
     , ("M-c", kill1) -- Kill focused window
     , ("M-S-c", killAll) -- Kill all windows in workspace
 
-    , ("M-Tab", windows W.focusDown) -- Move focus to the next window
-    , ("M-S-Tab", windows W.focusUp) -- Move focus to the previous window
+    , ("M-<Tab>", windows W.focusDown) -- Move focus to the next window
+    , ("M-S-<Tab>", windows W.focusUp) -- Move focus to the previous window
     , ("M-j", windows W.focusDown) -- Move focus to the next window
     , ("M-k", windows W.focusUp) -- Move focus to the prev window
-    , ("M-m", windows W.focusMaster) -- Move focus to the master window
     , ("M-S-j", windows W.swapDown) -- Swap the focused window with the next window
     , ("M-S-k", windows W.swapUp) -- Swap the focused window with the previous window
+    , ("M-m", windows W.focusMaster) -- Move focus to the master window
     , ("M-S-m", windows W.swapMaster) -- Swap the focused window and the master window
     , ("M-S-<Up>", sendMessage (IncMasterN 1)) -- Increment the number of windows in the master area
     , ("M-S-<Down>", sendMessage (IncMasterN (-1))) -- Deincrement the number of windows in the master area
     , ("M-<Backspace>", promote) -- Moves focused window to master, others maintain order
-    , ("M-S-<Tab>", rotSlavesDown) -- Rotate all windows except master and keep focus in place
-    , ("M-C-<Tab>", rotAllDown) -- Rotate all the windows in the current stac
 
     , ("M-r", refresh) -- Resize windows to the correct size
     , ("M-h", sendMessage Shrink) -- Shrink the master area
     , ("M-l", sendMessage Expand) -- Expand the master area
 
+    , ("M-.", nextWS) -- Switch to next workspace
+    , ("M-,", prevWS) -- Switch to previous workspace
+    , ("M-S-.", shiftToNext >> nextWS) -- Move window to next workspace
+    , ("M-S-,", shiftToPrev >> prevWS) -- Move window to previous workspace
+    , ("M-C-.", nextScreen) -- Switch to next screen/monitor
+    , ("M-C-,",  prevScreen) -- Switch to next screen/monitor
+    , ("M-C-S-.", shiftNextScreen) -- Switch to next screen/monitor
+    , ("M-C-S-,",  shiftPrevScreen) -- Switch to next screen/monitor
+    , ("M-z", toggleWS) -- Switch to window that was focused last
+
     , ("M-<Space>", sendMessage NextLayout) -- Switch to next available layout
     , ("M-S-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+    , ("<F11>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
     , ("M-t", withFocused $ windows . W.sink) -- Push floating window back to tilling
     , ("M-S-t", sinkAll) -- Push all floating windows to tilling
     , ("M-f", withFocused floatCenter)
     , ("M-S-f", withAll float)
 
     -- MultiMedia Keys
-    , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +1.5%")
-    , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@  -1.5%")
-    , ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")    
     , ("<XF86AudioPlay>", spawn "playerctl play-pause")    
     , ("<XF86AudioPrev>", spawn "playerctl previous")    
     , ("<XF86AudioNext>", spawn "playerctl next")    
@@ -122,7 +131,6 @@ myKeys =
 
     where
         floatCenter w = windows (\s -> W.float w (W.RationalRect (1/3) (1/4) (1/2) (4/5)) s)
-
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -154,7 +162,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ mouseResize (tiled ||| Mirror tiled ||| Full) 
+myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full) 
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -167,6 +175,7 @@ myLayout = avoidStruts $ mouseResize (tiled ||| Mirror tiled ||| Full)
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
+
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -189,55 +198,54 @@ myManageHook = composeAll
     , isFullscreen -->  doFullFloat
     ]
 
-------------------------------------------------------------------------
--- Event handling
-
--- * EwmhDesktops users should change this to ewmhDesktopsEventHook
---
--- Defines a custom handler function for X Events. The function should
--- return (All True) if the default handler is to be run afterwards. To
--- combine event hooks use mappend or mconcat from Data.Monoid.
---
-myEventHook = docksEventHook 
-
-------------------------------------------------------------------------
--- Status bars and logging
-
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
-myLogHook = return ()
-
 -- Perform an arbitrary action each time xmonad starts or is restarted
 myStartupHook = do
-    spawnOnce "nitrogen --restore &"
-    spawnOnce "picom -f &"
-    spawnOnce "xscreensaver --no-splash &"
-    spawnOnce ("xss-lock --" ++ myScreensaver)
+    spawnOnce "nitrogen --restore &" -- Wallpapers
+    spawnOnce "picom -f &" -- compisitor
+    spawnOnce "nm-applet &" -- network manager system tray
+    spawnOnce "volumeicon &" -- volume icon system tray
+    spawnOnce "dunst &" -- notification server
+    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x21243b --height 20" -- system tray
+    spawnOnce "xscreensaver --no-splash &" -- screensaver
+    spawnOnce ("xss-lock -- " ++ myScreensaver) -- activate screensaver on lid close
 
 -- Run xmonad and other stuff
 main = do
     xmproc <- spawnPipe "xmobar -x 0 $HOME/.xmonad/xmobar.hs"
-    xmonad $ ewmh xmonadConfig
+    xmonad $ ewmh def 
+        { terminal           = myTerminal
+        , focusFollowsMouse  = myFocusFollowsMouse
+        , clickJustFocuses   = myClickJustFocuses
+        , borderWidth        = myBorderWidth
+        , modMask            = myModMask
+        , workspaces         = myWorkspaces
+        , normalBorderColor  = myNormalBorderColor
+        , focusedBorderColor = myFocusedBorderColor
 
--- Config for xmonad run
-xmonadConfig = def {
-        -- simple stuff
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        clickJustFocuses   = myClickJustFocuses,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
-
-        mouseBindings      = myMouseBindings,
+        , mouseBindings      = myMouseBindings
 
         -- hooks, layouts
-        layoutHook         = myLayout,
-        manageHook         = myManageHook <+> manageDocks,
-        handleEventHook    = myEventHook,
-        logHook            = myLogHook,
-        startupHook        = myStartupHook
+        , layoutHook         = myLayout
+        , manageHook         = myManageHook <+> manageDocks
+        , handleEventHook    = docksEventHook
+        , startupHook        = myStartupHook
+
+        , logHook = dynamicLogWithPP $ xmobarPP
+        -- xmobar settings
+            { ppOutput = \x -> hPutStrLn xmproc x                          
+            , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace
+            , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
+            , ppHidden = xmobarColor "#82aaff" "" . wrap "<box type=Top width=2 mt=2 color=#82aaff>" "</box>" . clickable -- Hidden workspaces
+            , ppHiddenNoWindows = xmobarColor "#82aaff" ""  . clickable     -- Hidden workspaces (no windows)
+            , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
+            , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
+            , ppUrgent = xmobarColor "#c45500" "" . wrap "!" "!"            -- Urgent workspace
+            , ppExtras  = [windowCount]                                     -- # of windows current workspace
+            , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]                    -- order of things in xmobar
+            }
     } `additionalKeysP` myKeys 
+        where 
+            windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+            clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>" where 
+                i = fromJust $ M.lookup ws workspaceIndices
+                workspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..]
