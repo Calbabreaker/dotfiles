@@ -15,8 +15,8 @@ cd ~/.dotfiles
 Now you can individually choose to use a dotfile config (specified by a folder) like so:
 
 ```sh
-stow zsh # zsh configuations
-stow --no-folding scripts # --no-folding recommended
+stow --no-folding zsh # zsh configuations
+stow --no-folding nvim # NeoVim configuations
 ```
 
 NOTE: The plover directory **shouldn't** be ran with stow; run `plover/setup.sh` instead.
@@ -45,6 +45,32 @@ Typescript) and a treesitter parser with `:TSInstall language-name` (eg.
 
 You will need to have prettier installed (using `npm install -g prettier` or
 `yarn global add prettier`) to format JavaScript, HTML, CSS, etc. files.
+
+You might need to install `xsel` or `xclip` to make it work with system clipboard.
+
+## Xmonad
+
+Requirements (pacman):
+
+```
+sudo pacman -Sy xmonad xmonad-contrib xmobar dmenu xorg picom nitrogen trayer volumeicon \
+    dunst xdotool network-manager-applet --needed
+```
+
+Optional recommends for laptop:
+
+```
+sudo pacman xorg-backlight xscreensaver xss-lock
+```
+
+You also need to stow the scripts directory:
+
+```
+# from .dotfiles
+stow --no-folding scripts
+```
+
+![xmonad-screenshot0](./.github/zsh-screenshot0.png)
 
 ## Alacritty and zsh
 

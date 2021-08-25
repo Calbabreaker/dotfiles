@@ -32,6 +32,3 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE="$ZSH_DATA_PATH/history.txt"
-
-# gtk-2 theme
-export GTK2_RC_FILES=/usr/share/themes/Breeze-Dark/gtk-2.0/gtkrc

@@ -64,7 +64,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 -- Workspaces/Desktops tags
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 myNormalBorderColor  = "#555555"
@@ -121,16 +121,22 @@ myKeys =
     , ("M-f", withFocused floatCenter)
     , ("M-S-f", withAll float)
 
+    , ("M-S-C-r", spawn "shudown -r now") -- reboots computer
+    , ("M-S-C-q", spawn "shutdown now") -- shutdowns computer
+    , ("M-S-C-s", spawn "systemctl suspend") -- reboots computer
+
     -- MultiMedia Keys
+    -- Volume keys from volumeicon
     , ("<XF86AudioPlay>", spawn "playerctl play-pause")    
     , ("<XF86AudioPrev>", spawn "playerctl previous")    
     , ("<XF86AudioNext>", spawn "playerctl next")    
-    , ("<XF86MonBrightnessUp>", spawn "light -A 5")    
-    , ("<XF86MonBrightnessDown>", spawn "light -U 5")
+    , ("<XF86MonBrightnessUp>", spawn ("xbacklight -inc 5% && " ++ showBrightness))
+    , ("<XF86MonBrightnessDown>", spawn ("xbacklight -dec 5% && " ++ showBrightness))
     ]
 
     where
         floatCenter w = windows (\s -> W.float w (W.RationalRect (1/3) (1/4) (1/2) (4/5)) s)
+        showBrightness = "light=$(xbacklight -get | cut -d '.' -f 1) && dunstify -u low -r 13481 -h int:value:$light \"Brightness: $light\""
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -233,11 +239,11 @@ main = do
         , logHook = dynamicLogWithPP $ xmobarPP
         -- xmobar settings
             { ppOutput = \x -> hPutStrLn xmproc x                          
-            , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace
+            , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=VBoth width=2 mb=2 mt=1 color=#c792ea>" "</box>"         -- Current workspace
             , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
-            , ppHidden = xmobarColor "#82aaff" "" . wrap "<box type=Top width=2 mt=2 color=#82aaff>" "</box>" . clickable -- Hidden workspaces
+            , ppHidden = xmobarColor "#82aaff" "" . wrap "<box type=Top width=2 mt=1 color=#82aaff>" "</box>" . clickable -- Hidden workspaces
             , ppHiddenNoWindows = xmobarColor "#82aaff" ""  . clickable     -- Hidden workspaces (no windows)
-            , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
+            , ppTitle = xmobarColor "#c1c1c1" "" . shorten 60               -- Title of active window
             , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
             , ppUrgent = xmobarColor "#c45500" "" . wrap "!" "!"            -- Urgent workspace
             , ppExtras  = [windowCount]                                     -- # of windows current workspace
