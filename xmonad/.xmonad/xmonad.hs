@@ -17,6 +17,7 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
 
 -- Layout
+import XMonad.Layout.Spiral
 import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
 import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
 
@@ -121,7 +122,7 @@ myKeys =
     , ("M-f", withFocused floatCenter)
     , ("M-S-f", withAll float)
 
-    , ("M-S-C-r", spawn "shudown -r now") -- reboots computer
+    , ("M-S-C-r", spawn "reboot") -- reboots computer
     , ("M-S-C-q", spawn "shutdown now") -- shutdowns computer
     , ("M-S-C-s", spawn "systemctl suspend") -- reboots computer
 
@@ -136,7 +137,7 @@ myKeys =
 
     where
         floatCenter w = windows (\s -> W.float w (W.RationalRect (1/3) (1/4) (1/2) (4/5)) s)
-        showBrightness = "light=$(xbacklight -get | cut -d '.' -f 1) && dunstify -u low -r 13481 -h int:value:$light \"Brightness: $light\""
+        showBrightness = "light=$(xbacklight -get | cut -d '.' -f 1) && dunstify -t 2000  -u low -r 13481 -h int:value:$light \"Brightness: $light\""
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -168,7 +169,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full) 
+myLayout = avoidStruts $ (tiled ||| spiral (6/7) ||| Full) 
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
