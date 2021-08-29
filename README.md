@@ -15,8 +15,8 @@ cd ~/.dotfiles
 Now you can individually choose to use a dotfile config (specified by a folder) like so:
 
 ```sh
-stow --no-folding zsh # zsh configuations
-stow --no-folding nvim # NeoVim configuations
+stow zsh # zsh configuations
+stow nvim # NeoVim configuations
 ```
 
 NOTE: The plover directory **shouldn't** be ran with stow; run `plover/setup.sh` instead.
@@ -67,10 +67,10 @@ You also need to stow the scripts directory:
 
 ```
 # from .dotfiles
-stow --no-folding scripts
+stow scripts
 ```
 
-![xmonad-screenshot0](./.github/zsh-screenshot0.png)
+![xmonad-screenshot0](./.github/xmonad-screenshot0.png)
 
 ## Alacritty and zsh
 
