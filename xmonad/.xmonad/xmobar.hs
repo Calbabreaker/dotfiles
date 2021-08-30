@@ -38,7 +38,7 @@ Config {
          , ("overcast","\xe312")
          , ("mostly cloudy", "\xfa95")
          , ("considerable cloudiness", "\xfb7c")]
-    ["-t", "<skyConditionS>  <tempC>° <rh>%"]
+    ["-t", "<skyConditionS> <tempC>° <rh>%"]
     18000
 
     -- network activity monitor (dynamic interface resolution)

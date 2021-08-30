@@ -17,9 +17,11 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
 
 -- Layout
+import XMonad.Layout.Fullscreen (fullscreenFull, fullscreenSupport)
+import XMonad.Layout.Grid (Grid(..))
+import XMonad.Layout.NoBorders (noBorders, smartBorders)
 import XMonad.Layout.Spiral
-import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
-import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
+import XMonad.Layout.ToggleLayouts
 
 -- Utils
 import XMonad.Util.EZConfig (additionalKeysP)
@@ -115,8 +117,7 @@ myKeys =
     , ("M-z", toggleWS) -- Switch to window that was focused last
 
     , ("M-<Space>", sendMessage NextLayout) -- Switch to next available layout
-    , ("M-S-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
-    , ("<F11>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+    , ("M-S-<Space>", sendMessage (Toggle "Full") >> sendMessage ToggleStruts) -- Toggles noborder/full
     , ("M-t", withFocused $ windows . W.sink) -- Push floating window back to tilling
     , ("M-S-t", sinkAll) -- Push all floating windows to tilling
     , ("M-f", withFocused floatCenter)
@@ -169,20 +170,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ (tiled ||| spiral (6/7) ||| Full) 
-  where
-     -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-
-     -- The default number of windows in the master pane
-     nmaster = 1
-
-     -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
-
-     -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
-
+myLayout = smartBorders $ avoidStruts $ toggleLayouts (noBorders Full) $
+    Tall (1) (3/100) (1/2) ||| spiral (6/7) ||| Grid ||| Full
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -219,7 +208,7 @@ myStartupHook = do
 -- Run xmonad and other stuff
 main = do
     xmproc <- spawnPipe "xmobar -x 0 $HOME/.xmonad/xmobar.hs"
-    xmonad $ ewmh def 
+    xmonad $ fullscreenSupport def 
         { terminal           = myTerminal
         , focusFollowsMouse  = myFocusFollowsMouse
         , clickJustFocuses   = myClickJustFocuses
