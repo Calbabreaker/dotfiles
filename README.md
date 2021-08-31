@@ -1,6 +1,6 @@
 # Dotfiles
 
-Cool dot files for neovim, zsh, tmux, and alacritty.
+Cool dot files for neovim, zsh, xmonad, and alacritty and other random stuff
 
 ## Setup
 
@@ -15,8 +15,8 @@ cd ~/.dotfiles
 Now you can individually choose to use a dotfile config (specified by a folder) like so:
 
 ```sh
-stow zsh # zsh configuations
-stow nvim # NeoVim configuations
+stow zsh # zsh configurations
+stow nvim # NeoVim configurations
 ```
 
 NOTE: The plover directory **shouldn't** be ran with stow; run `plover/setup.sh` instead.
@@ -53,14 +53,8 @@ You might need to install `xsel` or `xclip` to make it work with system clipboar
 Requirements (pacman):
 
 ```
-sudo pacman -Sy xmonad xmonad-contrib xmobar dmenu xorg picom nitrogen trayer volumeicon \
-    dunst xdotool network-manager-applet --needed
-```
-
-Optional recommends for laptop:
-
-```
-sudo pacman xorg-backlight xscreensaver xss-lock
+sudo pacman -Sy xmonad xmonad-contrib xmobar dmenu xorg picom nitrogen trayer volumeicon dunst \
+    xdotool network-manager-applet lightdm lightdm-gtk-greeter light-locker xorg-xbacklight --needed
 ```
 
 You also need to stow the scripts directory:

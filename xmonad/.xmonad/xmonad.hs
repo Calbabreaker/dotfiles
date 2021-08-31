@@ -47,10 +47,6 @@ myBrowser = "chromium"
 myFileManager :: String
 myFileManager = "pcmanfm"
 
--- Command to run for keybind and daemon
-myScreensaver :: String
-myScreensaver = "xscreensaver-command -lock"
-
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -85,7 +81,7 @@ myKeys =
     , ("M-S-<Return>", spawn "dmenu_run -i -p 'Run: '") -- Show dmenu prompt
     , ("M-b", spawn myBrowser) -- Open web browser
     , ("M-e", spawn myFileManager) -- Open file manager
-    , ("M-S-l", spawn myScreensaver) -- Lock screen with myScreensaver
+    , ("M-S-l", spawn "xset s activate") -- Lock screen with myScreensaver
 
     , ("M-c", kill1) -- Kill focused window
     , ("M-S-c", killAll) -- Kill all windows in workspace
@@ -197,13 +193,12 @@ myManageHook = composeAll
 -- Perform an arbitrary action each time xmonad starts or is restarted
 myStartupHook = do
     spawnOnce "nitrogen --restore &" -- Wallpapers
-    spawnOnce "picom -f &" -- compisitor
+    spawnOnce "picom -f --backend glx --vsync &" -- compisitor
     spawnOnce "nm-applet &" -- network manager system tray
     spawnOnce "volumeicon &" -- volume icon system tray
     spawnOnce "dunst &" -- notification server
-    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x21243b --height 20" -- system tray
-    spawnOnce "xscreensaver --no-splash &" -- screensaver
-    spawnOnce ("xss-lock -- " ++ myScreensaver) -- activate screensaver on lid close
+    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x1d2034 --height 20 &" -- system tray
+    spawnOnce "light-locker &" -- screen locker
 
 -- Run xmonad and other stuff
 main = do
