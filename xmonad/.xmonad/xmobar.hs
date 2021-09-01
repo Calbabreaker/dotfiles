@@ -86,7 +86,7 @@ Config {
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-    , Run Date "\xf017 %H:%M %a %m %h" "date" 100
+    , Run Date "\xf017 %H:%M %a %d %h" "date" 100
     , Run Com "trayer-padding-icon" [] "trayerpad" 20
     , Run UnsafeStdinReader
     ]

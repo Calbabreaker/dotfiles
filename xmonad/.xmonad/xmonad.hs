@@ -81,7 +81,7 @@ myKeys =
     , ("M-S-<Return>", spawn "dmenu_run -i -p 'Run: '") -- Show dmenu prompt
     , ("M-b", spawn myBrowser) -- Open web browser
     , ("M-e", spawn myFileManager) -- Open file manager
-    , ("M-S-l", spawn "xset s activate") -- Lock screen with myScreensaver
+    , ("M-S-l", spawn "light-locker-command -l") -- Lock screen with myScreensaver
 
     , ("M-c", kill1) -- Kill focused window
     , ("M-S-c", killAll) -- Kill all windows in workspace
