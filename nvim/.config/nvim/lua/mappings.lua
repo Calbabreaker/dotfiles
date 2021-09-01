@@ -63,7 +63,8 @@ RegisterMappings("tn", { silent = true }, {
 })
 
 RegisterMappings("n", { silent = true }, {
-    { "<C-s>", "<cmd>w<CR>"},
+    { "<C-s>", ":w<CR>"},
+    { "<Leader>s", ":noa w<CR>"},
 
     -- move line up and down
     { "<A-j>", ":m .+1<CR>==" },
@@ -97,6 +98,8 @@ DefineAugroup("general_settings", {
     "TermOpen term://* setlocal nonumber norelativenumber",
     "TermOpen term://* startinsert",
     "BufEnter term://* startinsert",
+
+    "FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
 
     -- When editing a file, always jump to the last known cursor position.
     -- Don't do it when the position is invalid, when inside an event handler
