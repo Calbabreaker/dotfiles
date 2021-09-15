@@ -47,6 +47,10 @@ require("formatter").setup({
     }
 })
 
+RegisterMappings("ni", {}, {
+    { "<C-f>", ":Format<CR>" }
+});
+
 DefineAugroup("format", {
     "BufWrite * FormatWrite"
 })
