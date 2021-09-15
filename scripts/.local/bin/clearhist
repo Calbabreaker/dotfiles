@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#
+# clears chromium history for past hour
+# requires xdotool
+#
+
+chromium &
+sleep 2
+xdotool key Control+L 
+xdotool type --delay 0 "chrome://settings/clearBrowserData"
+xdotool key Enter
+
+sleep 5
+
+for i in {1..4}; do
+    xdotool key Shift+Tab
+done
+
+xdotool key Enter

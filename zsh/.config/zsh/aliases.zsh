@@ -22,5 +22,6 @@ alias c="clear"
 alias cb="xclip -selection c" # pipe to to copy to clipboard
 alias szsh="source $ZDOTDIR/.zshrc"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+alias wininit="echo 'i am using linux idiot'"
 
-export PATH="$(yarn global bin):$PATH"
+command -v yarn &> /dev/null && export PATH="$(yarn global bin):$PATH"

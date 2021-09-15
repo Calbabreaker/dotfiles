@@ -134,7 +134,7 @@ myKeys =
 
     where
         floatCenter w = windows (\s -> W.float w (W.RationalRect (1/3) (1/4) (1/2) (4/5)) s)
-        showBrightness = "light=$(xbacklight -get | cut -d '.' -f 1) && dunstify -t 2000  -u low -r 13481 -h int:value:$light \"Brightness: $light\""
+        showBrightness = "light=$(xbacklight -get | cut -d '.' -f 1) && dunstify -t 2000 -u low -r 13481 -h int:value:$light \"Brightness: $light\""
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
