@@ -52,6 +52,6 @@ RegisterMappings("ni", {}, {
 });
 
 DefineAugroup("format", {
-    "BufWrite * FormatWrite"
+    "BufWritePost * silent! FormatWrite"
 })
 

@@ -165,9 +165,8 @@ use {
 -- better terminal support
 use {
     "akinsho/nvim-toggleterm.lua",
-    cmd = { "ToggleTerm", "TermExec" },
     config = function()
-        require("toggleterm").setup()
+        require("pconf/other").toggleterm()
     end,
 }
 
@@ -175,7 +174,7 @@ use {
 use {
     "svermeulen/vim-yoink",
     config = function()
-        require "pconf/yoink"
+        require("pconf/other").yoink()
     end,
 }
 

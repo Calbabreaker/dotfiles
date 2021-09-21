@@ -58,8 +58,6 @@ RegisterMappings("tn", { silent = true }, {
     { "<C-Right>", ":vertical resize -3<CR>" },
     { "<C-Up>", ":resize +3<CR>" },
     { "<C-Down>", ":resize -3<CR>" },
-
-    { "<C-t>", ":ToggleTerm<CR>"},
 })
 
 RegisterMappings("n", { silent = true }, {
@@ -91,13 +89,30 @@ RegisterMappings("n", { silent = true }, {
     -- change from vertical to horizontal split and vise versa
     { "<Leader>th", "<C-w>t<C-w>K" },
     { "<Leader>tv", "<C-w>t<C-w>H" },
+
+    -- yoink bindings
+    { "[y", "<Plug>(YoinkRotateBack)" },
+    { "]y", "<Plug>(YoinkRotateForward)" },
+    { "y", "<Plug>(YoinkYankPreserveCursorPosition)" },
+    { "[p", "<Plug>(YoinkPostPasteSwapBack)" },
+    { "]p", "<Plug>(YoinkPostPasteSwapForward)" },
+    { "p", "<Plug>(YoinkPaste_p)" },
+    { "P", "<Plug>(YoinkPaste_P)" },
 })
+
+RegisterMappings("x", {}, {
+    -- yoink bindings
+    { "p", "<Plug>(YoinkPaste_p)" },
+    { "P", "<Plug>(YoinkPaste_P)" },
+    { "y", "<Plug>(YoinkYankPreserveCursorPosition)" },
+})
+
 
 DefineAugroup("general_settings", {
     -- make terminal better
-    "TermOpen term://* setlocal nonumber norelativenumber",
-    "TermOpen term://* startinsert",
-    "BufEnter term://* startinsert",
+    -- "TermOpen term://* setlocal nonumber norelativenumber",
+    -- "TermOpen term://* startinsert",
+    -- "BufEnter term://* startinsert",
 
     "FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
 

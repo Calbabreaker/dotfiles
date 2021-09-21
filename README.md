@@ -46,7 +46,7 @@ Typescript) and a treesitter parser with `:TSInstall language-name` (eg.
 You will need to have prettier installed (using `npm install -g prettier` or
 `yarn global add prettier`) to format JavaScript, HTML, CSS, etc. files.
 
-You might need to install `xsel` or `xclip` to make it work with system clipboard.
+You might need to install `xsel` to make it work with system clipboard.
 
 ## Xmonad
 

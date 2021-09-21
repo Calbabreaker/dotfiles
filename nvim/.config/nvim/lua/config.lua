@@ -1,4 +1,3 @@
--- vim.o.relativenumber = true -- show relative line numbers
 vim.o.clipboard = "unnamedplus" -- make NeoVim use the system clipboard
 vim.o.colorcolumn = "100" -- column count indicator
 vim.o.completeopt = "noinsert,menuone,noselect"
@@ -7,8 +6,9 @@ vim.o.encoding = "utf-8" -- encoding used to write to a file
 vim.o.expandtab = true -- coverts tab to spaces
 vim.o.hidden = true -- keep buffers open in the background
 vim.o.lazyredraw = true -- don't draw until macros and stuff have finished
-vim.o.mouse = "a" -- allow mouse to be used
+vim.o.mouse = "a" -- allow mouse to be used for all modes
 vim.o.number = true -- show line numbers
+vim.o.relativenumber = true -- show relative line numbers
 vim.o.scrolloff = 8 -- line scroll padding
 vim.o.shiftwidth = 4 -- use 4 spaces when something gets indented
 vim.o.shortmess = vim.o.shortmess.."c" -- don't show "pattern not found"

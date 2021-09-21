@@ -38,5 +38,5 @@ function ToggleTree()
 end
 
 RegisterMappings("n", {}, {
-    { "<Leader>n", "<cmd>lua ToggleTree()<CR>" },
+    { "<C-e>", "<cmd>lua ToggleTree()<CR>" },
 })

@@ -25,4 +25,16 @@ return {
             map_complete = true, -- it will auto insert `(` after select function or method item
         })
     end,
+
+    toggleterm = function()
+        require("toggleterm").setup({
+            open_mapping = [[<C-t>]],
+        })
+    end,
+
+    yoink = function()
+        vim.g.yoinkSavePersistently = 1
+        vim.g.yoinkMoveCursorToEndOfPaste = 1
+        vim.g.yoinkSyncNumberedRegisters = 1
+    end,
 }
