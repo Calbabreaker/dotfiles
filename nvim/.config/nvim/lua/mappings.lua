@@ -3,9 +3,9 @@
 function RegisterMappings(mode, options, mappings)
     -- split up the string
     if #mode > 1 then
-    	for i = 1, #mode do
+        for i = 1, #mode do
             RegisterMappings(mode:sub(i, i), options, mappings)
-    	end
+        end
         return
     end
 
@@ -109,11 +109,6 @@ RegisterMappings("x", {}, {
 
 
 DefineAugroup("general_settings", {
-    -- make terminal better
-    -- "TermOpen term://* setlocal nonumber norelativenumber",
-    -- "TermOpen term://* startinsert",
-    -- "BufEnter term://* startinsert",
-
     "FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
 
     -- When editing a file, always jump to the last known cursor position.

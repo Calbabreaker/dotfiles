@@ -14,7 +14,7 @@ RegisterMappings("n", {}, {
     { "<Leader>fc", "<cmd>Telescope git_commits<CR>" },
     { "<Leader>ff", "<cmd>lua FindFiles()<CR>" },
     { "<Leader>fg", "<cmd>Telescope live_grep<CR>" },
-    { "<Leader>fs", "<cmd>Telescope git_stash<CR>" },
+    { "<Leader>fh", "<cmd>Telescope git_stash<CR>" },
     { "<Leader>ft", "<cmd>Telescope filetypes<CR>" },
 })
 

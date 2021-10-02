@@ -23,17 +23,19 @@ local diagnostics = {
 
 local diff = {
     "diff",
-    color_added = colors.green,
-    color_modified = colors.orange,
-    color_removed = colors.red,
+    diff_color = {
+        added = { fg = colors.green },
+        modified = { fg = colors.yellow },
+        removed = { fg = colors.red },
+    },
 }
 
 require("lualine").setup({
     options = {
         theme = "tokyonight",
         disabled_filetypes = { "NvimTree" },
-        section_separators = { "", "" },
-        component_separators = { "│", "│" },
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "│", right = "│" },
     },
     sections = {
         lualine_b = { "branch", diff },

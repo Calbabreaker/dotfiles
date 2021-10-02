@@ -37,16 +37,14 @@ To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 ![nvim-screenshot0](./.github/nvim-screenshot0.png)
 ![nvim-screenshot1](./.github/nvim-screenshot1.png)
 
-By default no language servers treesitter parsers (basically really good syntax
-highlighting) are installed. You can install a language server using
-`:LspInstall server_name` (eg. `:LspInstall tsserver` for JavaScript and
-Typescript) and a treesitter parser with `:TSInstall language-name` (eg.
-`:TSInstall javascript`).
+By default no language servers or treesitter parsers are installed.
+Install a treesitter parser using `:TSInstall language-name` (e.g. `:TSInstall javascript`)
+and language server or debugger using npm/yarn or system package manager.
 
-You will need to have prettier installed (using `npm install -g prettier` or
-`yarn global add prettier`) to format JavaScript, HTML, CSS, etc. files.
+Prettier will be needed to format JavaScript, HTML, CSS, etc. files, and
+clang-format will be needed to format C++, C files.
 
-You might need to install `xsel` to make it work with system clipboard.
+Might need to install `xsel` to make NeoVim work with system clipboard.
 
 ## Xmonad
 
@@ -69,4 +67,3 @@ stow scripts
 ## Alacritty and zsh
 
 ![zsh-screenshot0](./.github/zsh-screenshot0.png)
-

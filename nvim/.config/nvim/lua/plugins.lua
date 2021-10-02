@@ -24,7 +24,10 @@ use "kyazdani42/nvim-web-devicons" -- nice icons
 use "airblade/vim-rooter" -- change cwd to project root directory
 
 -- start menu
-use "mhinz/vim-startify"
+use {
+    "mhinz/vim-startify",
+    event = "BufWinEnter",
+}
 
 -- git changes markings
 use {
@@ -37,7 +40,8 @@ use {
 
 -- cool status line
 use {
-    "hoob3rt/lualine.nvim",
+    -- "hoob3rt/lualine.nvim",
+    "shadmansaleh/lualine.nvim",
     event = "BufWinEnter",
     config = function()
         require "pconf/lualine"
@@ -91,36 +95,24 @@ use {
     end,
 }
 
--- emmet integration
-use {
-    "mattn/emmet-vim",
-    config = function()
-        vim.g.user_emmet_mode = "vn"
-        vim.g.user_emmet_leader_key = ","
-    end,
-}
-
 --
 -- Language server
 --
 
-use "neovim/nvim-lspconfig"
-
--- easilly install language servers
 use {
-    "williamboman/nvim-lsp-installer",
+    "neovim/nvim-lspconfig",
     config = function()
-        require "pconf/lsp-installer"
+        require("pconf/lspconfig")
     end,
 }
 
 -- view parameters and signitures
 use {
     "ray-x/lsp_signature.nvim",
-    after = "nvim-lsp-installer",
+    after = "nvim-lspconfig",
     config = function()
         require("lsp_signature").setup()
-    end
+    end,
 }
 
 -- autocomplete
@@ -144,17 +136,34 @@ use {
 use {
     "hrsh7th/vim-vsnip",
     after = "nvim-compe",
+    config = function()
+        vim.g.vsnip_snippet_dir = vim.fn.stdpath("config") .. "/vsnip/"
+    end,
+}
+
+-- cool snippets
+use {
+    "rafamadriz/friendly-snippets",
+    after = "vim-vsnip" 
 }
 
 -- nice syntax highlight
 use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
-        { "p00f/nvim-ts-rainbow" },
         { "JoosepAlviste/nvim-ts-context-commentstring" },
     },
     config = function()
         require "pconf/treesitter"
+    end,
+}
+
+-- debugging
+use {
+    "mfussenegger/nvim-dap",
+    event = "BufWinEnter",
+    config = function()
+        require "pconf/dap"
     end,
 }
 
@@ -165,6 +174,7 @@ use {
 -- better terminal support
 use {
     "akinsho/nvim-toggleterm.lua",
+    event = "BufWinEnter",
     config = function()
         require("pconf/other").toggleterm()
     end,
