@@ -67,3 +67,5 @@ stow scripts
 ## Alacritty and zsh
 
 ![zsh-screenshot0](./.github/zsh-screenshot0.png)
+
+Note: install Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)

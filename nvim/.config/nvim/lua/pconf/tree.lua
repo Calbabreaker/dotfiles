@@ -3,8 +3,6 @@ vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
 vim.g.nvim_tree_disable_window_picker = 1
-vim.g.nvim_tree_add_trailing = 1
-vim.g.nvim_tree_indent_markers = 1
 
 vim.g.nvim_tree_show_icons = {
     git = 0,

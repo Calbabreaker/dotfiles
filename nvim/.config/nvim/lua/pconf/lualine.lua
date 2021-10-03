@@ -1,4 +1,4 @@
-local colors = require("tokyonight.colors").setup()
+local colors = require("onedark.colors")
 
 local function get_wordcount()
     local wordcount = vim.fn.wordcount()
@@ -32,7 +32,7 @@ local diff = {
 
 require("lualine").setup({
     options = {
-        theme = "tokyonight",
+        theme = "onedark",
         disabled_filetypes = { "NvimTree" },
         section_separators = { left = "", right = "" },
         component_separators = { left = "│", right = "│" },

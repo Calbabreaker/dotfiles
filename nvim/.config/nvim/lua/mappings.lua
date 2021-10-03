@@ -46,23 +46,23 @@ RegisterMappings(" ic", { silent = true }, {
     { "<ESC>", "<ESC>:noh <CR>" }, -- use esc to hide highlights
 })
 
-RegisterMappings("tn", { silent = true }, {
+RegisterMappings(" ti", { silent = true }, {
     -- make window navigation easier
-    { "<C-h>", "<C-w>h" },
-    { "<C-j>", "<C-w>j" },
-    { "<C-k>", "<C-w>k" },
-    { "<C-l>", "<C-w>l" },
+    { "<C-h>", "<ESC><C-w>h" },
+    { "<C-j>", "<ESC><C-w>j" },
+    { "<C-k>", "<ESC><C-w>k" },
+    { "<C-l>", "<ESC><C-w>l" },
 
     -- resize using arrow keys
-    { "<C-Left>", ":vertical resize +3<CR>" },
-    { "<C-Right>", ":vertical resize -3<CR>" },
-    { "<C-Up>", ":resize +3<CR>" },
-    { "<C-Down>", ":resize -3<CR>" },
+    { "<C-Left>", "<ESC>:vertical resize +3<CR>" },
+    { "<C-Right>", "<ESC>:vertical resize -3<CR>" },
+    { "<C-Up>", "<ESC>:resize +3<CR>" },
+    { "<C-Down>", "<ESC>:resize -3<CR>" },
 })
 
 RegisterMappings("n", { silent = true }, {
     { "<C-s>", ":w<CR>"},
-    { "<Leader>s", ":noa w<CR>"},
+    { "<C-S>", ":noa w<CR>"},
 
     -- move line up and down
     { "<A-j>", ":m .+1<CR>==" },
@@ -75,7 +75,6 @@ RegisterMappings("n", { silent = true }, {
 
     -- fugitive
     { "<Leader>gg", ":Git<CR>" },
-    { "<Leader>gc", ":Git commit<CR>" },
     { "<Leader>gp", ":Git push<CR>" },
     { "<Leader>gh", ":diffget //2<CR>" },
     { "<Leader>gl", ":diffget //3<CR>" },
@@ -89,24 +88,7 @@ RegisterMappings("n", { silent = true }, {
     -- change from vertical to horizontal split and vise versa
     { "<Leader>th", "<C-w>t<C-w>K" },
     { "<Leader>tv", "<C-w>t<C-w>H" },
-
-    -- yoink bindings
-    { "[y", "<Plug>(YoinkRotateBack)" },
-    { "]y", "<Plug>(YoinkRotateForward)" },
-    { "y", "<Plug>(YoinkYankPreserveCursorPosition)" },
-    { "[p", "<Plug>(YoinkPostPasteSwapBack)" },
-    { "]p", "<Plug>(YoinkPostPasteSwapForward)" },
-    { "p", "<Plug>(YoinkPaste_p)" },
-    { "P", "<Plug>(YoinkPaste_P)" },
 })
-
-RegisterMappings("x", {}, {
-    -- yoink bindings
-    { "p", "<Plug>(YoinkPaste_p)" },
-    { "P", "<Plug>(YoinkPaste_P)" },
-    { "y", "<Plug>(YoinkYankPreserveCursorPosition)" },
-})
-
 
 DefineAugroup("general_settings", {
     "FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",

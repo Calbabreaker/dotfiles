@@ -1,9 +1,8 @@
 return {
     blankline = function()
         require("indent_blankline").setup({
-            char = "┊",
             buftype_exclude = {"terminal"},
-            filetype_exclude = { "NvimTree", "help", "packer", "startify" },
+            filetype_exclude = { "NvimTree", "help", "packer", "startify", "dashboard" },
             show_current_context = true,
             show_trailing_blankline_indent = false
         })
@@ -30,11 +29,5 @@ return {
         require("toggleterm").setup({
             open_mapping = [[<C-t>]],
         })
-    end,
-
-    yoink = function()
-        vim.g.yoinkSavePersistently = 1
-        vim.g.yoinkMoveCursorToEndOfPaste = 1
-        vim.g.yoinkSyncNumberedRegisters = 1
     end,
 }

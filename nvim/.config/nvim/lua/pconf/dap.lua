@@ -15,7 +15,7 @@ local ccrust_config = {
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
     cwd = "${workspaceFolder}",
-    stopOnEntry = true,
+    stopOnEntry = false,
     args = {},
     runInTerminal = false,
 }
@@ -25,14 +25,14 @@ dap.configurations.c = { ccrust_config }
 dap.configurations.rust = { ccrust_config }
 
 vim.fn.sign_define("DapBreakpoint", {
-    text = "",
+    text = "",
     texthl = "LspDiagnosticsSignError",
     linehl = "",
     numhl = "",
 })
 
 vim.fn.sign_define("DapBreakpointRejected", {
-    text = "",
+    text = "",
     texthl = "LspDiagnosticsSignWarning",
     linehl = "",
     numhl = "",

@@ -14,6 +14,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 local servers = {
     clangd = {},
     gdscript = {},
+    tsserver = {},
 }
 
 for name, config in pairs(servers) do

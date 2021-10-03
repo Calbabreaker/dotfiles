@@ -21,12 +21,14 @@ packer.reset()
 use "wbthomason/packer.nvim" -- packer plugin stuff
 use "nvim-lua/plenary.nvim" -- lua utils
 use "kyazdani42/nvim-web-devicons" -- nice icons
-use "airblade/vim-rooter" -- change cwd to project root directory
 
 -- start menu
 use {
-    "mhinz/vim-startify",
+    "glepnir/dashboard-nvim",
     event = "BufWinEnter",
+    config = function()
+        require "pconf/dashboard"
+    end,
 }
 
 -- git changes markings
@@ -54,11 +56,11 @@ use {
     cmd = { "Git", "Gread" },
 }
 
--- colour theme
+-- colour scheme
 use {
-    "folke/tokyonight.nvim",
+    "navarasu/onedark.nvim",
     config = function()
-        vim.cmd "colorscheme tokyonight"
+        vim.cmd "colorscheme onedark"
     end,
 }
 
@@ -95,12 +97,21 @@ use {
     end,
 }
 
+-- show keybinds
+use {
+    "folke/which-key.nvim",
+    config = function()
+        require("which-key").setup()
+    end
+}
+
 --
 -- Language server
 --
 
 use {
     "neovim/nvim-lspconfig",
+    event = "VimEnter",
     config = function()
         require("pconf/lspconfig")
     end,
@@ -180,14 +191,6 @@ use {
     end,
 }
 
--- clipboard history
-use {
-    "svermeulen/vim-yoink",
-    config = function()
-        require("pconf/other").yoink()
-    end,
-}
-
 -- highlight colours eg #1f4a90 rgb(255, 255, 0)
 use {
     "norcalli/nvim-colorizer.lua",
@@ -196,6 +199,7 @@ use {
     end,
 }
 
+-- indent indicators
 use {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufWinEnter",
@@ -204,14 +208,16 @@ use {
     end,
 }
 
+-- better project management
+use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+        require("project_nvim").setup({})
+    end,
+}
+
 use "christoomey/vim-sort-motion" -- sorts lines
 use "tpope/vim-repeat" -- able to repeat plugin maps
 use "tpope/vim-surround" -- easily edit (), "", etc
 use "tpope/vim-commentary" -- toggle comments with motions
 use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
-
-use "kana/vim-textobj-user" -- text object library base
-
-use "kana/vim-textobj-entire" -- text object e for entire file
-use "kana/vim-textobj-indent" -- text object i for indents
-use "sgur/vim-textobj-parameter" -- text object , for function parameters
