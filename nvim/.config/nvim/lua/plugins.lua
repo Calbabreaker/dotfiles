@@ -60,14 +60,14 @@ use {
 use {
     "navarasu/onedark.nvim",
     config = function()
-        vim.cmd "colorscheme onedark"
+        require("pconf/other").colorscheme()
     end,
 }
 
 -- file explorer
 use {
     "kyazdani42/nvim-tree.lua",
-    event = "VimEnter",
+    cmd = "ToggleTree",
     config = function()
         require "pconf/tree"
     end,
@@ -75,6 +75,7 @@ use {
 
 use {
     "mhartington/formatter.nvim",
+    cmd = "Format",
     config = function()
         require("pconf/formatter")
     end,
@@ -84,6 +85,7 @@ use {
 use {
     "nvim-telescope/telescope.nvim",
     requires = "nvim-lua/popup.nvim",
+    cmd = { "Telescope", "FindFile" },
     config = function()
         require "pconf/telescope"
     end,
@@ -92,9 +94,7 @@ use {
 -- cool tabs
 use {
     "romgrk/barbar.nvim",
-    config = function()
-        require "pconf/barbar"
-    end,
+    event = "BufWinEnter"
 }
 
 -- show keybinds
@@ -111,16 +111,22 @@ use {
 
 use {
     "neovim/nvim-lspconfig",
-    event = "VimEnter",
+    event = "BufWinEnter",
+}
+
+-- easilly install language servers
+use {
+    "williamboman/nvim-lsp-installer",
+    after = "nvim-lspconfig",
     config = function()
-        require("pconf/lspconfig")
+        require "pconf/lsp-installer"
     end,
 }
 
 -- view parameters and signitures
 use {
     "ray-x/lsp_signature.nvim",
-    after = "nvim-lspconfig",
+    after = "nvim-lsp-installer",
     config = function()
         require("lsp_signature").setup()
     end,
@@ -148,14 +154,14 @@ use {
     "hrsh7th/vim-vsnip",
     after = "nvim-compe",
     config = function()
-        vim.g.vsnip_snippet_dir = vim.fn.stdpath("config") .. "/vsnip/"
+        vim.g.vsnip_snippet_dir = CONFIG_PATH.."/vsnip/"
     end,
 }
 
 -- cool snippets
 use {
     "rafamadriz/friendly-snippets",
-    after = "vim-vsnip" 
+    after = "vim-vsnip"
 }
 
 -- nice syntax highlight
@@ -185,9 +191,9 @@ use {
 -- better terminal support
 use {
     "akinsho/nvim-toggleterm.lua",
-    event = "BufWinEnter",
+    cmd = { "ToggleTerm", "ToggleTermOpenAll" },
     config = function()
-        require("pconf/other").toggleterm()
+        require("toggleterm").setup()
     end,
 }
 
@@ -221,3 +227,8 @@ use "tpope/vim-repeat" -- able to repeat plugin maps
 use "tpope/vim-surround" -- easily edit (), "", etc
 use "tpope/vim-commentary" -- toggle comments with motions
 use "vim-scripts/replacewithregister" -- use motion to replace with clipboard
+
+use "kana/vim-textobj-user" -- text object library base
+use "kana/vim-textobj-entire" -- text object e for entire file
+use "kana/vim-textobj-indent" -- text object i for indents
+use "sgur/vim-textobj-parameter" -- text object , for function parameters

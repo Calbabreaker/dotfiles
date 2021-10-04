@@ -1,27 +1,18 @@
-local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 local telescope = require("telescope")
 
-function FindFiles()
+function FindFile()
     builtin.find_files({
-        find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
-        previewer = false
+        find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
     })
 end
 
-RegisterMappings("n", {}, {
-    { "<Leader>f", "<cmd>lua FindFiles()<CR>" },
-    { "<Leader>gb", "<cmd>Telescope git_branches<CR>" },
-    { "<Leader>bf", "<cmd>Telescope buffers<CR>" },
-    { "<Leader>sf", "<cmd>Telescope filetypes<CR>" },
-    { "<Leader>gc", "<cmd>Telescope git_commits<CR>" },
-    { "<Leader>sm", "<cmd>Telescope man_pages<CR>" },
-    { "<Leader>st", "<cmd>Telescope live_grep<CR>" },
-})
+vim.api.nvim_command [[ command! FindFile lua FindFile()]]
 
 telescope.setup({
     defaults = {
-        file_ignore_patterns = { ".gitignore", ".git/", "yarn.lock", "package-lock.json"},
+        file_ignore_patterns = { ".gitignore", ".git/", "yarn.lock", "package-lock.json" },
         vimgrep_arguments = {
             "rg",
             "--color=never",

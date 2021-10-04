@@ -42,6 +42,4 @@ function ToggleTree()
     end
 end
 
-RegisterMappings("n", {}, {
-    { "<C-e>", "<cmd>lua ToggleTree()<CR>" },
-})
+vim.api.nvim_command [[ command! ToggleTree lua ToggleTree()]]

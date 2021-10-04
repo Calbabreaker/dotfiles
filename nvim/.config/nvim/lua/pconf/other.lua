@@ -6,6 +6,8 @@ return {
             show_current_context = true,
             show_trailing_blankline_indent = false
         })
+
+        vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#cccccc gui=nocombine")
     end,
 
     colorizer = function()
@@ -25,9 +27,13 @@ return {
         })
     end,
 
-    toggleterm = function()
-        require("toggleterm").setup({
-            open_mapping = [[<C-t>]],
-        })
+    colorscheme = function()
+        vim.g.onedark_disable_terminal_colors = true
+        vim.api.nvim_command("colorscheme onedark")
+
+        local colors = require("onedark/colors")
+        -- disable end of buffer chars
+        vim.api.nvim_command("highlight EndOfBuffer guifg="..colors.bg0)
+        vim.api.nvim_command("highlight NvimTreeEndOfBuffer guifg="..colors.bg_d)
     end,
 }

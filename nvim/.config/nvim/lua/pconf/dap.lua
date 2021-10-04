@@ -44,18 +44,3 @@ vim.fn.sign_define("DapStopped", {
     linehl = "DiagnosticUnderlineInfo",
     numhl = "LspDiagnosticsSignInformation",
 })
-
-RegisterMappings("n", {}, {
-    { "<Leader>dt", "<cmd>lua require('dap').toggle_breakpoint()<cr>" },
-    { "<Leader>db", "<cmd>lua require('dap').step_back()<cr>" },
-    { "<Leader>dc", "<cmd>lua require('dap').continue()<cr>" },
-    { "<Leader>dC", "<cmd>lua require('dap').run_to_cursor()<cr>" },
-    { "<Leader>dd", "<cmd>lua require('dap').disconnect()<cr>" },
-    { "<Leader>dg", "<cmd>lua require('dap').session()<cr>" },
-    { "<Leader>di", "<cmd>lua require('dap').step_into()<cr>" },
-    { "<Leader>do", "<cmd>lua require('dap').step_over()<cr>" },
-    { "<Leader>du", "<cmd>lua require('dap').step_out()<cr>" },
-    { "<Leader>dp", "<cmd>lua require('dap').pause.toggle()<cr>" },
-    { "<Leader>dr", "<cmd>lua require('dap').repl.toggle()<cr>" },
-    { "<Leader>dq", "<cmd>lua require('dap').close()<cr>" },
-})

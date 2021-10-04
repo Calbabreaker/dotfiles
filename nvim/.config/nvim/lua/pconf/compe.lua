@@ -33,18 +33,18 @@ function _G.s_tab_complete()
     end
 end
 
-RegisterMappings("is", { expr = true }, {
-    { "<Tab>", "v:lua.tab_complete()" },
-    { "<S-Tab>", "v:lua.s_tab_complete()" },
-})
+RegisterMappings("is", {
+    ["<Tab>"] = { "v:lua.tab_complete()" },
+    ["<S-Tab>"] = { "v:lua.s_tab_complete()" },
+}, { expr = true })
 
-RegisterMappings("i", { noremap = true, silent = true, expr = true }, {
-    { "<C-Space>", "compe#complete()" },
-    { "<CR>", "compe#confirm('<CR>')" },
-    { "<C-e>", "compe#close('<C-e>')" },
-    { "<C-f>", "compe#scroll({ 'delta': +4 })" },
-    { "<C-d>", "compe#scroll({ 'delta': -4 })" },
-})
+RegisterMappings("i", {
+    ["<C-Space>"] = { "compe#complete()" },
+    ["<CR>"] = { "compe#confirm('<CR>')" },
+    ["<C-e>"] = { "compe#close('<C-e>')" },
+    ["<C-f>"] = { "compe#scroll({ 'delta': +4 })" },
+    ["<C-d>"] = { "compe#scroll({ 'delta': -4 })" },
+}, { expr = true })
 
 require("compe").setup({
     enabled = true,

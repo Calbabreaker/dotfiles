@@ -3,5 +3,5 @@ DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
 require "config"
-require "mappings"
 require "plugins"
+require "mappings"
