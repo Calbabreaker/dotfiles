@@ -8,16 +8,15 @@ First You need to have git and GNU stow installed.
 Then clone the repository:
 
 ```sh
-git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles
+git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles --depth=1
 cd ~/.dotfiles
 ```
 
 Now you can individually choose to use a dotfile config (specified by a folder) like so:
 
-```sh
+````sh
 stow zsh # zsh configurations
-stow nvim # NeoVim configurations
-```
+stow nvim # NeoVim configurations ```
 
 NOTE: The plover directory **shouldn't** be ran with stow; run `plover/setup.sh` instead.
 
@@ -26,11 +25,11 @@ To remove a dotfile:
 ```sh
 stow -D zsh
 stow -D scripts
-```
+````
 
 ## NeoVim
 
-Note: Requires NeoVim >= 0.5 and probably only works on unix>
+Note: Requires NeoVim >= 0.5 and probably only works on unix.
 
 To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 
@@ -39,16 +38,15 @@ To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 
 By default no language servers or treesitter parsers are installed.
 Install a treesitter parser using `:TSInstall language-name` (e.g. `:TSInstall javascript`)
-and language server using `:LspInstall language-server` (e.g. `:LspInstall
-tsserver`). Press tab to see options.
+and language server using `:LspInstall language-server` (e.g. `:LspInstall tsserver`). Press tab to see options.
 
 [Prettierd](https://github.com/fsouza/prettierd) will be needed to format
-JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`) 
+JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`)
 and clang-format will be needed to format C++, C files.
 
 Run `:W` to see keybinds (there are a lot). Some basic keybinds are: `C-e`
 opens file explorer, `C-t` opens terminal.
-   
+
 Might need to install `xsel` to make NeoVim work with system clipboard.
 
 ## Xmonad
