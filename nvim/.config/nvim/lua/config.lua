@@ -11,7 +11,7 @@ vim.o.number = true -- show line numbers
 vim.o.relativenumber = true -- show relative line numbers
 vim.o.scrolloff = 8 -- line scroll padding
 vim.o.shiftwidth = 4 -- use 4 spaces when something gets indented
-vim.o.shortmess = vim.o.shortmess.."c" -- don't show "pattern not found"
+vim.o.shortmess = vim.o.shortmess .. "c" -- don't show "pattern not found"
 vim.o.showmode = false -- don't show -- INSERT -- and stuff at the bottom
 vim.o.showtabline = 2 -- always show buffer tabs
 vim.o.signcolumn = "yes" -- always show the sign column
@@ -21,7 +21,7 @@ vim.o.splitright = true -- make vertical splits to go to the right of current wi
 vim.o.swapfile = false -- no swap file
 vim.o.tabstop = 4 -- use 4 spaces for tab
 vim.o.termguicolors = true -- enable true colour for terminal
-vim.o.undodir = DATA_PATH.."/undo" -- set an undo directory
+vim.o.undodir = DATA_PATH .. "/undo" -- set an undo directory
 vim.o.undofile = true -- persistent undos
 vim.o.updatetime = 500 -- how often completion updates happen
 vim.o.timeoutlen = 500 -- timeout to wait for a key combination to complete
@@ -36,4 +36,4 @@ vim.o.smarttab = true
 -- use space as leader key
 vim.g.mapleader = " "
 
-vim.cmd "filetype plugin on"
+vim.cmd("filetype plugin on")

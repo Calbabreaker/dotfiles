@@ -30,7 +30,7 @@ stow -D scripts
 
 ## NeoVim
 
-Note: Requires version 0.5
+Note: Requires NeoVim >= 0.5 and probably only works on unix>
 
 To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 
@@ -42,11 +42,13 @@ Install a treesitter parser using `:TSInstall language-name` (e.g. `:TSInstall j
 and language server using `:LspInstall language-server` (e.g. `:LspInstall
 tsserver`). Press tab to see options.
 
-Prettier will be needed to format JavaScript, HTML, CSS, etc. files, and
-clang-format will be needed to format C++, C files.
+[Prettierd](https://github.com/fsouza/prettierd) will be needed to format
+JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`) 
+and clang-format will be needed to format C++, C files.
 
-Run `:W` to see keybinds (there are a lot).
-
+Run `:W` to see keybinds (there are a lot). Some basic keybinds are: `C-e`
+opens file explorer, `C-t` opens terminal.
+   
 Might need to install `xsel` to make NeoVim work with system clipboard.
 
 ## Xmonad
