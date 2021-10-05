@@ -1,6 +1,7 @@
 local wk = require("which-key")
 
 -- register mappings on a mode or multiple (as a string)
+-- w mode uses which key
 function RegisterMappings(mode, mappings, options)
 	-- split up the string
 	if #mode > 1 then
@@ -10,8 +11,7 @@ function RegisterMappings(mode, mappings, options)
 		return
 	end
 
-	-- use which-key for normal mode because it doesn't like other modes
-	if mode == "n" then
+	if mode == "w" then
 		wk.register(mappings, options)
 	else
 		for key, mapping in pairs(mappings) do
@@ -43,12 +43,14 @@ function DefineAugroup(name, definitions)
 	vim.api.nvim_command("augroup end")
 end
 
-RegisterMappings(" ic", {
+RegisterMappings("nic", {
 	["<C-c>"] = { "<ESC>" },
 	["<ESC>"] = { "<ESC>:noh<CR>" },
-}, { noremap = false })
+}, {
+	noremap = false,
+})
 
-RegisterMappings("nit", {
+RegisterMappings("wit", {
 	-- make window navigation easier
 	["<C-h>"] = { "<ESC><C-w>h", "Move to left window" },
 	["<C-j>"] = { "<ESC><C-w>j", "Move to bottom window" },
@@ -61,17 +63,47 @@ RegisterMappings("nit", {
 	["<C-Up>"] = { "<cmd>resize +3<CR>", "Scale window up" },
 	["<C-Down>"] = { "<cmd>resize -3<CR>", "Scale window down" },
 
-    ["C-z"] = { "<ESC>", "<ESC>" },
+	["<C-a>"] = { "<ESC>", "<ESC>" },
 })
 
-RegisterMappings("n", {
+RegisterMappings("i", {
+	[","] = { ",<C-g>u" },
+	["."] = { ".<C-g>u" },
+	["!"] = { "!<C-g>u" },
+	["?"] = { "?<C-g>u" },
+
+	["<A-j>"] = { "<ESC>:m .+1<CR>==i" },
+	["<A-k>"] = { "<ESC>:m .-2<CR>==i" },
+})
+
+RegisterMappings("v", {
+	["<A-j>"] = { ":m '>+1<CR>gv=gv" },
+	["<A-k>"] = { ":m '<-2<CR>gv=gv" },
+	["<"] = { "<gv" },
+	[">"] = { ">gv" },
+})
+
+RegisterMappings("w", {
+	["Y"] = { "<cmd>call setreg('+', getline('.'))<CR>", "which_key_ignore" },
+	["D"] = { "<cmd>call setreg('+', getline('.'))<CR>\"_dd", "which_key_ignore" },
+
+	-- center cursor while moving
+	["n"] = { "nzzzv", "which_key_ignore" },
+	["N"] = { "Nzzzv", "which_key_ignore" },
+	["J"] = { "mzJ`z", "which_key_ignore" },
+
+	["<A-j>"] = { "<cmd>m .+1<CR>==", "Move current line down" },
+	["<A-k>"] = { "<cmd>m .-2<CR>==", "Move current line up" },
+
 	-- general
 	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
+	["<A-s>"] = { "<cmd>noa w<CR>", "Save without formatting" },
 	["<C-x>"] = { "<cmd>x<CR>", "Save and quit" },
 	["<C-e>"] = { "<cmd>ToggleTree<CR>", "Toggle file explorer" },
 	["<C-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer" },
 	["<C-t>"] = { '<cmd>execute v:count . "ToggleTerm"<CR>', "Toggle terminal" },
 
+	-- lsp
 	["[g"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to next diagnostic" },
 	["]g"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Go to previous diagnostic" },
 	["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
@@ -79,16 +111,12 @@ RegisterMappings("n", {
 	["gi"] = { ":lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
 	["gR"] = { ":lua vim.lsp.buf.references()<CR>", "Populate local list with references" },
 	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show signature (hover)" },
-	["<C-k>"] = { ":lua vim.lsp.buf.signature_help()<CR>", "Show signature help" },
 	["<space>D"] = { ":lua vim.lsp.buf.type_definition()<CR>" },
 	["<space>d"] = { ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
 
-	["<A-j>"] = { "<cmd>m .+1<CR>==", "Move current line down" },
-	["<A-k>"] = { "<cmd>m .-2<CR>==", "Move current line up" },
-
 	-- quick fix
-	["<C-n>"] = { "<cmd>cnext<CR>", "Go to next item in quick fix list" },
-	["<C-p>"] = { "<cmd>cprev<CR>", "Go to previous item in quick fix list" },
+	["<C-n>"] = { "<cmd>cnext<CR>zzzv", "Go to next item in quick fix list" },
+	["<C-p>"] = { "<cmd>cprev<CR>zzzv", "Go to previous item in quick fix list" },
 	["<C-q>"] = { "<cmd>call ToggleQuickFixList()<CR>", "Toggle quick fix list" },
 
 	-- buffers
@@ -133,7 +161,7 @@ RegisterMappings("n", {
 			f = { "<cmd>Telescope buffers<CR>", "Find buffers" },
 			n = { "<cmd>enew<CR>", "New empty buffer" },
 		},
-		f = { "<cmd>FindFile<CR>", "Fuzzy find files" },
+		f = { "<cmd>Telescope find_files<CR>", "Fuzzy find files" },
 		s = {
 			name = "Search",
 			f = { "<cmd>Telescope filetypes<CR>", "Search and set buffer filetype" },

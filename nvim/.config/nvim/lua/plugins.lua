@@ -83,7 +83,7 @@ use({
 use({
 	"nvim-telescope/telescope.nvim",
 	requires = "nvim-lua/popup.nvim",
-	cmd = { "Telescope", "FindFile" },
+	cmd = { "Telescope" },
 	config = function()
 		require("pconf/telescope")
 	end,

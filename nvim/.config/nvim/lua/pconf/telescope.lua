@@ -1,14 +1,7 @@
 local actions = require("telescope.actions")
-local builtin = require("telescope.builtin")
 local telescope = require("telescope")
 
-function FindFile()
-	builtin.find_files({
-		find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
-	})
-end
-
-vim.api.nvim_command([[ command! FindFile lua FindFile()]])
+actions.select_default:replace("")
 
 telescope.setup({
 	defaults = {
@@ -39,6 +32,11 @@ telescope.setup({
 				["<C-k>"] = actions.move_selection_previous,
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 			},
+		},
+	},
+	pickers = {
+		find_files = {
+			find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
 		},
 	},
 })
