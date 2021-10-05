@@ -42,7 +42,7 @@ use({
 	"lewis6991/gitsigns.nvim",
 	event = "BufRead",
 	config = function()
-		require("gitsigns").setup()
+		require("gitsigns").setup({ keymaps = {} })
 	end,
 })
 
@@ -170,6 +170,7 @@ use({
 	"nvim-treesitter/nvim-treesitter",
 	requires = {
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
+		{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	},
 	config = function()
 		require("pconf/treesitter")

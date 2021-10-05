@@ -1,7 +1,7 @@
 local wk = require("which-key")
 
 -- register mappings on a mode or multiple (as a string)
--- w mode uses which key
+-- w mode uses which key (note that every mapping needs a description in that mode)
 function RegisterMappings(mode, mappings, options)
 	-- split up the string
 	if #mode > 1 then
@@ -43,47 +43,9 @@ function DefineAugroup(name, definitions)
 	vim.api.nvim_command("augroup end")
 end
 
-RegisterMappings("nic", {
-	["<C-c>"] = { "<ESC>" },
-	["<ESC>"] = { "<ESC>:noh<CR>" },
-}, {
-	noremap = false,
-})
-
-RegisterMappings("wit", {
-	-- make window navigation easier
-	["<C-h>"] = { "<ESC><C-w>h", "Move to left window" },
-	["<C-j>"] = { "<ESC><C-w>j", "Move to bottom window" },
-	["<C-k>"] = { "<ESC><C-w>k", "Move to top window" },
-	["<C-l>"] = { "<ESC><C-w>l", "Move to right window" },
-
-	-- resize using arrow keys
-	["<C-Left>"] = { "<cmd>vertical resize +3<CR>", "Scale window left" },
-	["<C-Right>"] = { "<cmd>vertical resize -3<CR>", "Scale window right" },
-	["<C-Up>"] = { "<cmd>resize +3<CR>", "Scale window up" },
-	["<C-Down>"] = { "<cmd>resize -3<CR>", "Scale window down" },
-
-	["<C-a>"] = { "<ESC>", "<ESC>" },
-})
-
-RegisterMappings("i", {
-	[","] = { ",<C-g>u" },
-	["."] = { ".<C-g>u" },
-	["!"] = { "!<C-g>u" },
-	["?"] = { "?<C-g>u" },
-
-	["<A-j>"] = { "<ESC>:m .+1<CR>==i" },
-	["<A-k>"] = { "<ESC>:m .-2<CR>==i" },
-})
-
-RegisterMappings("v", {
-	["<A-j>"] = { ":m '>+1<CR>gv=gv" },
-	["<A-k>"] = { ":m '<-2<CR>gv=gv" },
-	["<"] = { "<gv" },
-	[">"] = { ">gv" },
-})
-
+-- main mappings
 RegisterMappings("w", {
+	-- Y and D copys (and deletes) the whole line without the line break
 	["Y"] = { "<cmd>call setreg('+', getline('.'))<CR>", "which_key_ignore" },
 	["D"] = { "<cmd>call setreg('+', getline('.'))<CR>\"_dd", "which_key_ignore" },
 
@@ -101,7 +63,7 @@ RegisterMappings("w", {
 	["<C-x>"] = { "<cmd>x<CR>", "Save and quit" },
 	["<C-e>"] = { "<cmd>ToggleTree<CR>", "Toggle file explorer" },
 	["<C-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer" },
-	["<C-t>"] = { '<cmd>execute v:count . "ToggleTerm"<CR>', "Toggle terminal" },
+	["<C-t>"] = { "<cmd>execute v:count . 'ToggleTerm'<CR>", "Toggle terminal" },
 
 	-- lsp
 	["[g"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to next diagnostic" },
@@ -113,6 +75,10 @@ RegisterMappings("w", {
 	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show signature (hover)" },
 	["<space>D"] = { ":lua vim.lsp.buf.type_definition()<CR>" },
 	["<space>d"] = { ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+
+	-- git gutter
+	["]h"] = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "Next git hunk" },
+	["[h"] = { "<cmd>lua require('gitsigns.actions').prev_hunk()<CR>", "Previous git hunk" },
 
 	-- quick fix
 	["<C-n>"] = { "<cmd>cnext<CR>zzzv", "Go to next item in quick fix list" },
@@ -144,8 +110,22 @@ RegisterMappings("w", {
 			p = { "<cmd>Git push<CR>", "Git push to default remote" },
 			h = { "<cmd>diffget //2<CR>", "Get change to the left of merge conflict" },
 			l = { "<cmd>diffget //3<CR>", "Get change to the right of merge conflict" },
-			b = { "<cmd>Telescope git_branches<CR>", "Show branches" },
-			c = { "<cmd>Telescope git_commits<CR>", "Show commit log" },
+			b = { "<cmd>Telescope git_branches<CR>", "Checkout branches" },
+			c = { "<cmd>Telescope git_commits<CR>", "Checkout commits" },
+			C = { "<cmd>Telescope git_bcommits<CR>", "Checkout commits of the current file" },
+			s = { "<cmd>Telescope git_stash<CR>", "Checkout stash" },
+			o = { "<cmd>Telescope git_status<CR>", "Open changed files" },
+		},
+		h = {
+			name = "Git hunk",
+			U = { "<cmd>lua require('gitsigns').reset_buffer_index()<CR>", "Reset buffer index" },
+			b = { "<cmd>lua require('gitsigns').blame_line(true)<CR>", "Show git blame" },
+			p = { "<cmd>lua require('gitsigns').preview_hunk()<CR>", "Preview hunk" },
+			s = { "<cmd>lua require('gitsigns').stage_hunk()<CR>", "Stage hunk" },
+			S = { "<cmd>lua require('gitsigns').stage_buffer()<CR>", "Stage buffer" },
+			u = { "<cmd>lua require('gitsigns').undo_stage_hunk()<CR>", "Undo stage" },
+			r = { "<cmd>lua require('gitsigns').reset_hunk()<CR>", "Reset hunk" },
+			R = { "<cmd>lua require('gitsigns').reset_buffer()<CR>", "Reset buffer" },
 		},
 		t = {
 			name = "Open terminal",
@@ -217,6 +197,49 @@ RegisterMappings("w", {
 	},
 }, {
 	silent = false,
+})
+
+RegisterMappings("nic", {
+	["<C-c>"] = { "<ESC>" },
+	["<ESC>"] = { "<ESC>:noh<CR>" },
+}, {
+	noremap = false,
+})
+
+RegisterMappings("wit", {
+	-- make window navigation easier
+	["<C-h>"] = { "<ESC><C-w>h", "Move to left window" },
+	["<C-j>"] = { "<ESC><C-w>j", "Move to bottom window" },
+	["<C-k>"] = { "<ESC><C-w>k", "Move to top window" },
+	["<C-l>"] = { "<ESC><C-w>l", "Move to right window" },
+
+	-- resize using arrow keys
+	["<C-Left>"] = { "<cmd>vertical resize +3<CR>", "Scale window left" },
+	["<C-Right>"] = { "<cmd>vertical resize -3<CR>", "Scale window right" },
+	["<C-Up>"] = { "<cmd>resize +3<CR>", "Scale window up" },
+	["<C-Down>"] = { "<cmd>resize -3<CR>", "Scale window down" },
+
+	["<C-a>"] = { "<ESC>", "<ESC>" },
+})
+
+RegisterMappings("i", {
+	-- break undos
+	[","] = { ",<C-g>u" },
+	["."] = { ".<C-g>u" },
+	["!"] = { "!<C-g>u" },
+	["?"] = { "?<C-g>u" },
+
+	["<A-j>"] = { "<ESC>:m .+1<CR>==i" },
+	["<A-k>"] = { "<ESC>:m .-2<CR>==i" },
+})
+
+RegisterMappings("v", {
+	["<A-j>"] = { ":m '>+1<CR>gv=gv" },
+	["<A-k>"] = { ":m '<-2<CR>gv=gv" },
+	["<"] = { "<gv" },
+	[">"] = { ">gv" },
+	["<Leader>hs"] = { "<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
+	["<Leader>hr"] = { "<cmd>lua require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
 })
 
 DefineAugroup("general_settings", {

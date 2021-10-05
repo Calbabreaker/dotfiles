@@ -11,6 +11,14 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	},
 }
 
+local function on_attach(client)
+	-- turn off formatting for lsp if if null-ls already has one availiable
+	if NullLSGetAvail(client.filetype) ~= nil then
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
+	end
+end
+
 -- add aditional servers here that isn't in the installer or already installed (will only enable if exist)
 -- note that it will prefer ones with :LspInstall
 local aditional_servers = {
@@ -27,6 +35,7 @@ for _, server in pairs(installed_servers) do
 	aditional_servers[server.name] = nil
 	server:setup({
 		capabilities,
+		on_attach,
 	})
 end
 
@@ -34,6 +43,7 @@ for name, config in pairs(aditional_servers) do
 	local cmd = config.cmd or lspconfig[name].document_config.default_config.cmd
 	if CheckExist(cmd[1]) then
 		config.capabilities = capabilities
+		config.on_attach = on_attach
 		lspconfig[name].setup(config)
 	end
 end

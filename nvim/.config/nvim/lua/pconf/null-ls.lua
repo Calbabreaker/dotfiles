@@ -9,16 +9,30 @@ local sources = {
 	null_ls.builtins.formatting.stylua,
 }
 
+local filetype_to_source = {}
+
 -- only have source if exe exists
-AvailiableSources = {}
+local availiable_sources = {}
 for _, source in pairs(sources) do
 	if CheckExist(source.name) then
-		table.insert(AvailiableSources, source)
+		table.insert(availiable_sources, source)
+
+		-- create filetype_to_source table for faster NullLSGetAvail lookup
+		for _, filetype in pairs(source.filetypes) do
+			if filetype_to_source[filetype] == nil then
+				filetype_to_source[filetype] = {}
+			end
+			table.insert(filetype_to_source[filetype], source.name)
+		end
 	end
 end
 
+function NullLSGetAvail(filetype)
+	return filetype_to_source[filetype]
+end
+
 null_ls.config({
-	sources = AvailiableSources,
+	sources = availiable_sources,
 })
 
 require("lspconfig")["null-ls"].setup({})

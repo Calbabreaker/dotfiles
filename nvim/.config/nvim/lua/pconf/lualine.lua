@@ -1,5 +1,4 @@
 local colors = require("onedark.colors")
-local null_ls_config = require("null-ls.config")
 
 local function get_wordcount()
 	local wordcount = vim.fn.wordcount()
@@ -16,7 +15,6 @@ local function get_cols()
 end
 
 local function lsp()
-	local buffer_filetype = vim.bo.filetype
 	local client_names = {}
 
 	-- add lsp client
@@ -27,11 +25,7 @@ local function lsp()
 	end
 
 	-- add null-ls linter and formatter clients
-	for _, source in pairs(AvailiableSources) do
-		if vim.tbl_contains(source.filetypes, buffer_filetype) then
-			table.insert(client_names, source.name)
-		end
-	end
+	vim.list_extend(client_names, NullLSGetAvail(vim.bo.filetype))
 
 	local msg = "Inactive"
 	if #client_names ~= 0 then
