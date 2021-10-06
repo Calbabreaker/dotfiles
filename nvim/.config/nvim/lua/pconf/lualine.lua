@@ -10,11 +10,11 @@ local function get_wordcount()
 	return outwords .. " words"
 end
 
-local function get_cols()
-	return string.format("%d/%d", vim.fn.col("."), vim.fn.col("$"))
+local function get_ruler()
+	return string.format("%d:%d", vim.fn.line("."), vim.fn.col("."))
 end
 
-local function lsp()
+local function clients()
 	local client_names = {}
 
 	-- add lsp client
@@ -25,7 +25,7 @@ local function lsp()
 	end
 
 	-- add null-ls linter and formatter clients
-	vim.list_extend(client_names, NullLSGetAvail(vim.bo.filetype))
+	vim.list_extend(client_names, NullLSGetAvail(vim.bo.filetype) or {})
 
 	local msg = "Inactive"
 	if #client_names ~= 0 then
@@ -59,8 +59,8 @@ require("lualine").setup({
 	sections = {
 		lualine_b = { "branch", diff },
 		lualine_c = { "filename", diagnostics },
-		lualine_x = { lsp },
+		lualine_x = { clients },
 		lualine_y = { "filetype" },
-		lualine_z = { get_wordcount, get_cols, "progress" },
+		lualine_z = { get_wordcount, get_ruler, "progress" },
 	},
 })

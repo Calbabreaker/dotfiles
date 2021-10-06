@@ -3,13 +3,13 @@ return {
 		require("indent_blankline").setup({
 			char = "▏",
 			buftype_exclude = { "terminal" },
-			filetype_exclude = { "NvimTree", "help", "packer", "startify", "dashboard" },
+			filetype_exclude = { "NvimTree", "help", "packer", "startify", "dashboard", "man" },
 			show_current_context = true,
 			show_trailing_blankline_indent = false,
 		})
 
-		vim.api.nvim_command("highlight IndentBlanklineChar guifg=#555555 gui=nocombine")
-		vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#bbbbbb gui=nocombine")
+		vim.api.nvim_command("highlight IndentBlanklineChar guifg=#424855 gui=nocombine")
+		vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#7e889e gui=nocombine")
 	end,
 
 	colorizer = function()

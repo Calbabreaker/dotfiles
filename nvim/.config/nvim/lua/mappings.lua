@@ -151,7 +151,7 @@ RegisterMappings("w", {
 			s = { "<cmd>Telescope<CR>", "Search for Telescope functions" },
 			t = { "<cmd>Telescope live_grep<CR>", "Search for text" },
 			c = {
-				"<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})",
+				"<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
 				"Search and select color scheme",
 			},
 			r = { "<cmd>Telescope commands<CR>", "Search and run command" },
