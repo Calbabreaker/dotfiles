@@ -2,7 +2,7 @@
 local install_path = DATA_PATH .. "/site/pack/packer/start/packer.nvim"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+	vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path, "--depth=1" })
 	vim.api.nvim_command("packadd packer.nvim")
 end
 local packer = require("packer")
@@ -135,34 +135,37 @@ use({
 
 -- autocomplete
 use({
-	"hrsh7th/nvim-compe",
-	event = "InsertEnter",
+	"hrsh7th/nvim-cmp",
+	requires = {
+		{
+			"L3MON4D3/LuaSnip",
+			config = function()
+				require("pconf/luasnip")
+			end,
+		},
+		"saadparwaiz1/cmp_luasnip",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-calc",
+	},
 	config = function()
-		require("pconf/compe")
-	end,
-})
-
-use({
-	"windwp/nvim-autopairs",
-	after = "nvim-compe",
-	config = function()
-		require("pconf/other").autopairs()
-	end,
-})
-
--- snippet support
-use({
-	"hrsh7th/vim-vsnip",
-	after = "nvim-compe",
-	config = function()
-		vim.g.vsnip_snippet_dir = CONFIG_PATH .. "/vsnip/"
+		require("pconf/cmp")
 	end,
 })
 
 -- cool snippets
 use({
 	"rafamadriz/friendly-snippets",
-	after = "vim-vsnip",
+	after = "LuaSnip",
+})
+
+use({
+	"windwp/nvim-autopairs",
+	after = "nvim-cmp",
+	config = function()
+		require("pconf/other").autopairs()
+	end,
 })
 
 -- nice syntax highlight

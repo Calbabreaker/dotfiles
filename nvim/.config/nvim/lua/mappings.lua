@@ -64,6 +64,7 @@ RegisterMappings("w", {
 	["<C-e>"] = { "<cmd>ToggleTree<CR>", "Toggle file explorer" },
 	["<C-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer" },
 	["<C-t>"] = { "<cmd>execute v:count . 'ToggleTerm'<CR>", "Toggle terminal" },
+	["<A-u>"] = { "<cmd>edit!<CR>", "Revert all edits since saved" },
 
 	-- lsp
 	["[g"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to next diagnostic" },
