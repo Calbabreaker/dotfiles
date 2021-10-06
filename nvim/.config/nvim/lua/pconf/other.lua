@@ -40,5 +40,8 @@ return {
 		-- disable end of buffer chars
 		vim.api.nvim_command("highlight EndOfBuffer guifg=" .. colors.bg0)
 		vim.api.nvim_command("highlight NvimTreeEndOfBuffer guifg=" .. colors.bg_d)
+
+		vim.api.nvim_command("highlight DiagnosticError guifg=LspDiagnosticsDefaultError")
+		vim.api.nvim_command("highlight DiagnosticHint guifg=LspDiagnosticsDefaultHint")
 	end,
 }

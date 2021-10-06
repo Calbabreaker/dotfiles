@@ -10,7 +10,6 @@ local feedkey = function(key)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
 end
 
-local luasnip = require("luasnip")
 local cmp = require("cmp")
 
 local completion_icons = {
@@ -49,6 +48,7 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
 		["<Tab>"] = cmp.mapping(function(fallback)
+			local luasnip = require("luasnip")
 			if vim.fn.pumvisible() == 1 then
 				feedkey("<C-n>")
 			elseif luasnip.expand_or_jumpable() then
@@ -64,6 +64,7 @@ cmp.setup({
 		}),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
+			local luasnip = require("luasnip")
 			if vim.fn.pumvisible() == 1 then
 				feedkey("<C-p>")
 			elseif luasnip.jumpable(-1) then
@@ -96,7 +97,6 @@ cmp.setup({
 			vim_item.kind = completion_icons[vim_item.kind]
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
-				emoji = "[Emoji]",
 				path = "[Path]",
 				calc = "[Calc]",
 				luasnip = "[Snippet]",

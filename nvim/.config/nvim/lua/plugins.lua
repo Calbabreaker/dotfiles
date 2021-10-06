@@ -28,10 +28,17 @@ use("wbthomason/packer.nvim") -- packer plugin stuff
 use("nvim-lua/plenary.nvim") -- lua utils
 use("kyazdani42/nvim-web-devicons") -- nice icons
 
+-- colour scheme
+use({
+	"navarasu/onedark.nvim",
+	config = function()
+		require("pconf/other").colorscheme()
+	end,
+})
+
 -- start menu
 use({
 	"glepnir/dashboard-nvim",
-	event = "BufWinEnter",
 	config = function()
 		require("pconf/dashboard")
 	end,
@@ -46,6 +53,12 @@ use({
 	end,
 })
 
+-- nice git integration
+use({
+	"tpope/vim-fugitive",
+	cmd = { "Git", "Gread" },
+})
+
 -- cool status line
 use({
 	-- "hoob3rt/lualine.nvim",
@@ -53,20 +66,6 @@ use({
 	after = "nvim-lspconfig",
 	config = function()
 		require("pconf/lualine")
-	end,
-})
-
--- nice git integration
-use({
-	"tpope/vim-fugitive",
-	cmd = { "Git", "Gread" },
-})
-
--- colour scheme
-use({
-	"navarasu/onedark.nvim",
-	config = function()
-		require("pconf/other").colorscheme()
 	end,
 })
 
@@ -92,7 +91,7 @@ use({
 -- cool tabs
 use({
 	"romgrk/barbar.nvim",
-	event = "BufWinEnter",
+	event = "BufRead",
 })
 
 -- show keybinds
@@ -124,33 +123,35 @@ use({
 	end,
 })
 
+-- autocomplete
+use({
+	"hrsh7th/nvim-cmp",
+	event = "InsertEnter",
+	config = function()
+		require("pconf/cmp")
+	end,
+})
+
+use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
+use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
+use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
+use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
+use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
+
 -- view parameters and signitures
 use({
 	"ray-x/lsp_signature.nvim",
-	after = "nvim-lspconfig",
+	after = "nvim-cmp",
 	config = function()
 		require("lsp_signature").setup()
 	end,
 })
 
--- autocomplete
+-- snippet support
 use({
-	"hrsh7th/nvim-cmp",
-	requires = {
-		{
-			"L3MON4D3/LuaSnip",
-			config = function()
-				require("pconf/luasnip")
-			end,
-		},
-		"saadparwaiz1/cmp_luasnip",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-calc",
-	},
+	"L3MON4D3/LuaSnip",
 	config = function()
-		require("pconf/cmp")
+		require("pconf/luasnip")
 	end,
 })
 
@@ -172,8 +173,8 @@ use({
 use({
 	"nvim-treesitter/nvim-treesitter",
 	requires = {
-		{ "JoosepAlviste/nvim-ts-context-commentstring" },
-		{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	config = function()
 		require("pconf/treesitter")
@@ -183,7 +184,10 @@ use({
 -- debugging
 use({
 	"mfussenegger/nvim-dap",
-	event = "BufWinEnter",
+	requires = {
+		"Pocco81/DAPInstall.nvim",
+	},
+	event = "BufRead",
 	config = function()
 		require("pconf/dap")
 	end,
@@ -213,7 +217,7 @@ use({
 -- indent indicators
 use({
 	"lukas-reineke/indent-blankline.nvim",
-	event = "BufWinEnter",
+	event = "BufRead",
 	config = function()
 		require("pconf/other").blankline()
 	end,
@@ -229,6 +233,6 @@ use({
 
 use("christoomey/vim-sort-motion") -- sorts lines
 use("tpope/vim-repeat") -- able to repeat plugin maps
-use("tpope/vim-surround") -- easily edit (), "", etc
+use("tpope/vim-surround") -- easily edit and make (), "", etc
 use("tpope/vim-commentary") -- toggle comments with motions
 use("vim-scripts/replacewithregister") -- use motion to replace with clipboard

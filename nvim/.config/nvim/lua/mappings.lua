@@ -62,7 +62,6 @@ RegisterMappings("w", {
 	["<A-s>"] = { "<cmd>noa w<CR>", "Save without formatting" },
 	["<C-x>"] = { "<cmd>x<CR>", "Save and quit" },
 	["<C-e>"] = { "<cmd>ToggleTree<CR>", "Toggle file explorer" },
-	["<C-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer" },
 	["<C-t>"] = { "<cmd>execute v:count . 'ToggleTerm'<CR>", "Toggle terminal" },
 	["<A-u>"] = { "<cmd>edit!<CR>", "Revert all edits since saved" },
 
@@ -71,11 +70,11 @@ RegisterMappings("w", {
 	["]g"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Go to previous diagnostic" },
 	["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 	["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-	["gi"] = { ":lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
-	["gR"] = { ":lua vim.lsp.buf.references()<CR>", "Populate local list with references" },
+	["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
+	["gR"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Populate local list with references" },
 	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show signature (hover)" },
-	["<space>D"] = { ":lua vim.lsp.buf.type_definition()<CR>" },
-	["<space>d"] = { ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+	["<space>D"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
+	["<space>d"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
 
 	-- git gutter
 	["]h"] = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "Next git hunk" },
@@ -168,12 +167,6 @@ RegisterMappings("w", {
 			D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Show workspace diagnostics" },
 			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Show document symbols" },
 			S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Show workspace symbols" },
-			p = {
-				name = "Peek",
-				d = { "<cmd>lua require('lsp.peek').Peek('definition')<CR>", "Peek definition" },
-				t = { "<cmd>lua require('lsp.peek').Peek('typeDefinition')<CR>", "Peek type Definition" },
-				i = { "<cmd>lua require('lsp.peek').Peek('implementation')<CR>", "Peek implementation" },
-			},
 		},
 		p = {
 			name = "Packer (plugin manager)",
@@ -183,6 +176,7 @@ RegisterMappings("w", {
 		d = {
 			name = "Debugger",
 			t = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Toggle break point" },
+			l = { "<cmd>lua require('dap').list_breakpoints()<CR>", "List breakpoints in quick fix" },
 			b = { "<cmd>lua require('dap').step_back()<CR>", "Step back" },
 			c = { "<cmd>lua require('dap').continue()<CR>", "Continue/start debug" },
 			C = { "<cmd>lua require('dap').run_to_cursor()<CR>", "Run until breakpoint" },
@@ -229,6 +223,7 @@ RegisterMappings("i", {
 	["."] = { ".<C-g>u" },
 	["!"] = { "!<C-g>u" },
 	["?"] = { "?<C-g>u" },
+	["("] = { "(<C-g>u" },
 
 	["<A-j>"] = { "<ESC>:m .+1<CR>==i" },
 	["<A-k>"] = { "<ESC>:m .-2<CR>==i" },

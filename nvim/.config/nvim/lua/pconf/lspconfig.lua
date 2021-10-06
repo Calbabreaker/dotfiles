@@ -13,7 +13,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 local function on_attach(client)
 	-- turn off formatting for lsp if if null-ls already has one availiable
-	if NullLSGetAvail(client.filetype) ~= nil then
+	if NullLSGetAvail(vim.bo.filetype) ~= nil then
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
 	end
