@@ -1,8 +1,12 @@
 local null_ls = require("null-ls")
 
+vim.env.PRETTIERD_DEFAULT_CONFIG = CONFIG_PATH .. "/lua/configs/.prettierrc.json"
+
+local clang_format_config = [[{
+}]]
+
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
-	null_ls.builtins.diagnostics.write_good,
 	null_ls.builtins.formatting.clang_format,
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.prettierd,
@@ -14,7 +18,7 @@ local filetype_to_source = {}
 -- only have source if exe exists
 local availiable_sources = {}
 for _, source in pairs(sources) do
-	if CheckExist(source.name) then
+	if vim.fn.executable(source.name) then
 		table.insert(availiable_sources, source)
 
 		-- create filetype_to_source table for faster NullLSGetAvail lookup

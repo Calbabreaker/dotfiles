@@ -17,13 +17,6 @@ packer.init({
 local use = packer.use
 packer.reset()
 
--- check if binary/executable exist
-function CheckExist(binary)
-	local cmd = string.format("command -v %s > /dev/null && printf exist", binary)
-	local output = io.popen(cmd):read("*a")
-	return output == "exist"
-end
-
 use("wbthomason/packer.nvim") -- packer plugin stuff
 use("kyazdani42/nvim-web-devicons") -- nice icons
 use("nvim-lua/plenary.nvim") -- lua utils
@@ -33,7 +26,7 @@ use("nvim-lua/popup.nvim") -- popup lib
 use({
 	"navarasu/onedark.nvim",
 	config = function()
-		require("pconf/other").colorscheme()
+		require("configs/other").colorscheme()
 	end,
 })
 
@@ -41,7 +34,7 @@ use({
 use({
 	"glepnir/dashboard-nvim",
 	config = function()
-		require("pconf/dashboard")
+		require("configs/dashboard")
 	end,
 })
 
@@ -66,7 +59,7 @@ use({
 	"shadmansaleh/lualine.nvim",
 	after = "nvim-lspconfig",
 	config = function()
-		require("pconf/lualine")
+		require("configs/lualine")
 	end,
 })
 
@@ -75,7 +68,7 @@ use({
 	"kyazdani42/nvim-tree.lua",
 	cmd = "ToggleTree",
 	config = function()
-		require("pconf/tree")
+		require("configs/tree")
 	end,
 })
 
@@ -84,7 +77,7 @@ use({
 	"nvim-telescope/telescope.nvim",
 	cmd = { "Telescope" },
 	config = function()
-		require("pconf/telescope")
+		require("configs/telescope")
 	end,
 })
 
@@ -107,7 +100,7 @@ use({
 	"neovim/nvim-lspconfig",
 	requires = "williamboman/nvim-lsp-installer",
 	config = function()
-		require("pconf/lspconfig")
+		require("configs/lspconfig")
 	end,
 })
 
@@ -115,7 +108,7 @@ use({
 	"glepnir/lspsaga.nvim",
 	after = "nvim-lspconfig",
 	config = function()
-		require("pconf/other").lspsaga()
+		require("configs/other").lspsaga()
 	end,
 })
 
@@ -124,7 +117,7 @@ use({
 	"jose-elias-alvarez/null-ls.nvim",
 	after = "nvim-lspconfig",
 	config = function()
-		require("pconf/null-ls")
+		require("configs/null-ls")
 	end,
 })
 
@@ -133,7 +126,7 @@ use({
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	config = function()
-		require("pconf/cmp")
+		require("configs/cmp")
 	end,
 })
 
@@ -154,7 +147,7 @@ use({
 use({
 	"L3MON4D3/LuaSnip",
 	config = function()
-		require("pconf/luasnip")
+		require("configs/luasnip")
 	end,
 })
 
@@ -168,7 +161,7 @@ use({
 	"windwp/nvim-autopairs",
 	after = "nvim-cmp",
 	config = function()
-		require("pconf/other").autopairs()
+		require("configs/other").autopairs()
 	end,
 })
 
@@ -180,7 +173,7 @@ use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	config = function()
-		require("pconf/treesitter")
+		require("configs/treesitter")
 	end,
 })
 
@@ -201,7 +194,7 @@ use({
 use({
 	"norcalli/nvim-colorizer.lua",
 	config = function()
-		require("pconf/other").colorizer()
+		require("configs/other").colorizer()
 	end,
 })
 
@@ -210,7 +203,7 @@ use({
 	"lukas-reineke/indent-blankline.nvim",
 	event = "BufWinEnter",
 	config = function()
-		require("pconf/other").blankline()
+		require("configs/other").blankline()
 	end,
 })
 
