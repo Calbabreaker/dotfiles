@@ -42,3 +42,4 @@ telescope.setup({
 })
 
 telescope.load_extension("projects")
+telescope.load_extension("fzy_native")

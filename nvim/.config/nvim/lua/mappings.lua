@@ -73,11 +73,9 @@ RegisterMappings("w", {
 	["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
 	["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
 	["gR"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Populate local list with references" },
-	["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Show signature (hover)" },
+	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show signature (hover)" },
 	["<space>D"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
 	["<space>d"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
-	["<C-f>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", "Scroll up in hover" },
-	["<C-b>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", "Scroll up in hover" },
 
 	-- git gutter
 	["]h"] = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "Next git hunk" },
@@ -162,16 +160,14 @@ RegisterMappings("w", {
 		l = {
 			name = "LSP",
 			f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer" },
-			a = { "<cmd>Lspsaga code_action<CR>", "Code action" },
-			r = { "<cmd>Lspsaga rename<CR>", "Rename symbol" },
+			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" },
+			r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
 			q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "Populate quick fix list with diagnostics" },
 			i = { "<cmd>LspInfo<CR>", "Show LSP info" },
 			d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Show document diagnostics" },
 			D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Show workspace diagnostics" },
 			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Show document symbols" },
 			S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Show workspace symbols" },
-			l = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show line diagnostics" },
-			p = { "<cmd>Lspsaga lsp_finder<cr>", "Preview definition and references" },
 		},
 		p = {
 			name = "Packer (plugin manager)",

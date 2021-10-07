@@ -24,7 +24,7 @@ vim.o.termguicolors = true -- enable true colour for terminal
 vim.o.timeoutlen = 500 -- timeout to wait for a key combination to complete
 vim.o.undodir = DATA_PATH .. "/undo" -- set an undo directory
 vim.o.undofile = true -- persistent undos
-vim.o.updatetime = 500 -- how often updates happen
+vim.o.updatetime = 100 -- how often updates happen
 vim.o.wrap = false -- no line wrapping
 vim.o.writebackup = true -- don't make backup files
 

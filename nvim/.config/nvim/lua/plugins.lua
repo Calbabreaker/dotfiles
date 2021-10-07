@@ -80,6 +80,7 @@ use({
 -- fuzzy finding
 use({
 	"nvim-telescope/telescope.nvim",
+	requires = { "nvim-telescope/telescope-fzy-native.nvim" },
 	cmd = { "Telescope" },
 	config = function()
 		require("configs/telescope")
@@ -106,14 +107,6 @@ use({
 	requires = "williamboman/nvim-lsp-installer",
 	config = function()
 		require("configs/lspconfig")
-	end,
-})
-
-use({
-	"glepnir/lspsaga.nvim",
-	after = "nvim-lspconfig",
-	config = function()
-		require("configs/other").lspsaga()
 	end,
 })
 

@@ -46,13 +46,4 @@ return {
 
 		vim.api.nvim_command("highlight TabLineSel guibg=TabLineFill guifg=TabLineFill")
 	end,
-
-	lspsaga = function()
-		require("lspsaga").init_lsp_saga({
-			error_sign = "",
-			warn_sign = "",
-			hint_sign = "",
-			infor_sign = "",
-		})
-	end,
 }
