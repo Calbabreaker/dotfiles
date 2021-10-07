@@ -43,6 +43,8 @@ return {
 
 		vim.api.nvim_command("highlight DiagnosticError guifg=LspDiagnosticsDefaultError")
 		vim.api.nvim_command("highlight DiagnosticHint guifg=LspDiagnosticsDefaultHint")
+
+		vim.api.nvim_command("highlight TabLineSel guibg=TabLineFill guifg=TabLineFill")
 	end,
 
 	lspsaga = function()

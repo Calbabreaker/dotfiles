@@ -145,7 +145,6 @@ use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 -- view parameters and signitures
 use({
 	"ray-x/lsp_signature.nvim",
-	after = "nvim-cmp",
 	config = function()
 		require("lsp_signature").setup()
 	end,
