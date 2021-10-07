@@ -25,7 +25,9 @@ local function clients()
 	end
 
 	-- add null-ls linter and formatter clients
-	vim.list_extend(client_names, NullLSGetAvail(vim.bo.filetype) or {})
+	if NullLSGetAvail ~= nil then
+		vim.list_extend(client_names, NullLSGetAvail(vim.bo.filetype) or {})
+	end
 
 	local msg = "Inactive"
 	if #client_names ~= 0 then
@@ -52,7 +54,7 @@ local diff = {
 require("lualine").setup({
 	options = {
 		theme = "onedark",
-		disabled_filetypes = { "NvimTree", "packer" },
+		disabled_filetypes = { "NvimTree", "packer", "dashboard" },
 		section_separators = { left = "", right = "" },
 		component_separators = { left = "│", right = "│" },
 	},

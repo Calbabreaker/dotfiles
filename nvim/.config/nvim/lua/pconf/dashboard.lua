@@ -10,24 +10,24 @@ vim.g.dashboard_custom_header = {
 }
 
 vim.g.dashboard_custom_section = {
-	recent_projects = {
+	a = {
 		description = { "  Recent Projects             SPC S P" },
 		command = "Telescope projects",
 	},
-	find_files = {
-		description = { "  Find File                   SPC F  " },
-		command = "Telescope find_files",
-	},
-	recent_files = {
+	b = {
 		description = { "  Recently Opened Files       SPC S O" },
 		command = "Telescope oldfiles",
 	},
-	find_word = {
-		description = { "  Find Text                   SPC S T" },
-		command = "Telescope live_grep",
-	},
-	new_file = {
+	d = {
 		description = { "  New File                    SPC B N" },
 		command = "enew",
+	},
+	e = {
+		description = { "  Find File                   SPC F  " },
+		command = "Telescope find_files",
+	},
+	f = {
+		description = { "  Find Text                   SPC S T" },
+		command = "Telescope live_grep",
 	},
 }

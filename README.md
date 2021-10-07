@@ -36,6 +36,7 @@ To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 
 ![nvim-screenshot0](./.github/nvim-screenshot0.png)
 ![nvim-screenshot1](./.github/nvim-screenshot1.png)
+![nvim-screenshot2](./.github/nvim-screenshot2.png)
 
 By default no language servers or treesitter parsers are installed.
 Install a treesitter parser using `:TSInstall language-name` (e.g. `:TSInstall javascript`)

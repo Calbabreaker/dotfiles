@@ -25,8 +25,9 @@ function CheckExist(binary)
 end
 
 use("wbthomason/packer.nvim") -- packer plugin stuff
-use("nvim-lua/plenary.nvim") -- lua utils
 use("kyazdani42/nvim-web-devicons") -- nice icons
+use("nvim-lua/plenary.nvim") -- lua utils
+use("nvim-lua/popup.nvim") -- popup lib
 
 -- colour scheme
 use({
@@ -81,7 +82,6 @@ use({
 -- fuzzy finding
 use({
 	"nvim-telescope/telescope.nvim",
-	requires = "nvim-lua/popup.nvim",
 	cmd = { "Telescope" },
 	config = function()
 		require("pconf/telescope")
@@ -89,10 +89,7 @@ use({
 })
 
 -- cool tabs
-use({
-	"romgrk/barbar.nvim",
-	event = "BufRead",
-})
+use("romgrk/barbar.nvim")
 
 -- show keybinds
 use({
@@ -111,6 +108,14 @@ use({
 	requires = "williamboman/nvim-lsp-installer",
 	config = function()
 		require("pconf/lspconfig")
+	end,
+})
+
+use({
+	"glepnir/lspsaga.nvim",
+	after = "nvim-lspconfig",
+	config = function()
+		require("pconf/other").lspsaga()
 	end,
 })
 
@@ -136,7 +141,6 @@ use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
 use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
-use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
 
 -- view parameters and signitures
 use({
@@ -181,18 +185,6 @@ use({
 	end,
 })
 
--- debugging
-use({
-	"mfussenegger/nvim-dap",
-	requires = {
-		"Pocco81/DAPInstall.nvim",
-	},
-	event = "BufRead",
-	config = function()
-		require("pconf/dap")
-	end,
-})
-
 --
 -- Small qol plugins
 --
@@ -217,7 +209,7 @@ use({
 -- indent indicators
 use({
 	"lukas-reineke/indent-blankline.nvim",
-	event = "BufRead",
+	event = "BufWinEnter",
 	config = function()
 		require("pconf/other").blankline()
 	end,

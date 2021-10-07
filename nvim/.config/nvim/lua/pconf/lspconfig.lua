@@ -47,11 +47,3 @@ for name, config in pairs(aditional_servers) do
 		lspconfig[name].setup(config)
 	end
 end
-
-vim.fn.sign_define("LspDiagnosticsSignError", { text = " ", texthl = "LspDiagnosticsSignError", numhl = "" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text = " ", texthl = "LspDiagnosticsSignWarning", numhl = "" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text = " ", texthl = "LspDiagnosticsSignHint", numhl = "" })
-vim.fn.sign_define(
-	"LspDiagnosticsSignInformation",
-	{ text = " ", texthl = "LspDiagnosticsSignInformation", numhl = "" }
-)

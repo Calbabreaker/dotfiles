@@ -60,21 +60,24 @@ RegisterMappings("w", {
 	-- general
 	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
 	["<A-s>"] = { "<cmd>noa w<CR>", "Save without formatting" },
-	["<C-x>"] = { "<cmd>x<CR>", "Save and quit" },
+	["<A-x>"] = { "<cmd>x<CR>", "Save and quit" },
+	["<A-q>"] = { "<cmd>qa!<CR>", "Quit without saving" },
 	["<C-e>"] = { "<cmd>ToggleTree<CR>", "Toggle file explorer" },
 	["<C-t>"] = { "<cmd>execute v:count . 'ToggleTerm'<CR>", "Toggle terminal" },
 	["<A-u>"] = { "<cmd>edit!<CR>", "Revert all edits since saved" },
 
 	-- lsp
-	["[g"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to next diagnostic" },
-	["]g"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Go to previous diagnostic" },
+	["]g"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Go to previous diagnostic" },
+	["[g"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Go to next diagnostic" },
 	["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 	["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
 	["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
 	["gR"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Populate local list with references" },
-	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show signature (hover)" },
+	["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Show signature (hover)" },
 	["<space>D"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
 	["<space>d"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+	["<C-f>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", "Scroll up in hover" },
+	["<C-b>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", "Scroll up in hover" },
 
 	-- git gutter
 	["]h"] = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "Next git hunk" },
@@ -159,36 +162,23 @@ RegisterMappings("w", {
 		l = {
 			name = "LSP",
 			f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer" },
-			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" },
-			r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
+			a = { "<cmd>Lspsaga code_action<CR>", "Code action" },
+			r = { "<cmd>Lspsaga rename<CR>", "Rename symbol" },
 			q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "Populate quick fix list with diagnostics" },
 			i = { "<cmd>LspInfo<CR>", "Show LSP info" },
 			d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Show document diagnostics" },
 			D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Show workspace diagnostics" },
 			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Show document symbols" },
 			S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Show workspace symbols" },
+			l = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show line diagnostics" },
+			p = { "<cmd>Lspsaga lsp_finder<cr>", "Preview definition and references" },
 		},
 		p = {
 			name = "Packer (plugin manager)",
 			s = { "<cmd>PackerSync<CR>", "Packer sync" },
 			i = { "<cmd>PackerStatus<CR>", "Packer plugin info" },
 		},
-		d = {
-			name = "Debugger",
-			t = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Toggle break point" },
-			l = { "<cmd>lua require('dap').list_breakpoints()<CR>", "List breakpoints in quick fix" },
-			b = { "<cmd>lua require('dap').step_back()<CR>", "Step back" },
-			c = { "<cmd>lua require('dap').continue()<CR>", "Continue/start debug" },
-			C = { "<cmd>lua require('dap').run_to_cursor()<CR>", "Run until breakpoint" },
-			d = { "<cmd>lua require('dap').disconnect()<CR>", "Disconnect" },
-			g = { "<cmd>lua require('dap').session()<CR>", "Get session" },
-			i = { "<cmd>lua require('dap').step_into()<CR>", "Step into" },
-			o = { "<cmd>lua require('dap').step_over()<CR>", "Step over" },
-			u = { "<cmd>lua require('dap').step_out()<CR>", "Step out" },
-			p = { "<cmd>lua require('dap').pause.toggle()<CR>", "Toggle paused" },
-			r = { "<cmd>lua require('dap').repl.toggle()<CR>", "Toggle repl" },
-			q = { "<cmd>lua require('dap').close()<CR>", "Quit debugger" },
-		},
+		[";"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
 	},
 }, {
 	silent = false,
@@ -214,7 +204,7 @@ RegisterMappings("wit", {
 	["<C-Up>"] = { "<cmd>resize +3<CR>", "Scale window up" },
 	["<C-Down>"] = { "<cmd>resize -3<CR>", "Scale window down" },
 
-	["<C-a>"] = { "<ESC>", "<ESC>" },
+	["<C-z>"] = { "<ESC>", "<ESC>" },
 })
 
 RegisterMappings("i", {
@@ -241,6 +231,10 @@ RegisterMappings("v", {
 DefineAugroup("general_settings", {
 	"BufWritePre * :silent lua vim.lsp.buf.formatting_sync()",
 	"FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
+
+	-- hide stuff when dashboard is open
+	"FileType dashboard set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2",
+	"FileType dashboard set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2",
 
 	-- When editing a file, always jump to the last known cursor position.
 	-- Don't do it when the position is invalid, when inside an event handler

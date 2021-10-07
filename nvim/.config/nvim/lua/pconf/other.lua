@@ -44,4 +44,13 @@ return {
 		vim.api.nvim_command("highlight DiagnosticError guifg=LspDiagnosticsDefaultError")
 		vim.api.nvim_command("highlight DiagnosticHint guifg=LspDiagnosticsDefaultHint")
 	end,
+
+	lspsaga = function()
+		require("lspsaga").init_lsp_saga({
+			error_sign = "",
+			warn_sign = "",
+			hint_sign = "",
+			infor_sign = "",
+		})
+	end,
 }
