@@ -12,6 +12,11 @@ packer.init({
 		cmd = "git",
 		depth = 1,
 	},
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "rounded" })
+		end,
+	},
 })
 
 local use = packer.use
