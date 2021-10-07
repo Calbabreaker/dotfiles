@@ -41,7 +41,7 @@ end
 
 for name, config in pairs(aditional_servers) do
 	local cmd = config.cmd or lspconfig[name].document_config.default_config.cmd
-	if vim.fn.executable(cmd[1]) then
+	if vim.fn.executable(cmd[1]) == 1 then
 		config.capabilities = capabilities
 		config.on_attach = on_attach
 		lspconfig[name].setup(config)
