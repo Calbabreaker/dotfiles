@@ -1,13 +1,13 @@
 live_config_reload: true
 
 background_opacity: 0.9
- 
+
 font:
-  normal:
-    family: SauceCodePro Nerd Font
-    style: Regular
- 
-  size: 10
- 
+    normal:
+        family: SauceCodePro Nerd Font
+        style: Regular
+
+    size: 10
+
 mouse:
     hide_when_typing: true

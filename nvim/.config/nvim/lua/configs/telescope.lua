@@ -5,7 +5,7 @@ actions.select_default:replace("")
 
 telescope.setup({
 	defaults = {
-		file_ignore_patterns = { ".gitignore", ".git/", "yarn.lock", "package-lock.json" },
+		file_ignore_patterns = { ".git/", "yarn.lock", "package-lock.json" },
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
