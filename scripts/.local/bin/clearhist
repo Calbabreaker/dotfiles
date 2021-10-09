@@ -7,7 +7,7 @@
 
 chromium &
 sleep 2
-xdotool key Control+L 
+xdotool key Control+l 
 xdotool type --delay 0 "chrome://settings/clearBrowserData"
 xdotool key Enter
 
@@ -18,3 +18,5 @@ for i in {1..4}; do
 done
 
 xdotool key Enter
+sleep 1
+xdotool key Control+w

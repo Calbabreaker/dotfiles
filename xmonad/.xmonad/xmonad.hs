@@ -21,7 +21,6 @@ import XMonad.Layout.Fullscreen (fullscreenFull, fullscreenSupport)
 import XMonad.Layout.Grid (Grid(..))
 import XMonad.Layout.NoBorders (noBorders, smartBorders)
 import XMonad.Layout.Spiral
-import XMonad.Layout.ToggleLayouts
 
 -- Utils
 import XMonad.Util.EZConfig (additionalKeysP)
@@ -113,7 +112,7 @@ myKeys =
     , ("M-z", toggleWS) -- Switch to window that was focused last
 
     , ("M-<Space>", sendMessage NextLayout) -- Switch to next available layout
-    , ("M-S-<Space>", sendMessage (Toggle "Full") >> sendMessage ToggleStruts) -- Toggles noborder/full
+    , ("M-S-<Space>", sendMessage ToggleStruts) -- Toggles noborder/full
     , ("M-t", withFocused $ windows . W.sink) -- Push floating window back to tilling
     , ("M-S-t", sinkAll) -- Push all floating windows to tilling
     , ("M-f", withFocused floatCenter)
@@ -166,7 +165,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = smartBorders $ avoidStruts $ toggleLayouts (noBorders Full) $
+myLayout = smartBorders $ avoidStruts $
     Tall (1) (3/100) (1/2) ||| spiral (6/7) ||| Grid ||| Full
 
 ------------------------------------------------------------------------
