@@ -40,7 +40,8 @@ To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 
 By default no language servers or treesitter parsers are installed.
 Install a treesitter parser using `:TSInstall language-name` (e.g. `:TSInstall javascript`)
-and language server using `:LspInstall language-server` (e.g. `:LspInstall tsserver`). Press tab to see options.
+and language server using `:LspInstall language-server` (e.g. `:LspInstall tsserver`).
+Press tab to see options.
 
 [Prettierd](https://github.com/fsouza/prettierd) is needed to format
 JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`)
@@ -50,6 +51,7 @@ Run `:W` to see keybinds (there are a lot). Some basic keybinds are: `C-e`
 opens file explorer, `C-t` opens terminal.
 
 Might need to install `xsel` to make NeoVim work with system clipboard.
+`ripgrep` is needed in order to use telescope.
 
 ## Xmonad
 

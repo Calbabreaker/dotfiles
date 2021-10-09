@@ -27,6 +27,7 @@ vim.o.undofile = true -- persistent undos
 vim.o.updatetime = 100 -- how often updates happen
 vim.o.wrap = false -- no line wrapping
 vim.o.writebackup = true -- don't make backup files
+vim.o.fillchars = "vert:▎" -- use different character to make the border fit more nicely
 
 -- makes indent and tabs better
 vim.o.autoindent = true
