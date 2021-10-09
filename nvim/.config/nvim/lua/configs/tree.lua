@@ -37,7 +37,7 @@ function ToggleTree()
 		buffstate.set_offset(0)
 		nvimtree.close()
 	else
-		buffstate.set_offset(tree_width, "File Explorer")
+		buffstate.set_offset(tree_width + 1, "File Explorer")
 		nvimtree.find_file(true)
 	end
 end

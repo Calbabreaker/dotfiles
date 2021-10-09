@@ -38,8 +38,9 @@ return {
 
 		local colors = require("onedark/colors")
 		-- disable end of buffer chars
-		vim.api.nvim_command("highlight EndOfBuffer guifg=" .. colors.bg0)
+		vim.api.nvim_command("highlight EndOfBuffer guifg=bg")
 		vim.api.nvim_command("highlight NvimTreeEndOfBuffer guifg=" .. colors.bg_d)
+		vim.api.nvim_command(string.format("highlight NvimTreeVertSplit guifg=%s guibg=%s", colors.bg_d, colors.bg_d))
 
 		vim.api.nvim_command("highlight DiagnosticError guifg=LspDiagnosticsDefaultError")
 		vim.api.nvim_command("highlight DiagnosticHint guifg=LspDiagnosticsDefaultHint")
