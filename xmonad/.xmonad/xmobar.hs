@@ -1,6 +1,6 @@
 Config {
     -- appearance
-    font = "xft:RobotoMono Nerd Font:size=10:bold:antialias=true:hinting=true"
+    font = "xft:SauceCodePro Nerd Font:size=10:bold:antialias=true:hinting=true"
     , bgColor = "#1d2034"
     , fgColor = "#c1c1c1"
     , position = Top

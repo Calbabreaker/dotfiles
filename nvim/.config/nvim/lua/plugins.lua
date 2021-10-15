@@ -71,7 +71,6 @@ use({
 -- file explorer
 use({
 	"kyazdani42/nvim-tree.lua",
-	commit = "385f8c89e06e4b8951a9b5ed258016d5ff256cb4", -- #705 does some weird stuff with colour
 	cmd = "ToggleTree",
 	config = function()
 		require("configs/tree")

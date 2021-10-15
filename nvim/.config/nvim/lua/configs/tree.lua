@@ -24,7 +24,9 @@ local tree_width = 30
 
 nvimtree.setup({
 	auto_close = true,
-	lsp_diagnostics = true,
+	diagnostics = {
+        enable = true,
+    },
 	view = {
 		width = tree_width,
 		side = "left",

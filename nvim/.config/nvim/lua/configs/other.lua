@@ -34,17 +34,15 @@ return {
 	colorscheme = function()
 		vim.g.onedark_disable_terminal_colors = true
 		vim.g.onedark_darker_diagnostics = false
+        vim.g.onedark_hide_ending_tildes = true
 		vim.api.nvim_command("colorscheme onedark")
 
 		local colors = require("onedark/colors")
-		-- disable end of buffer chars
-		vim.api.nvim_command("highlight EndOfBuffer guifg=bg")
-		vim.api.nvim_command("highlight NvimTreeEndOfBuffer guifg=" .. colors.bg_d)
+
+		-- have one character border in nvim-tree to make it look good
 		vim.api.nvim_command(string.format("highlight NvimTreeVertSplit guifg=%s guibg=%s", colors.bg_d, colors.bg_d))
 
-		vim.api.nvim_command("highlight DiagnosticError guifg=LspDiagnosticsDefaultError")
-		vim.api.nvim_command("highlight DiagnosticHint guifg=LspDiagnosticsDefaultHint")
-
+        -- have unfocused tab not look weird
 		vim.api.nvim_command("highlight TabLineSel guibg=TabLineFill guifg=TabLineFill")
 	end,
 }
