@@ -77,7 +77,7 @@ myKeys =
     , ("M-S-q", io exitSuccess) -- Quits xmonad
 
     , ("M-<Return>", spawn myTerminal) -- Open new terminal
-    , ("M-S-<Return>", spawn "dmenu_run -i -p 'Run: '") -- Show dmenu prompt
+    , ("M-S-<Return>", spawn "dmenu_run -fn 'SauceCodePro Nerd Font:size=10' -i -p 'Run: '") -- Show dmenu prompt
     , ("M-b", spawn myBrowser) -- Open web browser
     , ("M-e", spawn myFileManager) -- Open file manager
     , ("M-S-l", spawn "light-locker-command -l") -- Lock screen with myScreensaver
