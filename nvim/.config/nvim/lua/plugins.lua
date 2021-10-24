@@ -60,8 +60,7 @@ use({
 
 -- cool status line
 use({
-	-- "hoob3rt/lualine.nvim",
-	"shadmansaleh/lualine.nvim",
+	"nvim-lualine/lualine.nvim",
 	after = "nvim-lspconfig",
 	config = function()
 		require("configs/lualine")

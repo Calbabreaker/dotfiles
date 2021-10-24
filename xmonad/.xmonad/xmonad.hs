@@ -93,8 +93,8 @@ myKeys =
     , ("M-S-k", windows W.swapUp) -- Swap the focused window with the previous window
     , ("M-m", windows W.focusMaster) -- Move focus to the master window
     , ("M-S-m", windows W.swapMaster) -- Swap the focused window and the master window
-    , ("M-S-<Up>", sendMessage (IncMasterN 1)) -- Increment the number of windows in the master area
-    , ("M-S-<Down>", sendMessage (IncMasterN (-1))) -- Deincrement the number of windows in the master area
+    , ("M-<Up>", sendMessage (IncMasterN 1)) -- Increment the number of windows in the master area
+    , ("M-<Down>", sendMessage (IncMasterN (-1))) -- Deincrement the number of windows in the master area
     , ("M-<Backspace>", promote) -- Moves focused window to master, others maintain order
 
     , ("M-r", refresh) -- Resize windows to the correct size
@@ -110,6 +110,11 @@ myKeys =
     , ("M-C-S-.", shiftNextScreen) -- Switch to next screen/monitor
     , ("M-C-S-,",  shiftPrevScreen) -- Switch to next screen/monitor
     , ("M-z", toggleWS) -- Switch to window that was focused last
+
+    , ("M-S-<Up>", spawn "xrandr --output eDP1 --rotate normal") -- rotate sreen normal
+    , ("M-S-<Down>", spawn "xrandr --output eDP1 --rotate inverted") -- rotate sreen normal
+    , ("M-S-<Left>", spawn "xrandr --output eDP1 --rotate left") -- rotate sreen left
+    , ("M-S-<Right>", spawn "xrandr --output eDP1 --rotate right") -- rotate sreen right
 
     , ("M-<Space>", sendMessage NextLayout) -- Switch to next available layout
     , ("M-S-<Space>", sendMessage ToggleStruts) -- Toggles noborder/full
