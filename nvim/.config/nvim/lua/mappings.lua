@@ -45,9 +45,7 @@ end
 
 -- main mappings
 RegisterMappings("w", {
-	-- Y and D copys (and deletes) the whole line without the line break
-	["Y"] = { "<cmd>call setreg('+', getline('.'))<CR>", "which_key_ignore" },
-	["D"] = { "<cmd>call setreg('+', getline('.'))<CR>\"_dd", "which_key_ignore" },
+	["Y"] = { "y$", "which_key_ignore" },
 
 	-- center cursor while moving
 	["n"] = { "nzzzv", "which_key_ignore" },
