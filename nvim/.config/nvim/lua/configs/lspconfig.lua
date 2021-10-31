@@ -27,17 +27,16 @@ local aditional_servers = {
 	html = {},
 	jsonls = {},
 	svelte = {},
-	tsserver = {},
 }
 
-local installed_servers = lsp_installer.get_installed_servers()
-for _, server in pairs(installed_servers) do
+lsp_installer.on_server_ready(function(server)
 	aditional_servers[server.name] = nil
 	server:setup({
-		capabilities,
-		on_attach,
+		capabilities = capabilities,
+		on_attach = on_attach,
 	})
-end
+	vim.cmd("do User LspAttachBuffers")
+end)
 
 for name, config in pairs(aditional_servers) do
 	local cmd = config.cmd or lspconfig[name].document_config.default_config.cmd

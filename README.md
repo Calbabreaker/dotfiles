@@ -19,7 +19,7 @@ stow zsh # zsh configurations
 stow nvim # NeoVim configurations
 ```
 
-NOTE: The plover directory **shouldn't** be ran with stow; run `plover/setup.sh` instead.
+NOTE: The plover directory **shouldn't** be ran with stow, run `plover/setup.sh` instead.
 
 To remove a dotfile:
 
@@ -30,7 +30,7 @@ stow -D scripts
 
 ## NeoVim
 
-Note: Requires NeoVim >= 0.5 and probably only works on unix.
+NOTE: Requires NeoVim >= 0.5 and probably only works on unix.
 
 To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
 
@@ -75,4 +75,5 @@ stow scripts
 
 ![zsh-screenshot0](./.github/zsh-screenshot0.png)
 
-Note: install Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
+NOTE: Need to install Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
+in order for it to work.
