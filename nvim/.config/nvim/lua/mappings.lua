@@ -62,7 +62,7 @@ RegisterMappings("w", {
 	["<C-e>"] = { "<cmd>ToggleTree<CR>", "Toggle file explorer" },
 	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
 	["<C-t>"] = { "<cmd>execute v:count . 'ToggleTerm'<CR>", "Toggle terminal" },
-    ["<A-r>"] = { "<cmd>e", "Refresh file" },
+	["<A-r>"] = { "<cmd>e<CR>", "Refresh file" },
 	["<A-u>"] = { "<cmd>edit!<CR>", "Revert all edits since saved" },
 
 	-- lsp

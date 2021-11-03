@@ -24,9 +24,6 @@ end
 local aditional_servers = {
 	clangd = {},
 	gdscript = {},
-	html = {},
-	jsonls = {},
-	svelte = {},
 }
 
 lsp_installer.on_server_ready(function(server)

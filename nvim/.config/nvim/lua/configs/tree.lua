@@ -1,8 +1,6 @@
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
-vim.g.nvim_tree_disable_window_picker = 1
 
 vim.g.nvim_tree_show_icons = {
 	git = 0,
@@ -25,12 +23,16 @@ local tree_width = 30
 nvimtree.setup({
 	auto_close = true,
 	diagnostics = {
-        enable = true,
-    },
+		enable = true,
+	},
 	view = {
 		width = tree_width,
 		side = "left",
 		auto_resize = false,
+	},
+	filters = {
+		dotfiles = false,
+		custom = { ".git", "node_modules", ".cache" },
 	},
 })
 

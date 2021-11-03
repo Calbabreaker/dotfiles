@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#
+# converts npm commands to pnpm for stuff that uses npm only
+#
+
+first_arg=$( [ ! -z $2 ] && [ "$1" = "install" ] || [ "$1" = "i" ] && echo add || echo $1 )
+rest_args=${@:2}
+pnpm $first_arg $rest_args
