@@ -21,6 +21,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export KDEHOME="$XDG_CONFIG_HOME/kde"
 export LESSHISTFILE=- # disable completely
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export PYTHONHISTFILE="$XDG_DATA_HOME/python_history"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default

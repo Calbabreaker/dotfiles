@@ -56,12 +56,13 @@ RegisterMappings("w", {
 	["<A-k>"] = { "<cmd>m .-2<CR>==", "Move current line up" },
 
 	-- general
-	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
+	["<A-q>"] = { "<cmd>qa!<CR>", "Quit without saving" },
 	["<A-s>"] = { "<cmd>noa w<CR>", "Save without formatting" },
 	["<A-x>"] = { "<cmd>x<CR>", "Save and quit" },
-	["<A-q>"] = { "<cmd>qa!<CR>", "Quit without saving" },
 	["<C-e>"] = { "<cmd>ToggleTree<CR>", "Toggle file explorer" },
+	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
 	["<C-t>"] = { "<cmd>execute v:count . 'ToggleTerm'<CR>", "Toggle terminal" },
+    ["<A-r>"] = { "<cmd>e", "Refresh file" },
 	["<A-u>"] = { "<cmd>edit!<CR>", "Revert all edits since saved" },
 
 	-- lsp
