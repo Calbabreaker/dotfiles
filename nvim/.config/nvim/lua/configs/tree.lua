@@ -1,6 +1,7 @@
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_disable_window_picker = 1
 
 vim.g.nvim_tree_show_icons = {
 	git = 0,
