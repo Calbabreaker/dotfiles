@@ -3,7 +3,7 @@
 # most environment variables go here
 # note that you have to logout and login to refresh 
 
-export PATH="$PATH:$HOME/.local/bin/"
+export PATH="$HOME/.local/bin:$PATH"
 
 # google sync api keys
 export GOOGLE_DEFAULT_CLIENT_ID=77185425430.apps.googleusercontent.com

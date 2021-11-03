@@ -4,6 +4,20 @@
 # converts npm commands to pnpm for stuff that uses npm only
 #
 
-first_arg=$( [ ! -z $2 ] && [ "$1" = "install" ] || [ "$1" = "i" ] && echo add || echo $1 )
-rest_args=${@:2}
-pnpm $first_arg $rest_args
+function path_remove {
+    PATH=${PATH/":$1"/}
+    PATH=${PATH/"$1:"/}
+}
+
+caller_cmd=$(ps -o comm= $PPID)
+
+# if pnpm is calling this script then use normal npm instead
+if [ caller_cmd = "pnpm" ] || ! command -v pnpm; then
+    path_remove $(dirname $0)
+    npm ${@:1}
+else
+    # if installing package convert install or i to add 
+    first_arg=$( [ ! -z $2 ] && [ "$1" = "install" ] || [ "$1" = "i" ] && echo add || echo $1 )
+    rest_args=${@:2}
+    pnpm $first_arg $rest_args
+fi
