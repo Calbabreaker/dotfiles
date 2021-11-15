@@ -7,7 +7,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # useful ls aliases
-alias ll='ls -alF'
+alias ll='ls -halF'
 alias la='ls -A'
 alias l='ls -CF'
 alias l="ls -G"
