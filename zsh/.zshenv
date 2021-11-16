@@ -36,3 +36,7 @@ export SAVEHIST=10000
 export HISTFILE=$ZSH_DATA_PATH/history.txt
 
 export PATH=$HOME/.local/bin:$XDG_DATA_HOME/npm/bin:$PATH
+
+# xsecurelock
+export XSECURELOCK_PASSWORD_PROMPT=asterisks
+export XSECURELOCK_NO_COMPOSITE=1

@@ -196,17 +196,17 @@ myManageHook = composeAll
 
 -- Perform an arbitrary action each time xmonad starts or is restarted
 myStartupHook = do
-    spawnOnce "nitrogen --restore &" -- Wallpapers
-    spawnOnce "picom -f --backend glx --vsync &" -- compisitor
+    spawnOnce "picom -b &" -- compisitor
     spawnOnce "nm-applet &" -- network manager system tray
     spawnOnce "volumeicon &" -- volume icon system tray
     spawnOnce "dunst &" -- notification server
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x1d2034 --height 20 &" -- system tray
-    spawnOnce "light-locker &" -- screen locker
+    spawnOnce "set-wallpaper reuse" 
+    spawnOnce "xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock"
 
 -- Run xmonad and other stuff
 main = do
-    xmproc <- spawnPipe "xmobar -x 0 ${XDG_CONFIG_HOME:-$HOME/.config}/xmobar.hs"
+    xmproc <- spawnPipe "xmobar -x 0 ${XDG_CONFIG_HOME:-$HOME/.config}/xmonad/xmobar.hs"
     xmonad $ fullscreenSupport def 
         { terminal           = myTerminal
         , focusFollowsMouse  = myFocusFollowsMouse

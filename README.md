@@ -58,8 +58,8 @@ Might need to install `xsel` to make NeoVim work with system clipboard.
 Requirements (pacman):
 
 ```
-sudo pacman -Sy xmonad xmonad-contrib xmobar dmenu xorg picom nitrogen trayer volumeicon dunst \
-    xdotool network-manager-applet lightdm lightdm-gtk-greeter light-locker xorg-xbacklight --needed
+sudo pacman -Sy xmonad xmonad-contrib xmobar dmenu xorg picom trayer volumeicon dunst \
+    xdotool network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock --needed
 ```
 
 You also need to stow the scripts directory:
