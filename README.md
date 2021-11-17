@@ -17,9 +17,8 @@ Now you can individually choose to use a dotfile config (specified by a folder) 
 ```sh
 stow zsh # zsh configurations
 stow nvim # NeoVim configurations
+stow scripts --no-folding # random scripts
 ```
-
-NOTE: The plover directory **shouldn't** be ran with stow, run `plover/setup.sh` instead.
 
 To remove a dotfile:
 
@@ -59,14 +58,14 @@ Requirements (pacman):
 
 ```
 sudo pacman -Sy xmonad xmonad-contrib xmobar dmenu xorg picom trayer volumeicon dunst \
-    xdotool network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock --needed
+    xdotool network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock sx --needed
 ```
 
-You also need to stow the scripts directory:
+You also need to stow the scripts and xorg directory:
 
 ```
 # from .dotfiles
-stow scripts
+stow scripts --no-folding
 ```
 
 ![xmonad-screenshot0](./.github/xmonad-screenshot0.png)

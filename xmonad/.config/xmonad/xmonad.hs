@@ -80,7 +80,7 @@ myKeys =
     , ("M-S-<Return>", spawn "dmenu_run -fn 'SauceCodePro Nerd Font:size=10' -i -p 'Run: '") -- Show dmenu prompt
     , ("M-b", spawn myBrowser) -- Open web browser
     , ("M-e", spawn myFileManager) -- Open file manager
-    , ("M-S-l", spawn "light-locker-command -l") -- Lock screen with myScreensaver
+    , ("M-S-l", spawn "xset s activate") -- Lock screen with myScreensaver
 
     , ("M-c", kill1) -- Kill focused window
     , ("M-S-c", killAll) -- Kill all windows in workspace
@@ -194,16 +194,6 @@ myManageHook = composeAll
     , isFullscreen -->  doFullFloat
     ]
 
--- Perform an arbitrary action each time xmonad starts or is restarted
-myStartupHook = do
-    spawnOnce "picom -b &" -- compisitor
-    spawnOnce "nm-applet &" -- network manager system tray
-    spawnOnce "volumeicon &" -- volume icon system tray
-    spawnOnce "dunst &" -- notification server
-    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x1d2034 --height 20 &" -- system tray
-    spawnOnce "set-wallpaper reuse" 
-    spawnOnce "xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock"
-
 -- Run xmonad and other stuff
 main = do
     xmproc <- spawnPipe "xmobar -x 0 ${XDG_CONFIG_HOME:-$HOME/.config}/xmonad/xmobar.hs"
@@ -223,7 +213,6 @@ main = do
         , layoutHook         = myLayout
         , manageHook         = myManageHook <+> manageDocks
         , handleEventHook    = docksEventHook
-        , startupHook        = myStartupHook
 
         , logHook = dynamicLogWithPP $ xmobarPP
         -- xmobar settings

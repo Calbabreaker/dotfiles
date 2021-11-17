@@ -1,7 +1,7 @@
 Config {
     -- appearance
     font = "xft:SauceCodePro Nerd Font:size=10:bold:antialias=true:hinting=true"
-    , bgColor = "#1d2034"
+    , bgColor = "#21262e"
     , fgColor = "#c1c1c1"
     , position = Top
     , border = BottomB
@@ -87,7 +87,7 @@ Config {
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
     , Run Date "\xf017 %H:%M %a %d %h" "date" 100
-    , Run Com "trayer-padding-icon" [] "trayerpad" 20
+    , Run Com ".config/xmonad/trayer-padding-icon.sh" [] "trayerpad" 20
     , Run UnsafeStdinReader
     ]
 }

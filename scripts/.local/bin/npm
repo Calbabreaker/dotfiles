@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #
 # converts npm commands to pnpm for stuff that uses npm only
