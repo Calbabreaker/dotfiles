@@ -1,0 +1,8 @@
+[user]
+	email = calbabreaker@gmail.com
+	name = Calbabreaker
+	signingkey = 7ADFA3535EA45DA51E7B7084D7DB1BF272E666CD
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
