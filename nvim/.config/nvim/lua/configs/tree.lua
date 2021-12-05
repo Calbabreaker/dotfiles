@@ -35,6 +35,10 @@ nvimtree.setup({
 		dotfiles = false,
 		custom = { ".git", "node_modules", ".cache" },
 	},
+	git = {
+		enable = true,
+		ignore = false,
+	},
 })
 
 function ToggleTree()
