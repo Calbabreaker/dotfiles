@@ -37,9 +37,11 @@ nvimtree.setup({
 	},
 	git = {
 		enable = true,
-		ignore = false,
+		ignore = true,
 	},
 })
+
+require("nvim-tree.lib").toggle_ignored()
 
 function ToggleTree()
 	if view.win_open() then

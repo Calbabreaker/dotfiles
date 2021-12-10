@@ -1,3 +1,7 @@
+CONFIG_PATH = vim.fn.stdpath("config")
+DATA_PATH = vim.fn.stdpath("data")
+CACHE_PATH = vim.fn.stdpath("cache")
+
 vim.opt.clipboard = "unnamedplus" -- make NeoVim use the system clipboard
 vim.opt.colorcolumn = "100" -- column count indicator
 vim.opt.completeopt = { "noinsert", "menuone", "noselect" }

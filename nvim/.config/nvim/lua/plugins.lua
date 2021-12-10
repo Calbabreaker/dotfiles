@@ -8,10 +8,6 @@ end
 local packer = require("packer")
 
 packer.init({
-	git = {
-		cmd = "git",
-		depth = 1,
-	},
 	display = {
 		open_fn = function()
 			return require("packer.util").float({ border = "rounded" })
@@ -103,6 +99,7 @@ use({
 
 use({
 	"neovim/nvim-lspconfig",
+	cond = MINIMAL,
 	requires = "williamboman/nvim-lsp-installer",
 	config = function()
 		require("configs/lspconfig")
@@ -121,6 +118,7 @@ use({
 -- autocomplete
 use({
 	"hrsh7th/nvim-cmp",
+	cond = MINIMAL,
 	event = "InsertEnter",
 	config = function()
 		require("configs/cmp")
@@ -135,6 +133,7 @@ use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 -- view parameters and signitures
 use({
 	"ray-x/lsp_signature.nvim",
+	cond = MINIMAL,
 	config = function()
 		require("lsp_signature").setup()
 	end,
@@ -143,6 +142,7 @@ use({
 -- snippet support
 use({
 	"L3MON4D3/LuaSnip",
+	cond = MINIMAL,
 	config = function()
 		require("configs/luasnip")
 	end,
@@ -151,6 +151,7 @@ use({
 -- cool snippets
 use({
 	"rafamadriz/friendly-snippets",
+	cond = MINIMAL,
 	after = "LuaSnip",
 })
 

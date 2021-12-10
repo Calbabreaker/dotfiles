@@ -39,7 +39,7 @@ end
 
 local diagnostics = {
 	"diagnostics",
-	sources = { "nvim_lsp" },
+	sources = { "nvim_diagnostics" },
 }
 
 local diff = {
@@ -60,7 +60,7 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_b = { "branch", diff },
-		lualine_c = { "filename", diagnostics },
+		lualine_c = { "filename", "diagnostics" },
 		lualine_x = { clients },
 		lualine_y = { "filetype" },
 		lualine_z = { get_wordcount, get_ruler, "progress" },
