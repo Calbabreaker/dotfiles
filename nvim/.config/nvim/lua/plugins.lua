@@ -34,6 +34,7 @@ use({
 -- start menu
 use({
 	"glepnir/dashboard-nvim",
+	cond = "not MINIMAL",
 	config = function()
 		require("configs/dashboard")
 	end,
@@ -57,7 +58,7 @@ use({
 -- cool status line
 use({
 	"nvim-lualine/lualine.nvim",
-	after = "nvim-lspconfig",
+	event = "BufWinEnter",
 	config = function()
 		require("configs/lualine")
 	end,
@@ -76,6 +77,7 @@ use({
 use({
 	"nvim-telescope/telescope.nvim",
 	requires = { "nvim-telescope/telescope-fzy-native.nvim" },
+	cond = "not MINIMAL",
 	cmd = { "Telescope" },
 	config = function()
 		require("configs/telescope")
@@ -83,7 +85,7 @@ use({
 })
 
 -- cool tabs
-use("romgrk/barbar.nvim")
+use({ "romgrk/barbar.nvim", cond = "not MINIMAL" })
 
 -- show keybinds
 use({
@@ -99,7 +101,7 @@ use({
 
 use({
 	"neovim/nvim-lspconfig",
-	cond = MINIMAL,
+	cond = "not MINIMAL",
 	requires = "williamboman/nvim-lsp-installer",
 	config = function()
 		require("configs/lspconfig")
@@ -118,7 +120,6 @@ use({
 -- autocomplete
 use({
 	"hrsh7th/nvim-cmp",
-	cond = MINIMAL,
 	event = "InsertEnter",
 	config = function()
 		require("configs/cmp")
@@ -133,7 +134,7 @@ use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 -- view parameters and signitures
 use({
 	"ray-x/lsp_signature.nvim",
-	cond = MINIMAL,
+	cond = "not MINIMAL",
 	config = function()
 		require("lsp_signature").setup()
 	end,
@@ -142,7 +143,6 @@ use({
 -- snippet support
 use({
 	"L3MON4D3/LuaSnip",
-	cond = MINIMAL,
 	config = function()
 		require("configs/luasnip")
 	end,
@@ -151,7 +151,6 @@ use({
 -- cool snippets
 use({
 	"rafamadriz/friendly-snippets",
-	cond = MINIMAL,
 	after = "LuaSnip",
 })
 
@@ -208,6 +207,7 @@ use({
 -- better project management
 use({
 	"ahmedkhalf/project.nvim",
+	cond = "not MINIMAL",
 	config = function()
 		require("project_nvim").setup({})
 	end,
