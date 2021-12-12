@@ -31,7 +31,7 @@ stow -D scripts
 
 NOTE: Requires NeoVim >= 0.5 and probably only works on unix.
 
-To set up NeoVim (after stowed) run `:PackerSync` in NeoVim.
+Need to quit NeoVim and open back on first run.
 
 ![nvim-screenshot0](./.github/nvim-screenshot0.png)
 ![nvim-screenshot1](./.github/nvim-screenshot1.png)
@@ -46,11 +46,11 @@ Press tab to see options.
 JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`)
 and clang-format is needed to format C++, C files.
 
-Run `:W` to see keybinds (there are a lot). Some basic keybinds are: `C-e`
-opens file explorer, `C-t` opens terminal.
+Run `:W` to see all keybinds. Some basic keybinds are: `C-e`
+opens file explorer, `C-t` opens terminal, `A-<` and `A->` goes between tabs.
 
 Might need to install `xsel` to make NeoVim work with system clipboard.
-`ripgrep` is needed in order to use telescope.
+`ripgrep` is also needed in order to use telescope.
 
 ## Xmonad
 

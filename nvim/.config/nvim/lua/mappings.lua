@@ -1,4 +1,8 @@
-local wk = require("which-key")
+local wk_loaded, wk = pcall(require, "which-key")
+
+if not wk_loaded then
+	return
+end
 
 -- register mappings on a mode or multiple (as a string)
 -- w mode uses which key (note that every mapping needs a description in that mode)
@@ -172,7 +176,8 @@ RegisterMappings("w", {
 		p = {
 			name = "Packer (plugin manager)",
 			s = { "<cmd>PackerSync<CR>", "Packer sync" },
-			i = { "<cmd>PackerStatus<CR>", "Packer plugin info" },
+			i = { "<cmd>PackerStatus<CR>", "Show plugins info" },
+			c = { "<cmd>PackerCompile<CR>", "Make packer_compiled.lua" },
 		},
 		[";"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
 	},

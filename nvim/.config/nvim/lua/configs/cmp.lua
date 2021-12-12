@@ -1,9 +1,11 @@
-local has_words_before = function()
-	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-		return false
-	end
+local function has_words_before()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local function has_space_before()
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
 local cmp = require("cmp")
@@ -47,7 +49,7 @@ cmp.setup({
 			local luasnip = require("luasnip")
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
+			elseif luasnip.expand_or_jumpable() and not has_space_before() then
 				luasnip.expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
@@ -98,5 +100,8 @@ cmp.setup({
 			})[entry.source.name]
 			return vim_item
 		end,
+	},
+	experimental = {
+		ghost_text = true,
 	},
 })

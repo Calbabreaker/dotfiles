@@ -4,7 +4,6 @@ vim.env.PRETTIERD_DEFAULT_CONFIG = CONFIG_PATH .. "/lua/configs/.prettierrc.json
 
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
-	null_ls.builtins.formatting.clang_format,
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.prettierd,
 	null_ls.builtins.formatting.stylua,
