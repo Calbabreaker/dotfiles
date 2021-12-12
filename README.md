@@ -37,17 +37,19 @@ Need to quit NeoVim and open back on first run.
 ![nvim-screenshot1](./.github/nvim-screenshot1.png)
 ![nvim-screenshot2](./.github/nvim-screenshot2.png)
 
-By default no language servers or treesitter parsers are installed.
-Install a treesitter parser using `:TSInstall language-name` (e.g. `:TSInstall javascript`)
-and language server using `:LspInstall language-server` (e.g. `:LspInstall tsserver`).
-Press tab to see options.
+By default no language servers or treesitter parsers are installed. Install a
+language server (provides diagnostics and autocompletion) using
+`:LspInstall language-name` (e.g. `:LspInstall c++`) and treesitter
+parser using `:TSInstall language-name` (e.g. `:TSInstall c++`). Press
+tab to see options.
 
 [Prettierd](https://github.com/fsouza/prettierd) is needed to format
 JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`)
 and clang-format is needed to format C++, C files.
 
-Run `:W` to see all keybinds. Some basic keybinds are: `C-e`
-opens file explorer, `C-t` opens terminal, `A-<` and `A->` goes between tabs.
+Run `:W` to see all keybinds. Some basic keybinds are: `C-e` opens file
+explorer, `C-t` opens terminal, `A-<` and `A->` goes between tabs, `Space-f`
+finds and goes to files.
 
 Might need to install `xsel` to make NeoVim work with system clipboard.
 `ripgrep` is also needed in order to use telescope.

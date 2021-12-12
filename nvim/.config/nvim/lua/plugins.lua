@@ -82,8 +82,8 @@ local function plugin_setup(use)
 
 	use({
 		"neovim/nvim-lspconfig",
+		requires = { "nvim-lua/lsp-status.nvim", "williamboman/nvim-lsp-installer" },
 		cond = "not MINIMAL",
-		requires = "williamboman/nvim-lsp-installer",
 		config = function()
 			require("configs/lspconfig")
 		end,

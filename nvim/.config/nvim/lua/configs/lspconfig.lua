@@ -1,3 +1,6 @@
+local lsp_status = require("lsp-status")
+lsp_status.register_progress()
+
 local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 
@@ -11,6 +14,8 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	},
 }
 
+capabilities.window = { workDoneProgress = true }
+
 local function on_attach(client)
 	-- turn off formatting for lsp if if null-ls already has one availiable
 	if NullLSGetAvail(vim.bo.filetype) ~= nil then
@@ -19,23 +24,39 @@ local function on_attach(client)
 	end
 end
 
--- add aditional servers here that isn't in the installer or already installed (will only enable if exist)
--- note that it will prefer ones with :LspInstall
-local aditional_servers = {
+-- servers installed using lsp-installer will use this
+-- if that server is installed it will try to setup it if it exists
+local server_configs = {
 	clangd = {},
 	gdscript = {},
+	sumneko_lua = {
+		settings = {
+			Lua = {
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { "vim" },
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+			},
+		},
+	},
 }
 
 lsp_installer.on_server_ready(function(server)
-	aditional_servers[server.name] = nil
-	server:setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-	})
-	vim.cmd("do User LspAttachBuffers")
+	local config = server_configs[server.name] or {}
+	server_configs[server.name] = nil
+
+	config.capabilities = capabilities
+	config.on_attach = on_attach
+
+	server:setup(config)
+	vim.api.nvim_command("do User LspAttachBuffers")
 end)
 
-for name, config in pairs(aditional_servers) do
+for name, config in pairs(server_configs) do
 	local cmd = config.cmd or lspconfig[name].document_config.default_config.cmd
 	if vim.fn.executable(cmd[1]) == 1 then
 		config.capabilities = capabilities
@@ -44,7 +65,7 @@ for name, config in pairs(aditional_servers) do
 	end
 end
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })

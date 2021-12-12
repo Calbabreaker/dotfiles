@@ -1,54 +1,92 @@
 local colors = require("onedark.colors")
+local lsp_status = require("lsp-status")
 
-local function get_wordcount()
-	local wordcount = vim.fn.wordcount()
-	local outwords = wordcount.words
-	if wordcount.visual_words ~= nil then
-		outwords = string.format("%d/%d", wordcount.visual_words, outwords)
+local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
+
+function dump(o)
+	if type(o) == "table" then
+		local s = "{ "
+		for k, v in pairs(o) do
+			if type(k) ~= "number" then
+				k = '"' .. k .. '"'
+			end
+			s = s .. "[" .. k .. "] = " .. dump(v) .. ","
+		end
+		return s .. "} "
+	else
+		return tostring(o)
 	end
-
-	return outwords .. " words"
-end
-
-local function get_ruler()
-	return string.format("%d:%d", vim.fn.line("."), vim.fn.col("."))
 end
 
 local function clients()
-	local client_names = {}
-
-	-- add lsp client
-	for _, client in pairs(vim.lsp.buf_get_clients()) do
+	local client_id_to_status = {}
+	for _, client in ipairs(vim.lsp.buf_get_clients()) do
 		if client.name ~= "null-ls" then
-			table.insert(client_names, client.name)
+			client_id_to_status[client.id] = client.name
 		end
 	end
 
+	-- client messages
+	for _, msg in ipairs(lsp_status.messages()) do
+		-- msg.name is actually the id
+		local client_name = client_id_to_status[msg.name]
+		if client_name and msg.progress then
+			local status = client_name .. ": " .. msg.title
+
+			if msg.spinner then
+				status = spinner_frames[(msg.spinner % #spinner_frames) + 1] .. " " .. status
+			end
+			if msg.message then
+				status = status .. " " .. msg.message
+			end
+			if msg.percentage then
+				status = status .. string.format(" (%.0f%%%%)", msg.percentage)
+			end
+
+			client_id_to_status[msg.name] = status
+		end
+	end
+
+	local status_list = {}
+	for _, status in pairs(client_id_to_status) do
+		table.insert(status_list, status)
+	end
+
 	-- add null-ls linter and formatter clients
-	if NullLSGetAvail ~= nil then
-		vim.list_extend(client_names, NullLSGetAvail(vim.bo.filetype) or {})
+	if NullLSGetAvail then
+		local null_ls_sources = NullLSGetAvail(vim.bo.filetype)
+		if null_ls_sources then
+			vim.list_extend(status_list, null_ls_sources)
+		end
 	end
 
-	local msg = "Inactive"
-	if #client_names ~= 0 then
-		msg = table.concat(client_names, ", ")
+	local statuses = "Inactive"
+	if #status_list ~= 0 then
+		statuses = table.concat(status_list, ", ")
 	end
 
-	return "  " .. msg
+	return "  " .. statuses
 end
 
 local diagnostics = {
 	"diagnostics",
-	sources = { "nvim_diagnostics" },
+	sources = { "nvim_diagnostic" },
+	symbols = { error = " ", warn = " ", hint = " ", info = " " },
 }
 
 local diff = {
 	"diff",
+	symbols = { added = " ", modified = "柳", removed = " " },
 	diff_color = {
 		added = { fg = colors.green },
 		modified = { fg = colors.yellow },
 		removed = { fg = colors.red },
 	},
+}
+
+local branch = {
+	"branch",
+	icon = "",
 }
 
 require("lualine").setup({
@@ -59,10 +97,10 @@ require("lualine").setup({
 		component_separators = { left = "│", right = "│" },
 	},
 	sections = {
-		lualine_b = { "branch", diff },
-		lualine_c = { "filename", "diagnostics" },
-		lualine_x = { clients },
+		lualine_b = { branch },
+		lualine_c = { "filename", diff },
+		lualine_x = { diagnostics, clients },
 		lualine_y = { "filetype" },
-		lualine_z = { get_wordcount, get_ruler, "progress" },
+		lualine_z = { "%l:%c", "progress" },
 	},
 })
