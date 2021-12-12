@@ -29,7 +29,7 @@ stow -D scripts
 
 ## NeoVim
 
-NOTE: Requires NeoVim >= 0.5 and probably only works on unix.
+NOTE: Requires NeoVim >= 0.6 and probably only works on unix.
 
 Need to quit NeoVim and open back on first run.
 
@@ -44,8 +44,7 @@ parser using `:TSInstall language-name` (e.g. `:TSInstall c++`). Press
 tab to see options.
 
 [Prettierd](https://github.com/fsouza/prettierd) is needed to format
-JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`)
-and clang-format is needed to format C++, C files.
+JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`).
 
 Run `:W` to see all keybinds. Some basic keybinds are: `C-e` opens file
 explorer, `C-t` opens terminal, `A-<` and `A->` goes between tabs, `Space-f`
