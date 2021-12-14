@@ -4,17 +4,19 @@ local lsp_status = require("lsp-status")
 local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
 
 local function clients()
-	local client_id_to_status = {}
+	local client_id_to_name = {}
 	for _, client in ipairs(vim.lsp.buf_get_clients()) do
 		if client.name ~= "null-ls" then
-			client_id_to_status[client.id] = client.name
+			client_id_to_name[client.id] = client.name
 		end
 	end
+
+	local status_list = {}
 
 	-- client messages
 	for _, msg in ipairs(lsp_status.messages()) do
 		-- msg.name is actually the id
-		local client_name = client_id_to_status[msg.name]
+        local client_name = client_id_to_name[msg.name]
 		if client_name and msg.progress then
 			local status = client_name .. ": " .. msg.title
 
@@ -28,13 +30,15 @@ local function clients()
 				status = status .. string.format(" (%.0f%%%%)", msg.percentage)
 			end
 
-			client_id_to_status[msg.name] = status
+            -- make sure to not have multiple messages at once
+			client_id_to_name[msg.name] = nil 
+            table.insert(status_list, status)
 		end
 	end
 
-	local status_list = {}
-	for _, status in pairs(client_id_to_status) do
-		table.insert(status_list, status)
+    -- insert rest of clients that don't have messages
+	for _, name in pairs(client_id_to_name) do
+		table.insert(status_list, name)
 	end
 
 	-- add null-ls linter and formatter clients
