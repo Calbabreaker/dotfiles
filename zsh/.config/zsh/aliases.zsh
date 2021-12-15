@@ -24,3 +24,6 @@ alias szsh="source $ZDOTDIR/.zshrc"
 alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 alias wininit="echo 'i am using linux idiot'"
 alias mvim="nvim -u $XDG_CONFIG_HOME/nvim/minimal.lua"
+
+# keybinds
+bindkey -s '^f' 'ranger^M'

@@ -1,9 +1,22 @@
+# tab completion thing
+autoload -U compinit && compinit -u
+zstyle ':completion:*' menu select
+# auto complete with case insenstivity
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^l" forward-word
+bindkey "^h" backward-word
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
-
-# enable searching through history
-bindkey '^R' history-incremental-pattern-search-backward
 
 # edit line in vim buffer ctrl-v
 autoload edit-command-line; zle -N edit-command-line
@@ -39,4 +52,3 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
