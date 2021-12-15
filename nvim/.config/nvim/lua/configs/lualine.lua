@@ -16,7 +16,7 @@ local function clients()
 	-- client messages
 	for _, msg in ipairs(lsp_status.messages()) do
 		-- msg.name is actually the id
-        local client_name = client_id_to_name[msg.name]
+		local client_name = client_id_to_name[msg.name]
 		if client_name and msg.progress then
 			local status = client_name .. ": " .. msg.title
 
@@ -30,13 +30,13 @@ local function clients()
 				status = status .. string.format(" (%.0f%%%%)", msg.percentage)
 			end
 
-            -- make sure to not have multiple messages at once
-			client_id_to_name[msg.name] = nil 
-            table.insert(status_list, status)
+			-- make sure to not have multiple messages at once
+			client_id_to_name[msg.name] = nil
+			table.insert(status_list, status)
 		end
 	end
 
-    -- insert rest of clients that don't have messages
+	-- insert rest of clients that don't have messages
 	for _, name in pairs(client_id_to_name) do
 		table.insert(status_list, name)
 	end

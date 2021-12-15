@@ -208,7 +208,7 @@ RegisterMappings("wit", {
 	["<C-z>"] = { "<ESC>", "<ESC>" },
 })
 
-YourMum("i", {
+RegisterMappings("i", {
 	-- break undos
 	[","] = { ",<C-g>u" },
 	["."] = { ".<C-g>u" },
