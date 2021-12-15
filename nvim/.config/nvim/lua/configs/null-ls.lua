@@ -35,8 +35,6 @@ function NullLSGetAvail(filetype)
 	return filetype_to_sources[filetype]
 end
 
-null_ls.config({
+null_ls.setup({
 	sources = availiable_sources,
 })
-
-require("lspconfig")["null-ls"].setup({})

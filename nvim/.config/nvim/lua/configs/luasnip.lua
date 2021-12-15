@@ -9,9 +9,9 @@ local cxx_hello_world = s({ trig = "hello", dscr = "Basic hello world" }, {
 	t({
 		"#include <stdio.h>",
 		"",
-		"int main(int argc, char *argv[])",
+		"int main(int argc, char** argv)",
 		"{",
-		'    printf("Hello, World!");',
+		'    printf("Hello, World!\\n");',
 	}),
 	i(0),
 	t({
@@ -24,6 +24,35 @@ local cxx_hello_world = s({ trig = "hello", dscr = "Basic hello world" }, {
 ls.snippets = {
 	c = { cxx_hello_world },
 	cpp = { cxx_hello_world },
+	cmake = {
+		s("starter", {
+			t({
+				"cmake_minimum_required(VERSION 3.12 FATAL_ERROR)",
+				"project(",
+			}),
+			i(1, "<name>"),
+			t({
+				")",
+				"",
+				'if(NOT EXISTS "${CMAKE_BINARY_DIR}/yacpm.cmake")',
+				'    file(DOWNLOAD "https://github.com/Calbabreaker/yacpm/raw/v3/yacpm.cmake" "${CMAKE_BINARY_DIR}/yacpm.cmake")',
+				"endif()",
+				"",
+				"include(${CMAKE_BINARY_DIR}/yacpm.cmake)",
+				"yacpm_use_extended()",
+				"",
+				"add_executable(${PROJECT_NAME}",
+				"    main.cpp",
+			}),
+			i(0),
+			t({
+				")",
+				"yacpm_target_warnings(${PROJECT_NAME})",
+				"",
+				"target_link_libraries(${PROJECT_NAME} ${YACPM_PACKAGES})",
+			}),
+		}),
+	},
 	all = {
 		s("clang-format", {
 			t({
