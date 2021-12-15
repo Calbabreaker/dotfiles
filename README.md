@@ -33,9 +33,9 @@ NOTE: Requires NeoVim >= 0.6 and probably only works on unix.
 
 Need to quit NeoVim and open back on first run.
 
-![nvim-screenshot0](./.github/nvim-screenshot0.png)
-![nvim-screenshot1](./.github/nvim-screenshot1.png)
-![nvim-screenshot2](./.github/nvim-screenshot2.png)
+![nvim-screenshot0](https://user-images.githubusercontent.com/57030377/146282089-c2401ec4-5c0e-4eb4-9066-d421d2c045b2.png)
+![nvim-screenshot1](https://user-images.githubusercontent.com/57030377/146282094-8d57629c-88bf-4f84-a67a-344bc5ae3529.png)
+![nvim-screenshot2](https://user-images.githubusercontent.com/57030377/146282099-245720a5-e2ad-4fae-af05-69828bbae0d2.png)
 
 By default no language servers or treesitter parsers are installed. Install a
 language server (provides diagnostics and autocompletion) using
@@ -55,6 +55,8 @@ Might need to install `xsel` to make NeoVim work with system clipboard.
 
 ## Xmonad
 
+![xmonad-screenshot0](https://user-images.githubusercontent.com/57030377/146282118-4afee0c3-86a0-48a5-9d08-3fd76a7b0661.png)
+
 Requirements (pacman):
 
 ```
@@ -69,11 +71,9 @@ You also need to stow the scripts and xorg directory:
 stow scripts --no-folding
 ```
 
-![xmonad-screenshot0](./.github/xmonad-screenshot0.png)
-
 ## Alacritty and zsh
 
-![zsh-screenshot0](./.github/zsh-screenshot0.png)
+![zsh-screenshot0](https://user-images.githubusercontent.com/57030377/146282133-c45581fc-f543-4279-9c7a-8b40148ab1ce.png)
 
 NOTE: Need to install Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
 in order for it to work.
