@@ -5,7 +5,7 @@ local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" 
 
 local function clients()
 	local client_id_to_name = {}
-	for _, client in ipairs(vim.lsp.buf_get_clients()) do
+	for _, client in pairs(vim.lsp.buf_get_clients()) do
 		if client.name ~= "null-ls" then
 			client_id_to_name[client.id] = client.name
 		end
