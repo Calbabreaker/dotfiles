@@ -46,8 +46,8 @@ tab to see options.
 [Prettierd](https://github.com/fsouza/prettierd) is needed to format
 JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`).
 
-Run `:W` to see all keybinds. Some basic keybinds are: `C-e` opens file
-explorer, `C-t` opens terminal, `A-<` and `A->` goes between tabs, `Space-f`
+Run `:W` to see all keybinds. Some basic keybinds are: `Ctrl-e` opens file
+explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space-f`
 finds and goes to files.
 
 Might need to install `xsel` to make NeoVim work with system clipboard.
