@@ -7,6 +7,7 @@ local sources = {
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.prettierd,
 	null_ls.builtins.formatting.stylua,
+	null_ls.builtins.hover.dictionary,
 }
 
 local filetype_to_sources = {}
@@ -14,7 +15,8 @@ local filetype_to_sources = {}
 -- only have source if exe exists
 local availiable_sources = {}
 for _, source in pairs(sources) do
-	if vim.fn.executable(source.name) == 1 then
+	local cmd = source._opts.command
+	if not cmd or vim.fn.executable(cmd) == 1 then
 		table.insert(availiable_sources, source)
 
 		-- create filetype_to_source table for faster NullLSGetAvail lookup

@@ -1,6 +1,6 @@
 # Dotfiles
 
-Cool dot files for neovim, zsh, xmonad, and alacritty and other random programs
+Cool dot files for NeoVim, zsh, xmonad, and alacritty and other random programs.
 
 ## Setup
 

@@ -129,12 +129,6 @@ local function plugin_setup(use)
 		end,
 	})
 
-	-- cool snippets
-	use({
-		"rafamadriz/friendly-snippets",
-		after = "LuaSnip",
-	})
-
 	use({
 		"windwp/nvim-autopairs",
 		after = "nvim-cmp",
@@ -201,7 +195,6 @@ local function plugin_setup(use)
 	use("vim-scripts/replacewithregister") -- use motion to replace with clipboard
 end
 
---
 -- automatically get packer (plugin manager)
 local install_path = DATA_PATH .. "/site/pack/packer/start/packer.nvim"
 
@@ -226,7 +219,7 @@ require("packer").startup({
 	config = {
 		git = {
 			subcommands = {
-				-- more efficient that default
+				-- more efficient than default
 				fetch = "fetch --no-tags --no-recurse-submodules --update-shallow --progress",
 			},
 		},

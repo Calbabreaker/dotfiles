@@ -10,7 +10,7 @@ return {
 		})
 
 		vim.api.nvim_command("highlight IndentBlanklineChar guifg=#424855 gui=nocombine")
-		vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#7e889e gui=nocombine")
+		vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#717a8e gui=nocombine")
 	end,
 
 	colorizer = function()
