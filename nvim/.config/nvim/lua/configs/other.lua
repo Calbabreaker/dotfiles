@@ -1,5 +1,5 @@
 return {
-	blankline = function(indent_blankline)
+	blankline = function()
 		require("indent_blankline").setup({
 			char = "▏",
 			context_char = "▏",
@@ -8,9 +8,6 @@ return {
 			show_current_context = true,
 			show_trailing_blankline_indent = false,
 		})
-
-		vim.api.nvim_command("highlight IndentBlanklineChar guifg=#424855 gui=nocombine")
-		vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#717a8e gui=nocombine")
 	end,
 
 	colorizer = function()
@@ -44,5 +41,13 @@ return {
 		vim.api.nvim_command("highlight TabLineSel guibg=TabLineFill guifg=TabLineFill")
 
 		vim.api.nvim_command("highlight NormalFloat guifg=Normal guibg=Normal")
+		vim.api.nvim_command("highlight LspReferenceRead guibg=#31353f gui=none")
+		vim.api.nvim_command("highlight LspReferenceText guibg=#31353f gui=none")
+		vim.api.nvim_command("highlight LspReferenceWrite guibg=#31353f gui=none")
+		vim.api.nvim_command("highlight CursorLine guibg=#2c3039")
+		vim.api.nvim_command("highlight ColorColumn guibg=#2c3039")
+
+		vim.api.nvim_command("highlight IndentBlanklineChar guifg=#424855 gui=nocombine")
+		vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#6a7285 gui=nocombine")
 	end,
 }

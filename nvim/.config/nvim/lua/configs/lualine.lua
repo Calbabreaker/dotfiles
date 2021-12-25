@@ -1,5 +1,3 @@
-local lualine = require("lualine")
-
 local lsp_status = require("lsp-status")
 
 local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
@@ -74,7 +72,7 @@ local branch = {
 	icon = "",
 }
 
-lualine.setup({
+require("lualine").setup({
 	options = {
 		theme = "onedark",
 		disabled_filetypes = { "NvimTree", "packer", "dashboard" },

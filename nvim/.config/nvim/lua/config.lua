@@ -30,7 +30,7 @@ vim.opt.undodir = DATA_PATH .. "/undo" -- set an undo directory
 vim.opt.undofile = true -- persistent undos
 vim.opt.updatetime = 100 -- how often updates happen
 vim.opt.wrap = false -- no line wrapping
-vim.opt.writebackup = true -- don't make backup files
+vim.opt.writebackup = false -- don't make backup files
 vim.opt.guifont = "SauceCodePro Nerd Font:h12"
 
 -- makes indent and tabs better

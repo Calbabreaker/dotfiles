@@ -128,6 +128,7 @@ local function plugin_setup(use)
 	-- snippet support
 	use({
 		"L3MON4D3/LuaSnip",
+		requires = "rafamadriz/friendly-snippets",
 		config = function()
 			require("configs/luasnip")
 		end,

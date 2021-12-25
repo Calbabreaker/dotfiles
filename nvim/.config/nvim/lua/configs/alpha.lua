@@ -14,17 +14,16 @@ local function button(...)
 	local config = dashboard.button(...)
 	config.opts.hl = "Function"
 	config.opts.hl_shortcut = "Number"
-	config.opts.keymap = nil
 	config.opts.width = 30
 	return config
 end
 
 section.buttons.val = {
-	button("p", "  Open Projects", "<cmd>Telescope projects"),
-	button("r", "  Open Recent Files", "<cmd>Telescope oldfiles"),
+	button("p", "  Open Projects", "<cmd>Telescope projects<CR>"),
+	button("r", "  Open Recent Files", "<cmd>Telescope oldfiles<CR>"),
 	button("n", "  New File", "<cmd>ene <BAR> startinsert <CR>"),
-	button("f", "  Find Files", "<cmd>Telescope find_files"),
-	button("s", "  Search for text", "<cmd>Telescope live_grep"),
+	button("o", "  Open File", "<cmd>Telescope find_files<CR>"),
+	button("s", "  Search Text", "<cmd>Telescope live_grep<CR>"),
 }
 
 section.footer.val = require("alpha.fortune")()
