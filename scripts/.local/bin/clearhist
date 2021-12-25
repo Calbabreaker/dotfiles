@@ -1,8 +1,8 @@
 #!/bin/sh
 
 #
-# clears chromium history for past hour
-# requires xdotool
+# Clears chromium history for past hour.
+# Requires xdotool.
 #
 
 chromium &

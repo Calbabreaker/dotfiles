@@ -1,10 +1,10 @@
 return {
-	blankline = function()
+	blankline = function(indent_blankline)
 		require("indent_blankline").setup({
 			char = "▏",
 			context_char = "▏",
 			buftype_exclude = { "terminal" },
-			filetype_exclude = { "NvimTree", "help", "packer", "startify", "dashboard", "man" },
+			filetype_exclude = { "NvimTree", "help", "packer", "alpha", "man" },
 			show_current_context = true,
 			show_trailing_blankline_indent = false,
 		})
@@ -42,5 +42,7 @@ return {
 
 		-- have unfocused tab not look weird
 		vim.api.nvim_command("highlight TabLineSel guibg=TabLineFill guifg=TabLineFill")
+
+		vim.api.nvim_command("highlight NormalFloat guifg=Normal guibg=Normal")
 	end,
 }

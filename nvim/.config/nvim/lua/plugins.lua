@@ -3,6 +3,7 @@ local function plugin_setup(use)
 	use("kyazdani42/nvim-web-devicons") -- nice icons
 	use("nvim-lua/plenary.nvim") -- lua utils
 	use("nvim-lua/popup.nvim") -- popup lib
+	use("lewis6991/impatient.nvim") -- improve neovim startup times
 
 	-- colour scheme
 	use({
@@ -14,10 +15,11 @@ local function plugin_setup(use)
 
 	-- start menu
 	use({
-		"glepnir/dashboard-nvim",
+		"goolord/alpha-nvim",
+		event = "BufWinEnter",
 		cond = "not MINIMAL",
 		config = function()
-			require("configs/dashboard")
+			require("configs/alpha")
 		end,
 	})
 
@@ -72,7 +74,9 @@ local function plugin_setup(use)
 	use({
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup()
+			require("which-key").setup({
+				window = { border = "double" },
+			})
 		end,
 	})
 
@@ -199,7 +203,7 @@ end
 local install_path = DATA_PATH .. "/site/pack/packer/start/packer.nvim"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	packer_bootstrap = vim.fn.system({
+	PACKER_BOOTSTRAP = vim.fn.system({
 		"git",
 		"clone",
 		"https://github.com/wbthomason/packer.nvim",
@@ -212,7 +216,7 @@ end
 require("packer").startup({
 	function(use)
 		plugin_setup(use)
-		if packer_bootstrap then
+		if PACKER_BOOTSTRAP then
 			require("packer").sync()
 		end
 	end,

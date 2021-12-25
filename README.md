@@ -1,6 +1,6 @@
 # Dotfiles
 
-Cool dot files for NeoVim, zsh, xmonad, and alacritty and other random programs.
+Cool dot files for Neovim, zsh, xmonad, and alacritty and other random programs.
 
 ## Setup
 
@@ -16,7 +16,7 @@ Now you can individually choose to use a dotfile config (specified by a folder) 
 
 ```sh
 stow zsh # zsh configurations
-stow nvim # NeoVim configurations
+stow nvim # Neovim configurations
 stow scripts --no-folding # random scripts
 ```
 
@@ -27,15 +27,15 @@ stow -D zsh
 stow -D scripts
 ```
 
-## NeoVim
+## Neovim
 
-NOTE: Requires NeoVim >= 0.6 and probably only works on unix.
+NOTE: Requires Neovim >= 0.6 and probably only works on unix.
 
-Need to quit NeoVim and open back on first run.
+Need to quit Neovim and open back on first run.
 
 ![nvim-screenshot0](https://user-images.githubusercontent.com/57030377/146282089-c2401ec4-5c0e-4eb4-9066-d421d2c045b2.png)
 ![nvim-screenshot1](https://user-images.githubusercontent.com/57030377/146282094-8d57629c-88bf-4f84-a67a-344bc5ae3529.png)
-![nvim-screenshot2](https://user-images.githubusercontent.com/57030377/146282099-245720a5-e2ad-4fae-af05-69828bbae0d2.png)
+![nvim-screenshot2](https://user-images.githubusercontent.com/57030377/147385270-cbd23f44-be6e-4790-ba15-57e821d89338.png)
 
 By default no language servers or treesitter parsers are installed. Install a
 language server (provides diagnostics and autocompletion) using
@@ -50,7 +50,7 @@ Run `:W` to see all keybinds. Some basic keybinds are: `Ctrl-e` opens file
 explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space-f`
 finds and goes to files.
 
-Might need to install `xsel` to make NeoVim work with system clipboard.
+Might need to install `xsel` to make Neovim work with system clipboard.
 `ripgrep` is also needed in order to use telescope.
 
 ## Xmonad

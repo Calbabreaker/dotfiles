@@ -1,6 +1,5 @@
-local wk_loaded, wk = pcall(require, "which-key")
-
-if not wk_loaded then
+local loaded, wk = pcall(require, "which-key")
+if not loaded then
 	return
 end
 
@@ -143,22 +142,22 @@ RegisterMappings("w", {
 			d = { "<cmd>BufferOrderByDirectory<CR>", "Sort buffers by directory" },
 			l = { "<cmd>BufferOrderByLanguage<CR>", "Sort buffers by programming language" },
 			f = { "<cmd>Telescope buffers<CR>", "Find buffers" },
-			n = { "<cmd>enew<CR>", "New empty buffer" },
+			n = { "<cmd>ene <BAR> startinsert <CR>", "New empty buffer" },
 		},
-		f = { "<cmd>Telescope find_files<CR>", "Fuzzy find files" },
-		s = {
-			name = "Search",
-			f = { "<cmd>Telescope filetypes<CR>", "Search and set buffer filetype" },
-			m = { "<cmd>Telescope man_pages<CR>", "Search man pages" },
-			o = { "<cmd>Telescope oldfiles<CR>", "Search for old files" },
-			p = { "<cmd>Telescope projects<CR>", "Search for projects" },
-			s = { "<cmd>Telescope<CR>", "Search for Telescope functions" },
-			t = { "<cmd>Telescope live_grep<CR>", "Search for text" },
+		o = { "<cmd>Telescope find_files<CR>", "Select and open files" },
+		f = {
+			name = "Find",
+			t = { "<cmd>Telescope filetypes<CR>", "Find and set buffer filetype" },
+			m = { "<cmd>Telescope man_pages<CR>", "Find man pages" },
+			o = { "<cmd>Telescope oldfiles<CR>", "Find previously opened files" },
+			p = { "<cmd>Telescope projects<CR>", "Find projects" },
+			f = { "<cmd>Telescope<CR>", "Find finding functions" },
+			s = { "<cmd>Telescope live_grep<CR>", "Search for text" },
 			c = {
 				"<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
-				"Search and select color scheme",
+				"Find and select color scheme",
 			},
-			r = { "<cmd>Telescope commands<CR>", "Search and run command" },
+			r = { "<cmd>Telescope commands<CR>", "Find and run command" },
 		},
 		l = {
 			name = "LSP",
@@ -178,7 +177,7 @@ RegisterMappings("w", {
 			i = { "<cmd>PackerStatus<CR>", "Show plugins info" },
 			c = { "<cmd>PackerCompile<CR>", "Make packer_compiled.lua" },
 		},
-		[";"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
+		[";"] = { "<cmd>Alpha<CR>", "Open dashboard" },
 	},
 }, {
 	silent = false,
@@ -233,8 +232,8 @@ DefineAugroup("general_settings", {
 	"FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
 
 	-- hide stuff when dashboard is open
-	"FileType dashboard set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2",
-	"FileType dashboard set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2",
+	"User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2",
+	"User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=2",
 
 	-- When editing a file, always jump to the last known cursor position.
 	-- Don't do it when the position is invalid, when inside an event handler

@@ -1,5 +1,4 @@
 local ls = require("luasnip")
-
 local i = ls.insert_node
 local s = ls.snippet
 local t = ls.text_node
@@ -130,9 +129,3 @@ ls.snippets = {
 		),
 	},
 }
-
-require("luasnip/loaders/from_vscode").lazy_load({
-	paths = {
-		DATA_PATH .. "/site/pack/packer/opt/friendly-snippets",
-	},
-})

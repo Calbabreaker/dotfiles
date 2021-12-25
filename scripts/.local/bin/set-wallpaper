@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #
-# sets a wallpaper using hsetroot
-# specify no arguments to use the wallpaper that was set previous 
+# Sets a wallpaper using hsetroot
+# Specify no arguments to use the wallpaper that was set previous 
 #
 
 wallpaper_command_file=${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper-command

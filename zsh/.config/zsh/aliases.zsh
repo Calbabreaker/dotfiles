@@ -24,10 +24,9 @@ alias szsh="source $ZDOTDIR/.zshrc"
 alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 alias wininit="echo 'i am using linux idiot'"
 alias mvim="nvim -u $XDG_CONFIG_HOME/nvim/minimal.lua"
-alias tmux-new-session='tmux new-session -s `basename $(pwd)` && cd $HOME'
 
 # keybinds
 bindkey -s '^o' 'nvim $(fzf)^M'
-bindkey -s '^f' '\ec tmux-new-session^M'
-bindkey -s '^t' 'tmux-new-session^M'
+bindkey -s '^f' '\ec tns^M'
+bindkey -s '^t' 'tns^M'
 

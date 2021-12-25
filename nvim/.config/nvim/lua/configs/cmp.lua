@@ -8,8 +8,6 @@ local function has_space_before()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
-local cmp = require("cmp")
-
 local completion_icons = {
 	Text = "",
 	Method = "",
@@ -38,6 +36,7 @@ local completion_icons = {
 	TypeParameter = "",
 }
 
+local cmp = require("cmp")
 cmp.setup({
 	mapping = {
 		["<C-b>"] = cmp.mapping.scroll_docs(4),
@@ -90,6 +89,7 @@ cmp.setup({
 		end,
 	},
 	formatting = {
+		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.kind = completion_icons[vim_item.kind]
 			vim_item.menu = ({

@@ -1,4 +1,5 @@
-local colors = require("onedark.colors")
+local lualine = require("lualine")
+
 local lsp_status = require("lsp-status")
 
 local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
@@ -66,11 +67,6 @@ local diagnostics = {
 local diff = {
 	"diff",
 	symbols = { added = " ", modified = "柳", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.yellow },
-		removed = { fg = colors.red },
-	},
 }
 
 local branch = {
@@ -78,7 +74,7 @@ local branch = {
 	icon = "",
 }
 
-require("lualine").setup({
+lualine.setup({
 	options = {
 		theme = "onedark",
 		disabled_filetypes = { "NvimTree", "packer", "dashboard" },

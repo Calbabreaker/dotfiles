@@ -15,12 +15,11 @@ vim.g.nvim_tree_icons = {
 	symlink = "",
 }
 
-local view = require("nvim-tree.view")
 local nvimtree = require("nvim-tree")
+local view = require("nvim-tree.view")
 local buffstate = require("bufferline.state")
 
 local tree_width = 30
-
 nvimtree.setup({
 	auto_close = true,
 	diagnostics = {
