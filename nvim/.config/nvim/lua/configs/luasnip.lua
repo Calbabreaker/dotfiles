@@ -132,6 +132,6 @@ ls.snippets = {
 
 require("luasnip/loaders/from_vscode").lazy_load({
 	paths = {
-		DATA_PATH .. "/site/pack/packer/opt/friendly-snippets",
+		DATA_PATH .. "/site/pack/packer/start/friendly-snippets",
 	},
 })
