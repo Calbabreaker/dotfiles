@@ -111,3 +111,11 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = "rounded",
 })
+
+-- dumb hack to fix rust_analyzer content modified message thing being annyoing
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if not msg:match("content modified") then 
+        notify(msg, ...)
+    end
+end

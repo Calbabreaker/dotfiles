@@ -216,6 +216,7 @@ RegisterMappings("i", {
 
 	["<A-j>"] = { "<ESC>:m .+1<CR>==i" },
 	["<A-k>"] = { "<ESC>:m .-2<CR>==i" },
+	["<C-s>"] = { "<cmd>w<CR>" },
 })
 
 RegisterMappings("v", {

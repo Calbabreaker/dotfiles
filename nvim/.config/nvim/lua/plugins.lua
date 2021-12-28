@@ -193,11 +193,21 @@ local function plugin_setup(use)
 		end,
 	})
 
+	-- nice text objects
+	use({
+		"kana/vim-textobj-user",
+		requires = {
+			"glts/vim-textobj-comment",
+			"sgur/vim-textobj-parameter",
+			"kana/vim-textobj-entire",
+		},
+	})
+
 	use("christoomey/vim-sort-motion") -- sorts lines
 	use("tpope/vim-repeat") -- able to repeat plugin maps
 	use("tpope/vim-surround") -- easily edit and make (), "", etc
 	use("tpope/vim-commentary") -- toggle comments with motions
-	use("vim-scripts/replacewithregister") -- use motion to replace with clipboard
+	use("vim-scripts/replacewithregister") -- provides gr to replace with clipboard
 end
 
 -- automatically get packer (plugin manager)

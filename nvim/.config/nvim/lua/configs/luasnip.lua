@@ -23,6 +23,13 @@ local cxx_hello_world = s({ trig = "hello", dscr = "Basic hello world" }, {
 ls.snippets = {
 	c = { cxx_hello_world },
 	cpp = { cxx_hello_world },
+	rust = {
+		s("println-dbg", {
+			t('println!("{:?}", '),
+			i(0, "<var>"),
+			t(");"),
+		}),
+	},
 	cmake = {
 		s("starter", {
 			t({

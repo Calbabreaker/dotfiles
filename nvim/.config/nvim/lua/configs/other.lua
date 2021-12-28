@@ -41,9 +41,9 @@ return {
 		vim.api.nvim_command("highlight TabLineSel guibg=TabLineFill guifg=TabLineFill")
 
 		vim.api.nvim_command("highlight NormalFloat guifg=Normal guibg=Normal")
-		vim.api.nvim_command("highlight LspReferenceRead guibg=#353944 gui=none")
-		vim.api.nvim_command("highlight LspReferenceText guibg=#353944 gui=none")
-		vim.api.nvim_command("highlight LspReferenceWrite guibg=#353944 gui=none")
+		vim.api.nvim_command("highlight LspReferenceRead guibg=#333741 gui=none")
+		vim.api.nvim_command("highlight LspReferenceText guibg=#333741 gui=none")
+		vim.api.nvim_command("highlight LspReferenceWrite guibg=#333741 gui=none")
 		vim.api.nvim_command("highlight CursorLine guibg=#2c3039")
 		vim.api.nvim_command("highlight ColorColumn guibg=#2c3039")
 

@@ -16,7 +16,7 @@ local function clients()
 	for _, msg in ipairs(lsp_status.messages()) do
 		-- msg.name is actually the id
 		local client_name = client_id_to_name[msg.name]
-		if client_name and msg.progress then
+		if client_name then
 			local status = client_name .. ": " .. msg.title
 
 			if msg.spinner then
@@ -29,7 +29,7 @@ local function clients()
 				status = status .. string.format(" (%.0f%%%%)", msg.percentage)
 			end
 
-			-- make sure to not have multiple messages at once
+			-- make sure to remove to not have multiple messages at once
 			client_id_to_name[msg.name] = nil
 			table.insert(status_list, status)
 		end
@@ -67,11 +67,6 @@ local diff = {
 	symbols = { added = " ", modified = "柳", removed = " " },
 }
 
-local branch = {
-	"branch",
-	icon = "",
-}
-
 require("lualine").setup({
 	options = {
 		theme = "onedark",
@@ -80,7 +75,7 @@ require("lualine").setup({
 		component_separators = { left = "│", right = "│" },
 	},
 	sections = {
-		lualine_b = { branch },
+		lualine_b = { "branch" },
 		lualine_c = { "filename", diff },
 		lualine_x = { diagnostics, clients },
 		lualine_y = { "filetype" },
