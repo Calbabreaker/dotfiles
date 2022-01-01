@@ -60,7 +60,7 @@ ls.snippets = {
 		}),
 	},
 	all = {
-		s("clang-format", {
+		s("cf-style", {
 			t({
 				"AccessModifierOffset: -4",
 				"AllowShortFunctionsOnASingleLine: InlineOnly",

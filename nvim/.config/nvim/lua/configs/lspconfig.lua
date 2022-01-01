@@ -115,7 +115,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 -- dumb hack to fix rust_analyzer content modified message thing being annyoing
 local notify = vim.notify
 vim.notify = function(msg, ...)
-    if not msg:match("content modified") then 
-        notify(msg, ...)
-    end
+	if msg ~= "rust_analyzer: -32801: content modified" then
+		notify(msg, ...)
+	end
 end

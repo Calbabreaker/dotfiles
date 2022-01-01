@@ -28,5 +28,4 @@ alias mvim="nvim -u $XDG_CONFIG_HOME/nvim/minimal.lua"
 # keybinds
 bindkey -s '^o' 'nvim $(fzf)^M'
 bindkey -s '^f' '\ec tns^M'
-bindkey -s '^t' 'tns^M'
 
