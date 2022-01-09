@@ -24,22 +24,23 @@ alias szsh="source $ZDOTDIR/.zshrc"
 alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 alias wininit="echo 'i am using linux idiot'"
 alias mvim="nvim -u $XDG_CONFIG_HOME/nvim/minimal.lua"
+alias v="nvim"
 export PAGER='less -R --use-color -Dd+g$Dur$DPy' # colored man pages
 
-export FILE_FIND_CMD="rg -g '!.git' --files --hidden"
+export LIST_FILES_COMMAND="rg -g '!.git' --files --hidden"
 
 function fzf-edit {
-    $EDITOR $($FILE_FIND_CMD | fzf --preview 'bat --color=always --style=plain {}')
+    $EDITOR $(eval $LIST_FILES_COMMAND | fzf --preview 'bat --color=always --style=plain {}')
 }
 
 function fzf-open {
-    xdg-open $($FILE_FIND_CMD | fzf)
+    xdg-open $($LIST_FILES_COMMAND | fzf)
 }
 
 zle -N fzf-edit
 zle -N fzf-open
 
 # keybinds
-bindkey -s '^e' 'fzf-edit'
-bindkey -s '^o' 'fzf-open'
+bindkey '^e' 'fzf-edit'
+bindkey '^o' 'fzf-open'
 bindkey -s '^f' '\ec tns^M'

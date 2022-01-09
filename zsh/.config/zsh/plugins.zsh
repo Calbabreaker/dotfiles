@@ -48,7 +48,7 @@ function fzf_install() {
 export FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -name node_modules \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"
 
-export FZF_CTRL_T_COMMAND=$FILE_FIND_CMD
+export FZF_CTRL_T_COMMAND=$LIST_FILES_COMMAND
 
 zsh_add_plugin "junegunn/fzf" "" fzf_install
 source "$PLUGIN_PATH/fzf/shell/completion.zsh"
