@@ -27,27 +27,29 @@ return {
 	end,
 
 	colorscheme = function()
-		vim.g.onedark_disable_terminal_colors = true
-		vim.g.onedark_darker_diagnostics = false
-		vim.g.onedark_hide_ending_tildes = true
-		vim.api.nvim_command("colorscheme onedark")
+		local lspHoverColor = "#333741"
+		local lineColor = "#2c3039"
 
-		local colors = require("onedark/colors")
+		local onedark = require("onedark")
+		onedark.setup({
+			term_colors = false,
+			diagnostics = {
+				darker = false,
+			},
+			highlights = {
+				TabLineSel = { fg = "fg", bg = "bg" },
+				BufferVisibleSign = { fg = "$red", bg = "bg" },
+				NormalFloat = { fg = "Normal", bg = "Normal" },
+				LspReferenceRead = { bg = lspHoverColor, gui = "none" },
+				LspReferenceText = { bg = lspHoverColor, gui = "none" },
+				LspReferenceWrite = { bg = lspHoverColor, gui = "none" },
+				CursorLine = { bg = lineColor },
+				CursorColumn = { bg = lineColor },
+				IndentBlanklineChar = { fg = "#424855", gui = "nocombine" },
+				IndentBlanklineContextChar = { fg = "#6a7285", gui = "nocombine" },
+			},
+		})
 
-		-- have one character border in nvim-tree to make it look good
-		vim.api.nvim_command(string.format("highlight NvimTreeVertSplit guifg=%s guibg=%s", colors.bg_d, colors.bg_d))
-
-		-- have unfocused tab not look weird
-		vim.api.nvim_command("highlight TabLineSel guibg=TabLineFill guifg=TabLineFill")
-
-		vim.api.nvim_command("highlight NormalFloat guifg=Normal guibg=Normal")
-		vim.api.nvim_command("highlight LspReferenceRead guibg=#333741 gui=none")
-		vim.api.nvim_command("highlight LspReferenceText guibg=#333741 gui=none")
-		vim.api.nvim_command("highlight LspReferenceWrite guibg=#333741 gui=none")
-		vim.api.nvim_command("highlight CursorLine guibg=#2c3039")
-		vim.api.nvim_command("highlight ColorColumn guibg=#2c3039")
-
-		vim.api.nvim_command("highlight IndentBlanklineChar guifg=#424855 gui=nocombine")
-		vim.api.nvim_command("highlight IndentBlanklineContextChar guifg=#6a7285 gui=nocombine")
+		onedark.load()
 	end,
 }

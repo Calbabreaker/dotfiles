@@ -36,32 +36,6 @@ local completion_icons = {
 	TypeParameter = "",
 }
 
--- highlights for cmp kind symbols
-vim.cmd([[
-    highlight! link CmpItemKindText  Comment
-    highlight! link CmpItemKindMethod  TSMethod
-    highlight! link CmpItemKindFunction  Function
-    highlight! link CmpItemKindConstructor  TSConstructor
-    highlight! link CmpItemKindField  TSField
-    highlight! link CmpItemKindVariable  TSVariable
-    highlight! link CmpItemKindClass  Class
-    highlight! link CmpItemKindInterface  Constant
-    highlight! link CmpItemKindModule  Include
-    highlight! link CmpItemKindProperty  TSProperty
-    highlight! link CmpItemKindUnit  Constant
-    highlight! link CmpItemKindValue  TSVariable
-    highlight! link CmpItemKindEnum  Type
-    highlight! link CmpItemKindKeyword  TSKeyword
-    highlight! link CmpItemKindFile  Directory
-    highlight! link CmpItemKindReference  Question
-    highlight! link CmpItemKindConstant  Constant
-    highlight! link CmpItemKindStruct  Type
-    highlight! link CmpItemKindEvent  TSVariable
-    highlight! link CmpItemKindOperator  Operator
-    highlight! link CmpItemKindTypeParameter  Type
-    highlight! link CmpItemKindSnippet  Statement
-]])
-
 local cmp = require("cmp")
 cmp.setup({
 	mapping = {
