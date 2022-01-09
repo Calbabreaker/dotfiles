@@ -51,7 +51,7 @@ explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space
 finds and goes to files.
 
 Might need to install `xsel` to make Neovim work with system clipboard.
-`ripgrep` is also needed in order to use telescope.
+[ripgrep]("https://github.com/BurntSushi/ripgrep") is also needed in order to use telescope.
 
 ## Xmonad
 
@@ -76,4 +76,4 @@ stow scripts --no-folding
 ![zsh-screenshot0](https://user-images.githubusercontent.com/57030377/146282133-c45581fc-f543-4279-9c7a-8b40148ab1ce.png)
 
 NOTE: Need to install Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
-in order for it to work.
+in order for it to work. Also requires [ripgrep]("https://github.com/BurntSushi/ripgrep") for some keybinds.

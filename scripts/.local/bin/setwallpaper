@@ -3,6 +3,7 @@
 #
 # Sets a wallpaper using hsetroot
 # Specify no arguments to use the wallpaper that was set previous 
+# Use sxiv as first argument to open all images with sxiv and select them
 #
 
 wallpaper_command_file=${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper-command
@@ -13,6 +14,6 @@ if [ "$#" != "0" ]; then
 fi
 
 [ ! -f $wallpaper_command_file ] && \
-    notify-send "No wallpaper set\!" "Set a wallpaper using: set-wallpaper {wallpaper-file} [hsetroot-opts]"
+    notify-send "No wallpaper set\!" "Set a wallpaper using: setwallpaper {wallpaper-file} [hsetroot-opts]"
 
 sh $wallpaper_command_file

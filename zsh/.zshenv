@@ -23,12 +23,13 @@ export KDEHOME=$XDG_CONFIG_HOME/kde
 export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export PYTHONHISTORY=$XDG_DATA_HOME/python_history
+export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export WINEPREFIX=$XDG_DATA_HOME/wineprefixes/default
+export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH_DATA_PATH=$XDG_DATA_HOME/zsh
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
-export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 
 # history
 export HISTSIZE=10000
@@ -40,3 +41,12 @@ export PATH=$HOME/.local/bin:$XDG_DATA_HOME/npm/bin:$PATH
 # xsecurelock
 export XSECURELOCK_PASSWORD_PROMPT=asterisks
 export XSECURELOCK_NO_COMPOSITE=1
+
+# less colours
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
+export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
+export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
