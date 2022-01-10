@@ -11,7 +11,7 @@ command -v exa > /dev/null && alias ls="exa --icons --group-directories-first" #
 alias ll="ls -halF"
 alias la="ls -a"
 alias l="ls"
-alias lsr="/usr/bin/ls"
+alias lsr="ls --no-icons"
 
 # confirm before doing
 alias rm="rm -Iv"

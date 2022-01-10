@@ -2,12 +2,14 @@
 
 #
 # Lists the current directory's files in an editor to edit and rename them all at once
-# USAGE: vimv [file1 file2]
+# USAGE: edmv [file1 file2 ...]
 # Adapted from https://github.com/thameera/vimv (MIT LICENSE)
 #
 
-declare -r FILENAMES_FILE=$(mktemp "${TMPDIR:-/tmp}/vimv.XXX")
+set -eu
+declare -r FILENAMES_FILE=$(mktemp "${TMPDIR:-/tmp}/$(basename $0).XXX")
 
+# remove temp file when exit
 trap '{ rm -f "${FILENAMES_FILE}" ; }' EXIT
 
 if [ $# -ne 0 ]; then
