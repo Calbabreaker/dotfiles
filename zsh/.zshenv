@@ -36,17 +36,4 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=$ZSH_DATA_PATH/history.txt
 
-export PATH=$HOME/.local/bin:$XDG_DATA_HOME/npm/bin:$PATH
-
-# xsecurelock
-export XSECURELOCK_PASSWORD_PROMPT=asterisks
-export XSECURELOCK_NO_COMPOSITE=1
-
-# less colours
-export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
-export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
+export PATH=$HOME/.local/bin:$HOME/.local/bin/personal:$PATH

@@ -27,31 +27,3 @@ alias wininit="echo 'i am using linux idiot'"
 alias mvim="nvim -u $XDG_CONFIG_HOME/nvim/minimal.lua"
 alias v="nvim"
 export PAGER='less -R --use-color -Dd+g$Dur$DPy' # coloured man pages
-
-export LIST_FILES_COMMAND="rg -g '!.git' --files --hidden"
-
-function fzf-edit {
-    local file=$(eval $LIST_FILES_COMMAND | fzf --preview 'bat --color=always --style=plain {}')
-    if [ -z "$file" ]; then
-        return 0
-    fi
-    BUFFER="$EDITOR $file"
-    zle accept-line
-}
-
-function fzf-open {
-    local file=$(eval $LIST_FILES_COMMAND | fzf)
-    if [ -z "$file" ]; then
-        return 0
-    fi
-    BUFFER="xdg-open $file"
-    zle accept-line
-}
-
-zle -N fzf-edit
-zle -N fzf-open
-
-# keybinds
-bindkey '^e' 'fzf-edit'
-bindkey '^o' 'fzf-open'
-bindkey -s '^f' '\ec tns^M'

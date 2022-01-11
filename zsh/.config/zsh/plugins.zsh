@@ -16,11 +16,16 @@ function zsh_add_plugin {
     [ -f $PLUGIN_FILE ] && source $PLUGIN_FILE
 }
 
+# zsh syntax highlighting
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting" 
 
+# zsh suggestions
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 bindkey '^ ' autosuggest-accept
 
+#
+# Spaceship prompt - very nice prompt
+# 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_CHAR_SYMBOL=»
@@ -41,16 +46,46 @@ function spaceship_install() {
 zsh_add_plugin "spaceship-prompt/spaceship-prompt" "" spaceship_install
 prompt spaceship
 
+#
+# Fzf for fuzzy finding productivity
+# 
 function fzf_install() {
     $PLUGIN_PATH/fzf/install --bin 
+    ln -sf $PLUGIN_PATH/fzf/install ~/.local/bin/fzf
 }
 
+export LIST_FILES_COMMAND="rg -g '!.git' --files --hidden"
 export FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -name node_modules \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"
-
 export FZF_CTRL_T_COMMAND=$LIST_FILES_COMMAND
 
 zsh_add_plugin "junegunn/fzf" "" fzf_install
 source "$PLUGIN_PATH/fzf/shell/completion.zsh"
 source "$PLUGIN_PATH/fzf/shell/key-bindings.zsh"
-export PATH="$PATH:$PLUGIN_PATH/fzf/bin/"
+
+function fzf-edit {
+    local file=$(eval $LIST_FILES_COMMAND | fzf --preview 'bat --color=always --style=plain {}')
+    if [ -z "$file" ]; then
+        return 0
+    fi
+    BUFFER="nvim $file"
+    zle accept-line
+}
+
+function fzf-open {
+    local file=$(eval $LIST_FILES_COMMAND | fzf)
+    if [ -z "$file" ]; then
+        return 0
+    fi
+    BUFFER="xdg-open $file"
+    zle accept-line
+}
+
+zle -N fzf-edit
+zle -N fzf-open
+
+# keybinds
+bindkey '^e' 'fzf-edit'
+bindkey '^o' 'fzf-open'
+bindkey -s '^f' '\ec tns^M'
+

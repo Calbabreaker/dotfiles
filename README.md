@@ -17,7 +17,7 @@ Now you can individually choose to use a dotfile config (specified by a folder) 
 ```sh
 stow zsh # zsh configurations
 stow nvim # Neovim configurations
-stow scripts --no-folding # random scripts
+stow scripts # random scripts, make sure to add ~/.local/bin/personal to $PATH
 ```
 
 To remove a dotfile:
@@ -51,7 +51,7 @@ explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space
 finds and goes to files.
 
 Might need to install `xsel` to make Neovim work with system clipboard.
-[ripgrep]("https://github.com/BurntSushi/ripgrep") is also needed in order to use telescope.
+[ripgrep](https://github.com/BurntSushi/ripgrep) is also needed in order to use telescope.
 
 ## Xmonad
 

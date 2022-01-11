@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#
+# Sets a wallpaper using hsetroot
+# Specify no arguments to use the wallpaper that was set previous 
+# Use sxiv as first argument to open all images with sxiv and select them
+#
+
+set -eu
+DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+wallpaper_command_file=$DATA_HOME/wallpaper-command.sh
+
+if [ "$#" != "0" ]; then
+    if [ "$#" = "1" ]; then 
+        # use -cover by default
+        args=(-cover "$1")
+        image_file="$1"
+    else 
+        args=(${@:1})
+        image_file=$2
+    fi
+
+    file_ext=$(basename $image_file | cut -d. -f2)
+    wallpaper_file=$DATA_HOME/wallpaper.$file_ext
+
+    [ -e $image_file ] && cp $image_file $wallpaper_file && 
+        args[1]=$wallpaper_file
+        
+    echo "hsetroot ${args[@]}" > $wallpaper_command_file
+fi
+
+[ ! -f $wallpaper_command_file ] && \
+    notify-send 'No wallpaper set!' 'Set a wallpaper using: setwallpaper [-stretch,-tile,-cover] <image-file> [-blur,-stretch]'
+
+sh $wallpaper_command_file

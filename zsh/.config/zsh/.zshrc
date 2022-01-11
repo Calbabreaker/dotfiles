@@ -16,7 +16,7 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
 
 # default programs 
-export EDITOR="nvim"
+export EDITOR="nvim -u $XDG_CONFIG_HOME/nvim/minimal.lua" # minimal config of neovim for fast editing
 export TERMINAL="alacritty"
 export BROWSER="chromium"
 
@@ -25,6 +25,6 @@ fpath+=$ZSH_DATA_PATH/prompts
 autoload -U colors && colors
 autoload -U promptinit; promptinit
 
+source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/tab_comp_vi.zsh" # tab completion and vi mode
-source "$ZDOTDIR/plugins.zsh"
