@@ -3,3 +3,4 @@ plugin/
 spell/
 *.o
 *.hi
+__pycache__

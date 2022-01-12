@@ -1,6 +1,6 @@
 # Dotfiles
 
-Cool dot files for Neovim, zsh, xmonad, and alacritty and other random programs.
+Cool dot files for Neovim, zsh, Qtile, and Alacritty and other random programs.
 
 ## Setup
 
@@ -26,6 +26,9 @@ To remove a dotfile:
 stow -D zsh
 stow -D scripts
 ```
+
+NOTE: Most dotfile configs (Qtile, Neovim, zsh) requires Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
+in order for them to work.
 
 ## Neovim
 
@@ -53,22 +56,34 @@ finds and goes to files.
 Might need to install `xsel` to make Neovim work with system clipboard.
 [ripgrep](https://github.com/BurntSushi/ripgrep) is also needed in order to use telescope.
 
-## Xmonad
+## Qtile
 
-![xmonad-screenshot0](https://user-images.githubusercontent.com/57030377/146282118-4afee0c3-86a0-48a5-9d08-3fd76a7b0661.png)
+![qtile-screenshot](https://user-images.githubusercontent.com/57030377/149144917-68214f99-484a-4cc0-912c-6eb01fc7ff9b.png)
 
 Requirements (pacman):
 
-```
-sudo pacman -Sy xmonad xmonad-contrib xmobar dmenu xorg picom trayer volumeicon dunst \
-    xdotool network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock sx --needed
+```sh
+sudo pacman -Sy --needed sx xorg qtile dmenu picom hsetroot python-dbus-next python-psutil volumeicon \
+     noto-fonts-emoji network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock lxappearence
 ```
 
-You also need to stow the scripts and xorg directory:
+Now run `sx qtile start` from a tty to start qtile or stow the zsh directory to
+automatically start it on login.
+
+To set a wallpaper copy an image file to `~/.local/share/wallpaper.png` or use the
+`setwallpaper` script in the scripts directory which will allow you to blur the
+image or set as a colour.
+
+Optionally install my programs as well:
 
 ```
-# from .dotfiles
-stow scripts --no-folding
+sudo pacman -Sy --needed nvim alacritty chromium pcmanfm
+```
+
+For updates widget to work, add this to your `/etc/sudoers` (edit using visudo):
+
+```
+%wheel ALL=(root) NOPASSWD: /usr/bin/pacman -Syu, /usr/bin/pacman -Sy
 ```
 
 ## Alacritty and zsh
