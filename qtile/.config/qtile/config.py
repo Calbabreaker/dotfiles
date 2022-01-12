@@ -18,8 +18,8 @@ def kill_all_windows(qtile):
 @lazy.function
 def window_to_prev_group(qtile, switch_group=True):
     try:
-        i = qtile.groups.index(qtile.current_group)
-        group = qtile.groups[i - 1].name
+        i = qtile.groups.index(qtile.current_group) - 1
+        group = qtile.groups[i].name
         qtile.current_window.togroup(group, switch_group=switch_group)
     except:
         pass
@@ -27,8 +27,8 @@ def window_to_prev_group(qtile, switch_group=True):
 @lazy.function
 def window_to_next_group(qtile, switch_group=True):
     try:
-        i = qtile.groups.index(qtile.current_group)
-        group = qtile.groups[(i + 1) % len(qtile.groups)].name
+        i = (qtile.groups.index(qtile.current_group) + 1) % len(qtile.groups)
+        group = qtile.groups[i].name
         qtile.current_window.togroup(group, switch_group=switch_group)
     except:
         pass
@@ -36,18 +36,22 @@ def window_to_next_group(qtile, switch_group=True):
 @lazy.function
 def window_to_prev_screen(qtile, switch_screen=True):
     try:
-        i = qtile.screens.index(qtile.current_screen)
-        group = qtile.screens[i - 1].group.name
-        qtile.current_window.togroup(group, switch_screen=switch_screen)
+        i = qtile.screens.index(qtile.current_screen) - 1
+        group = qtile.screens[i].group.name
+        qtile.current_window.togroup(group)
+        if switch_screen == True:
+            qtile.cmd_to_screen(i)
     except:
         pass
 
 @lazy.function
 def window_to_next_screen(qtile, switch_screen=True):
     try:
-        i = qtile.screens.index(qtile.current_screen)
-        group = qtile.screens[(i + 1) % len(qtile.screens)].group.name
-        qtile.current_window.togroup(group, switch_screen=switch_screen)
+        i = (qtile.screens.index(qtile.current_screen) + 1) % len(qtile.screens)
+        group = qtile.screens[i].group.name
+        qtile.current_window.togroup(group)
+        if switch_screen == True:
+            qtile.cmd_to_screen(i)
     except:
         pass
 
