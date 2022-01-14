@@ -1,8 +1,10 @@
 import subprocess
 import os
+import string
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from libqtile.log_utils import logger
 
 # programs
 terminal = "alacritty"
@@ -15,45 +17,29 @@ def kill_all_windows(qtile):
 	for window in qtile.current_group.windows:
 		window.kill()
 
+def wrap(value,start, end):
+    if value > end:
+        return start;
+    elif value < start:
+        return end;
+    else: 
+        return value;
+
+# NOTE: for this to work groups must be an ordered number set
 @lazy.function
-def window_to_prev_group(qtile, switch_group=True):
-    try:
-        i = qtile.groups.index(qtile.current_group) - 1
-        group = qtile.groups[i].name
-        qtile.current_window.togroup(group, switch_group=switch_group)
-    except:
-        pass
+def window_to_offset_group(qtile, offset, switch_group=True):
+    if qtile.current_window:
+        i = wrap(int(qtile.current_group.name) + offset, 1, len(qtile.groups))
+        qtile.current_window.togroup(str(i), switch_group=switch_group)
 
 @lazy.function
-def window_to_next_group(qtile, switch_group=True):
-    try:
-        i = (qtile.groups.index(qtile.current_group) + 1) % len(qtile.groups)
-        group = qtile.groups[i].name
-        qtile.current_window.togroup(group, switch_group=switch_group)
-    except:
-        pass
-
-@lazy.function
-def window_to_prev_screen(qtile, switch_screen=True):
-    try:
-        i = qtile.screens.index(qtile.current_screen) - 1
+def window_to_offset_screen(qtile, offset, switch_screen=True):
+    if qtile.current_window:
+        i = wrap(qtile.current_screen.index + offset, 0, len(qtile.screens) - 1)
         group = qtile.screens[i].group.name
         qtile.current_window.togroup(group)
         if switch_screen == True:
             qtile.cmd_to_screen(i)
-    except:
-        pass
-
-@lazy.function
-def window_to_next_screen(qtile, switch_screen=True):
-    try:
-        i = (qtile.screens.index(qtile.current_screen) + 1) % len(qtile.screens)
-        group = qtile.screens[i].group.name
-        qtile.current_window.togroup(group)
-        if switch_screen == True:
-            qtile.cmd_to_screen(i)
-    except:
-        pass
 
 show_brightness_cmd = 'value=$(xbacklight -get | cut -d. -f1) && dunstify -t 2000 -u low -r 13481 -h int:value:$value "Brightness: $value" --icon a'
 
@@ -83,32 +69,35 @@ keys = [
     Key([mod], "plus", lazy.layout.increase_ratio(), desc="Increase number of master windows"),
     Key([mod], "minus", lazy.layout.decrease_ratio(), desc="Decrease number of master windows"),
     Key(["mod1"], "Tab", lazy.layout.next(), desc="Move window focus to other window"),
+    Key([mod], "m", lazy.layout.swap_main(), desc="Promote to master"),
 
     Key([mod], "comma", lazy.screen.prev_group(), desc="Go to next group"),
     Key([mod], "period", lazy.screen.next_group(), desc="Go to next group"),
     Key([mod], "BackSpace", lazy.screen.toggle_group(), desc="Go to previous group"),
-    Key([mod, "shift"], "comma", window_to_prev_group, desc="Move window and go to prev group"),
-    Key([mod, "shift"], "period", window_to_next_group, desc="Move window and go to next group"),
-    Key([mod, "control", "shift"], "comma", window_to_prev_group(False), desc="Move window to prev group"),
-    Key([mod, "control", "shift"], "period", window_to_next_group(False), desc="Move window to next group"),
+    Key([mod, "shift"], "comma", window_to_offset_group(-1), desc="Move window and go to prev group"),
+    Key([mod, "shift"], "period", window_to_offset_group(1), desc="Move window and go to next group"),
+    Key([mod, "control", "shift"], "comma", window_to_offset_group(-1, False), desc="Move window to prev group"),
+    Key([mod, "control", "shift"], "period", window_to_offset_group(1, False), desc="Move window to next group"),
     Key([mod, "mod1"], "comma", lazy.prev_screen(), desc="Go to prev screen"),
     Key([mod, "mod1"], "period", lazy.next_screen(), desc="Go to next screen"),
-    Key([mod, "shift", "mod1"], "comma", window_to_prev_screen, desc="Move window and to prev screen"),
-    Key([mod, "shift", "mod1"], "period", window_to_next_screen, desc="Move window and to next screen"),
-    Key([mod, "control", "shift", "mod1"], "comma", window_to_prev_screen(False), desc="Move window to prev screen"),
-    Key([mod, "control", "shift", "mod1"], "period", window_to_next_screen(False), desc="Move window to next screen"),
+    Key([mod, "shift", "mod1"], "comma", window_to_offset_screen(-1), desc="Move window and to prev screen"),
+    Key([mod, "shift", "mod1"], "period", window_to_offset_screen(1), desc="Move window and to next screen"),
+    Key([mod, "control", "shift", "mod1"], "comma", window_to_offset_screen(-1, False), desc="Move window to prev screen"),
+    Key([mod, "control", "shift", "mod1"], "period", window_to_offset_screen(1, False), desc="Move window to next screen"),
 
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window left"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    Key([mod], "l", lazy.layout.grow(), desc="Grow window"),
-    Key([mod], "h", lazy.layout.shrink(), desc="Shrink window"),
+    Key([mod], "l", lazy.layout.grow_main(), desc="Grow window"),
+    Key([mod], "h", lazy.layout.shrink_main(), desc="Shrink window"),
 
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.hide_show_bar("top"), desc="Toggle bar"),
     Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
+    Key([mod, "shift"], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
+    Key([], "F11", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
 
     Key([mod, "shift"], "Up", lazy.spawn("xrandr --output eDP1 --rotate normal"), desc="Rotate screen normal"),
     Key([mod, "shift"], "Down", lazy.spawn("xrandr --output eDP1 --rotate inverted"), desc="Rotate screen normal"),
@@ -149,12 +138,12 @@ mouse = [
 ]
 
 layout_theme = {
-    "border_width": 1,
-    "margin": 4,
+    "border_width": 2,
+    "margin": 8,
     "border_focus": "#668bd7",
     "border_normal": "#1d2330",
-    "single_border_width": 0,
-    "single_margin": 0,
+    # "single_border_width": 0,
+    # "single_margin": 0,
 }
 
 layouts = [
