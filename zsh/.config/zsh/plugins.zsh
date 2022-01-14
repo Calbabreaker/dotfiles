@@ -51,7 +51,7 @@ prompt spaceship
 # 
 function fzf_install() {
     $PLUGIN_PATH/fzf/install --bin 
-    ln -sf $PLUGIN_PATH/fzf/install ~/.local/bin/fzf
+    ln -sf $PLUGIN_PATH/fzf/bin/fzf ~/.local/bin/fzf
 }
 
 export LIST_FILES_COMMAND="rg -g '!.git' --files --hidden"
