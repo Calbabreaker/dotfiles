@@ -52,4 +52,19 @@ return {
 
 		onedark.load()
 	end,
+
+	treesitter = function()
+		require("nvim-treesitter.configs").setup({
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = true,
+			},
+			indent = {
+				enable = true,
+			},
+			context_commentstring = {
+				enable = true,
+			},
+		})
+	end,
 }

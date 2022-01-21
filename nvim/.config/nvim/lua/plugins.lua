@@ -147,11 +147,11 @@ local function plugin_setup(use)
 		"nvim-treesitter/nvim-treesitter",
 		requires = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
-			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		config = function()
-			require("configs/treesitter")
+			require("configs/other").treesitter()
 		end,
+		run = ":TSUpdate",
 	})
 
 	--

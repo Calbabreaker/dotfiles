@@ -175,6 +175,7 @@ RegisterMappings("w", {
 			s = { "<cmd>PackerSync<CR>", "Packer sync" },
 			i = { "<cmd>PackerStatus<CR>", "Show plugins info" },
 			c = { "<cmd>PackerCompile<CR>", "Make packer_compiled.lua" },
+			g = { "<cmd>PackerInstall<CR>", "Get/Install needed plugins" },
 		},
 		[";"] = { "<cmd>Alpha<CR>", "Open dashboard" },
 	},

@@ -91,4 +91,4 @@ For updates widget to work, add this to your `/etc/sudoers` (edit using visudo):
 ![zsh-screenshot0](https://user-images.githubusercontent.com/57030377/146282133-c45581fc-f543-4279-9c7a-8b40148ab1ce.png)
 
 NOTE: Need to install Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
-in order for it to work. Also requires [ripgrep]("https://github.com/BurntSushi/ripgrep") for some keybinds.
+in order for it to work. Also requires [ripgrep](https://github.com/BurntSushi/ripgrep) for some keybinds.
