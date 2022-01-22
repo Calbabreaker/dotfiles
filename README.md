@@ -64,7 +64,8 @@ Requirements (pacman):
 
 ```sh
 sudo pacman -Sy --needed sx xorg qtile dmenu picom hsetroot python-dbus-next python-psutil volumeicon \
-     noto-fonts-emoji network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock lxappearence
+     noto-fonts-emoji network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock xdg-utils \
+     ttf-liberation lxappearance-gtk3 neovim chromium pcmanfm alacritty
 ```
 
 Now run `sx qtile start` from a tty to start qtile or stow the zsh directory to
@@ -73,12 +74,6 @@ automatically start it on login.
 To set a wallpaper copy an image file to `~/.local/share/wallpaper.png` or use the
 `setwallpaper` script in the scripts directory which will allow you to blur the
 image or set as a colour.
-
-Optionally install my programs as well:
-
-```
-sudo pacman -Sy --needed nvim alacritty chromium pcmanfm
-```
 
 For updates widget to work, add this to your `/etc/sudoers` (edit using visudo):
 
