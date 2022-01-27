@@ -58,7 +58,7 @@ keys = [
     Key([mod, "shift"], "Return", lazy.spawn(launcher), desc="Show program launcher"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
     Key([mod], "e", lazy.spawn(file_manager), desc="Launch file manager"),
-    Key([mod, "shift"], "l", lazy.spawn("xset s activate"), desc="Lock computer with lock screen"),
+    Key([mod, "control"], "l", lazy.spawn("xset s activate"), desc="Lock computer with lock screen"),
 
     Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "c", kill_all_windows, desc="Kill all windows in group"),

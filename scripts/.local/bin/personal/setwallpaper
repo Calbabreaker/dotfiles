@@ -3,7 +3,6 @@
 #
 # Sets a wallpaper using hsetroot
 # Specify no arguments to use the wallpaper that was set previous 
-# Use sxiv as first argument to open all images with sxiv and select them
 #
 
 set -eu
@@ -23,6 +22,7 @@ if [ "$#" != "0" ]; then
     file_ext=$(basename $image_file | cut -d. -f2)
     wallpaper_file=$DATA_HOME/wallpaper.$file_ext
 
+    [ -f $DATA_HOME/wallpaper.* ] && rm $DATA_HOME/wallpaper.*
     [ -e $image_file ] && cp $image_file $wallpaper_file && 
         args[1]=$wallpaper_file
         
