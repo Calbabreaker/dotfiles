@@ -44,4 +44,4 @@ for ((i=0;i<${#src[@]};++i)); do
     fi
 done
 
-echo "$count" files renamed.
+echo "$count files renamed."

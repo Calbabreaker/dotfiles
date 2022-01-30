@@ -40,8 +40,6 @@ nvimtree.setup({
 	},
 })
 
-require("nvim-tree.lib").toggle_ignored()
-
 function ToggleTree()
 	if view.win_open() then
 		buffstate.set_offset(0)
