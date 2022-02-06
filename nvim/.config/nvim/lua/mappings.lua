@@ -109,7 +109,8 @@ RegisterMappings("w", {
 		g = {
 			name = "Git",
 			g = { "<cmd>Git<CR>", "Open git fugitive" },
-			p = { "<cmd>Git push<CR>", "Git push to default remote" },
+			p = { "<cmd>Git push<CR>", "Git push to tracked remote" },
+			P = { "<cmd>Git push --force<CR>", "Git force push to default remote" },
 			h = { "<cmd>diffget //2<CR>", "Get change to the left of merge conflict" },
 			l = { "<cmd>diffget //3<CR>", "Get change to the right of merge conflict" },
 			b = { "<cmd>Telescope git_branches<CR>", "Checkout branches" },

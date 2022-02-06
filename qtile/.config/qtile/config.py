@@ -9,7 +9,7 @@ from libqtile.log_utils import logger
 # programs
 terminal = "alacritty"
 file_manager = "pcmanfm"
-browser = "chromium"
+browser = "brave"
 launcher = "dmenu_run -nb '#21262e' -fn 'SauceCodePro Nerd Font:size=10' -i -p 'Run: '"
 
 @lazy.function

@@ -65,7 +65,7 @@ Requirements (pacman):
 ```sh
 sudo pacman -Sy --needed sx xorg qtile dmenu picom hsetroot python-dbus-next python-psutil volumeicon \
      noto-fonts-emoji network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock xdg-utils \
-     ttf-liberation lxappearance-gtk3 neovim chromium pcmanfm alacritty
+     ttf-liberation lxappearance-gtk3 neovim pcmanfm alacritty
 ```
 
 Now run `sx qtile start` from a tty to start qtile or stow the zsh directory to
