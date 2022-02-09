@@ -2,7 +2,6 @@ local function plugin_setup(use)
 	use("wbthomason/packer.nvim") -- packer plugin stuff
 	use("kyazdani42/nvim-web-devicons") -- nice icons
 	use("nvim-lua/plenary.nvim") -- lua utils
-	use("nvim-lua/popup.nvim") -- popup lib
 	use("lewis6991/impatient.nvim") -- improve neovim startup times
 
 	-- colour scheme
@@ -80,6 +79,16 @@ local function plugin_setup(use)
 		end,
 	})
 
+	-- nice emmet support
+	use({
+		"https://github.com/mattn/emmet-vim",
+		event = "BufRead",
+		setup = function()
+			vim.g.user_emmet_leader_key = ","
+			vim.g.user_emmet_mode = "nv"
+		end,
+	})
+
 	--
 	-- Language server
 	--
@@ -116,7 +125,7 @@ local function plugin_setup(use)
 	use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 
-	-- view parameters and signitures
+	-- view parameters and signatures
 	use({
 		"ray-x/lsp_signature.nvim",
 		cond = "not MINIMAL",
@@ -129,6 +138,7 @@ local function plugin_setup(use)
 	use({
 		"L3MON4D3/LuaSnip",
 		requires = "rafamadriz/friendly-snippets",
+		event = "InsertEnter",
 		config = function()
 			require("configs/luasnip")
 		end,
@@ -197,7 +207,6 @@ local function plugin_setup(use)
 	use({
 		"kana/vim-textobj-user",
 		requires = {
-			"glts/vim-textobj-comment",
 			"sgur/vim-textobj-parameter",
 			"kana/vim-textobj-entire",
 		},

@@ -12,7 +12,7 @@ function path_remove {
 caller_cmd=$(ps -o comm= $PPID)
 
 # if pnpm is calling this script or pnpm does not exist then use normal npm instead
-if [ -n $FORCE_NPM ] || [ caller_cmd = "pnpm" ] || ! command -v pnpm > /dev/null; then
+if [ ! -z $FORCE_NPM ] || [ caller_cmd = "pnpm" ] || ! command -v pnpm > /dev/null; then
     path_remove $(dirname $0)
     npm ${@:1}
 else

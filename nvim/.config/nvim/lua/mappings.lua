@@ -165,6 +165,7 @@ RegisterMappings("w", {
 			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" },
 			r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
 			i = { "<cmd>LspInfo<CR>", "Show LSP info" },
+			I = { "<cmd>LspInstallInfo<CR>", "Show LSP install info" },
 			d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Show document diagnostics" },
 			D = { "<cmd>Telescope diagnostics<cr>", "Show workspace diagnostics" },
 			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Show document symbols" },

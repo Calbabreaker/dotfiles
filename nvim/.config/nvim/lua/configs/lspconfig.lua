@@ -69,9 +69,7 @@ lsp_installer.on_server_ready(function(server)
 
 	config.capabilities = capabilities
 	config.on_attach = on_attach
-
 	server:setup(config)
-	vim.api.nvim_command("do User LspAttachBuffers")
 end)
 
 local lspconfig = require("lspconfig")
