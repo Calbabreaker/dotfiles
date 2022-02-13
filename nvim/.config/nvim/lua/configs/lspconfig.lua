@@ -60,6 +60,13 @@ local server_configs = {
 			},
 		},
 	},
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+			},
+		},
+	},
 }
 
 local lsp_installer = require("nvim-lsp-installer")

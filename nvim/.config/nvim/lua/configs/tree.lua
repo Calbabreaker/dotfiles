@@ -17,16 +17,14 @@ vim.g.nvim_tree_icons = {
 
 local nvimtree = require("nvim-tree")
 local view = require("nvim-tree.view")
-local buffstate = require("bufferline.state")
 
-local tree_width = 30
 nvimtree.setup({
 	auto_close = true,
 	diagnostics = {
 		enable = true,
 	},
 	view = {
-		width = tree_width,
+		width = 30,
 		side = "left",
 		auto_resize = false,
 	},
@@ -38,16 +36,25 @@ nvimtree.setup({
 		enable = true,
 		ignore = false,
 	},
+	update_focused_file = {
+		enable = true,
+		update_cwd = true,
+	},
 })
 
-function ToggleTree()
-	if view.win_open() then
-		buffstate.set_offset(0)
-		nvimtree.close()
-	else
-		buffstate.set_offset(tree_width + 1, "File Explorer")
-		nvimtree.find_file(true)
-	end
-end
+-- closes current buffer while not cycling to nvim-tree window
+function BufferClose()
+	local bufferline = require("bufferline")
 
-vim.api.nvim_command([[command! ToggleTree lua ToggleTree()]])
+	local explorer_window = view.get_winnr()
+	local was_explorer_open = vim.api.nvim_win_is_valid(explorer_window)
+	local buffer_to_delete = vim.api.nvim_get_current_buf()
+
+	if was_explorer_open then
+		-- switch to previous buffer (tracked by bufferline)
+		bufferline.cycle(-1)
+	end
+
+	-- delete initially open buffer
+	vim.cmd("bdelete! " .. buffer_to_delete)
+end

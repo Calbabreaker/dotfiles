@@ -26,33 +26,6 @@ return {
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 	end,
 
-	colorscheme = function()
-		local lspHoverColor = "#333741"
-		local lineColor = "#2c3039"
-
-		local onedark = require("onedark")
-		onedark.setup({
-			term_colors = false,
-			diagnostics = {
-				darker = false,
-			},
-			highlights = {
-				TabLineSel = { fg = "fg", bg = "bg" },
-				BufferVisibleSign = { fg = "$red", bg = "bg" },
-				NormalFloat = { fg = "Normal", bg = "Normal" },
-				LspReferenceRead = { bg = lspHoverColor, fmt = "none" },
-				LspReferenceText = { bg = lspHoverColor, fmt = "none" },
-				LspReferenceWrite = { bg = lspHoverColor, fmt = "none" },
-				CursorLine = { bg = lineColor },
-				ColorColumn = { bg = lineColor },
-				IndentBlanklineChar = { fg = "#424855", fmt = "nocombine" },
-				IndentBlanklineContextChar = { fg = "#6a7285", fmt = "nocombine" },
-			},
-		})
-
-		onedark.load()
-	end,
-
 	treesitter = function()
 		require("nvim-treesitter.configs").setup({
 			highlight = {
@@ -64,6 +37,26 @@ return {
 			},
 			context_commentstring = {
 				enable = true,
+			},
+		})
+	end,
+
+	bufferline = function()
+		require("bufferline").setup({
+			options = {
+				close_command = function()
+					BufferClose()
+				end,
+				right_mouse_command = function()
+					BufferClose()
+				end,
+				offsets = {
+					{
+						filetype = "NvimTree",
+						text = "File Explorer",
+						padding = 1,
+					},
+				},
 			},
 		})
 	end,

@@ -8,7 +8,7 @@ local function plugin_setup(use)
 	use({
 		"navarasu/onedark.nvim",
 		config = function()
-			require("configs/other").colorscheme()
+			require("configs/colorscheme")
 		end,
 	})
 
@@ -46,10 +46,17 @@ local function plugin_setup(use)
 		end,
 	})
 
+	use({
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("configs/other").bufferline()
+		end,
+	})
+
 	-- file explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
-		cmd = "ToggleTree",
+		-- cmd = "NvimTreeFindFileToggle",
 		config = function()
 			require("configs/tree")
 		end,
@@ -65,9 +72,6 @@ local function plugin_setup(use)
 			require("configs/telescope")
 		end,
 	})
-
-	-- cool tabs
-	use({ "romgrk/barbar.nvim", cond = "not MINIMAL" })
 
 	-- show keybinds
 	use({
@@ -95,7 +99,7 @@ local function plugin_setup(use)
 
 	use({
 		"neovim/nvim-lspconfig",
-		requires = { "nvim-lua/lsp-status.nvim", "williamboman/nvim-lsp-installer" },
+		requires = { "nvim-lua/lsp-status.nvim", "williamboman/nvim-lsp-installer", "b0o/schemastore.nvim" },
 		cond = "not MINIMAL",
 		config = function()
 			require("configs/lspconfig")
