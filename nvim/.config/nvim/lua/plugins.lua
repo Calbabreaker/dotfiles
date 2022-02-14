@@ -8,7 +8,7 @@ local function plugin_setup(use)
 	use({
 		"navarasu/onedark.nvim",
 		config = function()
-			require("configs/colorscheme")
+			require("configs/other").colorscheme()
 		end,
 	})
 
@@ -46,19 +46,19 @@ local function plugin_setup(use)
 		end,
 	})
 
-	use({
-		"akinsho/bufferline.nvim",
-		config = function()
-			require("configs/other").bufferline()
-		end,
-	})
-
 	-- file explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
 		-- cmd = "NvimTreeFindFileToggle",
 		config = function()
 			require("configs/tree")
+		end,
+	})
+
+	use({
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("configs/bufferline")
 		end,
 	})
 

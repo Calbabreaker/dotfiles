@@ -170,7 +170,7 @@ RegisterMappings("w", {
 			D = { "<cmd>Telescope diagnostics<cr>", "Show workspace diagnostics" },
 			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Show document symbols" },
 			S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Show workspace symbols" },
-			l = { "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>", "Show diagnostics on line" },
+			l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostics on line" },
 		},
 		p = {
 			name = "Packer (plugin manager)",
@@ -228,7 +228,6 @@ DefineAugroup("general_settings", {
 	"FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
 
 	-- hide stuff when dashboard is open
-	"User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2",
 	"User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=2",
 
 	-- When editing a file, always jump to the last known cursor position.

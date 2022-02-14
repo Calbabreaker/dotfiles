@@ -16,7 +16,6 @@ vim.g.nvim_tree_icons = {
 }
 
 local nvimtree = require("nvim-tree")
-local view = require("nvim-tree.view")
 
 nvimtree.setup({
 	auto_close = true,
@@ -41,20 +40,3 @@ nvimtree.setup({
 		update_cwd = true,
 	},
 })
-
--- closes current buffer while not cycling to nvim-tree window
-function BufferClose()
-	local bufferline = require("bufferline")
-
-	local explorer_window = view.get_winnr()
-	local was_explorer_open = vim.api.nvim_win_is_valid(explorer_window)
-	local buffer_to_delete = vim.api.nvim_get_current_buf()
-
-	if was_explorer_open then
-		-- switch to previous buffer (tracked by bufferline)
-		bufferline.cycle(-1)
-	end
-
-	-- delete initially open buffer
-	vim.cmd("bdelete! " .. buffer_to_delete)
-end
