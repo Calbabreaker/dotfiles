@@ -1,7 +1,7 @@
 local bufferline = require("bufferline")
 local view = require("nvim-tree.view")
 
--- closes current buffer while not cycling to nvim-tree window
+-- closes current buffer without not cycling to nvim-tree window
 function BufferClose()
 	local explorer_window = view.get_winnr()
 	local was_explorer_open = vim.api.nvim_win_is_valid(explorer_window)

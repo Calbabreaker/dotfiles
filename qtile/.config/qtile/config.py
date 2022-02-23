@@ -1,10 +1,8 @@
 import subprocess
 import os
-import string
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.log_utils import logger
 
 # programs
 terminal = "alacritty"
@@ -152,7 +150,7 @@ layouts = [
     layout.RatioTile(**layout_theme),
     layout.Max(**layout_theme),
     layout.TreeTab(**layout_theme),
-    # Try more layouts by unleashing below layouts.
+    # Try more layouts by unleashing layouts below.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -189,22 +187,22 @@ widgets = [
     widget.WindowName(),
     widget.CPU(
         format="🖥 {load_percent}%",
-        mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e htop")},
+        mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e btop")},
     ),
     widget.ThermalSensor(
         fmt = "🌡{}",
         foreground = widget_defaults["foreground"],
-        mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e htop")},
+        mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e btop")},
     ),
     widget.Memory(
         format="🧠 {MemPercent}% {MemUsed:.0f}M",         
-        mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e htop")}
+        mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e btop")}
     ),
     widget.Net(format = '🌐{down}⬇{up}⬆'),
 ]
 
-is_laptop = os.path.exists("/sys/class/power_supply/BAT0/status")
-if is_laptop: 
+has_battery = os.path.exists("/sys/class/power_supply/BAT0/status")
+if has_battery: 
     widgets += widget.Battery(
         update_interval=10,
         discharge_char="",
