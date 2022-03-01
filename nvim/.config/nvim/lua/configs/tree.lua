@@ -26,6 +26,12 @@ nvimtree.setup({
 		width = 30,
 		side = "left",
 		auto_resize = false,
+		mappings = {
+			list = { {
+				key = "<C-e>",
+				action = "",
+			} },
+		},
 	},
 	filters = {
 		dotfiles = false,
