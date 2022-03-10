@@ -25,10 +25,20 @@ nvimtree.setup({
 		side = "left",
 		auto_resize = false,
 		mappings = {
-			list = { {
-				key = "<C-e>",
-				action = "",
-			} },
+			list = {
+				{
+					key = "<C-e>",
+					action = "",
+				},
+				{
+					key = "D",
+					action = "remove",
+				},
+				{
+					key = "d",
+					action = "trash",
+				},
+			},
 		},
 	},
 	filters = {
