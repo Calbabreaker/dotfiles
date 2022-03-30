@@ -16,7 +16,6 @@ vim.g.nvim_tree_icons = {
 local nvimtree = require("nvim-tree")
 
 nvimtree.setup({
-	auto_close = true,
 	diagnostics = {
 		enable = true,
 	},

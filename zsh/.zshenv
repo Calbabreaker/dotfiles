@@ -37,3 +37,7 @@ export SAVEHIST=10000
 export HISTFILE=$ZSH_DATA_PATH/history.txt
 
 export PATH=$HOME/.local/bin:$HOME/.local/bin/personal:$PATH
+
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
