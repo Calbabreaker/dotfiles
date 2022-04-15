@@ -74,8 +74,10 @@ cmp.setup({
 			"s",
 		}),
 	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	window = {
+		documentation = {
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		},
 	},
 	sources = {
 		{ name = "nvim_lsp" },

@@ -6,6 +6,6 @@
 #
 
 name=${1:-`basename $(pwd)`}
-name=`echo $name | sed 's/\./_/g'` # tmux replaces . with _ for some reason so replace here in order to switch to session
+name=`echo $name | tr . _` # tmux replaces . with _ for some reason so replace here in order to switch to session
 tmux new -d -s $name 2> /dev/null
 tmux attach -t $name 2> /dev/null || tmux switchc -t $name 2> /dev/null
