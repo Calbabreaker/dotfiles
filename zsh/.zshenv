@@ -38,6 +38,9 @@ export HISTFILE=$ZSH_DATA_PATH/history.txt
 
 export PATH=$HOME/.local/bin:$HOME/.local/bin/personal:$PATH
 
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
+export GLFW_IM_MODULE="ibus"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export XMODIFIERS="@im=fcitx"
+export SDL_IM_MODULE="fcitx"
+export IBUS_USE_PORTAL=1

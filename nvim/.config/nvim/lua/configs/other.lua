@@ -51,7 +51,7 @@ return {
 				darker = false,
 			},
 			highlights = {
-				-- NormalFloat = { fg = "Normal", bg = "Normal" },
+				WinSeparator = { fg = "$bg_d", bg = "$bg_d" },
 				LspReferenceRead = { bg = lspHoverColor, fmt = "none" },
 				LspReferenceText = { bg = lspHoverColor, fmt = "none" },
 				LspReferenceWrite = { bg = lspHoverColor, fmt = "none" },

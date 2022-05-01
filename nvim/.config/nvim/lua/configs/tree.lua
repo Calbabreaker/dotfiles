@@ -22,7 +22,6 @@ nvimtree.setup({
 	view = {
 		width = 30,
 		side = "left",
-		auto_resize = false,
 		mappings = {
 			list = {
 				{
