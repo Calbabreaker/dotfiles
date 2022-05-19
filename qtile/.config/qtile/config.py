@@ -214,7 +214,7 @@ if has_battery:
 
 widgets += [
     widget.CheckUpdates(
-        update_interval = 1800,
+        update_interval = 60 * 60,
         custom_command = "sudo pacman -Sy > /dev/null && pacman -Quq",
         display_format = "📦{updates} ",
         execute = terminal + " -e sudo pacman -Syu",
