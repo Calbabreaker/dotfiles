@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -eu
+
+for item in *; do
+    [ "${item: -4}" == ".rar" ] && unrar x "$item" && rm "$item"
+    [ "${item: -4}" == ".zip" ] && unzip "$item" && rm "$item"
+
+    dir="${item%.*}"
+    if [ -d "$dir" ]; then 
+        echo "Generating $(ls -l "$dir" | wc -l) pages: $dir.pdf"
+        img2pdf "$dir"/* -o "$dir.pdf"
+        rm -r "$dir"
+    fi
+done
