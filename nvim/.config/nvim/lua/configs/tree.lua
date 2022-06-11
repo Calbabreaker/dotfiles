@@ -1,18 +1,3 @@
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_show_icons = {
-	git = 0,
-	folders = 1,
-	files = 1,
-	folder_arrows = 1,
-}
-
-vim.g.nvim_tree_icons = {
-	default = "",
-	symlink = "",
-}
-
 local nvimtree = require("nvim-tree")
 
 nvimtree.setup({
@@ -50,5 +35,15 @@ nvimtree.setup({
 	update_focused_file = {
 		enable = true,
 		update_cwd = true,
+	},
+	renderer = {
+		highlight_git = true,
+		group_empty = true,
+		highlight_opened_files = "1",
+		icons = {
+			show = {
+				git = false,
+			},
+		},
 	},
 })
