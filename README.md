@@ -50,8 +50,8 @@ tab to see options.
 JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`).
 
 Run `:W` to see all keybinds. Some basic keybinds are: `Ctrl-e` opens file
-explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space-f`
-finds and goes to files.
+explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space-o`
+opens file picker.
 
 Might need to install `xsel` to make Neovim work with system clipboard.
 [ripgrep](https://github.com/BurntSushi/ripgrep) is also needed in order to use telescope.
@@ -63,13 +63,19 @@ Might need to install `xsel` to make Neovim work with system clipboard.
 Requirements (pacman):
 
 ```sh
-sudo pacman -Sy --needed sx xorg qtile dmenu picom hsetroot python-dbus-next python-psutil volumeicon \
+sudo pacman -Sy --needed sx xorg qtile dmenu picom fcitx5 volumeicon python-dbus-next python-psutil \
      noto-fonts-emoji network-manager-applet xorg-xbacklight hsetroot xsecurelock xss-lock xdg-utils \
-     ttf-liberation lxappearance-gtk3 neovim pcmanfm alacritty
+     ttf-liberation lxappearance-gtk3 pcmanfm alacritty
 ```
 
-Now run `sx qtile start` from a tty to start qtile or stow the zsh directory to
-automatically start it on login.
+Now run `sx qtile start` from a tty to start qtile or add this to your shell login script
+(usually `~/.bash_profile` or `~/.zprofile`) to automatically start it on login.
+
+```bash
+if [ "$(tty)" = "/dev/tty1" ]; then
+    pidof Xorg || sx qtile start
+fi
+```
 
 To set a wallpaper copy an image file to `~/.local/share/wallpaper.png` or use the
 `setwallpaper` script in the scripts directory which will allow you to blur the

@@ -205,7 +205,7 @@ RegisterMappings("wit", {
 	["<C-Up>"] = { "<cmd>resize +3<CR>", "Scale window up" },
 	["<C-Down>"] = { "<cmd>resize -3<CR>", "Scale window down" },
 
-	["<C-z>"] = { "<ESC>", "<ESC>" },
+	["<C-x>"] = { "<ESC>", "<ESC>" },
 })
 
 RegisterMappings("i", {
@@ -227,7 +227,7 @@ DefineAugroup("general_settings", {
 	"BufWritePre * :silent lua vim.lsp.buf.formatting_sync()",
 	"FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
 
-	-- hide stuff when dashboard is open
+	-- Hide stuff when dashboard is open
 	"User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=2",
 
 	-- When editing a file, always jump to the last known cursor position.
@@ -235,6 +235,9 @@ DefineAugroup("general_settings", {
 	-- (happens when dropping a file on gvim) and for a commit message (it's
 	-- likely a different one than last time).
 	[[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
+
+	-- When moving to a terminal window enter terminal mode
+	"BufWinEnter,WinEnter term://* startinsert",
 })
 
 vim.api.nvim_command([[

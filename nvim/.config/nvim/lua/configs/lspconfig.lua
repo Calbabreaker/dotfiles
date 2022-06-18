@@ -20,7 +20,7 @@ completionItem.resolveSupport = {
 }
 
 local function on_attach(client)
-	-- turn off formatting for lsp if if null-ls already has one availiable
+	-- Turn off formatting for lsp if if null-ls already has one availiable
 	if NullLSGetAvail(vim.bo.filetype) ~= nil then
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
@@ -41,8 +41,8 @@ local function on_attach(client)
 	end
 end
 
--- servers installed using lsp-installer will use this
--- if that server is installed it will try to setup it if it exists
+-- A list of servers with configs to be setup
+-- Any servers installed by lsp-installer will be added onto this table
 local server_configs = {
 	clangd = {},
 	gdscript = {},
@@ -70,19 +70,18 @@ local server_configs = {
 }
 
 local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
+lsp_installer.setup()
+for _, server in ipairs(lsp_installer.get_installed_servers()) do
 	local config = server_configs[server.name] or {}
-	server_configs[server.name] = nil
-
-	config.capabilities = capabilities
-	config.on_attach = on_attach
-	server:setup(config)
-end)
+	config.lsp_installer_has = true
+	server_configs[server.name] = config
+end
 
 local lspconfig = require("lspconfig")
 for name, config in pairs(server_configs) do
-	local cmd = config.cmd or lspconfig[name].document_config.default_config.cmd
-	if cmd and vim.fn.executable(cmd[1]) == 1 then
+	-- Only setup server if it exists or lsp-installer has it
+	local cmd = lspconfig[name].document_config.default_config.cmd[1]
+	if config.lsp_installer_has or vim.fn.executable(cmd) == 1 then
 		config.capabilities = capabilities
 		config.on_attach = on_attach
 		lspconfig[name].setup(config)
@@ -116,11 +115,3 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = "rounded",
 })
-
--- dumb hack to fix rust_analyzer content modified message thing being annyoing
-local notify = vim.notify
-vim.notify = function(msg, ...)
-	if msg ~= "rust_analyzer: -32801: content modified" then
-		notify(msg, ...)
-	end
-end
