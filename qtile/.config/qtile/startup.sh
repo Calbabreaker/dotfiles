@@ -4,7 +4,7 @@ picom -b --experimental-backend &  # compositor
 nm-applet &  # network manager
 dunst & # notification server
 (volumeicon; volumeicon) & 
-fcitx & # keyboard layout manager
+fcitx5 & # keyboard layout manager
 
 # auto screen locker
 export XSECURELOCK_PASSWORD_PROMPT=asterisks
