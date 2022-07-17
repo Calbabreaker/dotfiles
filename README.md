@@ -27,8 +27,9 @@ stow -D zsh
 stow -D scripts
 ```
 
-NOTE: Most dotfile configs (Qtile, Neovim, zsh) requires Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
-in order for them to work.
+NOTE: Most dotfile configs (Qtile, Neovim, zsh) requires Source Code Pro Nerd
+Font (install using `yay -S nerd-fonts-source-code-pro`) in order for them to
+work properly.
 
 ## Neovim
 
@@ -69,7 +70,7 @@ sudo pacman -Sy --needed xorg sx qtile python-dbus-next python-psutil picom duns
 ```
 
 Now run `sx qtile start` from a tty to start qtile or add this to your shell login script
-(usually `~/.bash_profile` or `~/.zprofile`) to automatically start it on login.
+(usually `~/.bash_profile` or `~/.zprofile`) to automatically start it on login:
 
 ```bash
 if [ "$(tty)" = "/dev/tty1" ]; then

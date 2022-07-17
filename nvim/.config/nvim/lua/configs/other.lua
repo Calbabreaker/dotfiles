@@ -4,7 +4,7 @@ return {
 			char = "▏",
 			context_char = "▏",
 			buftype_exclude = { "terminal" },
-			filetype_exclude = { "NvimTree", "help", "packer", "alpha", "man" },
+			filetype_exclude = { "NvimTree", "help", "packer", "alpha", "man", "lsp-installer" },
 			show_current_context = true,
 			show_trailing_blankline_indent = false,
 		})

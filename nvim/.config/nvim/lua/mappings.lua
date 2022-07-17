@@ -205,7 +205,7 @@ RegisterMappings("wit", {
 	["<C-Up>"] = { "<cmd>resize +3<CR>", "Scale window up" },
 	["<C-Down>"] = { "<cmd>resize -3<CR>", "Scale window down" },
 
-	["<C-x>"] = { "<ESC>", "<ESC>" },
+	["<C-z>"] = { "<ESC>", "<ESC>" },
 })
 
 RegisterMappings("i", {
@@ -226,6 +226,7 @@ RegisterMappings("v", {
 DefineAugroup("general_settings", {
 	"BufWritePre * :silent lua vim.lsp.buf.formatting_sync()",
 	"FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
+	"BufRead,BufNewFile *.wgsl set filetype=wgsl",
 
 	-- Hide stuff when dashboard is open
 	"User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=2",
