@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -eu
+
+CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+emailfile=$CONFIG_HOME/emailaddress 
+
+if [ -f $emailfile ]; then
+    email=$(cat $emailfile)
+    public_ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+    private_ip=`echo $(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')`
+    public_file=$DATA_HOME/ipcheck/public
+    private_file=$DATA_HOME/ipcheck/private
+
+    mkdir $DATA_HOME/ipcheck -p
+    [ ! -f $public_file ] && echo $public_ip > $public_file
+    [ ! -f $private_file ] && echo $private_ip > $private_file
+
+    [[ $public_ip != $(cat $public_file) ]] && 
+        echo "New IP: $public_ip" | mail -s "Public IP Changed!" $email &&
+        echo "Public IP mail sent." && 
+        echo $public_ip > $public_file
+
+    [[ $private_ip != $(cat $private_file) ]] &&
+        echo "New IP: $private_ip" | mail -s "Private IP Changed!" $email &&
+        echo "Private IP mail sent." &&
+        echo $private_ip > $private_file
+else
+    echo "Create a file at $emailfile with the email address to send to."
+fi
