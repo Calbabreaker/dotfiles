@@ -100,9 +100,9 @@ RegisterMappings("w", {
 	["<A-6>"] = { "<cmd>BufferLineGoToBuffer 6<CR>", "Go to tab 6" },
 	["<A-7>"] = { "<cmd>BufferLineGoToBuffer 7<CR>", "Go to tab 7" },
 	["<A-8>"] = { "<cmd>BufferLineGoToBuffer 8<CR>", "Go to tab 8" },
-	["<A-9>"] = { "<cmd>BufferLast<CR>", "Go to last tab" },
+	["<A-9>"] = { "<cmd>BufferLineGoToBuffer 9<CR>", "Go to tab 8" },
 	["<A-c>"] = { "<cmd>lua BufferClose()<CR>", "Close current tab" },
-	["<A-C>"] = { "<cmd>%bd | e#", "Close all other tabs" },
+	["<A-C>"] = { "<cmd>BufferLineCloseLeft<CR>BufferLineCloseRight", "Close all other tabs" },
 	["<A-p>"] = { "<cmd>BufferLinePick<CR>", "Pick a tab" },
 
 	["<Leader>"] = {

@@ -95,7 +95,6 @@ keys = [
     Key([mod, "shift"], "space", lazy.hide_show_bar("top"), desc="Toggle bar"),
     Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
     Key([mod, "shift"], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
-    Key([], "F11", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
 
     Key([mod, "shift"], "Up", lazy.spawn("xrandr --output eDP1 --rotate normal"), desc="Rotate screen normal"),
     Key([mod, "shift"], "Down", lazy.spawn("xrandr --output eDP1 --rotate inverted"), desc="Rotate screen normal"),
@@ -187,6 +186,7 @@ widgets = [
     widget.WindowName(),
     widget.CPU(
         format="🖥 {load_percent}%",
+        tag_sensor = "Core 0",
         mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e btop")},
     ),
     widget.ThermalSensor(
