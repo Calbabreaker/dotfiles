@@ -41,6 +41,7 @@ SPACESHIP_PROMPT_ORDER=(
 function spaceship_install() {
     mkdir -p $ZSH_DATA_PATH/prompts
     ln -sf "$PLUGIN_PATH/spaceship-prompt/spaceship.zsh" "$ZSH_DATA_PATH/prompts/prompt_spaceship_setup"
+    source "$ZSH_DATA_PATH/prompts/prompt_spaceship_setup"
 }
 
 zsh_add_plugin "spaceship-prompt/spaceship-prompt" "" spaceship_install

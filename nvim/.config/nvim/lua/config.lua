@@ -31,7 +31,7 @@ vim.opt.undofile = true -- persistent undos
 vim.opt.updatetime = 100 -- how often updates happen
 vim.opt.wrap = false -- no line wrapping
 vim.opt.writebackup = false -- don't make backup files
-vim.opt.guifont = "SauceCodePro Nerd Font:h12"
+vim.opt.guifont = "SauceCodePro_Nerd_font:h11"
 
 -- makes indent and tabs better
 vim.opt.autoindent = true

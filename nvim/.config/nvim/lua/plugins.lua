@@ -31,12 +31,6 @@ local function plugin_setup(use)
 		end,
 	})
 
-	-- nice git integration
-	use({
-		"tpope/vim-fugitive",
-		cmd = { "Git", "Gread" },
-	})
-
 	-- cool status line
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -49,7 +43,6 @@ local function plugin_setup(use)
 	-- file explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
-		-- cmd = "NvimTreeFindFileToggle",
 		config = function()
 			require("configs/tree")
 		end,
@@ -66,7 +59,6 @@ local function plugin_setup(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { "nvim-telescope/telescope-fzy-native.nvim" },
-		cond = "not MINIMAL",
 		cmd = { "Telescope" },
 		config = function()
 			require("configs/telescope")
@@ -118,6 +110,7 @@ local function plugin_setup(use)
 	-- autocomplete
 	use({
 		"hrsh7th/nvim-cmp",
+		cond = "not MINIMAL",
 		event = "InsertEnter",
 		config = function()
 			require("configs/cmp")
@@ -175,9 +168,8 @@ local function plugin_setup(use)
 	-- better terminal support
 	use({
 		"akinsho/nvim-toggleterm.lua",
-		cmd = { "ToggleTerm", "ToggleTermOpenAll" },
 		config = function()
-			require("toggleterm").setup()
+			require("configs/other").lazygit()
 		end,
 	})
 
@@ -201,7 +193,6 @@ local function plugin_setup(use)
 	-- better project management
 	use({
 		"ahmedkhalf/project.nvim",
-		cond = "not MINIMAL",
 		config = function()
 			require("project_nvim").setup({})
 		end,

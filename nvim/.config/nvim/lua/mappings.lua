@@ -5,11 +5,11 @@ end
 
 -- register mappings on a mode or multiple (as a string)
 -- w mode uses which key (note that every mapping needs a description in that mode)
-function RegisterMappings(mode, mappings, options)
+local function register_mappings(mode, mappings, options)
 	-- split up the string
 	if #mode > 1 then
 		for i = 1, #mode do
-			RegisterMappings(mode:sub(i, i), mappings, options)
+			register_mappings(mode:sub(i, i), mappings, options)
 		end
 		return
 	end
@@ -35,7 +35,7 @@ function RegisterMappings(mode, mappings, options)
 	end
 end
 
-function DefineAugroup(name, definitions)
+local function define_augroup(name, definitions)
 	vim.api.nvim_command("augroup " .. name)
 	vim.api.nvim_command("autocmd!")
 
@@ -47,7 +47,7 @@ function DefineAugroup(name, definitions)
 end
 
 -- main mappings
-RegisterMappings("w", {
+register_mappings("w", {
 	["Y"] = { "y$", "which_key_ignore" },
 
 	-- center cursor while moving
@@ -102,15 +102,13 @@ RegisterMappings("w", {
 	["<A-8>"] = { "<cmd>BufferLineGoToBuffer 8<CR>", "Go to tab 8" },
 	["<A-9>"] = { "<cmd>BufferLineGoToBuffer 9<CR>", "Go to tab 8" },
 	["<A-c>"] = { "<cmd>lua BufferClose()<CR>", "Close current tab" },
-	["<A-C>"] = { "<cmd>BufferLineCloseLeft<CR>BufferLineCloseRight", "Close all other tabs" },
+	["<A-C>"] = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close all other tabs" },
 	["<A-p>"] = { "<cmd>BufferLinePick<CR>", "Pick a tab" },
 
 	["<Leader>"] = {
 		g = {
 			name = "Git",
-			g = { "<cmd>Git<CR>", "Open git fugitive" },
-			p = { "<cmd>Git push<CR>", "Git push to tracked remote" },
-			P = { "<cmd>Git push --force<CR>", "Git force push to default remote" },
+			g = { "<cmd>lua LazyGit:toggle()<CR>", "Open lazygit" },
 			h = { "<cmd>diffget //2<CR>", "Get change to the left of merge conflict" },
 			l = { "<cmd>diffget //3<CR>", "Get change to the right of merge conflict" },
 			b = { "<cmd>Telescope git_branches<CR>", "Checkout branches" },
@@ -185,14 +183,14 @@ RegisterMappings("w", {
 	silent = false,
 })
 
-RegisterMappings("nic", {
+register_mappings("nic", {
 	["<C-c>"] = { "<ESC>" },
 	["<ESC>"] = { "<ESC>:noh<CR>" },
 }, {
 	noremap = false,
 })
 
-RegisterMappings("wit", {
+register_mappings("wit", {
 	-- make window navigation easier
 	["<C-h>"] = { "<ESC><C-w>h", "Move to left window" },
 	["<C-j>"] = { "<ESC><C-w>j", "Move to bottom window" },
@@ -208,13 +206,13 @@ RegisterMappings("wit", {
 	["<C-z>"] = { "<ESC>", "<ESC>" },
 })
 
-RegisterMappings("i", {
+register_mappings("i", {
 	["<A-j>"] = { "<ESC>:m .+1<CR>==i" },
 	["<A-k>"] = { "<ESC>:m .-2<CR>==i" },
 	["<C-s>"] = { "<cmd>w<CR>" },
 })
 
-RegisterMappings("v", {
+register_mappings("v", {
 	["<A-j>"] = { ":m '>+1<CR>gv=gv" },
 	["<A-k>"] = { ":m '<-2<CR>gv=gv" },
 	["<"] = { "<gv" },
@@ -223,7 +221,7 @@ RegisterMappings("v", {
 	["<Leader>hr"] = { "<cmd>lua require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
 })
 
-DefineAugroup("general_settings", {
+define_augroup("general_settings", {
 	"BufWritePre * :silent lua vim.lsp.buf.formatting_sync()",
 	"FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
 	"BufRead,BufNewFile *.wgsl set filetype=wgsl",

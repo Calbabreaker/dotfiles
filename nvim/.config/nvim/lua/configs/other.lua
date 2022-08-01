@@ -64,4 +64,17 @@ return {
 
 		onedark.load()
 	end,
+
+	lazygit = function()
+		require("toggleterm").setup()
+		local Terminal = require("toggleterm.terminal").Terminal
+		LazyGit = Terminal:new({
+			cmd = "lazygit",
+			hidden = true,
+			direction = "float",
+			float_opts = {
+				border = "double",
+			},
+		})
+	end,
 }
