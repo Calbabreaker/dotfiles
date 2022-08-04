@@ -33,7 +33,7 @@ work properly.
 
 ## Neovim
 
-NOTE: Requires Neovim >= 0.6 and probably only works on unix.
+NOTE: Requires Neovim >= 0.7 and probably only works on unix.
 
 Need to quit Neovim and open back on first run.
 
@@ -54,7 +54,7 @@ Run `:W` to see all keybinds. Some basic keybinds are: `Ctrl-e` opens file
 explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space-o`
 opens file picker.
 
-Might need to install `xsel` to make Neovim work with system clipboard.
+Install `xsel` to make Neovim work with system clipboard.
 [ripgrep](https://github.com/BurntSushi/ripgrep) is also needed in order to use telescope.
 
 ## Qtile
@@ -79,7 +79,7 @@ fi
 ```
 
 To set a wallpaper copy an image file to `~/.local/share/wallpaper.png` or use the
-`setwallpaper` script in the scripts directory which will allow you to blur the
+`setwallpaper` script in the scripts directory which will also allow you to blur the
 image or set as a colour.
 
 For updates widget to work, add this to your `/etc/sudoers` (edit using visudo):
@@ -92,5 +92,4 @@ For updates widget to work, add this to your `/etc/sudoers` (edit using visudo):
 
 ![zsh-screenshot0](https://user-images.githubusercontent.com/57030377/146282133-c45581fc-f543-4279-9c7a-8b40148ab1ce.png)
 
-NOTE: Need to install Source Code Pro Nerd Font (using `yay -S nerd-fonts-source-code-pro`)
-in order for it to work. Also requires [ripgrep](https://github.com/BurntSushi/ripgrep) for some keybinds.
+Requires [ripgrep](https://github.com/BurntSushi/ripgrep) for finding files.

@@ -18,6 +18,6 @@ if [ ! -z $FORCE_NPM ] || [ caller_cmd = "pnpm" ] || ! command -v pnpm > /dev/nu
 else
     # if installing package convert install or i to add 
     first_arg=$( [ ! -z $2 ] && [ "$1" = "install" ] || [ "$1" = "i" ] && echo add || echo $1 )
-    rest_args=${@:2}
-    pnpm $first_arg $rest_args
+    rest_args=$(sed -E 's/--(yes|scope=.+)//g' <<< "${@:2}") # remove --yes and --scope
+    echo $first_arg $rest_args
 fi
