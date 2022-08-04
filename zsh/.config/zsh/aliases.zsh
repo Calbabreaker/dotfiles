@@ -26,4 +26,16 @@ alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 alias wininit="echo 'i am using linux idiot'"
 alias mvim="nvim -u $XDG_CONFIG_HOME/nvim/minimal.lua"
 alias v="nvim"
+alias lg="lazygit"
 export PAGER='less -R --use-color -Dd+g$Dur$DPy' # coloured man pages
+bindkey -s '^f' 'ranger^M'
+
+# make Shift+q make shell cd to dir opened in ranger while quitting ranger
+function ranger {
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    command ranger --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    rm -f -- "$tempfile" > /dev/null
+}

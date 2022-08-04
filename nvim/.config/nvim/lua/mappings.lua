@@ -236,7 +236,7 @@ define_augroup("general_settings", {
 	[[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
 
 	-- When moving to a terminal window enter terminal mode
-	"BufWinEnter,WinEnter term://* startinsert",
+	"BufEnter term://* call feedkeys('i')",
 })
 
 vim.api.nvim_command([[

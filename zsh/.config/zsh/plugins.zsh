@@ -88,5 +88,4 @@ zle -N fzf-open
 # keybinds
 bindkey '^e' 'fzf-edit'
 bindkey '^o' 'fzf-open'
-bindkey -s '^f' '\ec tns^M'
 
