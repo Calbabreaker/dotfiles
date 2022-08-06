@@ -7,14 +7,14 @@ Cool dot files for Neovim, zsh, Qtile, and Alacritty and other random programs.
 First you need to have git and GNU stow installed.
 Then clone the repository:
 
-```sh
+```bash
 git clone https://github.com/Calbabreaker/dotfiles ~/.dotfiles --depth=1
 cd ~/.dotfiles
 ```
 
 Now you can individually choose to use a dotfile config (specified by a folder) like so:
 
-```sh
+```bash
 stow zsh # zsh configurations
 stow nvim # Neovim configurations
 stow scripts # random scripts, make sure to add ~/.local/bin/personal to $PATH
@@ -22,7 +22,7 @@ stow scripts # random scripts, make sure to add ~/.local/bin/personal to $PATH
 
 To remove a dotfile:
 
-```sh
+```bash
 stow -D zsh
 stow -D scripts
 ```
@@ -41,14 +41,11 @@ Need to quit Neovim and open back on first run.
 ![nvim-screenshot1](https://user-images.githubusercontent.com/57030377/163508796-a9a8bfe6-b3a1-482d-8b82-11fd45be94e8.png)
 ![nvim-screenshot2](https://user-images.githubusercontent.com/57030377/147385270-cbd23f44-be6e-4790-ba15-57e821d89338.png)
 
-By default no language servers or treesitter parsers are installed. Install a
-language server (provides diagnostics and autocompletion) using
-`:LspInstall language-name` (e.g. `:LspInstall c++`) and treesitter
-parser using `:TSInstall language-name` (e.g. `:TSInstall c++`). Press
-tab to see options.
-
-[Prettierd](https://github.com/fsouza/prettierd) is needed to format
-JavaScript, HTML, CSS, etc. files, (install with `npm install -g @fsouza/prettierd`).
+By default no language servers or treesitter parsers are installed. Install
+language servers (provides diagnostics and autocompletion) using `:LspInstall language-name`
+(eg. `:LspInstall c++`) and treesitter parser using `:TSInstall language-name` (eg. `:TSInstall c++`).
+Also install formatters and linters with `:MasonInstall name` (eg. `:MasonInstall prettierd`).
+Press tab to see options.
 
 Run `:W` to see all keybinds. Some basic keybinds are: `Ctrl-e` opens file
 explorer, `Ctrl-t` opens terminal, `Alt-<` and `Alt->` goes between tabs, `Space-o`
@@ -63,7 +60,7 @@ Install `xsel` to make Neovim work with system clipboard.
 
 Requirements (pacman):
 
-```sh
+```bash
 sudo pacman -Sy --needed xorg sx qtile python-dbus-next python-psutil picom dunst xsecurelock xss-lock \
     hsetroot noto-fonts-emoji ttf-liberation volumeicon fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool \
     network-manager-applet xorg-xbacklight dmenu xdg-utils lxappearance-gtk3 alacritty pcmanfm-gtk3

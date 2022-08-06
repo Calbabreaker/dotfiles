@@ -20,7 +20,7 @@ completionItem.resolveSupport = {
 }
 
 local function on_attach(client)
-	-- Turn off formatting for lsp if if null-ls already has one availiable
+	-- Turn off formatting for lsp if if null-ls already has one available
 	if NullLSGetAvail(vim.bo.filetype) ~= nil then
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
@@ -69,19 +69,18 @@ local server_configs = {
 	},
 }
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.setup()
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
-	local config = server_configs[server.name] or {}
-	config.lsp_installer_has = true
-	server_configs[server.name] = config
+require("mason").setup()
+local mason_lsp = require("mason-lspconfig")
+mason_lsp.setup()
+for _, server in ipairs(mason_lsp.get_installed_servers()) do
+	server_configs[server] = server_configs[server] or {}
 end
 
 local lspconfig = require("lspconfig")
 for name, config in pairs(server_configs) do
-	-- Only setup server if it exists or lsp-installer has it
+	-- Only setup server if it exists
 	local cmd = lspconfig[name].document_config.default_config.cmd[1]
-	if config.lsp_installer_has or vim.fn.executable(cmd) == 1 then
+	if vim.fn.executable(cmd) == 1 then
 		config.capabilities = capabilities
 		config.on_attach = on_attach
 		lspconfig[name].setup(config)
