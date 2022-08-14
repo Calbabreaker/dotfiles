@@ -1,0 +1,3 @@
+#!/bin/bash
+
+flameshot gui -r -s | tesseract - - -l jpn_vert | sed -E 's/ //g' | xclip -selection c

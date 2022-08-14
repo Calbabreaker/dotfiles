@@ -2,7 +2,7 @@
 
 #
 # Creates a new tmux session with the name being first cli argument or default the current folder.
-# Will work if not in a tmux session or in it and will switch to it if it already exists.
+# Will work if not in a tmux session or in one and will switch to it if it already exists.
 #
 
 name=${1:-`basename $(pwd)`}

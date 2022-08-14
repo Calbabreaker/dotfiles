@@ -1,4 +1,4 @@
 #!/bin/bash
 
-dir=$(mpc ls | sort | uniq | dmenu -p "Choose: ")
+dir=$(mpc ls | dmenu -p "Choose: ")
 [ -d ~/Media/music/"$dir" ] && mpc clear && mpc add "$dir" && mpc play
