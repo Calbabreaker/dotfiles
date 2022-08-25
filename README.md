@@ -61,7 +61,7 @@ Install `xsel` to make Neovim work with system clipboard.
 Requirements (pacman):
 
 ```bash
-sudo pacman -Sy --needed xorg sx qtile python-dbus-next python-psutil picom dunst xsecurelock xss-lock \
+sudo pacman -S --needed xorg sx qtile python-dbus-next python-psutil picom dunst xsecurelock xss-lock \
     hsetroot noto-fonts-emoji ttf-liberation volumeicon fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool \
     network-manager-applet xorg-xbacklight dmenu xdg-utils lxappearance-gtk3 alacritty pcmanfm-gtk3
 ```

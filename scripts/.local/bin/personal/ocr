@@ -1,3 +1,4 @@
 #!/bin/bash
 
-flameshot gui -r -s | tesseract - - -l jpn_vert | sed -E 's/ //g' | xclip -selection c
+type=$( [ ! -z $1 ] && echo $1 || echo jpn_vert )
+flameshot gui -r -s | tesseract - - -l $type | sed -E 's/ //g' | xclip -selection c
