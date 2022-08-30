@@ -22,14 +22,6 @@ local c_hello_world = s({ trig = "hello", dscr = "Basic hello world" }, {
 ls.add_snippets("c", { c_hello_world })
 ls.add_snippets("cpp", { c_hello_world })
 
-ls.add_snippets("rust", {
-	s("println-dbg", {
-		t('println!("{:?}", '),
-		i(0, "<var>"),
-		t(");"),
-	}),
-})
-
 ls.add_snippets("cmake", {
 	s("starter", {
 		t({
@@ -56,6 +48,35 @@ ls.add_snippets("cmake", {
 			"yacpm_target_warnings(${PROJECT_NAME})",
 			"",
 			"target_link_libraries(${PROJECT_NAME} ${YACPM_PACKAGES})",
+		}),
+	}),
+})
+
+ls.add_snippets("typescriptreact", {
+	s("fc", {
+		t({
+			"interface Props {",
+			"    ",
+		}),
+		i(2),
+		t({
+			" ",
+			"}",
+			"",
+			"",
+		}),
+		t("export const "),
+		i(1, "<name>"),
+		t(": React.FC<Props> = ({"),
+		i(3),
+		t({
+			"}) => {",
+			"   return ",
+		}),
+		i(0),
+		t({
+			"",
+			"}",
 		}),
 	}),
 })

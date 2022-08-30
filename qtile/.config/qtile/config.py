@@ -186,11 +186,11 @@ widgets = [
     widget.WindowName(),
     widget.CPU(
         format="🖥 {load_percent}%",
-        tag_sensor = "Core 0",
         mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e btop")},
     ),
     widget.ThermalSensor(
         fmt = "🌡{}",
+        tag_sensor = "Core 0",
         foreground = widget_defaults["foreground"],
         mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e btop")},
     ),
@@ -198,7 +198,7 @@ widgets = [
         format="🧠 {MemPercent}% {MemUsed:.0f}M",         
         mouse_callbacks = {"Button1": lazy.spawn(terminal + " -e btop")}
     ),
-    widget.Net(format = '🌐{down}⬇{up}⬆'),
+    widget.Net(format = "🌐{down}⬇{up}⬆"),
 ]
 
 has_battery = os.path.exists("/sys/class/power_supply/BAT0/status")
@@ -213,12 +213,12 @@ if has_battery:
     ),
 
 widgets += [
-    widget.CheckUpdates(
-        update_interval = 60 * 60,
-        custom_command = "sudo pacman -Sy > /dev/null && pacman -Quq",
-        display_format = "📦{updates} ",
-        execute = terminal + " -e sudo pacman -Syu",
-    ),
+    # widget.CheckUpdates(
+    #     update_interval = 60 * 60,
+    #     custom_command = "sudo pacman -Sy > /dev/null && pacman -Quq",
+    #     display_format = "📦{updates} ",
+    #     execute = terminal + " -e sudo pacman -Syu",
+    # ),
     widget.Clock(format="🕛 %H:%M %a %d %b"),
     widget.Spacer(8),
     widget.Systray(icons_size=16, padding = 0),
