@@ -71,12 +71,14 @@ register_mappings("w", {
 	-- lsp
 	["[g"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to next diagnostic" },
 	["]g"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to previous diagnostic" },
+	["gl"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostics on line" },
 	["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 	["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
 	["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
 	["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
 	["gR"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Populate quick fix with references" },
 	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show signature (hover)" },
+	["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature (hover)" },
 
 	-- git gutter
 	["]h"] = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "Next git hunk" },
@@ -168,7 +170,6 @@ register_mappings("w", {
 			D = { "<cmd>Telescope diagnostics<cr>", "Show workspace diagnostics" },
 			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Show document symbols" },
 			S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Show workspace symbols" },
-			l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostics on line" },
 		},
 		p = {
 			name = "Packer (plugin manager)",

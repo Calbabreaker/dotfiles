@@ -1,5 +1,4 @@
-local lsp_status = require("lsp-status")
-lsp_status.register_progress()
+require("lsp-status").register_progress()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local completionItem = capabilities.textDocument.completion.completionItem
@@ -19,13 +18,17 @@ completionItem.resolveSupport = {
 	},
 }
 
-local function on_attach(client)
+local inlayhints = require("lsp-inlayhints")
+inlayhints.setup()
+
+local function on_attach(client, bufnr)
 	-- Turn off formatting for lsp if if null-ls already has one available
 	if NullLSGetAvail(vim.bo.filetype) ~= nil then
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
 	end
 
+	inlayhints.on_attach(client, bufnr)
 	if client.resolved_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[

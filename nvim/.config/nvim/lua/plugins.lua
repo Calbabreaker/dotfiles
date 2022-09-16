@@ -48,6 +48,7 @@ local function plugin_setup(use)
 		end,
 	})
 
+	-- nice tabs
 	use({
 		"akinsho/bufferline.nvim",
 		config = function()
@@ -96,6 +97,7 @@ local function plugin_setup(use)
 			"williamboman/mason-lspconfig.nvim",
 			"b0o/schemastore.nvim",
 			"nvim-lua/lsp-status.nvim",
+			"lvimuser/lsp-inlayhints.nvim",
 		},
 		cond = "not MINIMAL",
 		config = function()
@@ -178,7 +180,7 @@ local function plugin_setup(use)
 		end,
 	})
 
-	-- highlight colours eg #1f4a90 rgb(255, 255, 0)
+	-- highlight colours eg: #1f4a90 rgb(255, 255, 0)
 	use({
 		"norcalli/nvim-colorizer.lua",
 		config = function()
