@@ -18,10 +18,7 @@ setopt HIST_BEEP
 # default programs 
 export TERMINAL="alacritty"
 export BROWSER="brave"
-
-# use minimal config of neovim for fast editing if exist
-MINIMAL_LUA=$XDG_CONFIG_HOME/nvim/minimal.lua
-[ -f $MINIMAL_LUA ] && export EDITOR="nvim -u $MINIMAL_LUA" || export EDITOR="nvim"
+export EDITOR="nvim"
 
 # load colours and prompt
 fpath+=$ZSH_DATA_PATH/prompts

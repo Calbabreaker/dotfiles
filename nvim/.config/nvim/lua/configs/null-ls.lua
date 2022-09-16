@@ -1,10 +1,12 @@
-vim.env.PRETTIERD_DEFAULT_CONFIG = CONFIG_PATH .. "/lua/configs/.prettierrc.json"
-
 local null_ls = require("null-ls")
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
-	null_ls.builtins.formatting.prettierd,
+	null_ls.builtins.formatting.prettierd.with({
+		env = {
+			PRETTIERD_DEFAULT_CONFIG = CONFIG_PATH .. "/lua/configs/.prettierrc.json",
+		},
+	}),
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.hover.dictionary,
 }

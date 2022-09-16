@@ -101,6 +101,10 @@ keys = [
     Key([mod, "shift"], "Left", lazy.spawn("xrandr --output eDP1 --rotate left"), desc="Rotate screen normal"),
     Key([mod, "shift"], "Right", lazy.spawn("xrandr --output eDP1 --rotate right"), desc="Rotate screen normal"),
 
+    Key([mod, "shift"], "p", lazy.spawn("mpc toggle")),
+    Key([mod, "shift"], "bracketleft", lazy.spawn("mpc prev")),
+    Key([mod, "shift"], "bracketright", lazy.spawn("mpc next")),
+
     # Media keys
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
