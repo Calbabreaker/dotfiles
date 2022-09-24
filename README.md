@@ -75,7 +75,7 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 fi
 ```
 
-To set a wallpaper copy an image file to `~/.local/share/wallpaper.png` or use the
+To set a wallpaper copy an image file to `~/.local/share/wallpaper.*` or use the
 `setwallpaper` script in the scripts directory which will also allow you to blur the
 image or set as a colour.
 

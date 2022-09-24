@@ -96,10 +96,10 @@ keys = [
     Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
     Key([mod, "shift"], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
 
-    Key([mod, "shift"], "Up", lazy.spawn("xrandr --output eDP1 --rotate normal"), desc="Rotate screen normal"),
-    Key([mod, "shift"], "Down", lazy.spawn("xrandr --output eDP1 --rotate inverted"), desc="Rotate screen normal"),
-    Key([mod, "shift"], "Left", lazy.spawn("xrandr --output eDP1 --rotate left"), desc="Rotate screen normal"),
-    Key([mod, "shift"], "Right", lazy.spawn("xrandr --output eDP1 --rotate right"), desc="Rotate screen normal"),
+    Key([mod, "shift"], "Up", lazy.spawn("xrandr --output eDP1 --rotate normal"), desc="Rotate screen to normal"),
+    Key([mod, "shift"], "Down", lazy.spawn("xrandr --output eDP1 --rotate inverted"), desc="Invert screen"),
+    Key([mod, "shift"], "Left", lazy.spawn("xrandr --output eDP1 --rotate left"), desc="Rotate screen potrait left"),
+    Key([mod, "shift"], "Right", lazy.spawn("xrandr --output eDP1 --rotate right"), desc="Rotate screen potrait right"),
 
     Key([mod, "shift"], "p", lazy.spawn("mpc toggle")),
     Key([mod, "shift"], "bracketleft", lazy.spawn("mpc prev")),
@@ -118,15 +118,15 @@ groups = [Group(name) for name in "123456789"]
 for i, group in enumerate(groups):
     i += 1
     keys += [
-        # mod + number of group = switch to group
+        # mod + group number = switch to group
         Key([mod], str(i), lazy.group[group.name].toscreen(),
             desc=f"Switch to group {i}"),
 
-        # mod + shift + number of group = switch to & move focused window to group
+        # mod + shift + group number = switch to & move focused window to group
         Key([mod, "shift"], str(i), lazy.window.togroup(group.name, switch_group=True),
             desc=f"Switch to and move focused window to group {i}"),
 
-        # # mod + control + shift + number of group = move focused window to group
+        # mod + control + shift + group number = move focused window to group
         Key([mod, "control", "shift"], str(i), lazy.window.togroup(group.name),
             desc=f"Move focused window to group {i}"),
     ]

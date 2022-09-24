@@ -16,20 +16,19 @@ if [ "$#" != "0" ]; then
         image_file="$1"
     else 
         args=(${@:1})
-        image_file=$2
+        image_file="$2"
     fi
 
     file_ext=$(basename $image_file | cut -d. -f2)
     wallpaper_file=$DATA_HOME/wallpaper.$file_ext
 
     [ -f $DATA_HOME/wallpaper.* ] && rm $DATA_HOME/wallpaper.*
-    [ -e $image_file ] && cp $image_file $wallpaper_file && 
-        args[1]=$wallpaper_file
+    [ -e $image_file ] && cp $image_file $wallpaper_file && args[1]=$wallpaper_file
         
     echo "hsetroot ${args[@]}" > $wallpaper_command_file
 fi
 
 [ ! -f $wallpaper_command_file ] && \
-    notify-send 'No wallpaper set!' 'Set a wallpaper using: setwallpaper [-stretch,-tile,-cover] <image-file> [-blur,-stretch]'
+    notify-send 'No wallpaper set!' 'Set a wallpaper using: setwallpaper [-stretch,-tile,-cover,...] <image-file> [-blur,-stretch,...]'
 
 sh $wallpaper_command_file

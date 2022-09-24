@@ -161,6 +161,7 @@ local function plugin_setup(use)
 		"nvim-treesitter/nvim-treesitter",
 		requires = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
+			"nvim-treesitter/nvim-treesitter-context",
 		},
 		config = function()
 			require("configs/other").treesitter()
