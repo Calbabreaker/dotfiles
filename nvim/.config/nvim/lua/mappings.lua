@@ -161,7 +161,7 @@ register_mappings("w", {
 		},
 		l = {
 			name = "LSP",
-			f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer" },
+			f = { "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format buffer" },
 			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" },
 			r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
 			i = { "<cmd>LspInfo<CR>", "Show LSP info" },

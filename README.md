@@ -33,7 +33,7 @@ work properly.
 
 ## Neovim
 
-NOTE: Requires Neovim >= 0.7 and probably only works on unix.
+NOTE: Requires Neovim >= 0.8 and probably only works on unix.
 
 Need to quit Neovim and open back on first run.
 

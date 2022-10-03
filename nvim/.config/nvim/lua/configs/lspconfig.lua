@@ -24,12 +24,12 @@ inlayhints.setup()
 local function on_attach(client, bufnr)
 	-- Turn off formatting for lsp if if null-ls already has one available
 	if NullLSGetAvail(vim.bo.filetype) ~= nil then
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
 	end
 
 	inlayhints.on_attach(client, bufnr)
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.documentHighlightProvider then
 		vim.api.nvim_exec(
 			[[
                 augroup lsp_document_highlight
