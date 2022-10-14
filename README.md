@@ -33,9 +33,7 @@ work properly.
 
 ## Neovim
 
-NOTE: Requires Neovim >= 0.8 and probably only works on unix.
-
-Need to quit Neovim and open back on first run.
+NOTE: Requires the lastest version of Neovim and probably only works on linux. Also need to quit Neovim and open back on first run.
 
 ![nvim-screenshot0](https://user-images.githubusercontent.com/57030377/163508783-062771cd-8e54-4645-8687-f6f6cf1135c8.png)
 ![nvim-screenshot1](https://user-images.githubusercontent.com/57030377/163508796-a9a8bfe6-b3a1-482d-8b82-11fd45be94e8.png)
