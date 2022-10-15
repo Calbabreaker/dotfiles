@@ -1,14 +1,22 @@
 PLUGIN_PATH=$ZSH_DATA_PATH/plugins
 
 # add plugin
-# $1 = github path
+# $1 = github path @ to specify commit
 # $2 = file to source (default plugin_name.zsh)
 # $3 = install function
 function zsh_add_plugin {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    local GITHUB_PATH=$(cut -d "@" -f 1 <<< $1)
+    local PLUGIN_NAME=$(cut -d "/" -f 2 <<< $GITHUB_PATH)
+    local GIT_REF=$(cut -d "@" -f 2 <<< $1)
+    [[ $GIT_REF == $1 ]] && unset GIT_REF
 
     if [ ! -d "$PLUGIN_PATH/$PLUGIN_NAME" ]; then
-        git clone "https://github.com/$1.git" "$PLUGIN_PATH/$PLUGIN_NAME" --depth=1
+        git init "$PLUGIN_PATH/$PLUGIN_NAME"
+        pushd "$PLUGIN_PATH/$PLUGIN_NAME"
+        git remote add origin https://github.com/$GITHUB_PATH
+        git fetch --depth 1 origin $GIT_REF
+        git checkout FETCH_HEAD
+        popd
         $3
     fi
 
@@ -28,24 +36,19 @@ bindkey '^ ' autosuggest-accept
 # 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PROMPT_ASYNC=false
 SPACESHIP_CHAR_SYMBOL=»
 SPACESHIP_CHAR_SUFFIX=" "
 
 SPACESHIP_PROMPT_ORDER=(
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  exec_time     # Execution time
-  char          # Prompt character
+    dir           # Current directory section
+    git           # Git section (git_branch + git_status)
+    exec_time     # Execution time
+    char          # Prompt character
 )
 
-function spaceship_install() {
-    mkdir -p $ZSH_DATA_PATH/prompts
-    ln -sf "$PLUGIN_PATH/spaceship-prompt/spaceship.zsh" "$ZSH_DATA_PATH/prompts/prompt_spaceship_setup"
-    source "$ZSH_DATA_PATH/prompts/prompt_spaceship_setup"
-}
-
-zsh_add_plugin "spaceship-prompt/spaceship-prompt" "" spaceship_install
-prompt spaceship
+# https://github.com/spaceship-prompt/spaceship-prompt/issues/1178 set specific version that works
+zsh_add_plugin "spaceship-prompt/spaceship-prompt@68c162d8754175e69465a0f08b836243bcdfedd7" "spaceship.zsh"
 
 #
 # Fzf for fuzzy finding productivity
