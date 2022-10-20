@@ -217,12 +217,6 @@ if has_battery:
     ),
 
 widgets += [
-    # widget.CheckUpdates(
-    #     update_interval = 60 * 60,
-    #     custom_command = "sudo pacman -Sy > /dev/null && pacman -Quq",
-    #     display_format = "📦{updates} ",
-    #     execute = terminal + " -e sudo pacman -Syu",
-    # ),
     widget.Clock(format="🕛 %H:%M %a %d %b"),
     widget.Spacer(8),
     widget.Systray(icons_size=16, padding = 0),
@@ -272,4 +266,4 @@ auto_minimize = True
 
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname = "Qtile"

@@ -77,13 +77,7 @@ To set a wallpaper copy an image file to `~/.local/share/wallpaper.*` or use the
 `setwallpaper` script in the scripts directory which will also allow you to blur the
 image or set as a colour.
 
-For updates widget to work, add this to your `/etc/sudoers` (edit using visudo):
-
-```
-%wheel ALL=(root) NOPASSWD: /usr/bin/pacman -Syu, /usr/bin/pacman -Sy
-```
-
-## Alacritty and zsh
+## Kitty and zsh
 
 ![zsh-screenshot0](https://user-images.githubusercontent.com/57030377/146282133-c45581fc-f543-4279-9c7a-8b40148ab1ce.png)
 
