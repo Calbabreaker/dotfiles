@@ -3,9 +3,7 @@
 # most environment variables go here
 # note that you have to logout and login to refresh 
 
-# google sync api keys
-export GOOGLE_DEFAULT_CLIENT_ID=77185425430.apps.googleusercontent.com
-export GOOGLE_DEFAULT_CLIENT_SECRET=OTJgUOQcT7lO7GsGZq2G4IlT
+export MOZ_USE_XINPUT2=1
 
 # xdg dirs
 export XDG_CONFIG_HOME=$HOME/.config

@@ -5,9 +5,9 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 # programs
-terminal = "alacritty"
+terminal = "kitty -1"
 file_manager = "pcmanfm"
-browser = "brave"
+browser = "firefox"
 launcher = "dmenu_run -nb '#21262e' -fn 'SauceCodePro Nerd Font:size=10' -i -p 'Run: '"
 
 @lazy.function

@@ -9,7 +9,7 @@ emailfile=$CONFIG_HOME/emailaddress
 if [ -f $emailfile ]; then
     email=$(cat $emailfile)
     public_ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
-    private_ip=`echo $(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')`
+    private_ip=`echo $(ip addr | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')`
     public_file=$DATA_HOME/ipcheck/public
     private_file=$DATA_HOME/ipcheck/private
 
