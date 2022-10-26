@@ -1,5 +1,5 @@
-local loaded, wk = pcall(require, "which-key")
-if not loaded then
+local wk_loaded, wk = pcall(require, "which-key")
+if not wk_loaded then
 	return
 end
 
@@ -22,11 +22,6 @@ local function register_mappings(mode, mappings, options)
 			-- add terminal escape
 			if mode == "t" then
 				cmd = "<C-\\><C-N>" .. cmd
-			end
-
-			-- convert " " to "" (normal, operater pending, etc... mapping)
-			if mode == " " then
-				mode = ""
 			end
 
 			local opts = vim.tbl_deep_extend("force", { silent = true, noremap = true }, options or {})
@@ -224,8 +219,10 @@ register_mappings("v", {
 
 define_augroup("general_settings", {
 	"BufWritePre * :silent lua vim.lsp.buf.formatting_sync()",
-	"FileType c,cpp,javascript,javascriptreact,typescript,typescriptreact setlocal commentstring=//\\ %s",
+	"FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
 	"BufRead,BufNewFile *.wgsl set filetype=wgsl",
+	"BufRead,BufNewFile *.dart set shiftwidth=2",
+	[[BufWritePost *.dart silent execute '!kill -SIGUSR1 $(pgrep -f "[f]lutter_tool.*run")']],
 
 	-- Hide stuff when dashboard is open
 	"User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=2",

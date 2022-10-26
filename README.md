@@ -28,7 +28,7 @@ stow -D scripts
 ```
 
 NOTE: Most dotfile configs (Qtile, Neovim, zsh) requires Source Code Pro Nerd
-Font (install using `yay -S nerd-fonts-source-code-pro`) in order for them to
+Font (install using `sudo pacman -S ttf-sourcecodepro-nerd`) in order for them to
 work properly.
 
 ## Neovim

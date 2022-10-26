@@ -47,6 +47,7 @@ end
 -- A list of servers with configs to be setup
 -- Any servers installed by lsp-installer will be added onto this table
 local server_configs = {
+	dartls = {},
 	clangd = {},
 	gdscript = {},
 	sumneko_lua = {

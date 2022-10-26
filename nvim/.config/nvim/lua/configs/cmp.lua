@@ -43,7 +43,7 @@ cmp.setup({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			local luasnip = require("luasnip")
 			if cmp.visible() then
@@ -95,9 +95,9 @@ cmp.setup({
 		format = function(entry, vim_item)
 			vim_item.kind = completion_icons[vim_item.kind]
 			vim_item.menu = ({
+				luasnip = "[Snippet]",
 				nvim_lsp = "[LSP]",
 				path = "[Path]",
-				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 			})[entry.source.name]
 			return vim_item

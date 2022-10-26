@@ -8,6 +8,7 @@ vim.opt.completeopt = { "noinsert", "menuone", "noselect" }
 vim.opt.cursorline = true -- highlight the current line
 vim.opt.encoding = "utf-8" -- encoding used to write to a file
 vim.opt.expandtab = true -- coverts tab to spaces
+vim.opt.guifont = { "Source Code Pro", ":h10.5" }
 vim.opt.hidden = true -- keep buffers open in the background
 vim.opt.lazyredraw = true -- don't draw until macros and stuff have finished
 vim.opt.mouse = "a" -- allow mouse to be used for all modes
@@ -31,7 +32,6 @@ vim.opt.undofile = true -- persistent undos
 vim.opt.updatetime = 300 -- how often updates happen
 vim.opt.wrap = false -- no line wrapping
 vim.opt.writebackup = false -- don't make backup files
-vim.opt.guifont = "SauceCodePro_Nerd_font:h10"
 
 -- makes indent and tabs better
 vim.opt.autoindent = true
