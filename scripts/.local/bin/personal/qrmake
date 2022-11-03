@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tmp_file="/tmp/qrmake-temp"
+qrencode "$(xsel)" -o $tmp_file && sxiv $tmp_file
