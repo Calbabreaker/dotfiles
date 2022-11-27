@@ -64,7 +64,6 @@ export FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \\( -path '*/\\.*' -o -f
 export FZF_CTRL_T_COMMAND=$LIST_FILES_COMMAND
 
 zsh_add_plugin "junegunn/fzf" "" fzf_install
-source "$PLUGIN_PATH/fzf/shell/completion.zsh"
 source "$PLUGIN_PATH/fzf/shell/key-bindings.zsh"
 
 function fzf-edit {

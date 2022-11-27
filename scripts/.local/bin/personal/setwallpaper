@@ -10,7 +10,7 @@ DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 wallpaper_command_file=$DATA_HOME/wallpaper-command.sh
 
 if [ "$#" != "0" ]; then
-    if [[ "$1" != "-*" ]]; then 
+    if [[ "$1" != -* ]]; then 
         # use -cover by default
         args=(-cover "${@:1}")
         image_file="$1"

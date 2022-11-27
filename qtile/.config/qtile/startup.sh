@@ -1,6 +1,6 @@
 #!/bin/bash
 
-picom -b --experimental-backend &  # compositor
+picom -b &  # compositor
 nm-applet &  # network manager
 dunst & # notification server
 (volumeicon; volumeicon) & 
