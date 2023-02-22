@@ -49,6 +49,8 @@ register_mappings("w", {
 	["n"] = { "nzzzv", "which_key_ignore" },
 	["N"] = { "Nzzzv", "which_key_ignore" },
 	["J"] = { "mzJ`z", "which_key_ignore" },
+	["<C-u>"] = { "<C-u>zz", "which_key_ignore" },
+	["<C-d>"] = { "<C-d>zz", "which_key_ignore" },
 
 	["<A-j>"] = { "<cmd>m .+1<CR>==", "Move current line down" },
 	["<A-k>"] = { "<cmd>m .-2<CR>==", "Move current line up" },
@@ -218,7 +220,7 @@ register_mappings("v", {
 })
 
 define_augroup("general_settings", {
-	"BufWritePre * :silent lua vim.lsp.buf.formatting_sync()",
+	"BufWritePre * :silent lua vim.lsp.buf.format()",
 	"FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
 	"BufRead,BufNewFile *.wgsl set filetype=wgsl",
 	"BufRead,BufNewFile *.dart set shiftwidth=2",
