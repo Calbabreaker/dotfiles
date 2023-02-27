@@ -16,8 +16,8 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
 
 # default programs 
-export TERMINAL="alacritty"
-export BROWSER="brave"
+export TERMINAL="kitty"
+export BROWSER="firefox"
 export EDITOR="nvim"
 
 # load colours and prompt

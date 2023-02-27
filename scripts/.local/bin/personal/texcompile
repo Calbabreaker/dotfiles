@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Usage: texcompile MyReport 
+# Where MyReport is MyReport.tex and MyReport.bib
+# Enter anything for the 2nd arg to show latex output
+
+[ -z "$1" ] && echo "Please specify a latex project name!" && exit
+
+compile() {
+    pipe=$([ -z "$2" ] && echo "> /dev/null")
+    pdflatex -output-directory=out $1.tex $pipe 
+}
+
+if [ ! -f "out/$1.aux" ]; then
+    echo "No latex output detected. Running latex for the first time..."
+    mkdir -p out
+    compile $1 $2
+fi
+
+# run if .bib file changes
+if [ $1.bib -nt out/$1.bib ]; then
+    # do some moving around to get bibtex to use output directory
+    echo "Bib file changed. Rerunning biber..."
+    cp $1.bib out/
+    cd out/
+    biber $1 
+    cd ../
+fi
+
+echo "Running latex..."
+compile $1 $2

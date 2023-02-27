@@ -3,5 +3,5 @@
 xinput set-prop 11 328 0
 killall picom
 gamemoderun $@
-picom -b --experimental-backend & disown
+picom -b & disown
 xinput set-prop 11 328 1
