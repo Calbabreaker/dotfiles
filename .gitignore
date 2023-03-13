@@ -4,3 +4,5 @@ spell/
 *.o
 *.hi
 __pycache__
+/scripts/.local/bin/
+!/scripts/.local/bin/personal
