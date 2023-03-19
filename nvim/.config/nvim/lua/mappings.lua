@@ -224,6 +224,7 @@ define_augroup("general_settings", {
 	"FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
 	"BufRead,BufNewFile *.wgsl set filetype=wgsl",
 	"BufRead,BufNewFile *.dart set shiftwidth=2",
+	"FileType tex,text setlocal wrap",
 	[[BufWritePost *.dart silent execute '!kill -SIGUSR1 $(pgrep -f "[f]lutter_tool.*run")']],
 
 	-- Hide stuff when dashboard is open
@@ -234,9 +235,6 @@ define_augroup("general_settings", {
 	-- (happens when dropping a file on gvim) and for a commit message (it's
 	-- likely a different one than last time).
 	[[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
-
-	-- When moving to a terminal window enter terminal mode
-	"BufEnter term://* call feedkeys('i')",
 })
 
 vim.api.nvim_command([[
