@@ -97,7 +97,6 @@ local function plugin_setup(use)
 			"williamboman/mason-lspconfig.nvim",
 			"b0o/schemastore.nvim",
 			"nvim-lua/lsp-status.nvim",
-			"lvimuser/lsp-inlayhints.nvim",
 		},
 		cond = "not MINIMAL",
 		config = function()

@@ -18,9 +18,6 @@ completionItem.resolveSupport = {
 	},
 }
 
-local inlayhints = require("lsp-inlayhints")
-inlayhints.setup()
-
 local function on_attach(client, bufnr)
 	-- Turn off formatting for lsp if if null-ls already has one available
 	if NullLSGetAvail(vim.bo.filetype) ~= nil then
@@ -28,7 +25,6 @@ local function on_attach(client, bufnr)
 		client.server_capabilities.documentRangeFormattingProvider = false
 	end
 
-	inlayhints.on_attach(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
 		vim.api.nvim_exec(
 			[[
