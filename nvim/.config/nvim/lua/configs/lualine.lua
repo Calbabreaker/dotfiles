@@ -59,12 +59,12 @@ end
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
-	symbols = { error = " ", warn = " ", hint = " ", info = " " },
+	symbols = { error = " ", warn = " ", hint = "󰌵 ", info = " " },
 }
 
 local diff = {
 	"diff",
-	symbols = { added = " ", modified = "柳", removed = " " },
+	symbols = { added = " ", modified = " ", removed = " " },
 }
 
 require("lualine").setup({

@@ -20,8 +20,8 @@ end
 
 section.buttons.val = {
 	button("p", "  Open Projects", "<cmd>Telescope projects<CR>"),
-	button("r", "  Open Recent Files", "<cmd>Telescope oldfiles<CR>"),
-	button("n", "  New File", "<cmd>ene <BAR> startinsert <CR>"),
+	button("r", "󰄉  Open Recent Files", "<cmd>Telescope oldfiles<CR>"),
+	button("n", "󱔘  New File", "<cmd>ene <BAR> startinsert <CR>"),
 	button("o", "  Open File", "<cmd>Telescope find_files<CR>"),
 	button("s", "  Search Text", "<cmd>Telescope live_grep<CR>"),
 }
