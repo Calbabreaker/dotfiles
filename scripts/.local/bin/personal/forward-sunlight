@@ -1,0 +1,14 @@
+#!/bin/bash
+
+[ -z $1 ] && echo "Expected the target ip address as the first argument"
+
+IP=$1
+
+socat TCP4-LISTEN:47984,fork TCP4:$IP:47984 &
+socat TCP4-LISTEN:47989,fork TCP4:$IP:47989 &
+socat TCP4-LISTEN:48010,fork TCP4:$IP:48010 &
+socat UDP4-LISTEN:47998,fork UDP4:$IP:47998 &
+socat UDP4-LISTEN:47999,fork UDP4:$IP:47999 &
+socat UDP4-LISTEN:48000,fork UDP4:$IP:48000 &
+socat UDP4-LISTEN:48002,fork UDP4:$IP:48002 &
+socat UDP4-LISTEN:48010,fork UDP4:$IP:48010 &
