@@ -6,3 +6,10 @@ spell/
 __pycache__
 /scripts/.local/bin/*
 !/scripts/.local/bin/personal/
+
+# plover
+/plover/.config/plover/.cache
+/plover/.config/plover/plugins/linux
+/plover/.config/plover/commands.json
+/plover/.config/plover/plover.log
+/plover/.config/plover/main.json
