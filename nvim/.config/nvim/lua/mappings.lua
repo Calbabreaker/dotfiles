@@ -99,9 +99,9 @@ register_mappings("w", {
 	["<A-6>"] = { "<cmd>BufferLineGoToBuffer 6<CR>", "Go to tab 6" },
 	["<A-7>"] = { "<cmd>BufferLineGoToBuffer 7<CR>", "Go to tab 7" },
 	["<A-8>"] = { "<cmd>BufferLineGoToBuffer 8<CR>", "Go to tab 8" },
-	["<A-9>"] = { "<cmd>BufferLineGoToBuffer 9<CR>", "Go to tab 8" },
+	["<A-9>"] = { "<cmd>BufferLineGoToBuffer 9<CR>", "Go to tab 9" },
 	["<A-c>"] = { "<cmd>lua BufferClose()<CR>", "Close current tab" },
-	["<A-C>"] = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close all other tabs" },
+	["<A-C>"] = { "<cmd>lua BufferCloseAllOther()<CR>", "Close all other tabs" },
 	["<A-p>"] = { "<cmd>BufferLinePick<CR>", "Pick a tab" },
 
 	["<Leader>"] = {
@@ -224,7 +224,7 @@ define_augroup("general_settings", {
 	"FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
 	"BufRead,BufNewFile *.wgsl set filetype=wgsl",
 	"BufRead,BufNewFile *.dart set shiftwidth=2",
-	"FileType tex,text setlocal wrap",
+	"FileType tex,text,markdown setlocal wrap",
 	[[BufWritePost *.dart silent execute '!kill -SIGUSR1 $(pgrep -f "[f]lutter_tool.*run")']],
 
 	-- Hide stuff when dashboard is open

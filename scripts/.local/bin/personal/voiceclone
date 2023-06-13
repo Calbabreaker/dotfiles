@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tts --text "$2" --speaker_wav $1 --model_name tts_models/multilingual/multi-dataset/your_tts --language_idx en --out_path $3

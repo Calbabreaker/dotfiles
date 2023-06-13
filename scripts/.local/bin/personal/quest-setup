@@ -1,0 +1,11 @@
+#!/bin/bash
+
+setup() {
+    # foward alvr
+    adb forward tcp:9944 tcp:9944
+    adb forward tcp:9943 tcp:9943
+}
+
+while ! setup; do
+    sleep 1  # wait 1 second before trying again
+done
