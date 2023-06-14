@@ -190,10 +190,10 @@ register_mappings("nic", {
 
 register_mappings("wit", {
 	-- make window navigation easier
-	["<C-h>"] = { "<ESC><C-w>h", "Move to left window" },
-	["<C-j>"] = { "<ESC><C-w>j", "Move to bottom window" },
-	["<C-k>"] = { "<ESC><C-w>k", "Move to top window" },
-	["<C-l>"] = { "<ESC><C-w>l", "Move to right window" },
+	["<A-h>"] = { "<ESC><C-w>h", "Move to left window" },
+	["<A-j>"] = { "<ESC><C-w>j", "Move to bottom window" },
+	["<A-k>"] = { "<ESC><C-w>k", "Move to top window" },
+	["<A-l>"] = { "<ESC><C-w>l", "Move to right window" },
 
 	-- resize using arrow keys
 	["<C-Left>"] = { "<cmd>vertical resize +3<CR>", "Scale window left" },
