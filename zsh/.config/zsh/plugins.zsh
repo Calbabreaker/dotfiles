@@ -93,5 +93,4 @@ bindkey '^o' 'fzf-open'
 
 # pyenv stuff
 export PYENV_ROOT="$HOME/.local/share/pyenv"
-command -v pyenv >/dev/null || [ -d "$PYENV_ROOT/bin" ] export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+command -v pyenv > /dev/null || [ -d "$PYENV_ROOT/bin" ] && export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(pyenv init -)"
