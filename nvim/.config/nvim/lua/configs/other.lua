@@ -66,7 +66,10 @@ return {
 	end,
 
 	lazygit = function()
-		require("toggleterm").setup()
+		require("toggleterm").setup({
+            persist_mode=false
+        })
+
 		local Terminal = require("toggleterm.terminal").Terminal
 		LazyGit = Terminal:new({
 			cmd = "lazygit",

@@ -27,7 +27,7 @@ local function plugin_setup(use)
 		"lewis6991/gitsigns.nvim",
 		event = "BufRead",
 		config = function()
-			require("gitsigns").setup({ keymaps = {} })
+			require("gitsigns").setup()
 		end,
 	})
 
