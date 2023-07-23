@@ -30,19 +30,6 @@ alias lg="lazygit"
 export PAGER='less -R --use-color -Dd+g$Dur$DPy' # coloured man pages
 bindkey -s '^f' 'ranger^M'
 
-# make Shift+q make shell cd to dir opened in ranger while quitting ranger
-function ranger {
-    local tempfile="$(mktemp -t tmp.XXXXXX)"
-    command ranger --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
-    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-        cd -- "$(cat "$tempfile")" || return
-    fi
-    rm -f -- "$tempfile" > /dev/null
-}
-
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Bind history forward/back
 bindkey '^k' up-line-or-history
 bindkey '^j' down-line-or-history

@@ -28,3 +28,4 @@ autoload -U promptinit; promptinit
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/tab_comp_vi.zsh" # tab completion and vi mode
 source "$ZDOTDIR/plugins.zsh"
+source "$ZDOTDIR/programs.zsh"

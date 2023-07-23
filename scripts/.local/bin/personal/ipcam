@@ -6,23 +6,15 @@ PROTOCOL=https
 IP_ADDRESS=127.0.0.1
 PORT=8080
 ENDPOINT_VIDEO=video
+MIC_SINK=ipcam-mic
 ENDPOINT_MIC=audio.opus
 DEVICE_NUMBER=7
 ENCODE_OPTIONS="-c:v copy"
 # ENCODE_OPTIONS="-vcodec rawvideo -pix_fmt yuv420p -threads 0"
 SUDO=sudo
 
-if ! command -v adb &> /dev/null
-then
-    echo "adb is not installed!"
-    exit
-fi
-
-if ! command -v ffmpeg &> /dev/null
-then
-    echo "ffmpeg is not installed!"
-    exit
-fi
+command -v adb &> /dev/null || echo "adb is not installed!"
+command -v ffmpeg &> /dev/null || echo "ffmpeg is not installed!"
 
 echo "waiting for the device to show up via adb"
 adb wait-for-usb-device
@@ -33,10 +25,12 @@ echo "================================================================"
 echo "If you want to control the resolution, focus, ISO and etc, visit $PROTOCOL://$IP_ADDRESS:$PORT/"
 echo "================================================================"
 
-while true; do
+if [ "$1" == "mic" ]; then
+    pactl load-module module-null-sink sink_name=$MIC_SINK
+    pactl set-default-source virtmic.monitor
+    ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT_MIC" -af volume=7 -f pulse $MIC_SINK
+else
     $SUDO modprobe v4l2loopback devices=1 max_buffers=2 exclusive_caps=1 video_nr=$DEVICE_NUMBER 'card_label=IP Webcam'
-
     ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT_VIDEO" $ENCODE_OPTIONS -f v4l2 /dev/video$DEVICE_NUMBER
-
     $SUDO modprobe -r v4l2loopback
-done
+fi

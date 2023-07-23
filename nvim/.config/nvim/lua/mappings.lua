@@ -161,6 +161,7 @@ register_mappings("w", {
 			f = { "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format buffer" },
 			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" },
 			r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
+			R = { "<cmd>LspRestart<CR>", "Restart Lsp Server" },
 			i = { "<cmd>LspInfo<CR>", "Show LSP info" },
 			I = { "<cmd>LspInstallInfo<CR>", "Show LSP install info" },
 			d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Show document diagnostics" },
