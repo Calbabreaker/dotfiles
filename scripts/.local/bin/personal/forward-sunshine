@@ -4,6 +4,7 @@
 
 IP=$1
 
+killall socat
 socat TCP4-LISTEN:47984,fork TCP4:$IP:47984 &
 socat TCP4-LISTEN:47989,fork TCP4:$IP:47989 &
 socat TCP4-LISTEN:48010,fork TCP4:$IP:48010 &
