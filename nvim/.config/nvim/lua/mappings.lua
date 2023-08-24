@@ -52,8 +52,8 @@ register_mappings("w", {
 	["<C-u>"] = { "<C-u>zz", "which_key_ignore" },
 	["<C-d>"] = { "<C-d>zz", "which_key_ignore" },
 
-	["<A-j>"] = { "<cmd>m .+1<CR>==", "Move current line down" },
-	["<A-k>"] = { "<cmd>m .-2<CR>==", "Move current line up" },
+	["<C-S-j>"] = { "<cmd>m .+1<CR>==", "Move current line down" },
+    ["<C-S-k>"] = { "<cmd>m .-2<CR>==", "Move current line up" },
 
 	-- general
 	["<A-q>"] = { "<cmd>qa!<CR>", "Quit without saving" },

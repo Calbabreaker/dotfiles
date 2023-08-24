@@ -8,3 +8,5 @@ function ranger {
     rm -f -- "$tempfile" > /dev/null
 }
 
+CARGO_HOME=${CARGO_HOME:-$HOME/.cargo}
+[ -d "$CARGO_HOME" ] && export PATH="$PATH:$CARGO_HOME/bin"

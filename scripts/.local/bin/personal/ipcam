@@ -26,9 +26,9 @@ echo "If you want to control the resolution, focus, ISO and etc, visit $PROTOCOL
 echo "================================================================"
 
 if [ "$1" == "mic" ]; then
-    pactl load-module module-null-sink sink_name=$MIC_SINK
-    pactl set-default-source virtmic.monitor
-    ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT_MIC" -af volume=7 -f pulse $MIC_SINK
+    pactl load-module module-null-sink sink_name="$MIC_SINK"
+    pactl set-default-source "$MIC_SINK.monitor"
+    ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT_MIC" -af volume=7 -f pulse "$MIC_SINK"
 else
     $SUDO modprobe v4l2loopback devices=1 max_buffers=2 exclusive_caps=1 video_nr=$DEVICE_NUMBER 'card_label=IP Webcam'
     ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT_VIDEO" $ENCODE_OPTIONS -f v4l2 /dev/video$DEVICE_NUMBER
