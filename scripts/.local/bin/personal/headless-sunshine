@@ -1,0 +1,93 @@
+#!/bin/bash
+
+cat << EOM > /tmp/xorg.conf
+Section "ServerLayout"
+	Identifier     "X.org Configured"
+	Screen      0  "Screen0" 0 0
+	InputDevice    "Mouse0" "CorePointer"
+	InputDevice    "Keyboard0" "CoreKeyboard"
+EndSection
+
+Section "Files"
+	ModulePath   "/usr/lib/xorg/modules"
+	FontPath     "/usr/share/fonts/misc"
+	FontPath     "/usr/share/fonts/TTF"
+	FontPath     "/usr/share/fonts/OTF"
+	FontPath     "/usr/share/fonts/Type1"
+	FontPath     "/usr/share/fonts/100dpi"
+	FontPath     "/usr/share/fonts/75dpi"
+EndSection
+
+Section "Module"
+	Load  "glx"
+	Load  "vnc"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Keyboard0"
+	Driver      "kbd"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Mouse0"
+	Driver      "mouse"
+	Option	    "Protocol" "auto"
+	Option	    "Device" "/dev/input/mice"
+	Option	    "ZAxisMapping" "4 5 6 7"
+EndSection
+
+Section "Monitor"
+	Identifier   "Monitor0"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+    Option  "IgnoreEDID"
+EndSection
+
+Section "Device"
+	Identifier  "Card0"
+	Driver      "nvidia"
+	BusID       "PCI:11:0:0"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
+
+Section "Screen"
+	Identifier "Screen0"
+	Device     "Card0"
+	Monitor    "Monitor0"
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+    SubSection "Display"
+        Depth   14
+        Virtual 1920 1080
+    EndSubSection
+EndSection
+EOM
+
+export DISPLAY=:1
+sudo chmod g+r /dev/tty5
+tmux new-session -d -s sunshine
+tmux split-window -h -t sunshine 'Xorg -noreset +extension GLX +extension RANDR +extension RENDER vt5 -config /tmp/xorg.conf :1 -logfile /tmp/xorg.log; read'
+tmux send-keys -t left 'sunshine' C-m
+tmux attach -t sunshine

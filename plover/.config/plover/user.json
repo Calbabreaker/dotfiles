@@ -5,7 +5,6 @@
 "SKE": "ask me",
 "TK-FPS": "{*!}",
 "TPHAOUFPL": "pneumonoultramicroscopicsilicovolcanoconiosis",
-"TPH-RPL": "{MODE:RESET}",
 "TP*T": "{:fancytext_set:off}",
 "TP*T/STKPWAL": "{:fancytext_set:zalgo}",
 "TP*T/SRAEUP": "{:fancytext_set:fullwidth}",
@@ -24,5 +23,6 @@
 "PHROBGT": "{PLOVER:QUIT}",
 "PHOEPBLG": "{:emoji}",
 "HRO*ER": "{MODE:LOWER}",
+"R*R": "{MODE:RESET}",
 "AFPS": "{*?}"
 }
