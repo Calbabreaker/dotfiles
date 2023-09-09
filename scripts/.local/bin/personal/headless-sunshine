@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DE_START="startplasma-x11"
+
 cat << EOM > /tmp/xorg.conf
 Section "ServerLayout"
 	Identifier     "X.org Configured"
@@ -90,4 +92,5 @@ sudo chmod g+r /dev/tty5
 tmux new-session -d -s sunshine
 tmux split-window -h -t sunshine 'Xorg -noreset +extension GLX +extension RANDR +extension RENDER vt5 -config /tmp/xorg.conf :1 -logfile /tmp/xorg.log; read'
 tmux send-keys -t left 'sunshine' C-m
+tmux split-window -h -t sunshine "$DE_START"
 tmux attach -t sunshine
