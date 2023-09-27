@@ -94,3 +94,4 @@ tmux split-window -h -t sunshine 'Xorg -noreset +extension GLX +extension RANDR 
 tmux send-keys -t left 'sunshine' C-m
 tmux split-window -h -t sunshine "$DE_START"
 tmux attach -t sunshine
+xrandr --output HDMI-0 --brightness 0

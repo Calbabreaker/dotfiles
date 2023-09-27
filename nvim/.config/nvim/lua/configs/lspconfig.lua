@@ -67,6 +67,22 @@ local server_configs = {
 			},
 		},
 	},
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                assist = {
+                    importEnforceGranularity = true,
+                    importPrefix = "crate",
+                },
+                cargo = {
+                    allFeatures = true,
+                },
+                checkOnSave = {
+                    command = "clippy",
+                },
+            },
+        }
+    }
 }
 
 require("mason").setup()

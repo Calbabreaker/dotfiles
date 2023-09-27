@@ -34,7 +34,6 @@ nvimtree.setup({
     renderer = {
         highlight_git = true,
         group_empty = true,
-        highlight_opened_files = "1",
         icons = {
             show = {
                 git = false,
