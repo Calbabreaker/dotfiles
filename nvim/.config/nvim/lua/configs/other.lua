@@ -1,12 +1,14 @@
 return {
 	blankline = function()
-		require("indent_blankline").setup({
-			char = "▏",
-			context_char = "▏",
-			buftype_exclude = { "terminal" },
-			filetype_exclude = { "NvimTree", "help", "packer", "alpha", "man", "lsp-installer" },
-			show_current_context = true,
-			show_trailing_blankline_indent = false,
+		require("ibl").setup({
+			indent = { char = "▏" },
+            exclude = {
+                filetypes = { "NvimTree", "help", "packer", "alpha", "man", "lsp-installer" },
+                buftypes = { "terminal" }
+            },
+            scope = {
+                enabled = true,
+            },
 		})
 	end,
 
@@ -57,8 +59,8 @@ return {
 				LspReferenceWrite = { bg = lspHoverColor, fmt = "none" },
 				CursorLine = { bg = lineColor },
 				ColorColumn = { bg = lineColor },
-				IndentBlanklineChar = { fg = "#424855", fmt = "nocombine" },
-				IndentBlanklineContextChar = { fg = "#6a7285", fmt = "nocombine" },
+				IblIndent = { fg = "#424855", fmt = "nocombine" },
+				IblScope = { fg = "#6a7285", fmt = "nocombine" },
 			},
 		})
 
@@ -67,7 +69,7 @@ return {
 
 	lazygit = function()
 		require("toggleterm").setup({
-            persist_mode=false
+            persist_mode = false
         })
 
 		local Terminal = require("toggleterm.terminal").Terminal
