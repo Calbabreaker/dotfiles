@@ -14,3 +14,5 @@ __pycache__
 /plover/.config/plover/plover.log
 /plover/.config/plover/main.json
 plover/.config/plover/clippy_2.org
+
+cached_layouts
