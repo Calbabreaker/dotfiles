@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# copied and adapted from ames
+
+AUDIO_FORMAT="wav"
+OUTPUT_MONITOR=""
+AUDIO_BITRATE="64k"
+AUDIO_VOLUME="1"
+MINIMUM_DURATION="0"
+
+recording_info_file="/tmp/ffmpeg-recording-info"
+
+current_time() {
+    date +%s%3N
+}
+
+record_start() {
+    local -r audio_file="$(mktemp \
+                               "/tmp/ffmpeg-recording.XXXXXX.$AUDIO_FORMAT")"
+    echo "$audio_file" > "$recording_info_file"
+
+    if [ "$OUTPUT_MONITOR" == "" ]; then
+        local -r output="$(pactl info \
+                               | grep 'Default Sink' \
+                               | awk '{print $NF ".monitor"}')"
+    else
+        local -r output="$OUTPUT_MONITOR"
+    fi
+
+    ffmpeg -nostdin \
+        -y \
+        -loglevel error \
+        -f pulse \
+        -i "$output" \
+        -ac 2 \
+        -af "volume=${AUDIO_VOLUME},silenceremove=1:0:-50dB" \
+        -ab "$AUDIO_BITRATE" \
+        "$audio_file" 1> /dev/null &
+    echo "$!" >> "$recording_info_file"
+
+    current_time >> "$recording_info_file"
+
+    notify-send "Start recording..."
+}
+
+record_end() {
+    local -r audio_file="$(sed -n "1p" "$recording_info_file")"
+    local -r pid="$(sed -n "2p" "$recording_info_file")"
+    local -r start_time="$(sed -n "3p" "$recording_info_file")"
+    local -r duration="$(($(current_time) - start_time))"
+
+    if [ "$duration" -le "$MINIMUM_DURATION" ]; then
+        sleep "$((MINIMUM_DURATION - duration))e-3"
+    fi
+
+    rm "$recording_info_file"
+    kill -15 "$pid"
+
+    while [ "$(du "$audio_file" | awk '{ print $1 }')" -eq 0 ]; do
+        true
+    done
+
+    local -r audio_backup="/tmp/ffmpeg-recording-audio-backup.$AUDIO_FORMAT"
+    cp "$audio_file" "$audio_backup"
+    ffmpeg -nostdin \
+           -y \
+           -loglevel error \
+           -i "$audio_backup" \
+           -c copy \
+           -to "${duration}ms" \
+           "$audio_file" 1> /dev/null
+
+    local -r name="$(zenity --entry --text="Enter file name:").$AUDIO_FORMAT"
+    local -r output_location="$HOME/$name"
+    cp $audio_file "$output_location"
+
+    notify-send "Saved recording to $output_location"
+
+    rm $audio_backup
+    rm $audio_file
+}
+
+if [[ ! -f /tmp/ffmpeg-recording-info ]]; then
+    record_start
+else
+    record_end
+fi
