@@ -90,3 +90,5 @@ zle -N fzf-open
 # keybinds
 bindkey '^e' 'fzf-edit'
 bindkey '^o' 'fzf-open'
+
+command -v zoxide > /dev/null && eval "$(zoxide init zsh --cmd cd)"

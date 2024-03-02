@@ -7,6 +7,7 @@ OUTPUT_MONITOR=""
 AUDIO_BITRATE="64k"
 AUDIO_VOLUME="1"
 MINIMUM_DURATION="0"
+OUTPUT_DIR="$HOME/Media/Samples/drec"
 
 recording_info_file="/tmp/ffmpeg-recording-info"
 
@@ -33,14 +34,14 @@ record_start() {
         -f pulse \
         -i "$output" \
         -ac 2 \
-        -af "volume=${AUDIO_VOLUME},silenceremove=1:0:-50dB" \
+        -af "volume=${AUDIO_VOLUME},silenceremove=start_periods=1:stop_periods=1:detection=peak" \
         -ab "$AUDIO_BITRATE" \
         "$audio_file" 1> /dev/null &
     echo "$!" >> "$recording_info_file"
 
     current_time >> "$recording_info_file"
 
-    notify-send "Start recording..."
+    notify-send "Recording started..."
 }
 
 record_end() {
@@ -71,7 +72,8 @@ record_end() {
            "$audio_file" 1> /dev/null
 
     local -r name="$(zenity --entry --text="Enter file name:").$AUDIO_FORMAT"
-    local -r output_location="$HOME/$name"
+    local -r output_location="$OUTPUT_DIR/$name"
+    mkdir -p $OUTPUT_DIR
     cp $audio_file "$output_location"
 
     notify-send "Saved recording to $output_location"

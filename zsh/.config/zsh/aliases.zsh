@@ -30,6 +30,8 @@ alias lg="lazygit"
 export PAGER='less -R --use-color -Dd+g$Dur$DPy' # coloured man pages
 bindkey -s '^f' 'ranger^M'
 
+alias hbackup="rsync -aAXv ~/Documents ~/Media --delete --exclude='*/Dev/*' /run/media/$USER/storage/backups/"
+
 # Bind history forward/back
 bindkey '^k' up-line-or-history
 bindkey '^j' down-line-or-history
