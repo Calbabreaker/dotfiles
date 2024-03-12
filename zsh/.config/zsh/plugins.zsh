@@ -59,8 +59,7 @@ function fzf_install() {
 }
 
 export LIST_FILES_COMMAND="rg -g '!.git' --files --hidden"
-export FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -name node_modules \\) -prune \
-    -o -type d -print 2> /dev/null | cut -b3-"
+export FZF_ALT_C_COMMAND="rg -g '!.git' --files --null | xargs -0 dirname | sort -u"
 export FZF_CTRL_T_COMMAND=$LIST_FILES_COMMAND
 
 zsh_add_plugin "junegunn/fzf" "" fzf_install

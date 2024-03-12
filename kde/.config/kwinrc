@@ -33,10 +33,16 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][61a9cda2-c784-5476-9585-83eaed337290]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][77f707da-fb37-5165-9862-bbec4373ee61]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][902a5ec6-e601-5410-8094-f4293d3d54f4]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][af62dd19-7d56-5c6e-a70a-96626a67264d]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][c8a4a66d-bbca-5e7f-8a37-ce3b4a705568]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][cebf213a-fff5-5245-acf9-1961a25639ac]
@@ -48,11 +54,14 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][f1b23ea6-496a-5a5e-99fc-325286f161cc]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Wayland]
+InputMethod[$e]=/usr/share/applications/fcitx5-wayland-launcher.desktop
+
 [Windows]
 RollOverDesktops=true
 
 [Xwayland]
-Scale=1
+Scale=1.75
 
 [org.kde.kdecoration2]
 library=org.kde.bismuth.decoration
