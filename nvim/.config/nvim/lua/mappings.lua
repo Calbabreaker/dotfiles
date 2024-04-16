@@ -220,7 +220,9 @@ register_mappings("v", {
 define_augroup("general_settings", {
 	"BufWritePre * :silent lua vim.lsp.buf.format()",
 	"FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
+	"FileType luau setlocal commentstring=--\\ %s",
 	"BufRead,BufNewFile *.wgsl set filetype=wgsl",
+	"BufRead,BufNewFile *.luau set filetype=luau",
 	"BufRead,BufNewFile *.dart set shiftwidth=2",
 	"FileType tex,text,markdown setlocal wrap",
 	[[BufWritePost *.dart silent execute '!kill -SIGUSR1 $(pgrep -f "[f]lutter_tool.*run")']],
