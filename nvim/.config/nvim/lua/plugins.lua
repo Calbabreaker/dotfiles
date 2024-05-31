@@ -3,7 +3,6 @@ local function plugin_setup(use)
 	use("kyazdani42/nvim-web-devicons") -- nice icons
 	use("nvim-lua/plenary.nvim") -- lua utils
 	use("lewis6991/impatient.nvim") -- improve neovim startup times
-	use("ThePrimeagen/harpoon") -- jumping around to files
 
 	-- colour scheme
 	use({
@@ -38,6 +37,14 @@ local function plugin_setup(use)
 		event = "BufWinEnter",
 		config = function()
 			require("configs/lualine")
+		end,
+	})
+
+	-- nice tabs
+	use({
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("configs/bufferline")
 		end,
 	})
 
@@ -194,7 +201,9 @@ local function plugin_setup(use)
 	use({
 		"ahmedkhalf/project.nvim",
 		config = function()
-			require("project_nvim").setup({})
+			require("project_nvim").setup({
+              patterns = { ".git", ".project" },
+            })
 		end,
 	})
 

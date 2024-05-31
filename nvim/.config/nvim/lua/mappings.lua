@@ -86,20 +86,23 @@ register_mappings("w", {
 	["<C-p>"] = { "<cmd>cprev<CR>zzzv", "Go to previous item in quick fix list" },
 	["<C-q>"] = { "<cmd>call ToggleQuickFixList()<CR>", "Toggle quick fix list" },
 
-	-- harpoon
-	["<A-m>"] = { ":lua require('harpoon.mark').add_file()<CR>", "Mark file in harpoon" },
-	["<A-v>"] = { ":lua require('harpoon.ui').toggle_quick_menu()<CR>", "Open harpoon menu" },
-	["<A-.>"] = { ":lua require('harpoon.ui').nav_next()<CR>", "Go to next item in harpoon" },
-	["<A-,>"] = { ":lua require('harpoon.ui').nav_prev()<CR>", "Go to previous item in harpoon" },
-	["<A-1>"] = { ":lua require('harpoon.ui').nav_file(1)<CR>", "Go to item 1 in harpoon" },
-	["<A-2>"] = { ":lua require('harpoon.ui').nav_file(2)<CR>", "Go to item 2 in harpoon" },
-	["<A-3>"] = { ":lua require('harpoon.ui').nav_file(3)<CR>", "Go to item 3 in harpoon" },
-	["<A-4>"] = { ":lua require('harpoon.ui').nav_file(4)<CR>", "Go to item 4 in harpoon" },
-	["<A-5>"] = { ":lua require('harpoon.ui').nav_file(5)<CR>", "Go to item 5 in harpoon" },
-	["<A-6>"] = { ":lua require('harpoon.ui').nav_file(6)<CR>", "Go to item 6 in harpoon" },
-	["<A-7>"] = { ":lua require('harpoon.ui').nav_file(7)<CR>", "Go to item 7 in harpoon" },
-	["<A-8>"] = { ":lua require('harpoon.ui').nav_file(8)<CR>", "Go to item 8 in harpoon" },
-	["<A-9>"] = { ":lua require('harpoon.ui').nav_file(9)<CR>", "Go to item 9 in harpoon" },
+	-- tab/buffers
+	["<A-.>"] = { "<cmd>BufferLineCycleNext<CR>", "Go to next tab" },
+	["<A-,>"] = { "<cmd>BufferLineCyclePrev<CR>", "Go to previous tab" },
+	["<A->>"] = { "<cmd>BufferLineMoveNext<CR>", "Move previous tab" },
+	["<A-<>"] = { "<cmd>BufferLineMovePrev<CR>", "Move previous tab" },
+	["<A-1>"] = { "<cmd>BufferLineGoToBuffer 1<CR>", "Go to tab 1" },
+	["<A-2>"] = { "<cmd>BufferLineGoToBuffer 2<CR>", "Go to tab 2" },
+	["<A-3>"] = { "<cmd>BufferLineGoToBuffer 3<CR>", "Go to tab 3" },
+	["<A-4>"] = { "<cmd>BufferLineGoToBuffer 4<CR>", "Go to tab 4" },
+	["<A-5>"] = { "<cmd>BufferLineGoToBuffer 5<CR>", "Go to tab 5" },
+	["<A-6>"] = { "<cmd>BufferLineGoToBuffer 6<CR>", "Go to tab 6" },
+	["<A-7>"] = { "<cmd>BufferLineGoToBuffer 7<CR>", "Go to tab 7" },
+	["<A-8>"] = { "<cmd>BufferLineGoToBuffer 8<CR>", "Go to tab 8" },
+	["<A-9>"] = { "<cmd>BufferLineGoToBuffer 9<CR>", "Go to tab 9" },
+	["<A-c>"] = { "<cmd>lua BufferClose()<CR>", "Close current tab" },
+	["<A-C>"] = { "<cmd>lua BufferCloseAllOther()<CR>", "Close all other tabs" },
+	["<A-p>"] = { "<cmd>BufferLinePick<CR>", "Pick a tab" },
 
 	["<Leader>"] = {
 		g = {
