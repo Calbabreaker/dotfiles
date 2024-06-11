@@ -95,6 +95,7 @@ ls.add_snippets("all", {
             "ColumnLimit: 100",
             "IndentWidth: 4",
             "PointerAlignment: Left",
+            "AccessModifierOffset: 0"
 		}),
 	}),
 })

@@ -34,7 +34,7 @@ record_start() {
         -f pulse \
         -i "$output" \
         -ac 2 \
-        -af "volume=${AUDIO_VOLUME},silenceremove=start_periods=1:stop_periods=1:detection=peak" \
+        -af "volume=${AUDIO_VOLUME},silenceremove=start_periods=1:stop_periods=1:detection=peak:stop_duration=100ms" \
         -ab "$AUDIO_BITRATE" \
         "$audio_file" 1> /dev/null &
     echo "$!" >> "$recording_info_file"

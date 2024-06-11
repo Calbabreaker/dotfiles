@@ -8,7 +8,7 @@ switch-to-activity-e14603ce-cec2-4bf8-bcfe-cbdb87f062a0=none,none,Switch to acti
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
-Switch to Last-Used Keyboard Layout=Meta+Alt+L,Meta+Alt+L,
+Switch to Last-Used Keyboard Layout=Meta+Alt+L,Meta+Alt+L,Switch to Last-Used Keyboard Layout
 Switch to Next Keyboard Layout=Meta+Alt+K,Meta+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
@@ -99,7 +99,7 @@ Grid View=Meta+G,Meta+G,Toggle Grid View
 Increase Opacity=none,,Increase Opacity of Active Window by 5%
 Kill Window=Meta+Ctrl+Esc,Meta+Ctrl+Esc,Kill Window
 Move Tablet to Next Output=none,none,Move the tablet to the next output
-MoveMouseToCenter=Meta+F6,Meta+F6,Move Mouse to Center
+MoveMouseToCenter=Meta+F6,Meta+F6,Move Mouse to Centre
 MoveMouseToFocus=Meta+F5,Meta+F5,Move Mouse to Focus
 MoveZoomDown=none,none,Move Zoomed Area Downwards
 MoveZoomLeft=none,none,Move Zoomed Area to Left
@@ -171,12 +171,12 @@ Window Fullscreen=none,,Make Window Fullscreen
 Window Grow Horizontal=none,,Expand Window Horizontally
 Window Grow Vertical=none,,Expand Window Vertically
 Window Lower=none,,Lower Window
-Window Maximize=Meta+M\tMeta+PgUp,Meta+PgUp,Maximize Window
-Window Maximize Horizontal=none,,Maximize Window Horizontally
-Window Maximize Vertical=none,,Maximize Window Vertically
-Window Minimize=Meta+PgDown,Meta+PgDown,Minimize Window
+Window Maximize=Meta+M\tMeta+PgUp,Meta+PgUp,Maximise Window
+Window Maximize Horizontal=none,,Maximise Window Horizontally
+Window Maximize Vertical=none,,Maximise Window Vertically
+Window Minimize=Meta+PgDown,Meta+PgDown,Minimise Window
 Window Move=none,,Move Window
-Window Move Center=none,,Move Window to the Center
+Window Move Center=none,,Move Window to the Centre
 Window No Border=none,,Toggle Window Titlebar and Frame
 Window On All Desktops=none,,Keep Window on All Desktops
 Window One Desktop Down=Meta+Ctrl+Shift+Down,Meta+Ctrl+Shift+Down,Window One Desktop Down
