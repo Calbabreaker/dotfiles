@@ -1,4 +1,5 @@
 #!/bin/bash
 
 tmp_file="/tmp/qrmake-temp"
-qrencode "$(xsel)" -o $tmp_file && sxiv $tmp_file
+
+qrencode "$([ -z $(xsel) ] && wl-paste || xsel)" -o $tmp_file && sxiv $tmp_file

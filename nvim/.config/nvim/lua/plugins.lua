@@ -71,7 +71,7 @@ local function plugin_setup(use)
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup({
-				window = { border = "double" },
+				win = { border = "double" },
 			})
 		end,
 	})

@@ -64,7 +64,7 @@ InputMethod[$e]=/usr/share/applications/fcitx5-wayland-launcher.desktop
 RollOverDesktops=true
 
 [Xwayland]
-Scale=1.75
+Scale=1
 
 [org.kde.kdecoration2]
 library=org.kde.bismuth.decoration
