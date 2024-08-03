@@ -28,6 +28,8 @@ export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH_DATA_PATH=$XDG_DATA_HOME/zsh
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
+export GOPATH=$XDG_DATA_HOME/go
+export GOMODCACHE=$XDG_CACHE_HOME/go/mod
 
 # history
 export HISTSIZE=10000
