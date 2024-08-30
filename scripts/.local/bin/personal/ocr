@@ -1,6 +1,6 @@
 #!/bin/bash
 
-type=$( [ ! -z $1 ] && echo $1 || echo jpn_vert )
+type=$( [ ! -z $1 ] && echo $1 || echo tha )
 TEXT=`flameshot gui -r -s | tesseract - - -l $type`
 echo $TEXT
-xclip -selection c "$TEXT" || wl-copy "$TEXT"
+(echo $TEXT | xclip -selection c) || wl-copy "$TEXT"

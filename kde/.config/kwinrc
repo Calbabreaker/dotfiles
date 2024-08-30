@@ -20,6 +20,7 @@ Mode=Location
 [Plugins]
 bismuthEnabled=true
 blurEnabled=true
+cubeEnabled=true
 
 [Tiling]
 padding=4
@@ -40,6 +41,9 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][902a5ec6-e601-5410-8094-f4293d3d54f4]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][92e842d7-5928-5c43-884a-4912e7cc82ed]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][af62dd19-7d56-5c6e-a70a-96626a67264d]
@@ -67,5 +71,5 @@ RollOverDesktops=true
 Scale=1
 
 [org.kde.kdecoration2]
-library=org.kde.bismuth.decoration
-theme=Bismuth
+library=org.kde.breeze
+theme=Breeze

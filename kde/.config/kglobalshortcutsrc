@@ -88,6 +88,7 @@ _k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Meta+Ctrl+A,Meta+Ctrl+A,Activate Window Demanding Attention
+Cube=Meta+Shift+C,none,Toggle Cube
 Cycle Overview=none,none,Cycle through Overview and Grid View
 Cycle Overview Opposite=none,none,Cycle through Grid View and Overview
 Decrease Opacity=none,,Decrease Opacity of Active Window by 5%
@@ -304,11 +305,14 @@ toggle do not disturb=none,,Toggle do not disturb
 [services][firefox.desktop]
 _launch=Meta+B
 
+[services][flameshot.desktop]
+_launch=Print
+
 [services][kitty.desktop]
 _launch=Meta+Return
 
 [services][org.kde.plasma.emojier.desktop]
-_launch=none
+_launch=Meta+Ctrl+Space
 
 [wacomtablet]
 Map to fullscreen=Meta+Ctrl+F,Meta+Ctrl+F,Map to fullscreen
