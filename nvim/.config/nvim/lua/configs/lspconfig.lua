@@ -94,6 +94,10 @@ end
 
 local lspconfig = require("lspconfig")
 for name, config in pairs(server_configs) do
+    if name == "tsserver" then
+        name = "ts_ls"
+    end
+
 	-- Only setup server if it exists
 	local cmd = lspconfig[name].document_config.default_config.cmd
 	if type(cmd) ~= "table" or vim.fn.executable(cmd[1]) == 1 then

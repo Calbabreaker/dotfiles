@@ -1,45 +1,45 @@
 local wk_loaded, wk = pcall(require, "which-key")
 if not wk_loaded then
-	return
+    return
 end
 
 -- register mappings on a mode or multiple (as a string)
 -- w mode uses which key (note that every mapping needs a description in that mode)
 local function register_mappings(mode, mappings, options)
-	-- split up the string
-	if #mode > 1 then
-		for i = 1, #mode do
-			register_mappings(mode:sub(i, i), mappings, options)
-		end
-		return
-	end
+    -- split up the string
+    if #mode > 1 then
+        for i = 1, #mode do
+            register_mappings(mode:sub(i, i), mappings, options)
+        end
+        return
+    end
 
-	if mode == "w" then
-		wk.add(mappings)
-	else
-		for _, mapping in ipairs(mappings) do
-			local cmd = mapping[2]
-			local key = mapping[1]
-			-- add terminal escape
-			if mode == "t" then
-				cmd = "<C-\\><C-N>" .. cmd
-			end
+    if mode == "w" then
+        wk.add(mappings)
+    else
+        for _, mapping in ipairs(mappings) do
+            local cmd = mapping[2]
+            local key = mapping[1]
+            -- add terminal escape
+            if mode == "t" then
+                cmd = "<C-\\><C-N>" .. cmd
+            end
 
-			local opts = vim.tbl_deep_extend("force", { silent = true, noremap = true }, options or {})
-			vim.api.nvim_set_keymap(mode, key, cmd, opts)
-		end
-	end
+            local opts = vim.tbl_deep_extend("force", { silent = true, noremap = true }, options or {})
+            vim.api.nvim_set_keymap(mode, key, cmd, opts)
+        end
+    end
 end
 
 local function define_augroup(name, definitions)
-	vim.api.nvim_command("augroup " .. name)
-	vim.api.nvim_command("autocmd!")
+    vim.api.nvim_command("augroup " .. name)
+    vim.api.nvim_command("autocmd!")
 
-	for _, definition in pairs(definitions) do
-		vim.api.nvim_command("autocmd " .. definition)
-	end
+    for _, definition in pairs(definitions) do
+        vim.api.nvim_command("autocmd " .. definition)
+    end
 
-	vim.api.nvim_command("augroup end")
+    vim.api.nvim_command("augroup end")
 end
 
 -- main mappings
@@ -114,7 +114,7 @@ register_mappings("w", {
     { "<Leader>fr", "<cmd>Telescope commands<CR>", desc = "Find and run command" },
     { "<Leader>fs", "<cmd>Telescope live_grep<CR>", desc = "Search for text" },
     { "<Leader>ft", "<cmd>Telescope filetypes<CR>", desc = "Find and set buffer filetype" },
-    
+
     -- Git
     { "<Leader>g", group = "Git" },
     { "<Leader>gC", "<cmd>Telescope git_bcommits<CR>", desc = "Checkout commits of the current file" },
@@ -163,73 +163,73 @@ register_mappings("w", {
     { "<Leader>tw", "<cmd>ToggleTerm direction=tab<CR>", desc = "Open terminal in new tab" },
     { "<Leader>;", "<cmd>Alpha<CR>", desc = "Open dashboard" },
 }, {
-	silent = false,
-})
+        silent = false,
+    })
 
 register_mappings("nic", {
-	{ "<C-c>", "<ESC>" },
-	{ "<ESC>", "<ESC>:noh<CR>" },
+    { "<C-c>", "<ESC>" },
+    { "<ESC>", "<ESC>:noh<CR>" },
 }, {
-	noremap = false,
-})
+        noremap = false,
+    })
 
 register_mappings("wit", {
-	-- make window navigation easier
-	{ "<A-h>", "<ESC><C-w>h", desc = "Move to left window" },
-	{ "<A-j>", "<ESC><C-w>j", desc = "Move to bottom window" },
-	{ "<A-k>", "<ESC><C-w>k", desc = "Move to top window" },
-	{ "<A-l>", "<ESC><C-w>l", desc = "Move to right window" },
+    -- make window navigation easier
+    { "<A-h>", "<ESC><C-w>h", desc = "Move to left window" },
+    { "<A-j>", "<ESC><C-w>j", desc = "Move to bottom window" },
+    { "<A-k>", "<ESC><C-w>k", desc = "Move to top window" },
+    { "<A-l>", "<ESC><C-w>l", desc = "Move to right window" },
 
-	-- resize using arrow keys
-	{ "<C-Left>", "<cmd>vertical resize +3<CR>", desc = "Scale window left" },
-	{ "<C-Right>", "<cmd>vertical resize -3<CR>", desc = "Scale window right" },
-	{ "<C-Up>", "<cmd>resize +3<CR>", desc = "Scale window up" },
-	{ "<C-Down>", "<cmd>resize -3<CR>", desc = "Scale window down" },
+    -- resize using arrow keys
+    { "<C-Left>", "<cmd>vertical resize +3<CR>", desc = "Scale window left" },
+    { "<C-Right>", "<cmd>vertical resize -3<CR>", desc = "Scale window right" },
+    { "<C-Up>", "<cmd>resize +3<CR>", desc = "Scale window up" },
+    { "<C-Down>", "<cmd>resize -3<CR>", desc = "Scale window down" },
 
-	{ "<C-z>", "<ESC>", desc = "<ESC>" },
+    { "<C-z>", "<ESC>", desc = "<ESC>" },
 })
 
 register_mappings("i", {
-	{ "<A-j>", "<ESC>:m .+1<CR>==i" },
-	{ "<A-k>", "<ESC>:m .-2<CR>==i" },
-	{ "<C-s>", "<cmd>w<CR>" },
+    { "<A-j>", "<ESC>:m .+1<CR>==i" },
+    { "<A-k>", "<ESC>:m .-2<CR>==i" },
+    { "<C-s>", "<cmd>w<CR>" },
 })
 
 register_mappings("v", {
-	{ "<A-j>", ":m '>+1<CR>gv=gv" },
-	{ "<A-k>", ":m '<-2<CR>gv=gv" },
-	{ "<", "<gv" },
-	{ ">", ">gv" },
-	{ "<Leader>hs", "<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
-	{ "<Leader>hr", "<cmd>lua require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
+    { "<A-j>", ":m '>+1<CR>gv=gv" },
+    { "<A-k>", ":m '<-2<CR>gv=gv" },
+    { "<", "<gv" },
+    { ">", ">gv" },
+    { "<Leader>hs", "<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
+    { "<Leader>hr", "<cmd>lua require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
 })
 
 define_augroup("general_settings", {
-	"BufWritePre * :silent lua vim.lsp.buf.format()",
-	"FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
-	"FileType luau setlocal commentstring=--\\ %s",
-	"BufRead,BufNewFile *.wgsl set filetype=wgsl",
-	"BufRead,BufNewFile *.luau set filetype=luau",
-	"BufRead,BufNewFile *.dart set shiftwidth=2",
-	"FileType tex,text,markdown setlocal wrap",
-	[[BufWritePost *.dart silent execute '!kill -SIGUSR1 $(pgrep -f "[f]lutter_tool.*run")']],
+    "BufWritePre * :silent lua vim.lsp.buf.format()",
+    "FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
+    "FileType luau setlocal commentstring=--\\ %s",
+    "BufRead,BufNewFile *.wgsl set filetype=wgsl",
+    "BufRead,BufNewFile *.luau set filetype=luau",
+    "BufRead,BufNewFile *.dart set shiftwidth=2",
+    "FileType tex,text,markdown setlocal wrap",
+    [[BufWritePost *.dart silent execute '!kill -SIGUSR1 $(pgrep -f "[f]lutter_tool.*run")']],
 
-	-- Hide stuff when dashboard is open
-	"User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=2",
+    -- Hide stuff when dashboard is open
+    "User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=2",
 
-	-- When editing a file, always jump to the last known cursor position.
-	-- Don't do it when the position is invalid, when inside an event handler
-	-- (happens when dropping a file on gvim) and for a commit message (it's
-	-- likely a different one than last time).
-	[[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
+    -- When editing a file, always jump to the last known cursor position.
+    -- Don't do it when the position is invalid, when inside an event handler
+    -- (happens when dropping a file on gvim) and for a commit message (it's
+    -- likely a different one than last time).
+    [[BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
 })
 
 vim.api.nvim_command([[
     function! ToggleQuickFixList()
-        if empty(filter(getwininfo(), 'v:val.quickfix'))
-            copen
-        else
-            cclose
-        endif
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+    else
+    cclose
+    endif
     endfunction
 ]])

@@ -3,14 +3,14 @@ local tree_view = require("nvim-tree.view")
 
 -- Closes current buffer without cycling to nvim-tree window
 function BufferClose()
-	local buffer_to_delete = vim.api.nvim_get_current_buf()
-	if tree_view.get_winnr() ~= nil then
-		-- Switch to previous buffer (tracked by bufferline)
-		bufferline.cycle(-1)
-	end
+    local buffer_to_delete = vim.api.nvim_get_current_buf()
+    if tree_view.get_winnr() ~= nil then
+        -- Switch to previous buffer (tracked by bufferline)
+        bufferline.cycle(-1)
+    end
 
-	-- Delete initially open buffer
-	vim.api.nvim_buf_delete(buffer_to_delete, {})
+    -- Delete initially open buffer
+    vim.api.nvim_buf_delete(buffer_to_delete, {})
 end
 
 function BufferCloseAllOther()
@@ -24,16 +24,16 @@ function BufferCloseAllOther()
 end
 
 bufferline.setup({
-	options = {
-		close_command = BufferClose,
-		right_mouse_command = BufferClose,
-		always_show_bufferline = true,
-		offsets = {
-			{
-				filetype = "NvimTree",
-				text = "File Explorer",
-				padding = 1,
-			},
-		},
-	},
+    options = {
+        close_command = BufferClose,
+        right_mouse_command = BufferClose,
+        always_show_bufferline = true,
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                padding = 1,
+            },
+        },
+    },
 })
