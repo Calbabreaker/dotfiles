@@ -14,6 +14,8 @@ telescope.setup({
             "--column",
             "--smart-case",
             "--hidden",
+            "--iglob",
+            "!.git"
         },
         mappings = {
             i = {
