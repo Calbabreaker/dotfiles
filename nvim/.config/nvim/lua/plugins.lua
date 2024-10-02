@@ -1,8 +1,8 @@
 local function plugin_setup(use)
-    use("wbthomason/packer.nvim") -- packer plugin stuff
+    use("wbthomason/packer.nvim")       -- packer plugin stuff
     use("kyazdani42/nvim-web-devicons") -- nice icons
-    use("nvim-lua/plenary.nvim") -- lua utils
-    use("lewis6991/impatient.nvim") -- improve neovim startup times
+    use("nvim-lua/plenary.nvim")        -- lua utils
+    use("lewis6991/impatient.nvim")     -- improve neovim startup times
 
     -- colour scheme
     use({
@@ -176,7 +176,7 @@ local function plugin_setup(use)
     use({
         "akinsho/nvim-toggleterm.lua",
         config = function()
-            require("configs/other").lazygit()
+            require("configs/other").toggleterm()
         end,
     })
 
@@ -217,10 +217,10 @@ local function plugin_setup(use)
         },
     })
 
-    use("christoomey/vim-sort-motion") -- sorts lines
-    use("tpope/vim-repeat") -- able to repeat plugin maps
-    use("tpope/vim-surround") -- easily edit and make (), "", etc
-    use("tpope/vim-commentary") -- toggle comments with motions
+    use("christoomey/vim-sort-motion")     -- sorts lines
+    use("tpope/vim-repeat")                -- able to repeat plugin maps
+    use("tpope/vim-surround")              -- easily edit and make (), "", etc
+    use("tpope/vim-commentary")            -- toggle comments with motions
     use("vim-scripts/replacewithregister") -- provides gr to replace with clipboard
 end
 

@@ -30,6 +30,11 @@ return {
 
     treesitter = function()
         require("nvim-treesitter.configs").setup({
+            modules = {},
+            sync_install = false,
+            ensure_installed = {},
+            ignore_install = {},
+            auto_install = false,
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = true,
@@ -64,9 +69,10 @@ return {
         onedark.load()
     end,
 
-    lazygit = function()
+    toggleterm = function()
         require("toggleterm").setup({
-            persist_mode = false
+            persist_mode = false,
+            auto_scroll = false,
         })
 
         local Terminal = require("toggleterm.terminal").Terminal

@@ -1,23 +1,27 @@
 local bufferline = require("bufferline")
-local tree_view = require("nvim-tree.view")
 
--- Closes current buffer without cycling to nvim-tree window
-function BufferClose()
-    local buffer_to_delete = vim.api.nvim_get_current_buf()
-    if tree_view.get_winnr() ~= nil then
-        -- Switch to previous buffer (tracked by bufferline)
+local function should_close(bufnr)
+    local modified = vim.api.nvim_get_option_value("modified", { buf = bufnr })
+    local modifiable = vim.api.nvim_get_option_value("modifiable", { buf = bufnr })
+    return not modified and modifiable
+end
+
+-- Closes current buffer
+function BufferClose(bufnr)
+    local buffer_to_delete = bufnr and bufnr or vim.api.nvim_get_current_buf()
+    if should_close(buffer_to_delete) then
         bufferline.cycle(-1)
+        vim.api.nvim_buf_delete(buffer_to_delete, {})
     end
-
-    -- Delete initially open buffer
-    vim.api.nvim_buf_delete(buffer_to_delete, {})
 end
 
 function BufferCloseAllOther()
     local buffers = vim.api.nvim_list_bufs()
+
     for _, bufnr in ipairs(buffers) do
-        local is_modifiable = vim.api.nvim_buf_get_option(bufnr, 'modifiable')
-        if bufnr ~= vim.api.nvim_get_current_buf() and is_modifiable then
+        local current_buffer = bufnr == vim.api.nvim_get_current_buf();
+
+        if not current_buffer and should_close(bufnr) then
             vim.api.nvim_buf_delete(bufnr, {})
         end
     end
