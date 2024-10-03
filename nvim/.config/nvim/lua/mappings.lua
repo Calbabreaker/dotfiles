@@ -120,6 +120,7 @@ register_mappings("w", {
     { "<Leader>gC", "<cmd>Telescope git_bcommits<CR>",                                                         desc = "Checkout commits of the current file" },
     { "<Leader>gb", "<cmd>Telescope git_branches<CR>",                                                         desc = "Checkout branches" },
     { "<Leader>gc", "<cmd>Telescope git_commits<CR>",                                                          desc = "Checkout commits" },
+    { "<Leader>gb", "<cmd>GitBlameToggle<CR>",                                                                 desc = "Toggle git blame" },
     { "<Leader>gg", "<cmd>lua LazyGit:toggle()<CR>",                                                           desc = "Open lazygit" },
     { "<Leader>gh", "<cmd>diffget //2<CR>",                                                                    desc = "Get change to the left of merge conflict" },
     { "<Leader>gl", "<cmd>diffget //3<CR>",                                                                    desc = "Get change to the right of merge conflict" },

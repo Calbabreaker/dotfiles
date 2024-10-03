@@ -27,7 +27,16 @@ local function plugin_setup(use)
         "lewis6991/gitsigns.nvim",
         event = "BufRead",
         config = function()
-            require("gitsigns").setup()
+            require("gitsigns").setup({})
+        end,
+    })
+
+    use({
+        "f-person/git-blame.nvim",
+        event = "BufRead",
+        cond = "not MINIMAL",
+        config = function()
+            require("gitsigns").setup({ enabled = false })
         end,
     })
 
