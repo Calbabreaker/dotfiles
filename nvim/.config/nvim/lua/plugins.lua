@@ -36,7 +36,7 @@ local function plugin_setup(use)
         event = "BufRead",
         cond = "not MINIMAL",
         config = function()
-            require("gitsigns").setup({ enabled = false })
+            require("gitblame").setup({ enabled = false })
         end,
     })
 
@@ -212,7 +212,7 @@ local function plugin_setup(use)
         config = function()
             require("project_nvim").setup({
                 detection_methods = { "pattern" },
-                patterns = { ".git", ".project" },
+                patterns = { ".git", ".project", "Makefile" },
             })
         end,
     })
