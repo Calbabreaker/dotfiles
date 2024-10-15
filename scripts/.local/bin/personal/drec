@@ -16,14 +16,11 @@ current_time() {
 }
 
 record_start() {
-    local -r audio_file="$(mktemp \
-                               "/tmp/ffmpeg-recording.XXXXXX.$AUDIO_FORMAT")"
+    local -r audio_file="$(mktemp "/tmp/ffmpeg-recording.XXXXXX.$AUDIO_FORMAT")"
     echo "$audio_file" > "$recording_info_file"
 
     if [ "$OUTPUT_MONITOR" == "" ]; then
-        local -r output="$(pactl info \
-                               | grep 'Default Sink' \
-                               | awk '{print $NF ".monitor"}')"
+        local -r output="$(pactl info | grep 'Default Sink' | awk '{print $NF ".monitor"}')"
     else
         local -r output="$OUTPUT_MONITOR"
     fi

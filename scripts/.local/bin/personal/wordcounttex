@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Inserts wordcount in each section title
+
+# Check if the user provided a LaTeX file as an argument
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <latexfile.tex>"
+    exit 1
+fi
+
+# Assign the input argument to TEXFILE variable
+TEXFILE="$1"
+TMPFILE="out/tempfile.tex"     # Temporary file to store updated LaTeX
+
+# Ensure the LaTeX file exists
+if [ ! -f "$TEXFILE" ]; then
+    echo "Error: File $TEXFILE not found!"
+    exit 1
+fi
+
+# Run texcount on the LaTeX file and get word counts by section
+wordcounts=$(texcount -inc -sub=section "$TEXFILE")
+
+# Backup the original file
+cp "$TEXFILE" "out/${TEXFILE}.bak"
+
+# Copy the original file to the temp file for modification
+cp "$TEXFILE" "$TMPFILE"
+
+# Read each line of the LaTeX file
+while IFS= read -r line; do
+    # Check if the line contains a \section{} command
+    if echo "$line" | grep -q '\\section{'; then
+        # Extract the section name inside the \section{} braces
+        section_name=$(echo "$line" | sed -n 's/.*\\section{\(.*\)}/\1/p')
+
+        # Find the word count for that section using texcount output
+        count=$(echo "$wordcounts" | grep "Section: $section_name" | sed -e 's/+.*//')
+        count=$(echo $count | sed 's/^ *//;s/ *$//') # trim it
+
+        # If count is found, modify the line to include the word count
+        if [ -n "$count" ]; then
+            # Add (Word count: X) to the section title
+            modified_line=$(echo "$line" | sed "s/ (.*)//g")
+            modified_line=$(echo "$modified_line" | sed "s/\\\section{\(.*\)}/\\\section{\1 ($count words)}/")
+            echo $modified_line
+            # Replace the line in the temp file
+            sed -i "s/\\$line/\\$modified_line/" "$TMPFILE"
+        fi
+    fi
+done < "$TEXFILE"
+
+# Replace original LaTeX file with the updated temp file
+mv "$TMPFILE" "$TEXFILE"
+echo "Word counts added to $TEXFILE"

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-xinput set-prop 11 328 0
-killall picom
-gamemoderun $@
-picom -b & disown
-xinput set-prop 11 328 1
