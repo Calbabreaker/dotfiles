@@ -85,4 +85,27 @@ return {
             },
         })
     end,
+
+    lspsaga = function()
+        require("lspsaga").setup({
+            symbol_in_winbar = {
+                -- bit too distracting
+                enable = false,
+            },
+            lightbulb = {
+                enable = false,
+            },
+            outline = {
+                layout = "float",
+                max_height = 1,
+            },
+            definition = {
+                height = 1
+            },
+            rename = {
+                in_select = false,
+                auto_save = true
+            }
+        })
+    end,
 }

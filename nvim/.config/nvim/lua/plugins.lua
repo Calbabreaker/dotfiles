@@ -113,6 +113,15 @@ local function plugin_setup(use)
         end,
     })
 
+    -- Better lsp
+    use({
+        "nvimdev/lspsaga.nvim",
+        after = "nvim-lspconfig",
+        config = function()
+            require("configs/other").lspsaga()
+        end,
+    })
+
     -- lsp linters and formatter
     use({
         "jose-elias-alvarez/null-ls.nvim",
@@ -164,7 +173,7 @@ local function plugin_setup(use)
         end,
     })
 
-    -- nice syntax highlight
+    -- nice treesitter syntax highlight and other stuff
     use({
         "nvim-treesitter/nvim-treesitter",
         requires = {

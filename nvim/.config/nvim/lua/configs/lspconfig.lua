@@ -89,6 +89,7 @@ require("mason").setup()
 local mason_lsp = require("mason-lspconfig")
 mason_lsp.setup()
 for _, server in ipairs(mason_lsp.get_installed_servers()) do
+    -- Add mason managed servers to the list
     server_configs[server] = server_configs[server] or {}
 end
 

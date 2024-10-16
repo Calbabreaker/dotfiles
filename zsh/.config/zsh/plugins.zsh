@@ -54,6 +54,7 @@ zsh_add_plugin "spaceship-prompt/spaceship-prompt@68c162d8754175e69465a0f08b8362
 # Fzf for fuzzy finding productivity
 # 
 function fzf_install() {
+    mkdir ~/.local/bin/
     $PLUGIN_PATH/fzf/install --bin 
     ln -sf $PLUGIN_PATH/fzf/bin/fzf ~/.local/bin/fzf
 }
@@ -91,3 +92,6 @@ bindkey '^e' 'fzf-edit'
 bindkey '^o' 'fzf-open'
 
 command -v zoxide > /dev/null && eval "$(zoxide init zsh --cmd cd)"
+
+# make conda work
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
