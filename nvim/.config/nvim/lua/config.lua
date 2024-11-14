@@ -30,7 +30,7 @@ vim.opt.timeoutlen = 500               -- timeout to wait for a key combination 
 vim.opt.undodir = DATA_PATH .. "/undo" -- set an undo directory
 vim.opt.undofile = true                -- persistent undos
 vim.opt.updatetime = 300               -- how often updates happen
-vim.opt.wrap = false                   -- no line wrapping
+vim.opt.wrap = true                    -- yes line wrapping
 vim.opt.writebackup = false            -- don't make backup files
 
 -- makes indent and tabs better

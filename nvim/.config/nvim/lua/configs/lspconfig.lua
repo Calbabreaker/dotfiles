@@ -44,7 +44,9 @@ end
 -- Any servers installed by lsp-installer will be added onto this table
 local server_configs = {
     dartls = {},
-    clangd = {},
+    clangd = {
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
+    },
     gdscript = {},
     lua_ls = {
         settings = {

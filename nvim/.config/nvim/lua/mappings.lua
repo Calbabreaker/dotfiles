@@ -219,7 +219,6 @@ define_augroup("general_settings", {
     "BufRead,BufNewFile *.wgsl set filetype=wgsl",
     "BufRead,BufNewFile *.luau set filetype=luau",
     "BufRead,BufNewFile *.dart set shiftwidth=2",
-    "FileType tex,text,markdown setlocal wrap",
     [[BufWritePost *.dart silent execute '!kill -SIGUSR1 $(pgrep -f "[f]lutter_tool.*run")']],
 
     -- Hide stuff when dashboard is open

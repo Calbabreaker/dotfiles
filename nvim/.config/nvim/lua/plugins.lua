@@ -226,6 +226,14 @@ local function plugin_setup(use)
         end,
     })
 
+    use({
+        "saecki/crates.nvim",
+        event = "BufRead Cargo.toml",
+        config = function()
+            require('crates').setup({})
+        end,
+    })
+
     -- nice text objects
     use({
         "kana/vim-textobj-user",
