@@ -1,4 +1,0 @@
-#!/bin/bash
-
-div=$([ -z $1 ] && echo "1" || echo $1)
-xsetwacom set "Wacom One by Wacom M Pen stylus" Area 0 0 $((21600 / $div)) $((12144 / $div))

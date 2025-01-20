@@ -2,4 +2,4 @@
 
 tmp_file="/tmp/qrmake-temp"
 
-qrencode "$([ -z $(xsel) ] && wl-paste || xsel)" -o $tmp_file && sxiv $tmp_file
+qrencode "$([ -z "$(xsel)" ] && wl-paste || xsel)" -o $tmp_file && xdg-open $tmp_file
