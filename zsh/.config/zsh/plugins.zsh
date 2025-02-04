@@ -71,7 +71,7 @@ function fzf-edit {
     if [ -z "$file" ]; then
         return 0
     fi
-    BUFFER="nvim $file"
+    BUFFER="nvim '$file'"
     zle accept-line
 }
 
@@ -80,7 +80,7 @@ function fzf-open {
     if [ -z "$file" ]; then
         return 0
     fi
-    BUFFER="xdg-open $file"
+    BUFFER="xdg-open '$file'"
     zle accept-line
 }
 

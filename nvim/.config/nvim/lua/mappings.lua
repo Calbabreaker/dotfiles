@@ -81,8 +81,8 @@ register_mappings("w", {
     { "<A-7>",      "<cmd>BufferLineGoToBuffer 7<CR>",                       desc = "Go to tab 7" },
     { "<A-8>",      "<cmd>BufferLineGoToBuffer 8<CR>",                       desc = "Go to tab 8" },
     { "<A-9>",      "<cmd>BufferLineGoToBuffer 9<CR>",                       desc = "Go to tab 9" },
-    { "<A-<>",      "<cmd>BufferLineMovePrev<CR>",                           desc = "Move previous tab" },
-    { "<A->>",      "<cmd>BufferLineMoveNext<CR>",                           desc = "Move previous tab" },
+    { "<A-S-,>",    "<cmd>BufferLineMovePrev<CR>",                           desc = "Move previous tab" },
+    { "<A-S-.>",    "<cmd>BufferLineMoveNext<CR>",                           desc = "Move previous tab" },
     { "<A-C>",      "<cmd>lua BufferCloseAllOther()<CR>",                    desc = "Close all other tabs" },
     { "<A-c>",      "<cmd>lua BufferClose()<CR>",                            desc = "Close current tab" },
     { "<A-p>",      "<cmd>BufferLinePick<CR>",                               desc = "Pick a tab" },
@@ -140,6 +140,7 @@ register_mappings("w", {
     { "<Leader>hr", "<cmd>lua require('gitsigns').reset_hunk()<CR>",         desc = "Reset hunk" },
     { "<Leader>hs", "<cmd>lua require('gitsigns').stage_hunk()<CR>",         desc = "Stage hunk" },
     { "<Leader>hu", "<cmd>lua require('gitsigns').undo_stage_hunk()<CR>",    desc = "Undo stage" },
+    { "<Leader>hd", "<cmd>%!xxd -g 1<CR><cmd>set ft=xxd<CR>",                desc = "Hex dump" },
 
 
     { "<Leader>l",  group = "LSP" },
