@@ -11,7 +11,6 @@ ENDPOINT_MIC=audio.opus
 DEVICE_NUMBER=7
 ENCODE_OPTIONS="-c:v copy"
 # ENCODE_OPTIONS="-vcodec rawvideo -pix_fmt yuv420p -threads 0"
-SUDO=sudo
 
 command -v adb &> /dev/null || echo "adb is not installed!"
 command -v ffmpeg &> /dev/null || echo "ffmpeg is not installed!"
@@ -30,7 +29,7 @@ if [ "$1" == "mic" ]; then
     pactl set-default-source "$MIC_SINK.monitor"
     ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT_MIC" -af volume=7 -f pulse "$MIC_SINK"
 else
-    $SUDO modprobe v4l2loopback devices=1 max_buffers=2 exclusive_caps=1 video_nr=$DEVICE_NUMBER 'card_label=IP Webcam'
+    sudo modprobe v4l2loopback devices=1 max_buffers=2 exclusive_caps=1 video_nr=$DEVICE_NUMBER 'card_label=IP Webcam'
     ffmpeg -i "$PROTOCOL://$IP_ADDRESS:$PORT/$ENDPOINT_VIDEO" $ENCODE_OPTIONS -f v4l2 /dev/video$DEVICE_NUMBER
-    $SUDO modprobe -r v4l2loopback
+    sudo modprobe -r v4l2loopback
 fi

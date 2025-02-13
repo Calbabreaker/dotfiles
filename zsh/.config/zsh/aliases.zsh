@@ -31,7 +31,6 @@ alias o="xdg-open"
 export PAGER='less -R --use-color -Dd+g$Dur$DPy' # coloured man pages
 bindkey -s '^f' 'ranger^M'
 
-alias hbackup="rsync -aAXv ~/Documents ~/Media --delete --exclude='*/Dev/*' /run/media/$USER/storage/backups/"
 alias idump='objdump  --disassembler-color=extended -M intel -D'
 
 # Bind history forward/back

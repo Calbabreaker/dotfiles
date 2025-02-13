@@ -175,7 +175,7 @@ register_mappings("w", {
     silent = false,
 })
 
-register_mappings("nc", {
+register_mappings("nic", {
     { "<C-c>", "<ESC>" },
     { "<ESC>", "<ESC>:noh<CR>" },
 }, {

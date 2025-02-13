@@ -90,14 +90,3 @@ zle -N fzf-open
 # keybinds
 bindkey '^e' 'fzf-edit'
 bindkey '^o' 'fzf-open'
-
-command -v zoxide > /dev/null && eval "$(zoxide init zsh --cmd cd)"
-
-# make conda work
-export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
-if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-    . "/opt/miniconda3/etc/profile.d/conda.sh"
-elif [ -d "/opt/miniconda3/bin" ]; then
-    export PATH="/opt/miniconda3/bin:$PATH"
-fi
-
