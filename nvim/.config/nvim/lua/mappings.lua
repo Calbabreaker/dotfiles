@@ -101,6 +101,12 @@ register_mappings("w", {
     { "<C-s>",      "<cmd>w<CR>",                                            desc = "Save file" },
     { "<C-t>",      "<cmd>execute v:count . 'ToggleTerm'<CR>",               desc = "Toggle terminal" },
 
+    -- Running stuff
+    { "<Leader>r",  group = "Run" },
+    { "<Leader>rp", "<cmd>!python3 %<CR>",                                   desc = "Run current file with python" },
+    { "<Leader>rd", "<cmd>!deno run %<CR>",                                  desc = "Run current file with deno" },
+    { "<Leader>rr", "<cmd>!cargo run<CR>",                                   desc = "Run current file with cargo/rust" },
+
     -- Tab/buffers manage
     { "<Leader>b",  group = "Buffers" },
     { "<Leader>bd", "<cmd>BufferLineSortByDirectory<CR>",                    desc = "Sort buffers by directory" },

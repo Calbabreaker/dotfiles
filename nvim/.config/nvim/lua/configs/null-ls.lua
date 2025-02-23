@@ -9,6 +9,7 @@ local sources = {
     }),
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.hover.dictionary,
+    null_ls.builtins.formatting.autopep8,
 }
 
 local filetype_to_sources = {}
