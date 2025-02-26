@@ -100,6 +100,8 @@ register_mappings("w", {
     { "<C-q>",      "<cmd>call ToggleQuickFixList()<CR>",                    desc = "Toggle quick fix list" },
     { "<C-s>",      "<cmd>w<CR>",                                            desc = "Save file" },
     { "<C-t>",      "<cmd>execute v:count . 'ToggleTerm'<CR>",               desc = "Toggle terminal" },
+    { "<C-j>",      "<cmd>m .+1<CR>==",                                      desc = "Move line down" },
+    { "<C-k>",      "<cmd>m .-2<CR>==",                                      desc = "Move line up" },
 
     -- Running stuff
     { "<Leader>r",  group = "Run" },
@@ -211,8 +213,8 @@ register_mappings("i", {
 })
 
 register_mappings("v", {
-    { "<A-j>",      ":m '>+1<CR>gv=gv" },
-    { "<A-k>",      ":m '<-2<CR>gv=gv" },
+    { "<C-j>",      ":m '>+1<CR>gv=gv" },
+    { "<C-k>",      ":m '<-2<CR>gv=gv" },
     { "<",          "<gv" },
     { ">",          ">gv" },
     { "<Leader>hs", "<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>" },
