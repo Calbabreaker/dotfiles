@@ -31,6 +31,8 @@ local function register_mappings(mode, mappings, options)
     end
 end
 
+vim.api.nvim_del_keymap("n", "gri")
+
 local function define_augroup(name, definitions)
     vim.api.nvim_command("augroup " .. name)
     vim.api.nvim_command("autocmd!")
@@ -52,7 +54,7 @@ register_mappings("w", {
     { "<C-d>",      "<C-d>zz",                                               hidden = true },
 
     -- LSP
-    { "K",          "<cmd>lua vim.lsp.buf.hover()<CR>",                      desc = "Show signature (hover)" },
+    { "K",          "<cmd>lua vim.lsp.buf.hover({border = 'rounded'})<CR>",  desc = "Show signature (hover)" },
     { "]g",         "<cmd>Lspsaga diagnostic_jump_next<CR>",                 desc = "Go to next diagnostic" },
     { "[h",         "<cmd>lua require('gitsigns.actions').prev_hunk()<CR>",  desc = "Previous git hunk" },
     { "[g",         "<cmd>Lspsaga diagnostic_jump_prev<CR>",                 desc = "Go to previous diagnostic" },
@@ -62,12 +64,11 @@ register_mappings("w", {
     { "gd",         "<cmd>Lspsaga goto_definition<CR>",                      desc = "Go to definition" },
     { "gi",         "<cmd>lua vim.lsp.buf.implementation()<CR>",             desc = "Go to implementation" },
     { "gt",         "<cmd>Lspsaga goto_type_definition<CR>",                 desc = "Go to type definition" },
-    { "<C-k>",      "<cmd>lua vim.lsp.buf.signature_help()<CR>",             desc = "Show signature (hover)" },
 
-    { "gl",         group = "Peek lsp" },
-    { "gld",        "<cmd>Lspsaga peek_definition<CR>",                      desc = "Peek definition" },
-    { "glt",        "<cmd>Lspsaga peek_type_definition<CR>",                 desc = "Peek type definition" },
-    { "gli",        "<cmd>Lspsaga finder imp<CR>",                           desc = "Show implementation(s)" },
+    { "gp",         group = "Peek lsp" },
+    { "gpd",        "<cmd>Lspsaga peek_definition<CR>",                      desc = "Peek definition" },
+    { "gpt",        "<cmd>Lspsaga peek_type_definition<CR>",                 desc = "Peek type definition" },
+    { "gpi",        "<cmd>Lspsaga finder imp<CR>",                           desc = "Show implementation(s)" },
 
     -- Tabs
     { "<A-,>",      "<cmd>BufferLineCyclePrev<CR>",                          desc = "Go to previous tab" },
@@ -92,8 +93,6 @@ register_mappings("w", {
     { "<A-s>",      "<cmd>noa w<CR>",                                        desc = "Save without formatting" },
     { "<A-u>",      "<cmd>edit!<CR>",                                        desc = "Revert all edits since saved" },
     { "<A-x>",      "<cmd>x<CR>",                                            desc = "Save and quit" },
-    { "<C-S-j>",    "<cmd>m .+1<CR>==",                                      desc = "Move current line down" },
-    { "<C-S-k>",    "<cmd>m .-2<CR>==",                                      desc = "Move current line up" },
     { "<C-e>",      "<cmd>NvimTreeFindFileToggle<CR>",                       desc = "Toggle file explorer" },
     { "<C-n>",      "<cmd>cnext<CR>zzzv",                                    desc = "Go to next item in quick fix list" },
     { "<C-p>",      "<cmd>cprev<CR>zzzv",                                    desc = "Go to previous item in quick fix list" },
@@ -179,8 +178,6 @@ register_mappings("w", {
     { "<Leader>tt", "<cmd>ToggleTerm size=25 directory=horizontal<CR>",      desc = "Open horizontal terminal" },
     { "<Leader>tw", "<cmd>ToggleTerm direction=tab<CR>",                     desc = "Open terminal in new tab" },
     { "<Leader>;",  "<cmd>Alpha<CR>",                                        desc = "Open dashboard" },
-}, {
-    silent = false,
 })
 
 register_mappings("nic", {

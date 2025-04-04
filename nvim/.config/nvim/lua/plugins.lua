@@ -124,7 +124,7 @@ local function plugin_setup(use)
 
     -- lsp linters and formatter
     use({
-        "jose-elias-alvarez/null-ls.nvim",
+        "https://github.com/nvimtools/none-ls.nvim",
         after = "nvim-lspconfig",
         config = function()
             require("configs/null-ls")
