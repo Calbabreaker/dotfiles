@@ -1,5 +1,3 @@
-require("lsp-status").register_progress()
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local completionItem = capabilities.textDocument.completion.completionItem
 capabilities.window = { workDoneProgress = true }
@@ -20,7 +18,7 @@ completionItem.resolveSupport = {
 
 local function on_attach(client, bufnr)
     -- Turn off formatting for lsp if if null-ls already has one available
-    if NullLSGetAvail(vim.bo.filetype) ~= nil then
+    if require("configs/null-ls").get_avail_sources(vim.bo.filetype) ~= nil then
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
     end

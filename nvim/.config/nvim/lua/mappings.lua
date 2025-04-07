@@ -166,11 +166,9 @@ register_mappings("w", {
     { "<Leader>lC", "<cmd>Lspsaga outgoing_calls<cr>",                       desc = "Show outcoming calls" },
     { "<Leader>o",  "<cmd>Telescope find_files<CR>",                         desc = "Select and open files" },
 
-    { "<Leader>p",  group = "Packer (plugin manager)" },
-    { "<Leader>pc", "<cmd>PackerCompile<CR>",                                desc = "Make packer_compiled.lua" },
-    { "<Leader>pg", "<cmd>PackerInstall<CR>",                                desc = "Get/Install needed plugins" },
-    { "<Leader>pi", "<cmd>PackerStatus<CR>",                                 desc = "Show plugins info" },
-    { "<Leader>ps", "<cmd>PackerSync<CR>",                                   desc = "Packer sync" },
+    { "<Leader>p",  group = "Plugin manager (lazy.nvim)" },
+    { "<Leader>pi", "<cmd>Lazy home<CR>",                                    desc = "Show plugins info" },
+    { "<Leader>ps", "<cmd>Lazy sync<CR>",                                    desc = "Run install, clean and update" },
 
     { "<Leader>t",  group = "Open terminal" },
     { "<Leader>tf", "<cmd>ToggleTerm direction=float<CR>",                   desc = "Open floating terminal" },

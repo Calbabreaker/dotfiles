@@ -41,11 +41,9 @@ local function clients()
     end
 
     -- add null-ls linter and formatter clients
-    if NullLSGetAvail then
-        local null_ls_sources = NullLSGetAvail(vim.bo.filetype)
-        if null_ls_sources then
-            vim.list_extend(status_list, null_ls_sources)
-        end
+    local null_ls_sources = require("configs/null-ls").get_avail_sources(vim.bo.filetype)
+    if null_ls_sources then
+        vim.list_extend(status_list, null_ls_sources)
     end
 
     local statuses = "Inactive"
