@@ -32,6 +32,8 @@ local function register_mappings(mode, mappings, options)
 end
 
 vim.api.nvim_del_keymap("n", "gri")
+vim.api.nvim_del_keymap("n", "gra")
+vim.g.ftplugin_sql_omni_key = "<C-y>"
 
 local function define_augroup(name, definitions)
     vim.api.nvim_command("augroup " .. name)

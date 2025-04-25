@@ -95,8 +95,8 @@ local plugins = {
     -- nice emmet support
     {
         "https://github.com/mattn/emmet-vim",
-        event = "BufRead",
-        setup = function()
+        lazy = false,
+        config = function()
             vim.g.user_emmet_leader_key = ","
             vim.g.user_emmet_mode = "nv"
         end,
@@ -105,12 +105,11 @@ local plugins = {
     --
     -- Language server
     --
-
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason.nvim", },
-            { "williamboman/mason-lspconfig.nvim", },
+            { "williamboman/mason.nvim",           opts = {} },
+            { "williamboman/mason-lspconfig.nvim", opts = {} },
             { "b0o/schemastore.nvim", },
             -- lsp linters and formatter
             {
@@ -145,7 +144,6 @@ local plugins = {
             require("configs/lspconfig")
         end,
     },
-
 
     -- autocomplete
     {
@@ -246,7 +244,7 @@ local plugins = {
     -- nice text objects
     {
         "kana/vim-textobj-user",
-        requires = {
+        dependencies = {
             "sgur/vim-textobj-parameter",
             "kana/vim-textobj-entire",
         },

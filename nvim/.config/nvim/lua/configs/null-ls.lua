@@ -8,7 +8,6 @@ local source_config = {
         },
     }),
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.hover.dictionary,
     null_ls.builtins.formatting.autopep8,
 }
 
@@ -18,7 +17,7 @@ local filetype_to_sources = {}
 local availiable_sources = {}
 for _, source in pairs(source_config) do
     local cmd = source._opts.command
-    if cmd and vim.fn.executable(cmd) == 1 then
+    if vim.fn.executable(cmd) == 1 then
         table.insert(availiable_sources, source)
 
         -- create filetype_to_source table for faster NullLSGetAvail lookup
