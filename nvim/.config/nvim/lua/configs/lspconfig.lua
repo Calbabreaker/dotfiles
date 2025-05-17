@@ -82,6 +82,16 @@ local server_configs = {
                 },
             },
         }
+    },
+    ruff = {
+        init_options = {
+            settings = {
+                lint = {
+                    -- Star import stuff
+                    ignore = { "F405", "F403" }
+                }
+            }
+        }
     }
 }
 

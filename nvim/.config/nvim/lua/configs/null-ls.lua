@@ -1,14 +1,11 @@
 local null_ls = require("null-ls")
 local source_config = {
-    null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.prettierd.with({
         env = {
             PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/lua/configs/.prettierrc.json",
         },
     }),
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.autopep8,
 }
 
 local filetype_to_sources = {}
