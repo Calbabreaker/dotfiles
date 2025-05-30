@@ -77,9 +77,7 @@ local server_configs = {
                 cargo = {
                     allFeatures = true,
                 },
-                checkOnSave = {
-                    command = "clippy",
-                },
+                check = { command = "clippy" }
             },
         }
     },
