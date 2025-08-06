@@ -220,8 +220,6 @@ register_mappings("v", {
 
 define_augroup("general_settings", {
     "BufWritePre * :silent lua vim.lsp.buf.format()",
-    "FileType c,cpp,javascriptreact,typescript,typescriptreact,dart setlocal commentstring=//\\ %s",
-    "FileType luau setlocal commentstring=--\\ %s",
     "FileType tex setlocal indentexpr&",
     "BufRead,BufNewFile *.wgsl set filetype=wgsl",
     "BufRead,BufNewFile *.luau set filetype=luau",

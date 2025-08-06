@@ -30,18 +30,16 @@ local plugins = {
     {
         "lewis6991/gitsigns.nvim",
         event = "BufRead",
-        config = function()
-            require("gitsigns").setup({})
-        end,
+        opts = {}
     },
 
     {
         "f-person/git-blame.nvim",
         event = "BufRead",
         cond = is_normal,
-        config = function()
-            require("gitblame").setup({ enabled = false })
-        end,
+        opts = {
+            enabled = false,
+        }
     },
 
     -- cool status line
@@ -85,11 +83,9 @@ local plugins = {
     -- show keybinds
     {
         "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup({
-                win = { border = "double" },
-            })
-        end,
+        opts = {
+            win = { border = "double" },
+        }
     },
 
     -- nice emmet support
@@ -109,7 +105,7 @@ local plugins = {
         "neovim/nvim-lspconfig",
         dependencies = {
             { "williamboman/mason.nvim",           opts = {} },
-            { "williamboman/mason-lspconfig.nvim", opts = {} },
+            { "williamboman/mason-lspconfig.nvim", opts = { automatic_enable = false } },
             { "b0o/schemastore.nvim", },
             -- lsp linters and formatter
             {
@@ -184,7 +180,14 @@ local plugins = {
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
-            { "JoosepAlviste/nvim-ts-context-commentstring" },
+            {
+                "JoosepAlviste/nvim-ts-context-commentstring",
+                opts = {
+                    languages = {
+                        c = { __default = "// %s" },
+                    },
+                },
+            },
             { "nvim-treesitter/nvim-treesitter-context" },
         },
         config = function()
@@ -236,9 +239,7 @@ local plugins = {
     {
         "saecki/crates.nvim",
         event = "BufRead Cargo.toml",
-        config = function()
-            require("crates").setup({})
-        end,
+        opts = {}
     },
 
     -- nice text objects
