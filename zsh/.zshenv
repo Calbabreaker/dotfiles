@@ -11,6 +11,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 
 # put inside xdg dirs
+export ANDROID_HOME=$XDG_DATA_HOME/android
 export CALCHISTFILE=$XDG_CACHE_HOME/calc_history
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker

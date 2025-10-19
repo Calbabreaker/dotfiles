@@ -93,19 +93,20 @@ local server_configs = {
     }
 }
 
+
 for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
     -- Add mason managed servers to the list
     server_configs[server] = server_configs[server] or {}
 end
 
-local lspconfig = require("lspconfig")
 for name, config in pairs(server_configs) do
     -- Only setup server if it exists
-    local cmd = lspconfig[name].document_config.default_config.cmd
+    local cmd = vim.lsp.config[name].cmd
     if type(cmd) ~= "table" or vim.fn.executable(cmd[1]) == 1 then
         config.capabilities = capabilities
         config.on_attach = on_attach
-        lspconfig[name].setup(config)
+        vim.lsp.config(name, config);
+        vim.lsp.enable(name)
     end
 end
 
