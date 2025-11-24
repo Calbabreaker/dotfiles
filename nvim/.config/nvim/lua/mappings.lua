@@ -34,6 +34,7 @@ end
 -- Remove default lsp bindings since replace register uses them
 vim.api.nvim_del_keymap("n", "gri")
 vim.api.nvim_del_keymap("n", "gra")
+vim.api.nvim_del_keymap("n", "grt")
 vim.api.nvim_del_keymap("v", "gra")
 
 vim.g.ftplugin_sql_omni_key = "<C-y>"
