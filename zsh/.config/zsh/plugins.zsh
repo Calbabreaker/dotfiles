@@ -34,8 +34,6 @@ bindkey '^ ' autosuggest-accept
 #
 # Spaceship prompt - very nice prompt
 # 
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_PROMPT_ASYNC=false
 SPACESHIP_CHAR_SYMBOL=»
 SPACESHIP_CHAR_SUFFIX=" "
@@ -48,7 +46,7 @@ SPACESHIP_PROMPT_ORDER=(
 )
 
 # https://github.com/spaceship-prompt/spaceship-prompt/issues/1178 set specific version that works
-zsh_add_plugin "spaceship-prompt/spaceship-prompt@68c162d8754175e69465a0f08b836243bcdfedd7" "spaceship.zsh"
+zsh_add_plugin "spaceship-prompt/spaceship-prompt" "spaceship.zsh"
 
 #
 # Fzf for fuzzy finding productivity
