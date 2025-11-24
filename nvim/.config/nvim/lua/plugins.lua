@@ -83,6 +83,7 @@ local plugins = {
     -- show keybinds
     {
         "folke/which-key.nvim",
+        lazy = true,
         opts = {
             win = { border = "double" },
         }
@@ -91,8 +92,7 @@ local plugins = {
     -- nice emmet support
     {
         "https://github.com/mattn/emmet-vim",
-        lazy = false,
-        config = function()
+        init = function()
             vim.g.user_emmet_leader_key = ","
             vim.g.user_emmet_mode = "nv"
         end,
@@ -124,9 +124,7 @@ local plugins = {
             {
                 "nvimdev/lspsaga.nvim",
                 cmd = "Lspsaga",
-                config = function()
-                    require("configs/other").lspsaga()
-                end,
+                opts = require("configs/other").lspsaga
             },
             {
                 "windwp/nvim-autopairs",
@@ -220,9 +218,8 @@ local plugins = {
     {
         "lukas-reineke/indent-blankline.nvim",
         event = "BufWinEnter",
-        config = function()
-            require("configs/other").blankline()
-        end,
+        main = "ibl",
+        opts = require("configs/other").blankline,
     },
 
     -- better project management

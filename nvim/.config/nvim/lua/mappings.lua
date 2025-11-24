@@ -31,8 +31,11 @@ local function register_mappings(mode, mappings, options)
     end
 end
 
+-- Remove default lsp bindings since replace register uses them
 vim.api.nvim_del_keymap("n", "gri")
 vim.api.nvim_del_keymap("n", "gra")
+vim.api.nvim_del_keymap("v", "gra")
+
 vim.g.ftplugin_sql_omni_key = "<C-y>"
 
 local function define_augroup(name, definitions)
